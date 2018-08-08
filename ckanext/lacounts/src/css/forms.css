@@ -1,0 +1,18 @@
+.form-control {
+  font-size: 1em;
+  color: var(--body-colour);
+  border: 2px solid var(--border-colour);
+  border-radius: var(--border-radius);
+  box-shadow: none;
+  transition: border-color ease-in-out .15s;
+
+  &:focus {
+    border-color: #66afe9;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+}
