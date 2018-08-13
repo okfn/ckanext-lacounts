@@ -29,6 +29,13 @@
       padding-top: calc(var(--header-height-large) + var(--user-bar-height));
     }
   }
+
+  &.active-search {
+    @media (--small-up) {
+      height: 100vh;
+      overflow: hidden;
+    }
+  }
 }
 
 [role="main"],

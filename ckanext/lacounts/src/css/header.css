@@ -195,12 +195,35 @@
       }
 
       @media (--small-up) {
-        & input[type="text"],
-        & input[type="search"],
+
         & .btn-search {
-          display: none;
+          color: var(--blue);
+          right: 1em;
         }
+
+        & input[type="text"],
+        & input[type="search"] {
+          background-color: #fff;
+          color: var(--body-colour);
+          padding: 0.5em 3em 0.5em 1em;
+
+          &:focus {
+            background-color: #fff;
+
+            & + .btn-search {
+              color: var(--blue);
+            }
+          }
+        }
+
         @nest .js & {
+          & input[type="text"],
+          & input[type="search"],
+          & .btn-search {
+            position: absolute;
+            left: -200vw;
+          }
+
           & label {
             display: flex;
             align-items: center;
@@ -216,6 +239,83 @@
               margin-left: 0.5em;
               margin-right: 2em;
               margin-top: 0.1em;
+            }
+          }
+        }
+
+        @nest .page.active-search & {
+
+          background-color: #fff;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+
+          & .field {
+            width: 100%;
+            padding: 10vw;
+          }
+
+          & label {
+            position: absolute;
+            left: -200vw;
+          }
+
+          & input[type="text"],
+          & input[type="search"],
+          & .btn-search {
+            position: static;
+          }
+
+          & input[type="text"],
+          & input[type="search"] {
+            padding: 0 6vw 0 0;
+            font-size: 5vw;
+            font-weight: bold;
+            border-bottom: solid 0.6vw var(--grey);
+
+            &:focus {
+              border-bottom-color: var(--blue);
+            }
+
+            &::placeholder {
+              opacity: 0.3;
+            }
+          }
+
+          & .btn-search {
+            position: absolute;
+            left: auto;
+            right: 10vw;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.5vw;
+            margin-top: -2.5vw;
+
+            &:focus {
+              background-color: var(--blue);
+              color: #fff;
+            }
+          }
+
+          & .close {
+            display: block;
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            outline: none;
+
+            &:hover,
+            &:focus {
+              color: var(--blue);
+              opacity: 1;
             }
           }
         }

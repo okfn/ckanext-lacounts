@@ -17,6 +17,11 @@
   content: "\f002";
 }
 
-.fa-search:before {
+@define-mixin icon-close {
+  content: "\f00d";
+}
+
+.fa-search:before,
+.fa-times:before {
   font-family: 'icomoon';
 }

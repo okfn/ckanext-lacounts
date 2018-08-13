@@ -4,3 +4,8 @@
   {{ super() }}
   {% resource 'lacounts/theme.css' %}
 {% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% resource 'lacounts/theme.js' %}
+{% endblock %}
