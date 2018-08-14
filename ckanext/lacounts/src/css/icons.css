@@ -21,8 +21,12 @@
   content: "\f00d";
 }
 
-@define-mixin arrow-right {
+@define-mixin icon-arrow-right {
   content: "\f002";
+}
+
+@define-mixin icon-checkmark {
+  content: "\e901";
 }
 
 .fa {
@@ -31,5 +35,5 @@
 
 .fa-search:before,
 .fa-times:before {
-  font-family: 'icomoon';
+  @mixin icon;
 }

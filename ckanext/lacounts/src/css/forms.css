@@ -16,3 +16,49 @@
     opacity: 0.5;
   }
 }
+
+@define-mixin checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  border: solid 1px var(--body-colour);
+  color: #fff;
+  margin-right: 0.6em;
+  @mixin icon;
+  font-size: 0.8em;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+@define-mixin checked {
+  background-color: var(--blue);
+  border-color: var(--blue);
+  content: '\e901';
+}
+
+label.checkbox {
+  overflow: hidden;
+
+  & span {
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: '';
+      @mixin checkbox;
+    }
+  }
+
+  & input[type=checkbox] {
+    position: absolute;
+    left: -100vw;
+
+    &:checked + span {
+      &::before {
+        @mixin checked;
+      }
+    }
+  }
+}
