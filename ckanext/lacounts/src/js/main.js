@@ -74,4 +74,11 @@ $(document).ready(function(){
 
   // TODO: figure out why the above two calls don't work, if tried with a different element (not a button) to avoid submitting the form (see comment above).
 
+
+  /* Header */
+  /**********/
+
+  // use BS affix to detet if scrolled
+  $('.masthead').affix();
+
 });

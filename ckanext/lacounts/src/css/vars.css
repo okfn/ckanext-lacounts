@@ -7,7 +7,7 @@
   --red: #DA453F;
   --yellow-orange: #F09006;
   --dark-blue: #365872;
-  --primary-colour: #007bff;
+  --primary-colour: var(--blue);
   --secondary-colour: #6c757d;
   --body-bg: #FFF;
   --body-colour: #333;
@@ -15,7 +15,7 @@
   --link-colour: var(--blue);
   --success-colour: #28a745;
   --warning-colour: #ffc107;
-  --info-colour: #17a2b8;
+  --info-colour: var(--orange);
   --danger-colour: #dc3545;
   --border-colour: #dedfdf;
 
