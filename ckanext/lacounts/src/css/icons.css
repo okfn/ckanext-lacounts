@@ -14,11 +14,19 @@
 }
 
 @define-mixin icon-search {
-  content: "\f002";
+  content: "\e900";
 }
 
 @define-mixin icon-close {
   content: "\f00d";
+}
+
+@define-mixin arrow-right {
+  content: "\f002";
+}
+
+.fa {
+  display: inline-flex;
 }
 
 .fa-search:before,
