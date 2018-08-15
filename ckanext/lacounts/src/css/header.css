@@ -177,11 +177,11 @@
       & .btn-search {
         color: color(#fff a(80%));
         right: var(--container-padding);
-        width: 3rem;
-        height: 3rem;
-        margin-top: -1.5rem;
+        width: 2rem;
+        height: 2rem;
+        margin-top: -1rem;
         outline: none;
-        font-size: 2rem;
+        font-size: 1.3rem;
         text-align: right;
       }
 
@@ -252,8 +252,8 @@
           }
         }
 
+        /* search modal */
         @nest .page.active-search & {
-
           background-color: #fff;
           position: fixed;
           top: 0;
@@ -326,6 +326,11 @@
               color: var(--blue);
               opacity: 1;
             }
+          }
+        }
+        @nest .page.active-search.logged-in & {
+          & .close {
+            margin-top: var(--user-bar-height);
           }
         }
       }

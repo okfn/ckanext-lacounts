@@ -11,8 +11,10 @@
   --secondary-colour: #6c757d;
   --body-bg: #FFF;
   --body-colour: #333;
-  --heading-colour: #333;
+  --heading-colour: var(--grey);
   --link-colour: var(--blue);
+  --heading-link-colour: #000;
+  --input-focus-colour: var(--yellow);
   --success-colour: #28a745;
   --warning-colour: #ffc107;
   --info-colour: var(--orange);
@@ -27,4 +29,9 @@
   --header-height-large: 126px;
   --container-padding: 2.5rem;
   --border-radius: 3px;
+  --spacer-15: 0.8rem;
+  --spacer-25: 1.2rem;
+  --spacer-35: 1.6rem;
+  --spacer-50: 2.4rem;
+  --spacer-75: 3.8rem;
 }

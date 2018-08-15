@@ -4,6 +4,18 @@
 
     &.logged-in {
       padding-top: var(--user-bar-height);
+      padding-top: 0;
+
+      & .hero {
+        padding-top: calc(var(--user-bar-height) + var(--header-height-small));
+
+        @media (--medium-up) {
+          padding-top: calc(var(--user-bar-height) + var(--header-height-medium));
+        }
+        @media (--large-up) {
+          padding-top: calc(var(--user-bar-height) + var(--header-height-large));
+        }
+      }
     }
   }
 
@@ -21,11 +33,12 @@
     position: relative;
     color: #fff;
     font-size: 1.15em;
-    padding-bottom: 4rem;
-    box-shadow: inset 0 -1.4rem 0 0 var(--yellow);
+    padding-bottom: calc(var(--spacer-50) + 0.8rem);
+    box-shadow: inset 0 -0.8rem  0 0 var(--yellow);
     min-height: 100vh;
     display: flex;
     align-items: center;
+    margin-bottom: var(--spacer-50);
 
     @media (min-height: 768px) {
       min-height: 0;
@@ -33,7 +46,6 @@
 
     @media (--medium-up) {
       padding-top: var(--header-height-medium);
-      padding-bottom: 8rem;
     }
     @media (--large-up) {
       padding-top: var(--header-height-large);
@@ -44,7 +56,7 @@
       font-size: 2.6em;
       font-weight: 900;
       line-height: 1;
-      padding-top: 4rem;
+      padding-top: var(--spacer-50);
     }
 
     & .images {
@@ -94,6 +106,8 @@
     }
 
     & .search-input {
+      margin-top: var(--spacer-15);
+      margin-bottom: var(--spacer-50);
 
       & input {
         padding: 0.2em 1.5em 0.2em 0;
