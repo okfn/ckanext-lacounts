@@ -78,12 +78,21 @@
     align-items: center;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
+    transition: height 0.4s;
 
     @media (--medium-up) {
       height: var(--header-height-medium);
     }
     @media (--large-up) {
       height: var(--header-height-large);
+    }
+  }
+
+  &.affix {
+    & .container {
+      @media (--large-up) {
+        height: var(--header-height-medium);
+      }
     }
   }
 
