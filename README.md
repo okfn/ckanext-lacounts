@@ -27,3 +27,14 @@ coverage installed in your virtualenv (``pip install coverage``) then run::
 
     nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.lacounts --cover-inclusive --cover-erase --cover-tests
 
+## Theme development
+
+Get dependencies with `npm install`.
+
+CSS and JS are built from the `src` directory into the `fanstatic` directory.
+
+CSS is built with PostCSS. Do so with `grunt postcss`.
+
+JS is built (minified) with `grunt uglify`.
+
+You can watch both for changes with `grunt`.
