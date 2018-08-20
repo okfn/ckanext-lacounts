@@ -1,12 +1,12 @@
 {
     "scheming_version": 1,
-    "organization_type": "organization",
+    "organization_type": "publishers",
     "about": "CKAN organization schema customized for the LA Counts project",
     "about_url": "http://github.com/okfn/ckanext-lacounts",
     "fields": [
         {
             "field_name": "name",
-            "form_placeholder": "eg. my-organization",
+            "form_placeholder": "eg. my-publisher",
             "label": "URL",
             "preset": "dataset_slug"
         },
@@ -18,13 +18,13 @@
         },
         {
             "field_name": "description",
-            "form_placeholder": "eg. Some useful notes about the organization",
+            "form_placeholder": "eg. Some useful notes about the publisher",
             "form_snippet": "markdown.html",
             "label": "Description"
         },
         {
             "field_name": "publisher_type",
-            "help_text": "Publisher type of the organization to add",
+            "help_text": "Type of the publisher to add",
             "label": "Publisher type",
             "preset": "select",
             "choices": [
