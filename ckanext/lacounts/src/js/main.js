@@ -81,7 +81,7 @@ $(document).ready(function(){
   /* Featured Visualisation */
   // toggle BS collapse on description
   $(".featured-visualisation .toggle").on("click", function() {
-    $(this).toggleClass("show-as-collapsed");
+    $(this).parents(".caption-header").toggleClass("show-as-collapsed");
     $(this).parents("figcaption").children(".caption-body").collapse('toggle');
   });
 

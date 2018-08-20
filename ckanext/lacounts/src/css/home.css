@@ -208,11 +208,20 @@
       display: flex;
       justify-content: space-between;
       padding-bottom: calc(var(--spacer-25) / 2);
-      align-items: center;
+      align-items: flex-start;
 
       & > * {
         margin-top: 0;
         margin-bottom: 0;
+      }
+
+      &.show-as-collapsed {
+        align-items: center;
+        & .toggle {
+          &:after {
+            transform: rotate(0deg);
+          }
+        }
       }
     }
 
@@ -227,6 +236,10 @@
       right: var(--spacer-25);
       bottom: var(--spacer-25);
       border-width: 0;
+    }
+
+    @media (--large-up) {
+      right: 66%;
     }
   }
 }
