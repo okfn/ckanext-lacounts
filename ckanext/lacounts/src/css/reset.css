@@ -58,6 +58,10 @@ a {
   &:hover {
     color: var(--link-colour);
   }
+
+  &:visited {
+    color: var(--visited-link-colour);
+  }
 }
 
 .wrapper {

@@ -46,3 +46,25 @@
 .btn-group.open .btn-primary.dropdown-toggle {
   background-color: color(var(--primary-colour) shade(10%));
 }
+
+.explore-link {
+  color: var(--heading-link-colour);
+  display: inline-flex;
+  align-items: center;
+
+  &::after {
+    @mixin icon;
+    @mixin icon-arrow-right;
+    color: var(--link-colour);
+    margin-left: 0.1em;
+  }
+
+  &:hover {
+    text-decoration: none;
+    color: var(--heading-link-colour);
+
+    &::after {
+      box-shadow: 0 0.1em 0 var(--link-colour);
+    }
+  }
+}

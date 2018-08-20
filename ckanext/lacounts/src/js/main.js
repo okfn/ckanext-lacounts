@@ -77,4 +77,12 @@ $(document).ready(function(){
   // use BS affix to detet if scrolled
   $('.masthead').affix();
 
+
+  /* Featured Visualisation */
+  // toggle BS collapse on description
+  $(".featured-visualisation .toggle").on("click", function() {
+    $(this).toggleClass("show-as-collapsed");
+    $(this).parents("figcaption").children(".caption-body").collapse('toggle');
+  });
+
 });

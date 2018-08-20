@@ -33,8 +33,8 @@
     position: relative;
     color: #fff;
     font-size: 1.15em;
-    padding-bottom: calc(var(--spacer-50) + 0.8rem);
-    box-shadow: inset 0 -0.8rem  0 0 var(--yellow);
+    padding-bottom: calc(var(--spacer-50) + 0.6rem);
+    box-shadow: inset 0 -0.6rem  0 0 var(--yellow);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -114,7 +114,7 @@
         font-size: 1.5em;
         font-weight: 600;
         border-radius: 0;
-        border-width: 0 0 0.2em 0;
+        border-width: 0 0 0.4rem 0;
 
         &:focus {
           border-color: var(--blue);
@@ -145,6 +145,88 @@
           }
         }
       }
+    }
+  }
+
+  & .homepage > .container > section {
+    margin-bottom: var(--spacer-50);
+    border-top: solid 0.4rem var(--yellow);
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+.featured-visualisation {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  height: 60vh;
+  max-height: 600px;
+  position: relative;
+  margin: var(--spacer-35) 0;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  & .toggle {
+    padding: 0;
+    margin: 0 0 0 1em;
+    border: none;
+    outline: none;
+    background: none;
+
+    &:after {
+      @mixin icon;
+      @mixin icon-cheveron-right;
+      display: block;
+      transform: rotate(90deg);
+    }
+
+    &.show-as-collapsed {
+      &:after {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  & figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: color(var(--body-bg) a(90%));
+    padding: var(--spacer-25) var(--spacer-25) calc(var(--spacer-25) / 2) var(--spacer-25);
+    border-style: solid;
+    border-color: color(var(--grey) a(10%));
+    border-width: 0 1px 1px 1px;
+
+    & .caption-header {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: calc(var(--spacer-25) / 2);
+      align-items: center;
+
+      & > * {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    & .caption-body {
+      & :last-child {
+        margin-bottom: calc(var(--spacer-25) / 2);
+      }
+    }
+
+    @media (--medium-up) {
+      left: var(--spacer-25);
+      right: var(--spacer-25);
+      bottom: var(--spacer-25);
+      border-width: 0;
     }
   }
 }

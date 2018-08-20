@@ -10,9 +10,10 @@
   --primary-colour: var(--blue);
   --secondary-colour: #6c757d;
   --body-bg: #FFF;
-  --body-colour: #333;
+  --body-colour: var(--grey);
   --heading-colour: var(--grey);
   --link-colour: var(--blue);
+  --visited-link-colour: var(--dark-blue);
   --heading-link-colour: #000;
   --input-focus-colour: var(--yellow);
   --success-colour: #28a745;

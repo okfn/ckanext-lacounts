@@ -29,6 +29,14 @@
   content: "\e901";
 }
 
+@define-mixin icon-cheveron-left {
+  content: "\e902";
+}
+
+@define-mixin icon-cheveron-right {
+  content: "\e903";
+}
+
 .fa {
   display: inline-flex;
 }
