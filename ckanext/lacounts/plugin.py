@@ -1,9 +1,11 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.plugins import DefaultTranslation
 
 
-class LacountsPlugin(plugins.SingletonPlugin):
+class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.ITranslation)
 
     # IConfigurer
 
