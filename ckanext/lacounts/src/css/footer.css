@@ -1,0 +1,64 @@
+.site-footer {
+  background-color: var(--grey);
+  color: color(#fff a(90%));
+  padding-top: 3em;
+  font-size: 1.6rem;
+
+  & a {
+    color: color(#fff a(90%));
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  & .logo {
+    display: inline-block;
+    margin-bottom: 1em;
+
+    & img {
+      height: 20px;
+    }
+  }
+
+  & .footer-content,
+  & address {
+    line-height: 1.75;
+  }
+
+  & address {
+    margin-bottom: 1.5rem;
+  }
+
+  & .platforms {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-size: 2em;
+    line-height: 1;
+
+    @media (--medium-up) {
+      text-align: right;
+    }
+
+    & li {
+      display: inline-block;
+      margin: 1.5rem 0;
+
+      @media (--medium-up) {
+        margin: 0 0 1.5rem 0;
+      }
+    }
+  }
+
+  & .footer-content {
+    @media (--medium-up) {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    & nav a {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+body,
+.account-masthead,
+.masthead,
+[role="main"],
+.main,
+.site-footer {
+  background-image: none;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background-color: var(--body-bg);
+  color: var(--body-colour);
+  font-size: 1.6rem;
+}
+
+[role="main"],
+.main {
+  padding: 0;
+  min-height:0;
+}
+
+[role="main"] {
+  background-color: var(--body-bg);
+
+  & > .container {
+
+    & > .wrapper {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.box {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+code {
+  color: inherit;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: var(--font-family-base);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-colour);
+}
+
+a {
+  color: var(--link-colour);
+
+  &:hover {
+    color: var(--link-colour);
+  }
+}
+
+.wrapper {
+  box-shadow: none;
+  background-image: none;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+}
+
+.label,
+.badge {
+  text-shadow: none;
+  font-weight: normal;
+}
+
+.account-masthead .account .notifications a:hover span.text {
+  background-color: transparent;
+}
