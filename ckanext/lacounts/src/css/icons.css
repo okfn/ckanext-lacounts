@@ -14,9 +14,34 @@
 }
 
 @define-mixin icon-search {
+  content: "\e900";
+}
+
+@define-mixin icon-close {
+  content: "\f00d";
+}
+
+@define-mixin icon-arrow-right {
   content: "\f002";
 }
 
-.fa-search:before {
-  font-family: 'icomoon';
+@define-mixin icon-checkmark {
+  content: "\e901";
+}
+
+@define-mixin icon-cheveron-left {
+  content: "\e902";
+}
+
+@define-mixin icon-cheveron-right {
+  content: "\e903";
+}
+
+.fa {
+  display: inline-flex;
+}
+
+.fa-search:before,
+.fa-times:before {
+  @mixin icon;
 }

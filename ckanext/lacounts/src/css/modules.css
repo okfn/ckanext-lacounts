@@ -1,0 +1,110 @@
+.module-heading,
+.module-narrow .module-heading {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: var(--spacer-50);
+  background-color: inherit;
+
+  & i {
+    display: none;
+  }
+}
+
+.module-heading {
+  border-top: none;
+}
+
+.module-content,
+.module-narrow .module-content {
+  padding: var(--spacer-15) 0;
+
+  &:last-child {
+    padding: var(--spacer-15) 0;
+  }
+}
+
+.module {
+  &:first-child {
+    & .module-heading {
+      padding-top: 0;
+    }
+  }
+}
+
+.module-footer {
+  padding: 0;
+  border: none;
+}
+
+.module-narrow {
+  & .nav-item {
+    font-size: 1em;
+    padding: 0;
+    border: none;
+
+    & > a {
+      margin: 0;
+      padding: 0;
+      font-size: 1em;
+
+      & .item-count {
+        background-color: transparent;
+        color: var(--grey);
+        font-size: 0.75em;
+
+        &::before {
+          content: '(';
+        }
+        &::after {
+          content: ')';
+        }
+      }
+    }
+  }
+}
+
+.nav-facet {
+
+  & .nav-item {
+    & a {
+      display: flex;
+      align-items: center;
+      padding-top: 0.4em;
+      padding-bottom: 0.4em;
+
+      &::before {
+        content: '';
+        @mixin checkbox;
+        position: static;
+      }
+
+      &:hover {
+        background-color: var(--body-bg);
+        color: inherit;
+
+        &::before {
+          @mixin checked var(--grey);
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    &.active {
+      & a {
+        background-color: var(--body-bg);
+        color: inherit;
+
+        &::before {
+          @mixin checked;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -7,15 +7,18 @@
   --red: #DA453F;
   --yellow-orange: #F09006;
   --dark-blue: #365872;
-  --primary-colour: #007bff;
+  --primary-colour: var(--blue);
   --secondary-colour: #6c757d;
   --body-bg: #FFF;
-  --body-colour: #333;
-  --heading-colour: #333;
+  --body-colour: var(--grey);
+  --heading-colour: var(--grey);
   --link-colour: var(--blue);
+  --visited-link-colour: var(--dark-blue);
+  --heading-link-colour: #000;
+  --input-focus-colour: var(--yellow);
   --success-colour: #28a745;
   --warning-colour: #ffc107;
-  --info-colour: #17a2b8;
+  --info-colour: var(--orange);
   --danger-colour: #dc3545;
   --border-colour: #dedfdf;
 
@@ -27,4 +30,9 @@
   --header-height-large: 126px;
   --container-padding: 2.5rem;
   --border-radius: 3px;
+  --spacer-15: 0.8rem;
+  --spacer-25: 1.2rem;
+  --spacer-35: 1.6rem;
+  --spacer-50: 2.4rem;
+  --spacer-75: 3.8rem;
 }

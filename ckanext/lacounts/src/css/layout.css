@@ -29,9 +29,47 @@
       padding-top: calc(var(--header-height-large) + var(--user-bar-height));
     }
   }
+
+  &.active-search {
+    @media (--small-up) {
+      height: 100vh;
+      overflow: hidden;
+    }
+  }
 }
 
 [role="main"],
 .homepage {
   flex-grow: 1;
+}
+
+[role=main] {
+  padding-bottom: var(--spacer-75);
+
+  & .wrapper {
+    margin-left: 0;
+    margin-right: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  & .primary {
+    padding-left: 0;
+    padding-right: 0;
+
+    @media (--small-up) {
+      padding-left: var(--spacer-50);
+    }
+
+    & .module-content {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  & .secondary {
+    font-size: 0.85em;
+  }
 }

@@ -24,10 +24,25 @@ module.exports = function(grunt) {
       }
     },
 
+    uglify: {
+      options: {
+        mangle: false
+      },
+      my_target: {
+        files: {
+          'ckanext/lacounts/fanstatic/theme.js': ['ckanext/lacounts/src/js/main.js']
+        }
+      }
+    },
+
     watch: {
       css: {
         files: 'ckanext/lacounts/src/css/*.css',
         tasks: ['postcss']
+      },
+      js: {
+        files: 'ckanext/lacounts/src/js/*.js',
+        tasks: ['uglify']
       }
     }
 
@@ -36,6 +51,7 @@ module.exports = function(grunt) {
   // Load the plugins
   grunt.loadNpmTasks('grunt-postcss');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.registerTask('default',['watch']);
 

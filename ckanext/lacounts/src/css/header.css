@@ -78,12 +78,21 @@
     align-items: center;
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
+    transition: height 0.4s;
 
     @media (--medium-up) {
       height: var(--header-height-medium);
     }
     @media (--large-up) {
       height: var(--header-height-large);
+    }
+  }
+
+  &.affix {
+    & .container {
+      @media (--large-up) {
+        height: var(--header-height-medium);
+      }
     }
   }
 
@@ -134,13 +143,14 @@
 
       & a {
         padding: 1em var(--container-padding);
+        border: solid 0.1em transparent;
 
         @media (--small-only) {
           border-radius: 0;
         }
 
         @media (--small-up) {
-          padding: 0.5em 1em;
+          padding: 0.3em 1em;
           font-weight: 700;
           letter-spacing: 0.05em;
         }
@@ -159,6 +169,18 @@
         background-color: var(--yellow);
         color: color(var(--grey) shade(20%));
       }
+
+      &:last-child {
+        & > a {
+          border-color: var(--yellow);
+          color: var(--yellow);
+        }
+        &.active {
+          & > a {
+            color: #fff;
+          }
+        }
+      }
     }
 
     & .site-search {
@@ -168,11 +190,11 @@
       & .btn-search {
         color: color(#fff a(80%));
         right: var(--container-padding);
-        width: 3rem;
-        height: 3rem;
-        margin-top: -1.5rem;
+        width: 2rem;
+        height: 2rem;
+        margin-top: -1rem;
         outline: none;
-        font-size: 2rem;
+        font-size: 1.3rem;
         text-align: right;
       }
 
@@ -195,12 +217,35 @@
       }
 
       @media (--small-up) {
-        & input[type="text"],
-        & input[type="search"],
+
         & .btn-search {
-          display: none;
+          color: var(--blue);
+          right: 1em;
         }
+
+        & input[type="text"],
+        & input[type="search"] {
+          background-color: #fff;
+          color: var(--body-colour);
+          padding: 0.5em 3em 0.5em 1em;
+
+          &:focus {
+            background-color: #fff;
+
+            & + .btn-search {
+              color: var(--blue);
+            }
+          }
+        }
+
         @nest .js & {
+          & input[type="text"],
+          & input[type="search"],
+          & .btn-search {
+            position: absolute;
+            left: -200vw;
+          }
+
           & label {
             display: flex;
             align-items: center;
@@ -208,6 +253,7 @@
             overflow: hidden;
             font-size: 0.9em;
             margin: 0;
+            margin-left: 0.2em;
 
             &::before {
               @mixin icon;
@@ -217,6 +263,88 @@
               margin-right: 2em;
               margin-top: 0.1em;
             }
+          }
+        }
+
+        /* search modal */
+        @nest .page.active-search & {
+          background-color: #fff;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+
+          & .field {
+            width: 100%;
+            padding: 10vw;
+          }
+
+          & label {
+            position: absolute;
+            left: -200vw;
+          }
+
+          & input[type="text"],
+          & input[type="search"],
+          & .btn-search {
+            position: static;
+          }
+
+          & input[type="text"],
+          & input[type="search"] {
+            padding: 0 6vw 0 0;
+            font-size: 5vw;
+            font-weight: bold;
+            border-bottom: solid 0.6vw var(--grey);
+
+            &:focus {
+              border-bottom-color: var(--blue);
+            }
+
+            &::placeholder {
+              opacity: 0.3;
+            }
+          }
+
+          & .btn-search {
+            position: absolute;
+            left: auto;
+            right: 10vw;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 5vw;
+            height: 5vw;
+            font-size: 2.8vw;
+            margin-top: -2.5vw;
+
+            &:focus {
+              background-color: var(--blue);
+              color: #fff;
+            }
+          }
+
+          & .close {
+            display: block;
+            position: absolute;
+            top: 2vw;
+            right: 2vw;
+            outline: none;
+
+            &:hover,
+            &:focus {
+              color: var(--blue);
+              opacity: 1;
+            }
+          }
+        }
+        @nest .page.active-search.logged-in & {
+          & .close {
+            margin-top: var(--user-bar-height);
           }
         }
       }

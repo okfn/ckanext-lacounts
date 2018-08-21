@@ -5,14 +5,93 @@
   border-radius: var(--border-radius);
   box-shadow: none;
   transition: border-color ease-in-out .15s;
+  padding: 0.5em 1.1em;
+  height: auto;
 
   &:focus {
-    border-color: #66afe9;
+    border-color: var(--input-focus-colour);
     box-shadow: none;
+
+    & + .editor-info-block {
+      border-color: var(--input-focus-colour);
+    }
   }
 
   &::placeholder {
     color: inherit;
     opacity: 0.5;
+  }
+}
+
+.control-large input {
+  font-size: 1.2em;
+  height: auto;
+  padding: 0.5em 1.1em;
+  border-radius: var(--border-radius);
+}
+
+textarea.form-control {
+  font-size: 0.8em;
+  padding: 0.6em 1.32em;
+}
+
+.editor .editor-info-block {
+  border-width: 2px;
+  border-color: var(--border-colour);
+  transition: border-color ease-in-out .15s;
+}
+
+.input-group {
+  display: flex;
+
+  & .input-group-addon,
+  & .input-group-btn {
+    width: auto;
+  }
+}
+
+@define-mixin checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4em;
+  height: 1.4em;
+  border: solid 1px var(--body-colour);
+  color: #fff;
+  margin-right: 0.6em;
+  @mixin icon;
+  font-size: 0.8em;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+@define-mixin checked $col: var(--blue) {
+  background-color: $col;
+  border-color: $col;
+  content: '\e901';
+}
+
+label.checkbox {
+  overflow: hidden;
+
+  & span {
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: '';
+      @mixin checkbox;
+    }
+  }
+
+  & input[type=checkbox] {
+    position: absolute;
+    left: -100vw;
+
+    &:checked + span {
+      &::before {
+        @mixin checked;
+      }
+    }
   }
 }
