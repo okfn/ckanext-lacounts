@@ -51,6 +51,7 @@
   color: var(--heading-link-colour);
   display: inline-flex;
   align-items: center;
+  line-height: 1.2;
 
   &::after {
     @mixin icon;
