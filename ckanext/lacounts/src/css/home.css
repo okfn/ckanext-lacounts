@@ -151,8 +151,12 @@
   & .homepage > .container > section {
     margin-bottom: var(--spacer-50);
     border-top: solid 0.4rem var(--yellow);
+    padding-top: var(--spacer-25);
 
     &:first-child {
+      border-top: none;
+    }
+    &:first-of-type {
       border-top: none;
     }
 
@@ -165,6 +169,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      & .explore-link {
+        @media (--medium-up) {
+          font-size: 18px;
+        }
+      }
     }
   }
 }
@@ -297,8 +307,7 @@
 
   & li {
     display: inline-block;
-    margin-top: var(--spacer-15);
-    margin-bottom: var(--spacer-15);
+    margin-top: var(--spacer-25);
 
     &.education {
       & svg {
