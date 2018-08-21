@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'ckanext/lacounts/fanstatic/theme.js': ['ckanext/lacounts/src/js/main.js']
+          'ckanext/lacounts/fanstatic/theme.js': ['node_modules/jquery.dotdotdot/dist/jquery.dotdotdot.js', 'ckanext/lacounts/src/js/main.js']
         }
       }
     },

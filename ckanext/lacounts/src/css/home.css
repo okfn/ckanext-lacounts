@@ -362,6 +362,10 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
+  & .text {
+    max-height: 10em;
+  }
+
   & img {
     width: 100%;
     height: 200px;
@@ -371,7 +375,6 @@
   }
 
   & a {
-    color: var(--heading-link-colour);
 
     &:hover {
       & img {
@@ -385,7 +388,6 @@
 
     & h1 {
       font-size: 1em;
-      color: inherit;
       font-weight: bold;
       margin-top: 0;
     }
