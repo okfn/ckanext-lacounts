@@ -143,13 +143,14 @@
 
       & a {
         padding: 1em var(--container-padding);
+        border: solid 0.1em transparent;
 
         @media (--small-only) {
           border-radius: 0;
         }
 
         @media (--small-up) {
-          padding: 0.5em 1em;
+          padding: 0.3em 1em;
           font-weight: 700;
           letter-spacing: 0.05em;
         }
@@ -167,6 +168,18 @@
       &.active a {
         background-color: var(--yellow);
         color: color(var(--grey) shade(20%));
+      }
+
+      &:last-child {
+        & > a {
+          border-color: var(--yellow);
+          color: var(--yellow);
+        }
+        &.active {
+          & > a {
+            color: #fff;
+          }
+        }
       }
     }
 
@@ -240,6 +253,7 @@
             overflow: hidden;
             font-size: 0.9em;
             margin: 0;
+            margin-left: 0.2em;
 
             &::before {
               @mixin icon;
