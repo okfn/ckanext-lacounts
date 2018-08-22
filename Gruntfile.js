@@ -28,9 +28,14 @@ module.exports = function(grunt) {
       options: {
         mangle: false
       },
-      my_target: {
+      main: {
         files: {
-          'ckanext/lacounts/fanstatic/theme.js': ['node_modules/jquery.dotdotdot/dist/jquery.dotdotdot.js', 'ckanext/lacounts/src/js/main.js']
+          'ckanext/lacounts/fanstatic/theme.js': ['node_modules/jquery.dotdotdot/dist/jquery.dotdotdot.js', 'node_modules/twitter-fetcher/js/twitterFetcher.js', 'ckanext/lacounts/src/js/main.js']
+        }
+      },
+      home: {
+        files: {
+          'ckanext/lacounts/fanstatic/home.js': ['node_modules/twitter-fetcher/js/twitterFetcher.js', 'ckanext/lacounts/src/js/home.js']
         }
       }
     },
