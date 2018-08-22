@@ -1,6 +1,6 @@
 {
     "scheming_version": 1,
-    "group_type": "topics",
+    "group_type": "topic",
     "about": "CKAN groups schema customized for the LA Counts project",
     "about_url": "http://github.com/okfn/ckanext-lacounts",
     "fields": [

@@ -1,6 +1,6 @@
 {
     "scheming_version": 1,
-    "organization_type": "publishers",
+    "organization_type": "publisher",
     "about": "CKAN organization schema customized for the LA Counts project",
     "about_url": "http://github.com/okfn/ckanext-lacounts",
     "fields": [
