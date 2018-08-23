@@ -45,6 +45,12 @@ There are pre-defined _topics_ (groups) that can be created with a paster comman
 
 #### In development
 
-`docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster create_featured_topics"`
+```sh
+docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster create_featured_topics"
+```
 
 #### In production & staging
+
+```sh
+deis run "paster --plugin=ckanext-lacounts create_featured_topics -c production.ini"
+```
