@@ -1,0 +1,5 @@
+{% ckan_extends %}
+
+  {% block image %}
+    {{ h.get_image_for_group(group.name) }}
+  {% endblock %}

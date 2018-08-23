@@ -1,0 +1,9 @@
+{% ckan_extends %}
+
+{% block image %}
+<div class="image {{ group.name }}">
+  <a href="{{ group.url }}">
+    {{ h.get_image_for_group(group.name) }}
+  </a>
+</div>
+{% endblock %}
