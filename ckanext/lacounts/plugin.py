@@ -2,7 +2,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 
-from ckanext.lacounts.helpers import get_image_for_group
+from ckanext.lacounts import helpers
 
 
 class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
@@ -18,4 +18,8 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     # ITemplateHelpers
     def get_helpers(self):
-        return {'get_image_for_group': get_image_for_group}
+        return {
+            'get_image_for_group': helpers.get_image_for_group,
+            'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
+            'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
+        }
