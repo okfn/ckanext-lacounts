@@ -6,21 +6,39 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  & .owl-nav [class*='owl-'] {
-    color: #FFF;
-    font-size: 14px;
-    margin: 5px;
-    padding: 4px 7px;
-    background: #D6D6D6;
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 3px;
+  & .owl-nav button[class*='owl-'] {
+    color: var(--yellow);
+    outline: none;
+    position: absolute;
+    top: 50%;
+    font-size: 2em;
+    height: 3rem;
+    margin-top: -1rem;
+
+    &:before {
+      @mixin icon;
+    }
+
+    & span {
+      display: none;
+    }
   }
-  & .owl-nav [class*='owl-']:hover {
-    background: #869791;
-    color: #FFF;
-    text-decoration: none;
+
+  & .owl-nav .owl-prev {
+    left: -2.5rem;
+
+    &:before {
+      @mixin icon-cheveron-left;
+    }
   }
+  & .owl-nav .owl-next {
+    right: -2.5rem;
+
+    &:before {
+      @mixin icon-cheveron-right;
+    }
+  }
+
   & .owl-nav .disabled {
     opacity: 0.5;
     cursor: default;
