@@ -1,0 +1,8 @@
+<div id="publisher-tree">
+    {% if  c.q %}
+        {% set top_nodes = h.group_tree_highlight(organizations, h.group_tree(type_='publisher')) %}
+    {% else %}
+        {% set top_nodes = h.group_tree(organizations=organizations, type_='publisher') %}
+    {% endif %}
+    {% snippet 'organization/snippets/organization_tree.html', top_nodes=top_nodes, use_longnames=True %}
+</div>

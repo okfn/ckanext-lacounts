@@ -30,7 +30,7 @@ Example:
       {% else %}
           <li id="node_{{ node.name }}">
       {% endif %}
-      {% link_for display_text, named_route=c.group_type+'_read', id=node.name %}
+      {% link_for display_text, named_route='publisher_read', id=node.name %}
       {% if node.children %}
         <ul class="hierarchy-tree"> {{ loop(node.children) }} </ul>
       {% endif %}
