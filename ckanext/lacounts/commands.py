@@ -8,7 +8,7 @@ import ckanapi
 groups = OrderedDict([
     ('education', 'Education'),
     ('environment', 'Environment'),
-    ('health', 'Health'),
+    ('well-being', 'Well Being'),
     ('housing', 'Housing'),
     ('immigration', 'Immigration'),
     ('transportation', 'Transportation')

@@ -11,12 +11,17 @@ def get_image_for_group(group_name):
     groups = {
         'education': 'icons/book.svg',
         'environment': 'icons/leaf.svg',
-        'health': 'icons/heart.svg',
+        'well-being': 'icons/heart.svg',
         'housing': 'icons/keys.svg',
         'immigration': 'icons/passport.svg',
         'transportation': 'icons/bus.svg'
     }
-    svg = jinja_env.get_template(groups[group_name])
+    # Fetch svg template if there is one, otherwise return empty string.
+    try:
+        svg = jinja_env.get_template(groups[group_name])
+    except KeyError as e:
+        return ""
+
     img = toolkit.literal("<span class='image %s'>" % group_name
                           + svg.render() + "</span>")
     return img
