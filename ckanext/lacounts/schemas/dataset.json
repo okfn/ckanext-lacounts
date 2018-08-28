@@ -22,6 +22,13 @@
           "preset": "dataset_organization"
         },
         {
+            "field_name": "related_datasets",
+            "preset": "related_datasets",
+            "help_text": "help text",
+            "label": "Related datasets",
+            "help_text": "Links to other datasets. It supports multiple selections"
+        },
+        {
             "field_name": "url",
             "label": "Landing page",
             "form_placeholder": "Landing page URL"
@@ -62,7 +69,7 @@
         {
             "field_name": "access_rights",
             "help_text": "Help text for access rights",
-            "label": "Access Rights",
+            "label": "Access rights",
             "preset": "select",
             "choices": [
                 {

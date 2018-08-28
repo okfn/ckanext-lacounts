@@ -1,0 +1,15 @@
+{
+  "scheming_presets_version": 1,
+  "about": "Presets for the Lacounts project",
+  "about_url": "",
+  "presets": [
+    {
+      "preset_name": "related_datasets",
+      "values": {
+        "validators": "ignore_missing",
+        "form_snippet": "related_datasets.html",
+        "display_snippet": "related_datasets.html"
+      }
+    }
+  ]
+}
