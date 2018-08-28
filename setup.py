@@ -84,6 +84,9 @@ setup(
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
+
+        [paste.paster_command]
+        create_featured_topics=ckanext.lacounts.commands:CreateFeaturedTopics
     ''',
 
     # If you are changing from the default layout of your extension, you may

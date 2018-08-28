@@ -1,0 +1,7 @@
+{% ckan_extends %}
+
+{% block subtitle %}{{ _("Library") }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{{ h.nav_link(_("Library"), named_route='%s_search' % dataset_type, highlight_actions = 'new index') }}</li>
+{% endblock %}

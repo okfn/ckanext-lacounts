@@ -1,0 +1,32 @@
+{
+    "scheming_version": 1,
+    "group_type": "topic",
+    "about": "CKAN groups schema customized for the LA Counts project",
+    "about_url": "http://github.com/okfn/ckanext-lacounts",
+    "fields": [
+        {
+            "field_name": "name",
+            "form_placeholder": "eg. my-topic",
+            "label": "URL",
+            "preset": "dataset_slug"
+        },
+        {
+            "field_name": "title",
+            "form_placeholder": "eg. A descriptive title",
+            "label": "Title",
+            "preset": "title"
+        },
+        {
+            "field_name": "description",
+            "form_placeholder": "eg. Some useful notes about the topic",
+            "form_snippet": "markdown.html",
+            "label": "Description"
+        },
+        {
+            "field_name": "image",
+            "form_snippet": "organization_image.html",
+            "label": "Image"
+        }
+    ]
+}
+

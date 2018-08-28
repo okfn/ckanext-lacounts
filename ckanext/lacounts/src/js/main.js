@@ -80,7 +80,7 @@ $(document).ready(function(){
 
   /* Featured Visualisation */
   /**************************/
-  
+
   // toggle BS collapse on description
   $(".featured-visualisation .toggle").on("click", function() {
     $(this).parents(".caption-header").toggleClass("show-as-collapsed");
@@ -93,6 +93,14 @@ $(document).ready(function(){
 
   // story previews
   $(".stories-list article .text").dotdotdot({
+  });
+
+  /* Content */
+  /**********/
+
+  // Activate select2 widget for related datasets
+  $('#field-related-datasets').select2({
+    placeholder: 'Click to get a drop-down list or start typing a dataset title'
   });
 
 });

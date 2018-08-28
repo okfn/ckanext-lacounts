@@ -1,0 +1,6 @@
+{% ckan_extends %}
+
+{%- block header %}
+  <div class="page{% if c.userobj %} logged-in{% else %} not-logged-in{% endif %}">
+    {% include "header.html" %}
+{% endblock -%}
