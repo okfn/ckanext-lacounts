@@ -1,6 +1,11 @@
 {% ckan_extends %}
 {% set intro = g.site_intro_text %}
 
+{% block scripts %}
+  {{ super() }}
+  {% resource 'lacounts/home.js' %}
+{% endblock %}
+
 {% block bodytag %} {{ super() }} class="home"{% endblock %}
 
 {% block content %}

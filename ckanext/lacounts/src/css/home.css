@@ -362,6 +362,10 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 
+  & .text {
+    max-height: 10em;
+  }
+
   & img {
     width: 100%;
     height: 200px;
@@ -371,7 +375,6 @@
   }
 
   & a {
-    color: var(--heading-link-colour);
 
     &:hover {
       & img {
@@ -385,9 +388,126 @@
 
     & h1 {
       font-size: 1em;
-      color: inherit;
       font-weight: bold;
       margin-top: 0;
+    }
+  }
+}
+
+.twitter-feed {
+
+  & ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  & li {
+    margin-top: var(--spacer-25);
+    padding-top: var(--spacer-25);
+    border-top: solid 0.2rem color(var(--grey) a(20%));
+    display: block;
+
+    @media (--small-up) {
+      @supports ( display: grid) {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        grid-row-gap: var(--spacer-15);
+        grid-column-gap: var(--spacer-15);
+      }
+    }
+
+    &:first-child {
+      margin-top: 0;
+      border: none;
+    }
+  }
+
+  & .user {
+    display: flex;
+    align-items: center;
+    position: relative;
+    line-height: 1.2;
+    margin-bottom: var(--spacer-15);
+
+    @media (--small-up) {
+      @supports ( display: grid) {
+        margin-bottom: 0;
+      }
+    }
+
+    & img[data-scribe="element:avatar"] {
+      width: 2.5em;
+      border-radius: 50%;
+      margin-right: var(--spacer-15);
+    }
+
+    & [data-scribe="element:user_link"] {
+      color: inherit;
+    }
+
+    & [data-scribe="element:name"] {
+      font-weight: bold;
+      color: var(--heading-link-colour);
+    }
+
+    & [data-scribe="element:screen_name"] {
+      display: block;
+      font-size: 16px;
+    }
+
+    & [data-scribe="element:verified_badge"] {
+      display: inline-block;
+      overflow: hidden;
+      width: 0.8rem;
+      height: 0.8rem;
+      display: none;
+
+      &::before {
+        @mixin icon;
+        @mixin icon-checkmark;
+        display: block;
+        width: 0.8rem;
+        height: 0.8rem;
+        font-size: 0.5rem;
+        line-height: 0.8rem;
+        text-align: center;
+      }
+
+      & div {
+        display: none;
+      }
+    }
+  }
+
+  & .tweet {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin: 0;
+    word-break: break-word;
+
+    & br + br {
+      display: none;
+    }
+  }
+
+  & .timePosted {
+    font-size: 16px;
+    margin-top: var(--spacer-15);
+
+    @supports ( display: grid) {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      justify-self: end;
+      
+      @media (--small-up) {
+        margin-top: 0;
+      }
+    }
+
+    & a {
+      color: var(--grey);
     }
   }
 }

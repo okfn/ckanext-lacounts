@@ -12,3 +12,5 @@
 @import "toolbar";
 @import "footer";
 @import "home";
+@import "../../../../node_modules/owl.carousel/dist/assets/owl.carousel";
+@import "carousel";
