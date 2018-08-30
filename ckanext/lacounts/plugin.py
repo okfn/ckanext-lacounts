@@ -7,7 +7,6 @@ from ckanext.lacounts import helpers
 
 
 class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
-    plugins.implements(plugins.IActions)
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.ITemplateHelpers)
@@ -26,12 +25,4 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_image_for_group': helpers.get_image_for_group,
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
-        }
-
-    # IActions
-
-    def get_actions(self):
-        return {
-            'package_create': actions.package_create,
-            'package_update': actions.package_update,
         }

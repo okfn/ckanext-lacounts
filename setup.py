@@ -81,7 +81,7 @@ setup(
     entry_points='''
         [ckan.plugins]
         lacounts=ckanext.lacounts.plugin:LacountsPlugin
-        lacounts_ckan_harvester=ckanext.lacounts.harvest.ckan:LacountsCKANHarvester
+        lacounts_ckan_harvester=ckanext.lacounts.harvest.harvesters.ckan:LacountsCKANHarvester
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan

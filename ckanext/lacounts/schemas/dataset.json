@@ -171,6 +171,21 @@
             "label": "Provenance",
             "form_snippet": "markdown.html",
             "form_placeholder": "Details about how the data was obtained or processed, who collected it, etc."
+        },
+        {
+            "field_name": "harvest_source_id",
+            "form_snippet": null,
+            "display_snippet": null
+        },
+        {
+            "field_name": "harvest_source_url",
+            "form_snippet": null,
+            "display_snippet": null
+        },
+        {
+            "field_name": "harvest_source_title",
+            "form_snippet": null,
+            "display_snippet": null
         }
     ],
     "resource_fields": [
