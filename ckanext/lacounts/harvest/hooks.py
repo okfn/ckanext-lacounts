@@ -27,8 +27,7 @@ def before_import(harvest_object):
             name = re.sub(r'[^a-zA-Z0-9_]', '_', urlparse(source.url).netloc)
             module = import_module('ckanext.lacounts.harvest.processors.%s' % name)
             process = getattr(module, '%s_processor' % name)
-        except ImportError as exception:
-            log.exception(exception)
+        except ImportError:
             process = None
 
         # Process
