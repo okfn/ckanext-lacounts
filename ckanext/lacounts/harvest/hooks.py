@@ -14,7 +14,6 @@ def before_import(harvest_object):
     error = False
     try:
         package = json.loads(harvest_object.content)
-        source = harvest_object.job.source
     except Exception as exception:
         log.exception(exception)
         error = True
@@ -24,16 +23,17 @@ def before_import(harvest_object):
 
         # Load
         try:
-            name = re.sub(r'[^a-zA-Z0-9_]', '_', urlparse(source.url).netloc)
+            loc = urlparse(harvest_object.job.source.url).netloc
+            name = re.sub(r'[^a-zA-Z0-9_]', '_', loc)
             module = import_module('ckanext.lacounts.harvest.processors.%s' % name)
             process = getattr(module, '%s_processor' % name)
         except ImportError:
             process = None
 
         # Process
-        package = before_process(package, source)
+        package = before_process(package, harvest_object)
         if process:
-            package = process(package, source)
+            package = process(package, harvest_object)
 
     # Compose
     harvest_object.content = json.dumps(package)
@@ -41,14 +41,21 @@ def before_import(harvest_object):
     return harvest_object
 
 
-def before_process(package, source):
+def before_process(package, harvest_object):
     """This hook is used to update package for all harvesting sources.
     """
 
     # General
-    package['harvest_source_id'] = source.id
-    package['harvest_source_url'] = source.url.strip('/')
-    package['harvest_source_title'] = source.title
+    package['harvest_source_id'] = harvest_object.job.source.id
+    package['harvest_source_url'] = harvest_object.job.source.url.strip('/')
+    package['harvest_source_title'] = harvest_object.job.source.title
+    package['harvest_timestamp'] = harvest_object.fetch_started.isoformat()
+
+    # Dataset
+    package['harvest_dataset_url'] = ''
+    if harvest_object.source.type == 'ckan':
+        package['harvest_dataset_url'] = '{0}/dataset/{1}'.format(
+            package['harvest_source_url'], package['id'])
 
     # Heuristics
     # TODO: put here code that could work for all sources

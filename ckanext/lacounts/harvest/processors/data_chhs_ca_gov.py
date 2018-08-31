@@ -1,4 +1,4 @@
-def data_chhs_ca_gov_processor(package, source):
+def data_chhs_ca_gov_processor(package, harvest_object):
     """Source: https://data.chhs.ca.gov/
     """
 

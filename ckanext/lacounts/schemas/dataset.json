@@ -189,6 +189,18 @@
             "label": "Harvest source title",
             "form_snippet": null,
             "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_dataset_url",
+            "label": "Harvest dataset url",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_timestamp",
+            "label": "Harvest timestamp",
+            "form_snippet": null,
+            "display_snippet": "text.html"
         }
     ],
     "resource_fields": [
