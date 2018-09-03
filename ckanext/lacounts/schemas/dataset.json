@@ -171,6 +171,36 @@
             "label": "Provenance",
             "form_snippet": "markdown.html",
             "form_placeholder": "Details about how the data was obtained or processed, who collected it, etc."
+        },
+        {
+            "field_name": "harvest_source_id",
+            "label": "Harvest source id",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_source_url",
+            "label": "Harvest source url",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_source_title",
+            "label": "Harvest source title",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_dataset_url",
+            "label": "Harvest dataset url",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_timestamp",
+            "label": "Harvest timestamp",
+            "form_snippet": null,
+            "display_snippet": "text.html"
         }
     ],
     "resource_fields": [

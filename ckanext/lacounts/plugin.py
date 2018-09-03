@@ -11,12 +11,14 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.ITemplateHelpers)
 
     # IConfigurer
+
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'lacounts')
 
     # ITemplateHelpers
+
     def get_helpers(self):
         return {
             'get_image_for_group': helpers.get_image_for_group,
