@@ -253,7 +253,7 @@
           }
         }
 
-        @nest .js & {
+        /*@nest .js & {*/
           & input[type="text"],
           & input[type="search"],
           & .btn-search {
@@ -280,7 +280,7 @@
               margin-top: 0.1em;
             }
           }
-        }
+        /*}*/
 
         /* search modal */
         @nest .page.active-search & {
