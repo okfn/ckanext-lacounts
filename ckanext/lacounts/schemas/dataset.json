@@ -100,8 +100,14 @@
         {
             "field_name": "spatial",
             "help_text": "Help text for json spatial coverage",
-            "label": "Spatial coverage (GeoJSON)",
+            "label": "Spatial coverage",
             "preset": "json_object"
+        },
+        {
+            "field_name": "temporal_text",
+            "label": "Temporal coverage",
+            "form_snippet": null,
+            "label": "Temporal coverage (Text)"
         },
         {
             "field_name": "temporal_start",
@@ -114,12 +120,6 @@
             "label": "Temporal coverage end",
             "preset": "date",
             "validators": "scheming_required isodate convert_to_json_if_date"
-        },
-        {
-            "field_name": "temporal",
-            "label": "Temporal coverage",
-            "form_snippet": null,
-            "display_snippet": null
         },
         {
             "field_name": "frequency",
