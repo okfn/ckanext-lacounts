@@ -269,6 +269,7 @@
             font-size: 0.9em;
             margin: 0;
             margin-left: 0.2em;
+            outline: none;
 
             &::before {
               @mixin icon;
