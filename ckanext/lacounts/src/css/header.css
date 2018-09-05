@@ -142,17 +142,17 @@
       }
 
       & a {
-        padding: 1em var(--container-padding);
-        border: solid 0.1em transparent;
-
-        @media (--small-only) {
-          border-radius: 0;
-        }
+        padding: 0.7em 1.4em;
+        border-style: solid;
+        border-width: 0.15em 0;
+        border-color: transparent;
+        margin: 0.5em 1em;
 
         @media (--small-up) {
-          padding: 0.3em 1em;
+          padding: 0.4em 0;
           font-weight: 700;
           letter-spacing: 0.05em;
+          margin: 0 0.5em;
         }
 
         &:hover,
@@ -160,7 +160,8 @@
           background-color: transparent;
 
           @media (--small-up) {
-            background-color: color(#fff a(10%));
+            border-bottom-color: color(#fff a(50%));
+            border-radius: 0;
           }
         }
       }
@@ -168,12 +169,26 @@
       &.active a {
         background-color: var(--yellow);
         color: color(var(--grey) shade(20%));
+
+        @media (--small-up) {
+          background-color: transparent;
+          color: inherit;
+          border-bottom-color: var(--yellow);
+          border-radius: 0;
+        }
       }
 
       &:last-child {
         & > a {
           border-color: var(--yellow);
+          border-width: 0.15em;
           color: var(--yellow);
+
+          @media (--small-up) {
+            padding-left: 1em;
+            padding-right: 1em;
+            border-radius: var(--border-radius);
+          }
         }
         &.active {
           & > a {
@@ -238,7 +253,7 @@
           }
         }
 
-        @nest .js & {
+        /*@nest .js & {*/
           & input[type="text"],
           & input[type="search"],
           & .btn-search {
@@ -254,6 +269,7 @@
             font-size: 0.9em;
             margin: 0;
             margin-left: 0.2em;
+            outline: none;
 
             &::before {
               @mixin icon;
@@ -264,7 +280,7 @@
               margin-top: 0.1em;
             }
           }
-        }
+        /*}*/
 
         /* search modal */
         @nest .page.active-search & {
