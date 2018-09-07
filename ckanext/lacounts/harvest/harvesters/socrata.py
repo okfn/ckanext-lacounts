@@ -1,13 +1,9 @@
-import logging
-from ckanext.harvest.harvesters import CKANHarvester
+from ckanext.socrata.plugin import SocrataHarvester
 from ckanext.lacounts.harvest import helpers
-log = logging.getLogger(__name__)
 
 
-#TODO: switch to SocrataHarvester
-class LacountsSocrataHarvester(CKANHarvester):
+class LacountsSocrataHarvester(SocrataHarvester):
 
     def process_package(self, package, harvest_object):
-        log.debug('In LacountsSocrataHarvester process_package')
         package = helpers.process_package(package, harvest_object)
         return package
