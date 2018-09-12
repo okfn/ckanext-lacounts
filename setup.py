@@ -83,6 +83,10 @@ setup(
         lacounts=ckanext.lacounts.plugin:LacountsPlugin
         lacounts_ckan_harvester=ckanext.lacounts.harvest.harvesters.ckan:LacountsCKANHarvester
         lacounts_socrata_harvester=ckanext.lacounts.harvest.harvesters.socrata:LacountsSocrataHarvester
+        lacounts_esrigeoportal_harvester=ckanext.lacounts.harvest.harvesters.esri:LacountsESRIGeoportalHarvester
+
+        [ckan.rdf.profiles]
+        lacounts_esri_geoportal_profile=ckanext.lacounts.harvest.harvesters.esri:LacountsESRIGeoportalProfile
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
