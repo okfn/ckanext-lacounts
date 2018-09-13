@@ -1,0 +1,8 @@
+{% extends "showcase/read.html" %}
+
+{% block breadcrumb_content %}
+    {% set showcase = pkg.title or pkg.name %}
+    <li><a href="{{ h.url_for('blog_search') }}">{{ _('Blog') }}</a></li>
+    <li {{ self.breadcrumb_content_selected() }}><a href="{{ h.url_for('blog_read', id=pkg.name) }}">{{ pkg.title|truncate(30) }}</a>
+    </li>
+{% endblock %}

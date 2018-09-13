@@ -1,0 +1,10 @@
+{% extends 'page.html' %}
+
+{% block main_content %}
+<h2>Blog Posts</h2>
+<ul>
+  {% for post in posts %}
+    <li><a href="{{ h.url_for('blog_read', id=post.name) }}">{{ post.title|truncate(30) }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
