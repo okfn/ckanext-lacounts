@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% block package_info %}
+  {{ super() }}
+
+  <section class="module module-narrow social">
+    <h2 class="module-heading">{{ _('Metadata completion rate') }}</h2>
+    {{ h.get_metadata_completion_rate(pkg) }}
+  </section>
+{% endblock %}

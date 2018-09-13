@@ -24,4 +24,5 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_image_for_group': helpers.get_image_for_group,
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
+            'get_metadata_completion_rate': helpers.get_metadata_completion_rate,
         }

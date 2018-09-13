@@ -1,5 +1,7 @@
+import logging
 from ckan import model
 from ckan.plugins import toolkit
+log = logging.getLogger(__name__)
 
 
 def get_image_for_group(group_name):
@@ -68,3 +70,38 @@ def get_related_datasets_for_display(value):
         datasets.append({'text': dataset['title'], 'href': href})
 
     return datasets
+
+
+# TODO: clarify the algorithm with LA Counts
+def get_metadata_completion_rate(package):
+    GROUPS = [
+        'owner_org',
+        'notes',
+        'metadata_modified',
+        ['contact_name', 'contact_email'],
+        'identifier',
+        'access_rights',
+        'license_title',
+        ['spatial_text', 'spatial'],
+        ['temporal_text', 'temporal_start', 'temporal_end'],
+        # 'distribution' - we don't have this field
+        # 'distribution_fields' - we don't have this field
+        'frequency',
+        'language',
+        'url',
+    ]
+
+    # Calculate
+    count = 0
+    for group in GROUPS:
+        fields = group if isinstance(group, list) else [group]
+        for field in fields:
+            value = package.get(field)
+            if field == 'license_title' and value == 'License not specified':
+                value = None
+            if value:
+                count += 1
+                break
+    rate = int(100 * (count/float(len(GROUPS))))
+
+    return rate
