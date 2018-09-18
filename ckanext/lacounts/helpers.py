@@ -1,5 +1,7 @@
+import json
 import logging
 from ckan import model
+from ckan.common import config
 from ckan.plugins import toolkit
 log = logging.getLogger(__name__)
 
@@ -72,7 +74,6 @@ def get_related_datasets_for_display(value):
     return datasets
 
 
-# TODO: clarify the algorithm with LA Counts
 def get_metadata_completion_rate(package):
     GROUPS = [
         'owner_org',
@@ -105,3 +106,11 @@ def get_metadata_completion_rate(package):
     rate = int(100 * (count/float(len(GROUPS))))
 
     return rate
+
+
+def get_editable_region(name):
+    try:
+        regions = json.loads(config.get('ckanext.lacounts.editable_regions', ''))
+        return regions[name]
+    except Exception:
+        return ''

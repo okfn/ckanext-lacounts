@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+{% import 'macros/form.html' as form %}
+
+{% block admin_form %}
+
+  {{ super() }}
+
+  {{ form.input('ckanext.lacounts.editable_regions', id='field-ckanext.lacounts.editable_regions', label=_('Homepage regions'), value=data['ckanext.lacounts.editable_regions'], error=errors['ckanext.lacounts.editable_regions']) }}
+
+{% endblock %}
+
+{% block admin_form_help %}
+
+  {{ super() }}
+
+  <p><strong>Editable regions:</strong> Editable editable regions contents.</p>
+
+{% endblock %}

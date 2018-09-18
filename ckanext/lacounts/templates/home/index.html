@@ -1,9 +1,19 @@
 {% ckan_extends %}
 {% set intro = g.site_intro_text %}
 
+{# It doesn't work inside `macros/editable.html' #}
+{% macro editable_region(name) -%}
+<div data-editable data-name="{{ name }}">
+  {{ h.get_editable_region(name) | safe or caller() | safe }}
+</div>
+{%- endmacro %}
+
 {% block scripts %}
   {{ super() }}
   {% resource 'lacounts/home.js' %}
+  {% if h.check_access('sysadmin') %}
+    {% resource 'lacounts/editable' %}
+  {% endif %}
 {% endblock %}
 
 {% block bodytag %} {{ super() }} class="home"{% endblock %}
@@ -17,11 +27,10 @@
     {% if intro %}
       {{ h.render_markdown(intro) }}
     {% else %}
-      <h1 class="page-heading">{{ _("Lorem ipsum dolor sit amet, consectetur") }}</h1>
-      <p>
-        {% trans %}Aenean varius turpis eu nisl ultricies, eu maximus nulla iaculis. Nulla eget fermentum sem. Mauris non purus nec nulla aliquet iaculis. Sed vitae quam vel lectus pulvinar blandit.
-        {% endtrans %}
-      </p>
+      {% call editable_region('hero') %}
+        <h1>LA Counts</h1>
+        <p>Default main paragraph</p>
+      {% endcall %}
     {% endif %}
     <a class="btn btn-primary">{{ _("Find data and stories") }}</a>
     <a class="btn btn-info">{{ _("Get involved") }}</a>

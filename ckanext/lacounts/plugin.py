@@ -4,7 +4,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from routes.mapper import SubMapper
 
-from ckanext.lacounts import helpers
+from ckanext.lacounts import helpers, validators
 
 
 class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
@@ -20,6 +20,16 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'lacounts')
 
+    def update_config_schema(self, schema):
+        schema.update({
+            'ckanext.lacounts.editable_regions': [
+                toolkit.get_validator('ignore_missing'),
+                validators.validate_editable_regions,
+            ],
+        })
+
+        return schema
+
     # ITemplateHelpers
 
     def get_helpers(self):
@@ -28,6 +38,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
             'get_metadata_completion_rate': helpers.get_metadata_completion_rate,
+            'get_editable_region': helpers.get_editable_region,
         }
 
     # IRoutes
