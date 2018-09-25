@@ -207,6 +207,12 @@
             "label": "Harvest dataset modified",
             "form_snippet": null,
             "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_timestamp",
+            "label": "Harvest timestamp",
+            "form_snippet": null,
+            "display_snippet": "text.html"
         }
     ],
     "resource_fields": [
