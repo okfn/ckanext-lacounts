@@ -1,3 +1,4 @@
+import logging
 from functools import partial
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
@@ -6,12 +7,17 @@ from routes.mapper import SubMapper
 
 from ckanext.lacounts import helpers, validators
 
+log = logging.getLogger(__name__)
+_ = toolkit._
+
 
 class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IRoutes, inherit=True)
+    plugins.implements(plugins.IFacets, inherit=True)
+    plugins.implements(plugins.IPackageController, inherit=True)
 
     # IConfigurer
 
@@ -51,3 +57,19 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             m.connect('blog_search', '/blog', action='search')
             m.connect('blog_read', '/blog/{id}', action='read')
         return map
+
+    # IFacets
+
+    def dataset_facets(self, facets_dict, package_type):
+        facets_dict.clear()
+        facets_dict['type_label'] = _('Type')
+        facets_dict['organization'] = _('Publisher')
+        facets_dict['res_format'] = _('Format')
+        return facets_dict
+
+    # IPackageController
+
+    def before_index(self, pkg_dict):
+        TYPE_LABELS = {'dataset': _('Data'), 'showcase': _('Story')}
+        pkg_dict['type_label'] = TYPE_LABELS[pkg_dict['type']]
+        return pkg_dict
