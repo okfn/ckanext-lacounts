@@ -5,7 +5,6 @@ log = logging.getLogger(__name__)
 
 
 def ckan_processor(package, harvest_object):
-    source_domain = helpers.extract_source_domain(harvest_object)
 
     # Pre-map
     package['harvest_dataset_url'] = '{harvest_source_url}/dataset/{id}'.format(**package)

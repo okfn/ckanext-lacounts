@@ -197,8 +197,14 @@
             "display_snippet": "text.html"
         },
         {
-            "field_name": "harvest_timestamp",
-            "label": "Harvest timestamp",
+            "field_name": "harvest_dataset_created",
+            "label": "Harvest dataset created",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "harvest_dataset_modified",
+            "label": "Harvest dataset modified",
             "form_snippet": null,
             "display_snippet": "text.html"
         }
