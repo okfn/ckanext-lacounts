@@ -71,5 +71,6 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     def before_index(self, pkg_dict):
         TYPE_LABELS = {'dataset': _('Data'), 'showcase': _('Story')}
-        pkg_dict['type_label'] = TYPE_LABELS[pkg_dict['type']]
+        if pkg_dict['type'] in TYPE_LABELS:
+            pkg_dict['type_label'] = TYPE_LABELS[pkg_dict['type']]
         return pkg_dict
