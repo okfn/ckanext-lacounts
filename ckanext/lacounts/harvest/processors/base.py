@@ -16,8 +16,8 @@ def base_processor(package, harvest_object):
     # Map
     package = helpers.map_package(package, {
         # Dataset
-        'harvest_dataset_created': ['metadata_created', 'source_created_at'],
-        'harvest_dataset_modified': ['metadata_modified', 'source_updated_at'],
+        'harvest_dataset_created': ['metadata_created', 'source_created_at', 'issued'],
+        'harvest_dataset_modified': ['metadata_modified', 'source_updated_at', 'modified'],
     })
 
     # Post-map

@@ -5,6 +5,7 @@ import json
 from ckanext.dcat.harvesters import DCATRDFHarvester
 from ckanext.dcat.profiles import EuropeanDCATAPProfile
 from ckanext.lacounts.helpers import toolkit
+from ckanext.lacounts.harvest import helpers
 
 import logging
 log = logging.getLogger(__name__)
@@ -15,12 +16,13 @@ class LacountsESRIGeoportalHarvester(DCATRDFHarvester):
     A CKAN Harvester for ESRI Geoportals.
     '''
 
-    def process_package(self, package, harvest_object):
+    def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
         '''
         Subclasses can override this method to perform additional processing on
         package dicts during import_stage.
         '''
-        return package
+        package = helpers.process_package(package_dict, harvest_object)
+        return package_dict
 
     def info(self):
         return {
