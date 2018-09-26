@@ -16,12 +16,12 @@ def base_processor(package, harvest_object):
     # Map
     package = helpers.map_package(package, {
         # Dataset
-        'harvest_dataset_created': ['metadata_created', 'source_created_at', 'issued'],
-        'harvest_dataset_modified': ['metadata_modified', 'source_updated_at', 'modified'],
+        'issued': ['metadata_created', 'source_created_at', 'issued'],
+        'modified': ['metadata_modified', 'source_updated_at', 'modified'],
     })
 
     # Post-map
-    for field in ['harvest_dataset_created', 'harvest_dataset_modified']:
+    for field in ['issued', 'modified']:
         value = package.get(field)
         if value:
             try:
