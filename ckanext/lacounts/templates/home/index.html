@@ -28,12 +28,11 @@
       {{ h.render_markdown(intro) }}
     {% else %}
       {% call editable_region('hero') %}
-        <h1>LA Counts</h1>
-        <p>Default main paragraph</p>
+        <h1>Advocacy for data + Data for advocacy</h1>
+        <p>We're LA Counts, a tool for change powered by a community of advocates. Together we collect, curate, and explore open data about Los Angeles County and use it to improve the lives of all Angelenos. Explore the site, learn from the community, and join our movement.</p>
       {% endcall %}
     {% endif %}
-    <a class="btn btn-primary">{{ _("Find data and stories") }}</a>
-    <a class="btn btn-info">{{ _("Get involved") }}</a>
+    {% snippet 'home/snippets/search.html' %}
   </div>
 </section>
 {{ super() }}

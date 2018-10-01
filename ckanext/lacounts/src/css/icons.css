@@ -37,11 +37,34 @@
   content: "\e903";
 }
 
+@define-mixin icon-github {
+  content: "\f113";
+}
+
+@define-mixin icon-mail {
+  content: "\f003";
+}
+
+@define-mixin icon-twitter {
+  content: "\f099";
+}
+
+@define-mixin icon-bulb {
+  content: "\f0eb";
+}
+
+@define-mixin icon-heart {
+  content: "\e908";
+}
+
 .fa {
   display: inline-flex;
 }
 
-.fa-search:before,
-.fa-times:before {
+.fa-times:before,
+.fa-github-alt,
+.fa-envelope-o,
+.fa-twitter,
+.fa-lightbulb-o {
   @mixin icon;
 }
