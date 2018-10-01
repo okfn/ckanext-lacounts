@@ -365,7 +365,7 @@
     }
   }
 
-  &.background--light {
+  /*&.background--light {*/
     & figure {
       & figcaption {
         background-color: color(var(--grey) a(90%));
@@ -401,7 +401,7 @@
         }
       }
     }
-  }
+  /*}*/
 }
 
 .whats-happening {
