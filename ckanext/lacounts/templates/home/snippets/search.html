@@ -3,14 +3,6 @@
 <form class="module-content search-form" method="get" action="{% url_for 'dataset.search' %}">
   <div class="search-filters">
     <label for="field-main-search">{{ _("Search") }}</label>
-    <label class="checkbox">
-      <input type="checkbox" value="data" checked>
-      <span>{{ _("Data") }}</span>
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" value="stories" checked>
-      <span>{{ _("Stories") }}</span>
-    </label>
   </div>
 
   <div class="search-input form-group search-giant">

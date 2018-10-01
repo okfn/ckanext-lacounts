@@ -1,44 +1,32 @@
-<section>
-  <h2>Community Topics</h2>
+<section class="topics">
+  <h1>Community Topics</h1>
   <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tempus ultricies nibh, in gravida massa. Cras viverra sapien eros, ac consectetur nisl rutrum sed. Etiam consequat feugiat mauris, quis maximus sem molestie in.
+    With over 10 million residents spread across 4000+ square miles, Los Angeles County is diverse, distributed, data-rich and data-poor. These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change.
   </p>
-  <ul class="topics-list">
+  <ul class="button-boxes topics-list">
     <li class="education">
-      <a>
-        <span class="image">{% include 'icons/book.svg' %}</span>
-        <h3 class="topic-name">Education</h3>
-      </a>
-    </li>
-    <li class="health">
-      <a>
-        <span class="image">{% include 'icons/heart.svg' %}</span>
-        <h3 class="topic-name">Health</h3>
-      </a>
+      <span class="icon">{% include 'icons/book.svg' %}</span>
+      <a class="btn" href="dataset?topic=education">Education</a>
     </li>
     <li class="environment">
-      <a>
-        <span class="image">{% include 'icons/leaf.svg' %}</span>
-        <h3 class="topic-name">Environment</h3>
-      </a>
-    </li>
-    <li class="mobility">
-      <a>
-        <span class="image">{% include 'icons/bus.svg' %}</span>
-        <h3 class="topic-name">Mobility</h3>
-      </a>
+      <span class="icon">{% include 'icons/leaf.svg' %}</span>
+      <a class="btn" href="dataset?topic=environment">Environment</a>
     </li>
     <li class="housing">
-      <a>
-        <span class="image">{% include 'icons/keys.svg' %}</span>
-        <h3 class="topic-name">Housing</h3>
-      </a>
+      <span class="icon">{% include 'icons/keys.svg' %}</span>
+      <a class="btn" href="dataset?topic=housing">Housing</a>
     </li>
     <li class="immigration">
-      <a>
-        <span class="image">{% include 'icons/passport.svg' %}</span>
-        <h3 class="topic-name">Immigration</h3>
-      </a>
+      <span class="icon">{% include 'icons/passport.svg' %}</span>
+      <a class="btn" href="dataset?topic=immigration">Immigration</a>
+    </li>
+    <li class="transportation">
+      <span class="icon">{% include 'icons/bus.svg' %}</span>
+      <a class="btn" href="dataset?topic=transportation">Transportation</a>
+    </li>
+    <li class="wellbeing">
+      <span class="icon">{% include 'icons/heart.svg' %}</span>
+      <a class="btn" href="dataset?topic=well-being">Well-being</a>
     </li>
   </ul>
 </section>

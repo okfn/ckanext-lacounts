@@ -188,6 +188,7 @@
             padding-left: 1em;
             padding-right: 1em;
             border-radius: var(--border-radius);
+            margin-right: 0;
           }
         }
         &.active {

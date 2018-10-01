@@ -3,32 +3,42 @@ $(document).ready(function(){
   /* Twitter feed */
   /****************/
 
-  function handleTweets(tweets) {
-    var x = tweets.length;
-     var n = 0;
-     var element = document.getElementById('tweets');
-     var html = '<ul class="owl-carousel">';
-     while(n < x) {
-       html += '<li>' + tweets[n] + '</li>';
-       n++;
-     }
-     html += '</ul>';
-     element.innerHTML = html;
-
-     $(element).children("ul").owlCarousel({
-       items: 1,
-       autoHeight: true,
-       nav: true,
-       dots: false
-     });
-   }
-
-  var tweetsHome = {
+  var configTweet = {
     "profile": {"screenName": 'LA_COUNTS'},
-    "domId": '',
+    "domId": 'tweet',
+    "maxTweets": 1,
+    "showRetweet": false,
+    "showUser": false,
     "showInteraction": false,
-    "customCallback": handleTweets
+    "showTime": false,
+    "showImages": false,
+    "lang": 'en'
   };
-  twitterFetcher.fetch(tweetsHome);
+  twitterFetcher.fetch(configTweet);
+
+
+  /* Vis dark / light */
+  /********************/
+
+  BackgroundCheck.init({
+    targets: '.featured-visualisation'
+  });
+
+
+  /* Helper info */
+  /***************/
+
+  // toggle helper
+  $( ".helper-info .header" ).on( "click", function() {
+    $(this).parent(".helper-info").toggleClass( "show" );
+  });
+
+  // show by default on first visit
+  var showHelper = localStorage.getItem('showHelper');
+  if (showHelper== null) {
+    localStorage.setItem('showHelper', 1);
+    // add class to show helper
+    $( ".helper-info" ).addClass("show");
+  }
 
 });

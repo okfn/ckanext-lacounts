@@ -1,12 +1,12 @@
 {
   "devDependencies": {
     "autoprefixer": "^7.2.5",
+    "background-check": "git+https://github.com/kennethcachia/background-check.git",
     "grunt": "^1.0.1",
     "grunt-contrib-uglify": "^3.4.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-postcss": "^0.9.0",
     "jquery.dotdotdot": "^3.2.2",
-    "owl.carousel": "^2.3.4",
     "postcss-calc": "^6.0.1",
     "postcss-clean": "^1.1.0",
     "postcss-color-function": "^4.0.1",

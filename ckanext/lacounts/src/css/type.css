@@ -24,23 +24,38 @@ h1, h2, h3, h4, h5, h6,
   & .label {
     font-size: 0.5em;
   }
+
+  & small {
+    font-size: 1rem;
+  }
 }
 
-/* header 1 */
-h1,
-.dataset-heading {
-  font-size: 1.2rem;
+h1 {
+  font-size: 2rem;
   font-weight: 900;
+  display: inline-block;
+  padding-bottom: 0.1em;
+  margin-bottom: 0.5em;
+  border-bottom: solid 0.15em var(--yellow);
 }
 
-/* header 2 */
 h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-weight: 900;
+  font-size: 1.6rem;
 }
 
-/* header 5 */
+h3 {
+  font-size: 1.45rem;
+}
+
+h4 {
+  font-size: 1.3rem;
+}
+
+h5 {
+  font-size: 1.15rem;
+}
+
+/* Uppercase headings */
 .module-heading {
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -58,6 +73,7 @@ h2 {
 .dataset-content div,
 .notes,
 .additional-info,
-figcaption {
+figcaption,
+.caption-header small {
   font-size: 16px;
 }

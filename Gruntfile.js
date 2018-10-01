@@ -35,7 +35,7 @@ module.exports = function(grunt) {
       },
       home: {
         files: {
-          'ckanext/lacounts/fanstatic/home.js': ['node_modules/twitter-fetcher/js/twitterFetcher.js', 'node_modules/owl.carousel/dist/owl.carousel.js', 'ckanext/lacounts/src/js/home.js']
+          'ckanext/lacounts/fanstatic/home.js': ['node_modules/twitter-fetcher/js/twitterFetcher.js',  'node_modules/background-check/background-check.js', 'ckanext/lacounts/src/js/home.js']
         }
       }
     },
