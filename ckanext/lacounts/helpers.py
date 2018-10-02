@@ -75,21 +75,20 @@ def get_related_datasets_for_display(value):
 
 
 def get_metadata_completion_rate(package):
+    # Item could be a field name or a list of field names (any match counts)
     GROUPS = [
+        'title',
         'owner_org',
         'notes',
+        'metadata_created',
         'metadata_modified',
-        ['contact_name', 'contact_email'],
+        'contact_email',
         'identifier',
         'access_rights',
         'license_title',
         ['spatial_text', 'spatial'],
         ['temporal_text', 'temporal_start', 'temporal_end'],
-        # 'distribution' - we don't have this field
-        # 'distribution_fields' - we don't have this field
         'frequency',
-        'language',
-        'url',
     ]
 
     # Calculate
