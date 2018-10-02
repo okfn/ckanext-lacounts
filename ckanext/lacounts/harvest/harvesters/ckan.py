@@ -8,8 +8,16 @@ log = logging.getLogger(__name__)
 class LacountsCKANHarvester(CKANHarvester):
 
     def import_stage(self, harvest_object):
-        log.debug('In LacountsCKANHarvester import_stage')
+
+        # Update config
+        config = json.loads(harvest_object.job.source.config)
+        # Set `remote_groups` to be able set groups in processors
+        config['remote_groups'] = 'only_local'
+        harvest_object.job.source.config = json.dumps(config)
+
+        # Update package
         package = json.loads(harvest_object.content)
         package = helpers.process_package(package, harvest_object)
         harvest_object.content = json.dumps(package)
+
         return super(LacountsCKANHarvester, self).import_stage(harvest_object)

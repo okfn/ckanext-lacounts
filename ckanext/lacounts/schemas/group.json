@@ -23,6 +23,13 @@
             "label": "Description"
         },
         {
+            "field_name": "harvest_terms",
+            "form_placeholder": "eg. nature\npollution\nco2",
+            "form_snippet": "textarea.html",
+            "label": "Harvest terms",
+            "help_text": "Each term should be placed on a new line"
+        },
+        {
             "field_name": "image",
             "form_snippet": "organization_image.html",
             "label": "Image"

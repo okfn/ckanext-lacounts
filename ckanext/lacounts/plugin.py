@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from routes.mapper import SubMapper
 
-from ckanext.lacounts import helpers, validators
+from ckanext.lacounts import helpers, validators, jobs
 
 log = logging.getLogger(__name__)
 _ = toolkit._
@@ -18,6 +18,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IFacets, inherit=True)
     plugins.implements(plugins.IPackageController, inherit=True)
+    plugins.implements(plugins.IGroupController, inherit=True)
 
     # IConfigurer
 
@@ -74,3 +75,13 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
         if pkg_dict['type'] in TYPE_LABELS:
             pkg_dict['type_label'] = TYPE_LABELS[pkg_dict['type']]
         return pkg_dict
+
+    # IGroupController
+
+    def create(self, entity):
+        if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job'):
+            toolkit.enqueue_job(jobs.update_groups, [entity.name])
+
+    def edit(self, entity):
+        if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job'):
+            toolkit.enqueue_job(jobs.update_groups, [entity.name])

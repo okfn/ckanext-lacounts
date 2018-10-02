@@ -191,6 +191,12 @@
             "display_snippet": "text.html"
         },
         {
+            "field_name": "harvest_dataset_terms",
+            "label": "Harvest dataset terms",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
             "field_name": "harvest_dataset_url",
             "label": "Harvest dataset url",
             "form_snippet": null,

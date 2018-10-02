@@ -17,10 +17,6 @@ class LacountsESRIGeoportalHarvester(DCATRDFHarvester):
     '''
 
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
-        '''
-        Subclasses can override this method to perform additional processing on
-        package dicts during import_stage.
-        '''
         package = helpers.process_package(package_dict, harvest_object)
         return package_dict
 

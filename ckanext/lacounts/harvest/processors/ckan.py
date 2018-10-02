@@ -1,15 +1,16 @@
 import logging
 from urlparse import urljoin
+from operator import itemgetter
 from ckanext.lacounts.harvest import helpers
 log = logging.getLogger(__name__)
 
 
 def ckan_processor(package, harvest_object):
 
-    # Pre-map
+    # Url
     package['harvest_dataset_url'] = '{harvest_source_url}/dataset/{id}'.format(**package)
 
-    # Map
+    # Metadata
     package = helpers.map_package(package, {
         # Contact
         'contact_name': ['contact_name'],
@@ -27,7 +28,10 @@ def ckan_processor(package, harvest_object):
         'provenance': ['author', 'program'],
     })
 
-    # Post-map
-    package['frequency'] = helpers.normalize_frequency(package.get('frequency'))
+    # Terms
+    terms = []
+    terms.extend(map(itemgetter('name'), package.get('tags', [])))
+    terms.extend(map(itemgetter('name'), package.get('groups', [])))
+    package['harvest_dataset_terms'] = terms
 
     return package
