@@ -10,7 +10,10 @@ class LacountsCKANHarvester(CKANHarvester):
     def import_stage(self, harvest_object):
 
         # Update config
-        config = json.loads(harvest_object.job.source.config)
+        if harvest_object.job.source.config:
+            config = json.loads(harvest_object.job.source.config)
+        else:
+            config = {}
         # Set `remote_groups` to be able set groups in processors
         config['remote_groups'] = 'only_local'
         harvest_object.job.source.config = json.dumps(config)
