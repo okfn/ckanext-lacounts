@@ -109,7 +109,7 @@ def get_metadata_completion_rate(package):
 
 def get_editable_region(name):
     try:
-        regions = json.loads(config.get('ckanext.lacounts.editable_regions', ''))
+        regions = json.loads(config.get('ckanext.lacounts.editable_regions', '{}'))
         return regions[name]
     except Exception:
         return ''

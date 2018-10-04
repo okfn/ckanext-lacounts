@@ -1,8 +1,10 @@
-<section>
-  <h1>{{ _("Recent data stories") }}</h1>
-  <p>
-    Data stories help to illuminate the power of open data. LA Counts features 5 types of stories: data stories; data visualizations; profiles and interviews; methodologies; and white papers and research.
-  </p>
+{% import 'macros/editable.html' as editable with context %}
+
+<section class="data-stories">
+  {% call editable.region('data-stories') %}
+    <h1>Recent data stories</h1>
+    <p>Data stories help to illuminate the power of open data. LA Counts features 5 types of stories: data stories; data visualizations; profiles and interviews; methodologies; and white papers and research.</p>
+  {% endcall %}
   <div class="stories-list">
     <article>
       <a class="image">

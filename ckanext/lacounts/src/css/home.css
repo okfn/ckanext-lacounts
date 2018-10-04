@@ -331,6 +331,9 @@
         & :last-child {
           margin-bottom: calc(var(--spacer-25) / 2);
         }
+        & h3 {
+          color: #fff;
+        }
       }
 
       @media (--medium-up) {

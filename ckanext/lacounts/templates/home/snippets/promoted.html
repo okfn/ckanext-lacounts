@@ -1,15 +1,18 @@
+{% import 'macros/editable.html' as editable with context %}
+
 <section class="featured-visualisation">
   <figure>
     <img src="/images/vis.jpg" alt="{{ _("Visualisation") }} - Where are L.A.'s dirtiest streets?" />
     <figcaption>
       <div class="caption-header">
-        <h3><a href="#"><small>{{ _("Featured visualisation") }}:</small> Where are L.A.'s dirtiest streets?</a></h3>
+        <div><a href="#"><small>{{ _("Featured visualisation") }}:</small></a></div>
         <button type="button" class="toggle"><span class="sr-only">Toggle description</span></button>
       </div>
       <div class="caption-body in">
-        <p>
-          Inspectors gave failing cleanliness grades to more than 370 miles of streets and alleys in Los Angeles, or about 4% of the city. The grades were based on observations of illegal dumping, bulky items, loose litter and weeds in those areas.
-        </p>
+        {% call editable.region('featured-visualisation') %}
+          <h3>Where are L.A.'s dirtiest streets?</h3>
+          <p>Inspectors gave failing cleanliness grades to more than 370 miles of streets and alleys in Los Angeles, or about 4% of the city. The grades were based on observations of illegal dumping, bulky items, loose litter and weeds in those areas.</p>
+        {% endcall %}
         <a href="#" class="explore-link">{{ _("See full visualisation") }}</a>
       </div>
     </figcaption>
