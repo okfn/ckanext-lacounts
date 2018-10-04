@@ -17,15 +17,6 @@ $(document).ready(function(){
   twitterFetcher.fetch(configTweet);
 
 
-  /* Vis dark / light */
-  /********************/
-
-/*
-  BackgroundCheck.init({
-    targets: '.featured-visualisation'
-  });
-/*
-
   /* Helper info */
   /***************/
 
