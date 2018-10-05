@@ -1,7 +1,6 @@
 {
   "devDependencies": {
     "autoprefixer": "^7.2.5",
-    "background-check": "git+https://github.com/kennethcachia/background-check.git",
     "grunt": "^1.0.1",
     "grunt-contrib-uglify": "^3.4.0",
     "grunt-contrib-watch": "^1.0.0",
