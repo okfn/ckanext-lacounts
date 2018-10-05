@@ -6,7 +6,7 @@
 
   {{ super() }}
 
-  {{ form.input('ckanext.lacounts.editable_regions', id='field-ckanext.lacounts.editable_regions', label=_('Homepage regions'), value=data['ckanext.lacounts.editable_regions'], error=errors['ckanext.lacounts.editable_regions']) }}
+  {{ form.textarea('ckanext.lacounts.editable_regions', id='field-ckanext.lacounts.editable_regions', label=_('Editable regions'), value=data['ckanext.lacounts.editable_regions'], error=errors['ckanext.lacounts.editable_regions']) }}
 
 {% endblock %}
 

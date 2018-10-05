@@ -1,0 +1,5 @@
+{% macro region(name) -%}
+<div data-editable data-name="{{ name }}">
+  {{ h.get_editable_region(name) | safe or caller() | safe }}
+</div>
+{%- endmacro %}

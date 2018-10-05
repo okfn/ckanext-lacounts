@@ -1,8 +1,10 @@
+{% import 'macros/editable.html' as editable with context %}
+
 <section class="community">
   <div>
-    <p>
-      We're building a better Los Angeles County through open data and data stories. Stay tuned here for updates on changes to the site, upcoming events and meetups across the County, and new volunteer opportunities.
-    </p>
+    {% call editable.region('community') %}
+      <p>We're building a better Los Angeles County through open data and data stories. Stay tuned here for updates on changes to the site, upcoming events and meetups across the County, and new volunteer opportunities.</p>
+    {% endcall %}
   </div>
   <a><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Suggest a story</a>
   <a><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Suggest a dataset</a>
