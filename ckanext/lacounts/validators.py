@@ -2,6 +2,7 @@ import json
 import logging
 from ckan.common import config
 from ckan.plugins import toolkit
+import ckan.lib.uploader as uploader
 log = logging.getLogger(__name__)
 
 

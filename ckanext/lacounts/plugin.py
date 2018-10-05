@@ -5,7 +5,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from routes.mapper import SubMapper
 
-from ckanext.lacounts import helpers, validators, jobs
+from ckanext.lacounts import helpers, validators, jobs, actions
 
 log = logging.getLogger(__name__)
 _ = toolkit._
@@ -19,6 +19,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IFacets, inherit=True)
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IGroupController, inherit=True)
+    plugins.implements(plugins.IActions)
 
     # IConfigurer
 
@@ -33,6 +34,9 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
                 toolkit.get_validator('ignore_missing'),
                 validators.validate_editable_regions,
             ],
+            'ckanext.lacounts.featured_image': [
+                toolkit.get_validator('ignore_missing'),
+            ],
         })
 
         return schema
@@ -45,6 +49,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
             'get_metadata_completion_rate': helpers.get_metadata_completion_rate,
+            'get_featured_image_url': helpers.get_featured_image_url,
             'get_editable_region': helpers.get_editable_region,
         }
 
@@ -85,3 +90,10 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def edit(self, entity):
         if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job'):
             toolkit.enqueue_job(jobs.update_groups, [entity.name])
+
+    # IActions
+
+    def get_actions(self):
+        return {
+            'config_option_update': actions.config_option_update,
+        }

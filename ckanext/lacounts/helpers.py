@@ -107,6 +107,10 @@ def get_metadata_completion_rate(package):
     return rate
 
 
+def get_featured_image_url(default):
+    return config.get('ckanext.lacounts.featured_image') or default
+
+
 def get_editable_region(name):
     try:
         regions = json.loads(config.get('ckanext.lacounts.editable_regions', '{}'))
