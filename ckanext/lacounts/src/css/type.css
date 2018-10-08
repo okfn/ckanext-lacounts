@@ -1,8 +1,8 @@
 html {
-  font-size: 16px;
+  font-size: var(--font-size-small);
 
   @media (--medium-up) {
-    font-size: 18px;
+    font-size: var(--font-size-medium);
   }
 
   @media (--large-up) {
@@ -37,6 +37,11 @@ h1 {
   padding-bottom: 0.1em;
   margin-bottom: 0.5em;
   border-bottom: solid 0.15em var(--yellow);
+
+  & a:hover,
+  & a:focus {
+    text-decoration: none;
+  }
 }
 
 h2 {
@@ -47,6 +52,11 @@ h3 {
   font-size: 1.45rem;
 }
 
+.dataset-heading {
+  font-size: 1.45em;
+  font-weight: 900;
+}
+
 h4 {
   font-size: 1.3rem;
 }
@@ -55,11 +65,27 @@ h5 {
   font-size: 1.15rem;
 }
 
-/* Uppercase headings */
-.module-heading {
+/* Uppercase stuff */
+.module-heading,
+.pill,
+.show-filters {
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 16px;
+  font-size: var(--font-size-small);
+  font-weight: bold;
+}
+
+.label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 14px;
+  border-radius: 0;
+}
+.label-default {
+  background-color: var(--grey);
+}
+.label-story {
+  background-color: var(--yellow);
 }
 
 /* subtle underline */
@@ -70,10 +96,10 @@ h5 {
 }
 
 /* detail text */
-.dataset-content div,
 .notes,
 .additional-info,
 figcaption,
-.caption-header small {
+.caption-header small,
+.pagination {
   font-size: 16px;
 }

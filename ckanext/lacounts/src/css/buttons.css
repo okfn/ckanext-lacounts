@@ -149,3 +149,304 @@
     text-align: center;
   }
 }
+
+.remove-filter {
+  position: relative;
+  text-decoration: none;
+
+  & i {
+    font-size: 14px;
+    background-color: var(--grey);
+    color: #fff;
+    border: solid 3px #fff;
+    border-radius: 50%;
+    padding: 0.5em;
+    position: absolute;
+    top: -0.8em;
+    right: -0.8em;
+  }
+}
+
+.featured-filters {
+  margin: 2rem 0;
+  padding: 0;
+
+  & .filter-description {
+    display: none;
+
+    &:not(:empty) {
+      background-color: color(var(--grey) tint(80%));
+      border-radius: var(--border-radius);
+      padding: var(--spacer-15);
+      font-size: 16px;
+    }
+  }
+
+  & li {
+    display: flex;
+    margin-bottom: var(--spacer-25);
+
+    &.active {
+      & a {
+        background-color: var(--grey);
+
+        &:first-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &:last-child {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      & .remove-filter {
+        display: block;
+      }
+
+      &.education a {
+        background-color: var(--orange);
+      }
+      &.environment a {
+        background-color: var(--environment-colour);
+      }
+      &.housing a {
+        background-color: var(--housing-colour);
+      }
+      &.immigration a {
+        background-color: var(--immigration-colour);
+      }
+      &.transportation a {
+        background-color: var(--transportation-colour);
+      }
+      &.wellbeing a {
+        background-color: var(--wellbeing-colour);
+      }
+    }
+  }
+
+  & a {
+    background-color: color(var(--grey) tint(50%));
+    color: #fff;
+    font-size: 16px;
+    padding: 0.75em 1em;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+
+    &:first-child {
+      flex-grow: 1;
+    }
+
+    &.remove-filter {
+      display: none;
+      flex-grow: 0;
+    }
+  }
+
+  & .filter-icon {
+    display: none;
+  }
+
+  & .filter-label {
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+
+  @supports (display: grid) {
+    @media (--small-up) {
+
+      & li {
+        display: grid;
+        grid-template-columns: auto;
+        grid-row-gap: var(--spacer-15);
+
+        &.active {
+          grid-template-columns: auto 2em;
+
+          & .filter-description {
+            display: block;
+            order: 3;
+            grid-column-start: 1;
+            grid-column-end: 3;
+          }
+        }
+      }
+
+      & a {
+        display: flex;
+        width: 100%;
+        align-items: center;
+      }
+
+      & .filter-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1em;
+
+        & svg {
+          fill: #fff;
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+
+    @media (--medium-up) {
+      display: grid;
+      grid-column-gap: var(--spacer-25);
+      grid-row-gap: var(--spacer-25);
+      grid-template-columns: 1fr 1fr 1fr;
+      position: relative;
+
+      & a {
+        background-color: transparent;
+        flex-direction: column;
+        padding: 0;
+
+        &.remove-filter {
+          position: absolute;
+        }
+      }
+
+      & li {
+        grid-row-gap: 0;
+        position: relative;
+        margin: 0;
+
+        &.filter-description {
+          display: block;
+          grid-column-start: 1;
+          grid-column-end: 4;
+        }
+
+        &.active {
+          grid-template-columns: 1fr;
+
+          & .filter-icon {
+            background-color: var(--grey);
+          }
+
+          & .filter-description {
+            display: none;
+          }
+
+          & a {
+            background-color: transparent;
+          }
+
+          &.education a,
+          &.environment a,
+          &.housing a,
+          &.immigration a,
+          &.transportation a,
+          &.wellbeing a {
+            background-color: transparent;
+          }
+
+          &.education a .filter-icon {
+            background-color: var(--orange);
+          }
+          &.environment a .filter-icon {
+            background-color: var(--environment-colour);
+          }
+          &.housing a .filter-icon {
+            background-color: var(--housing-colour);
+          }
+          &.immigration a .filter-icon {
+            background-color: var(--immigration-colour);
+          }
+          &.transportation a .filter-icon {
+            background-color: var(--transportation-colour);
+          }
+          &.wellbeing a .filter-icon {
+            background-color: var(--wellbeing-colour);
+          }
+        }
+      }
+
+      & .filter-icon {
+        background-color: color(var(--grey) tint(50%));
+        border-radius: var(--border-radius);
+        margin: 0;
+        width: 100%;
+
+        &:before {
+          content:'';
+          padding-top: 100%;
+        }
+
+        & svg {
+          margin: 15%;
+          width: 70%;
+          height: 70%;
+        }
+      }
+
+      & .filter-label {
+        color: var(--grey);
+        padding-top: 0.5em;
+      }
+
+    }
+
+    @media (--large-up) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+      & a {
+        flex-direction: column;
+
+        &.filter {
+          &:hover {
+            & .filter-label {
+              display: block;
+            }
+          }
+        }
+
+        &.remove-filter {
+          & i {
+            font-size: 12px;
+          }
+        }
+      }
+
+      & .filter-label {
+        font-size: 13px;
+      }
+
+      & li {
+
+        &.filter-description {
+          grid-column-end: 7;
+        }
+      }
+    }
+
+  }
+}
+
+.pill {
+  background-color: var(--grey);
+  border-radius: var(--border-radius);
+  padding: 0.75em 1em;
+  display: inline-flex;
+
+  & .remove-filter  {
+    width: 0.5em;
+
+    & i {
+      top: -1.9em;
+      right: -1.9em;
+
+      @media (--large-up) {
+        top: -2em;
+        right: -2em;
+        font-size: 12px;
+      }
+    }
+  }
+}

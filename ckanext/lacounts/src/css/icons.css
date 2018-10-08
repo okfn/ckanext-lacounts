@@ -14,7 +14,7 @@
 }
 
 @define-mixin icon-search {
-  content: "\e900";
+  content: "\f002";
 }
 
 @define-mixin icon-close {
@@ -22,7 +22,7 @@
 }
 
 @define-mixin icon-arrow-right {
-  content: "\f002";
+  content: "\e900";
 }
 
 @define-mixin icon-checkmark {
@@ -57,6 +57,10 @@
   content: "\e908";
 }
 
+@define-mixin icon-plus {
+  content: "\f0fe";
+}
+
 .fa {
   display: inline-flex;
 }
@@ -65,6 +69,8 @@
 .fa-github-alt,
 .fa-envelope-o,
 .fa-twitter,
-.fa-lightbulb-o {
+.fa-lightbulb-o,
+.fa-search,
+.fa-plus-square {
   @mixin icon;
 }
