@@ -6,50 +6,19 @@
     <p>Data stories help to illuminate the power of open data. LA Counts features 5 types of stories: data stories; data visualizations; profiles and interviews; methodologies; and white papers and research.</p>
   {% endcall %}
   <div class="stories-list">
-    <article>
-      <a class="image">
-        <img src="/images/story-featured-img-example.jpg" alt="" />
-      </a>
-      <div class="text">
-        <h1><a>Silver Lake Parking Tickets II: Neighborhoods</a></h1>
-        <p>
-          After months of skating by, undetected, unpermitted, it finally happened: we got a parking ticket.
-        </p>
-      </div>
-    </article>
-    <article>
-      <a class="image">
-        <img src="/images/story-featured-img-example.jpg" alt="" />
-      </a>
-      <div class="text">
-        <h1><a>Silver Lake Parking Tickets II: Neighborhoods</a></h1>
-        <p>
-          After months of skating by, undetected, unpermitted, it finally happened: we got a parking ticket.
-        </p>
-      </div>
-    </article>
-    <article>
-      <a class="image">
-        <img src="/images/story-featured-img-example.jpg" alt="" />
-      </a>
-      <div class="text">
-        <h1><a>Silver Lake Parking Tickets II: Neighborhoods</a></h1>
-        <p>
-          After months of skating by, undetected, unpermitted, it finally happened: we got a parking ticket.
-        </p>
-      </div>
-    </article>
-    <article>
-      <a class="image">
-        <img src="/images/story-featured-img-example.jpg" alt="" />
-      </a>
-      <div class="text">
-        <h1><a>Silver Lake Parking Tickets II: Neighborhoods</a></h1>
-        <p>
-          After months of skating by, undetected, unpermitted, it finally happened: we got a parking ticket.
-        </p>
-      </div>
-    </article>
+    {% for story in h.get_recent_data_stories() %}
+      <article>
+        <a class="image">
+          <img src="{{ story.image_display_url }}" alt="" />
+        </a>
+        <div class="text">
+          <h1><a href="{{ h.url_for('showcase_read', id=story.name) }}">{{ story.title }}</a></h1>
+          <p>
+            {{ story.showcase_notes_formatted }}
+          </p>
+        </div>
+      </article>
+    {% endfor %}
   </div>
-  <a class="explore-link">View all stories</a>
+  <a href="{{ h.url_for('dataset', type_label='Story') }}" class="explore-link">View all stories</a>
 </section>
