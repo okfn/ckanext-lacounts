@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 import json
 
+from rdflib.namespace import Namespace
+
 from ckanext.dcat.harvesters import DCATRDFHarvester
 from ckanext.dcat.profiles import EuropeanDCATAPProfile
 from ckanext.lacounts.helpers import toolkit
@@ -9,6 +11,10 @@ from ckanext.lacounts.harvest import helpers
 
 import logging
 log = logging.getLogger(__name__)
+
+
+VCARD = Namespace("http://www.w3.org/2006/vcard/ns#")
+DCAT = Namespace("http://www.w3.org/ns/dcat#")
 
 
 class LacountsESRIGeoportalHarvester(DCATRDFHarvester):
@@ -72,5 +78,13 @@ class LacountsESRIGeoportalProfile(EuropeanDCATAPProfile):
             val = _remove_pkg_dict_extra(dataset_dict, name)
             if val:
                 dataset_dict[name] = val
+
+        # See project-open-data/project-open-data.github.io#621
+        for agent in self.g.objects(dataset_ref, DCAT.contactPoint):
+            email = self._without_mailto(
+                self._object_value(agent, VCARD.email)
+            )
+            if email:
+                dataset_dict['contact_email'] = email
 
         return dataset_dict

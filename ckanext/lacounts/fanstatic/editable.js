@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   // Save edited regions
   editor.addEventListener('saved', function (ev) {
-      var name, payload, regions, xhr;
+      var name, payload, regions, xhr, data;
 
       // Check that something changed
       regions = ev.detail().regions;
@@ -18,8 +18,9 @@ $(document).ready(function() {
       this.busy(true);
 
       // Collect the contents of each region into a FormData instance
+      data = Object.assign({}, regions, {is_patch: true});
       payload = new FormData();
-      payload.append('ckanext.lacounts.editable_regions', JSON.stringify(regions))
+      payload.append('ckanext.lacounts.editable_regions', JSON.stringify(data))
 
       // Send the update content to the server to be saved
       function onStateChange(ev) {

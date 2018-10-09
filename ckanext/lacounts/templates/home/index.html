@@ -1,12 +1,6 @@
 {% ckan_extends %}
 {% set intro = g.site_intro_text %}
-
-{# It doesn't work inside `macros/editable.html' #}
-{% macro editable_region(name) -%}
-<div data-editable data-name="{{ name }}">
-  {{ h.get_editable_region(name) | safe or caller() | safe }}
-</div>
-{%- endmacro %}
+{% import 'macros/editable.html' as editable with context %}
 
 {% block scripts %}
   {{ super() }}
@@ -27,7 +21,7 @@
     {% if intro %}
       {{ h.render_markdown(intro) }}
     {% else %}
-      {% call editable_region('hero') %}
+      {% call editable.region('hero') %}
         <h1>Advocacy for data + Data for advocacy</h1>
         <p>We're LA Counts, a tool for change powered by a community of advocates. Together we collect, curate, and explore open data about Los Angeles County and use it to improve the lives of all Angelenos. Explore the site, learn from the community, and join our movement.</p>
       {% endcall %}

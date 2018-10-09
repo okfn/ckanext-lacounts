@@ -1,29 +1,33 @@
+{% import 'macros/editable.html' as editable with context %}
+
 <section class="whats-happening">
-  <h1>{{ _("What's happening") }}</h1>
-  <p>
-    LA Counts is a growing community of open data practitioners, data journalists, academics, researchers, students, philanthropists, and policymakers. Connect with us!
-  </p>
+  {% call editable.region('whats-happening') %}
+    <h1>What's happening</h1>
+    <p>LA Counts is a growing community of open data practitioners, data journalists, academics, researchers, students, philanthropists, and policymakers. Connect with us! </p>
+  {% endcall %}
   <div class="button-boxes">
     <div>
       <i class="icon fa fa-envelope-o" aria-hidden="true"></i>
-      <p>
-        Connect with Los Angeles County's open data community.
-      </p>
+      {% call editable.region('whats-happening-email') %}
+        <p>Connect with Los Angeles County's open data community.</p>
+      {% endcall %}
       <a class="btn">Join mailing list</a>
     </div>
 
     <div>
       <i class="icon fa fa-github-alt" aria-hidden="true"></i>
-      <p>
-        Help build LA Counts: we're open source AND open data.
-      </p>
-      <a class="btn">Source code</a>
+      {% call editable.region('whats-happening-github') %}
+        <p>Help build LA Counts: we're open source AND open data.</p>
+      {% endcall %}
+      <a class="btn" href="https://github.com/okfn/ckanext-lacounts">Source code</a>
     </div>
 
     <div>
       <i class="icon fa fa-twitter" aria-hidden="true"></i>
-      <div id="tweet"></div>
-      <a class="btn">Follow us on Twitter</a>
+      {% call editable.region('whats-happening-twitter') %}
+        <div id="tweet"></div>
+      {% endcall %}
+      <a class="btn" href="https://twitter.com/LA_COUNTS">Follow us on Twitter</a>
     </div>
   </div>
 </section>
