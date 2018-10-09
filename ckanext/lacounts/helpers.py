@@ -131,3 +131,7 @@ def get_editable_region(name):
         return regions[name]
     except Exception:
         return ''
+
+
+def get_topics(order=None):
+    return []
