@@ -7,28 +7,28 @@
   {% endcall %}
   <ul class="button-boxes topics-list">
     <li class="education">
-      <span class="icon">{% include 'icons/book.svg' %}</span>
-      <a class="btn" href="{{ h.url_for('group_read', id='education') }}">Education</a>
+      <a href="{{ h.url_for('topic_read', id='education') }}"><span class="icon">{% include 'icons/book.svg' %}</a></span>
+      <a class="btn" href="{{ h.url_for('topic_read', id='education') }}">Education</a>
     </li>
     <li class="environment">
-      <span class="icon">{% include 'icons/leaf.svg' %}</span>
-      <a class="btn" href="{{ h.url_for('group_read', id='environment') }}">Environment</a>
+      <a href="{{ h.url_for('topic_read', id='environment') }}"><span class="icon">{% include 'icons/leaf.svg' %}</a></span>
+      <a class="btn" href="{{ h.url_for('topic_read', id='environment') }}">Environment</a>
     </li>
     <li class="housing">
-      <span class="icon">{% include 'icons/keys.svg' %}</span>
-      <a class="btn" href="{{ h.url_for('group_read', id='housing') }}">Housing</a>
+      <a href="{{ h.url_for('topic_read', id='housing') }}"><span class="icon">{% include 'icons/keys.svg' %}</a></span>
+      <a class="btn" href="{{ h.url_for('topic_read', id='housing') }}">Housing</a>
     </li>
     <li class="immigration">
-      <span class="icon">{% include 'icons/passport.svg' %}</span>
-      <a class="btn" href="{{ h.url_for('group_read', id='immigration') }}">Immigration</a>
+      <a href="{{ h.url_for('topic_read', id='immigration') }}"><span class="icon">{% include 'icons/passport.svg' %}</a></span>
+      <a class="btn" href="{{ h.url_for('topic_read', id='immigration') }}">Immigration</a>
     </li>
     <li class="transportation">
-      <span class="icon">{% include 'icons/bus.svg' %}</span>
-      <a class="btn" href="{{ h.url_for('group_read', id='transportation') }}">Transportation</a>
+      <a href="{{ h.url_for('topic_read', id='transportation') }}"><span class="icon">{% include 'icons/bus.svg' %}</a></span>
+      <a class="btn" href="{{ h.url_for('topic_read', id='transportation') }}">Transportation</a>
     </li>
     <li class="wellbeing">
-      <span class="icon">{% include 'icons/heart.svg' %}</span>
-      <a class="btn" href="{{ h.url_for('group_read', id='well-being') }}">Well-being</a>
+      <a href="{{ h.url_for('topic_read', id='well-being') }}"><span class="icon">{% include 'icons/heart.svg' %}</a></span>
+      <a class="btn" href="{{ h.url_for('topic_read', id='well-being') }}">Well-being</a>
     </li>
   </ul>
 </section>
