@@ -12,9 +12,13 @@
           <img src="{{ story.image_display_url }}" alt="" />
         </a>
         <div class="text">
-          <h1><a href="{{ h.url_for('showcase_read', id=story.name) }}">{{ story.title }}</a></h1>
+          <h1>
+            <a href="{{ h.url_for('showcase_read', id=story.name) }}">
+              {{ h.truncate(story.title, 80) }}
+            </a>
+          </h1>
           <p>
-            {{ story.showcase_notes_formatted }}
+            {{ h.markdown_extract(story.showcase_notes_formatted) }}
           </p>
         </div>
       </article>
