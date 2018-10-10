@@ -77,22 +77,36 @@
     <a href="dataset" class="remove-filter" title="Remove"><i class="fa fa-times"></i></a>
   </span>
 
-  <form class="results-controls">
-    <div class="number-of-results">
-      <span class="sr-only">Showing 25</span>
-      <span class="total">&nbsp;of <strong>5885</strong> results.</span>
-      <span class="to-show">Show <a class="active">25</a> <em class="sr-only">or</em> <a>50</a> <em class="sr-only">or</em> <a>100</a></span>
-    </div>
+  <form id="results-controls" class="results-controls">
 
-    <div class="form-select form-group control-order-by">
-        <label for="field-order-by">Order by</label>
+    {% block results_limit %}
+      <div class="number-of-results">
+        <span class="sr-only">Showing 25</span>
+        <span class="total">&nbsp;of <strong>5885</strong> results.</span>
+        <span class="to-show">Show <a class="active">25</a> <em class="sr-only">or</em> <a>50</a> <em class="sr-only">or</em> <a>100</a></span>
+      </div>
+    {% endblock %}
+
+    {% block results_order %}
+      {% set sorting = [
+        (_('Relevance'), 'score desc, metadata_modified desc'),
+        (_('Name Ascending'), 'title_string asc'),
+        (_('Name Descending'), 'title_string desc'),
+        (_('Last Modified'), 'metadata_modified desc'),
+        (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+      %}
+      <div class="form-select form-group control-order-by">
+        <label for="field-order-by">{{ _('Order by') }}</label>
         <select id="field-order-by" name="sort" class="form-control">
-          <option value="score desc, metadata_modified desc" selected="selected">Relevance</option>
-          <option value="title_string asc">Name Ascending</option>
-          <option value="title_string desc">Name Descending</option>
-          <option value="metadata_modified desc">Last Modified</option>
+          {% for label, value in sorting %}
+            {% if label and value %}
+              <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+            {% endif %}
+          {% endfor %}
         </select>
       </div>
+    {% endblock %}
+
   </form>
 
   <ul class="dataset-list list-unstyled">
