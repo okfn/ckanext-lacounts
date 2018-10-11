@@ -99,12 +99,3 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
         return {
             'config_option_update': actions.config_option_update,
         }
-
-
-
-
-
-
-
-
-

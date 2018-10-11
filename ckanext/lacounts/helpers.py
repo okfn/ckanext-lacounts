@@ -3,6 +3,7 @@ import logging
 from ckan import model
 from ckan.common import config
 from ckan.plugins import toolkit
+from urlparse import urlparse, parse_qs
 log = logging.getLogger(__name__)
 
 
@@ -137,13 +138,16 @@ def get_editable_region(name):
         return ''
 
 
-def get_topics():
+def get_topics(current_url=None):
     topics = []
     names = ['education', 'environment', 'housing', 'immigration', 'transportation', 'well-being']
     dicts = toolkit.get_action('group_list')({'model': model}, {'all_fields': True, 'type': 'topic'})
     for name in names:
         for topic in dicts:
-            if topic['name'] == name:
-                topic['icon_path'] = get_image_for_group(name, return_path=True)
-                topics.append(topic)
+            if name != topic['name']:
+                continue
+            if name in parse_qs(urlparse(current_url).query).get('groups', []):
+                topic['selected'] = True
+            topic['icon_path'] = get_image_for_group(name, return_path=True)
+            topics.append(topic)
     return topics

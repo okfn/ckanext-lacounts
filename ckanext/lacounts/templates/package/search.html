@@ -9,17 +9,17 @@
 {% block primary_content %}
 
   <h1>{{ _("Library") }}</h1>
-  <p>These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change.</p>
+  <p>These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change. Click on a topic to filter the search results.</p>
   <ul class="featured-filters">
-    {% set topics = h.get_topics() %}
+    {% set topics = h.get_topics(current_url=h.current_url()) %}
     {% for topic in topics %}
       <li class="{{ topic.name }} active">
-        <a class="filter" href="/dataset?topic={{ topic.name }}">
+        <a class="filter" href="/dataset?groups={{ topic.name }}">
           <span class="filter-icon">{% include topic.icon_path %}</span>
           <span class="filter-label">{{ topic.title }}</span>
         </a>
         <span class="filter-description">{{ topic.notes }}</span>
-        {% if topic == topics[0] %}
+        {% if topic.selected %}
           <a class="remove-filter" href="/dataset">
             <i class="fa fa-times" aria-hidden="true"></i>
             <span class="sr-only">{{ _("Remove filter") }}</span>
@@ -27,11 +27,13 @@
         {% endif %}
       </li>
     {% endfor %}
-    <li class="filter-description">
-      {# TODO Connect to an actual dataset query
-      {# TODO Add some JS to move descriptions into here when using grid layout (when .featured-filters has display: grid) #}
-      {{ topics[0].description }}
-    </li>
+    {% for topic in topics %}
+      {% if topic.selected %}
+        <li class="filter-description">
+          {{ topic.description }}
+        </li>
+      {% endif %}
+    {% endfor %}
   </ul>
 
   <a class="show-filters btn btn-default">{{ _("Show all filters") }}</a>
