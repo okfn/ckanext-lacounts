@@ -23,6 +23,13 @@
   --border-colour: #dedfdf;
   --drop-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 
+  --education-colour: var(--orange);
+  --environment-colour: var(--green);
+  --housing-colour: var(--red);
+  --immigration-colour: var(--yellow);
+  --transportation-colour: var(--yellow-orange);
+  --well-being-colour: var(--blue);
+
   --font-family-base: 'Lato', sans-serif;
 
   --user-bar-height: 38px;
@@ -36,4 +43,7 @@
   --spacer-35: 1.6rem;
   --spacer-50: 2.4rem;
   --spacer-75: 3.8rem;
+
+  --font-size-small: 16px;
+  --font-size-medium: 18px;
 }

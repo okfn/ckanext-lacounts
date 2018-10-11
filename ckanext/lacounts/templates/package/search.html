@@ -5,3 +5,114 @@
 {% block breadcrumb_content %}
   <li class="active">{{ h.nav_link(_("Library"), named_route='%s_search' % dataset_type, highlight_actions = 'new index') }}</li>
 {% endblock %}
+
+{% block primary_content %}
+
+  <h1>{{ _("Library") }}</h1>
+  <p>These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change. Click on a topic to filter the search results.</p>
+
+  {% block results_topics %}
+    <ul class="featured-filters">
+      {% set topics = h.get_topics(current_url=h.current_url()) %}
+      {% for topic in topics %}
+        <li class="{{ topic.name }} active">
+          <a class="filter" href="/dataset?groups={{ topic.name }}">
+            <span class="filter-icon">{% include topic.icon_path %}</span>
+            <span class="filter-label">{{ topic.title }}</span>
+          </a>
+          <span class="filter-description">{{ topic.notes }}</span>
+          {% if topic.selected %}
+            <a class="remove-filter" href="/dataset">
+              <i class="fa fa-times" aria-hidden="true"></i>
+              <span class="sr-only">{{ _("Remove filter") }}</span>
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+      {% for topic in topics %}
+        {% if topic.selected %}
+          <li class="filter-description">
+            {{ topic.description }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block results_filters %}
+    {% set facets = {
+      'fields': c.fields_grouped,
+      'search': c.search_facets,
+      'titles': c.facet_titles,
+      'translated_fields': c.translated_fields,
+      'remove_field': c.remove_field }
+    %}
+    {% for field in facets.fields %}
+      {% set search_facets_items = facets.search.get(field)['items'] %}
+      {% for value in facets.fields[field] %}
+        <span class="filtered pill">
+          {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+            {{ facets.translated_fields[(field,value)] }}
+          {%- else -%}
+            {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+          {%- endif %}
+          <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
+            <i class="fa fa-times"></i>
+          </a>
+        </span>
+      {% endfor %}
+    {% endfor %}
+  {% endblock %}
+
+  <form id="results-controls" class="results-controls">
+
+    {# TODO: requires ckan-core patching #}
+    {% block results_limit %}
+      <div class="number-of-results">
+        <span class="sr-only">Showing 25</span>
+        <span class="total">&nbsp;of <strong>{{ c.page.item_count }}</strong> results.</span>
+        <span class="to-show">Show <a class="active">25</a> <em class="sr-only">or</em> <a>50</a> <em class="sr-only">or</em> <a>100</a></span>
+      </div>
+    {% endblock %}
+
+    {% block results_order %}
+      {% set sorting_selected = c.sort_by_selected %}
+      {% set sorting = [
+        (_('Relevance'), 'score desc, metadata_modified desc'),
+        (_('Name Ascending'), 'title_string asc'),
+        (_('Name Descending'), 'title_string desc'),
+        (_('Last Modified'), 'metadata_modified desc'),
+        (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+      %}
+      <div class="form-select form-group control-order-by">
+        <label for="field-order-by">{{ _('Order by') }}</label>
+        <select id="field-order-by" name="sort" class="form-control" onchange="this.form.submit()">
+          {% for label, value in sorting %}
+            {% if label and value %}
+              <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+    {% endblock %}
+
+  </form>
+
+  {% block package_search_results_list %}
+    {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+  {% endblock %}
+
+  {% block page_pagination %}
+    {{ c.page.pager(q=c.q) }}
+  {% endblock %}
+
+{% endblock %}
+
+{% block footer %}
+  {% if h.check_access('package_create') %}
+    <div class="admin-page-actions">
+      {{ h.snippet ('snippets/add_dataset.html', dataset_type=dataset_type) }}
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}

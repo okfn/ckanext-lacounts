@@ -52,6 +52,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_recent_data_stories': helpers.get_recent_data_stories,
             'get_featured_image_url': helpers.get_featured_image_url,
             'get_editable_region': helpers.get_editable_region,
+            'get_topics': helpers.get_topics,
         }
 
     # IRoutes

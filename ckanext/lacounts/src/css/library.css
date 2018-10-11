@@ -1,0 +1,223 @@
+/* search results */
+.results-controls {
+  margin-top: var(--spacer-35);
+  margin-bottom: var(--spacer-35);
+
+  @media (--small-up) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85em;
+  }
+
+  & .control-order-by {
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    & label {
+      white-space: nowrap;
+      margin-bottom: 0;
+      font-weight: normal;
+      font-size: inherit;
+    }
+
+    & select {
+      font-weight: bold;
+      border: none;
+    }
+  }
+}
+
+.number-of-results {
+  display: flex;
+
+  & .total {
+    order: 3;
+  }
+
+  & a {
+    font-weight: bold;
+    border-right: solid 1px var(--grey);
+    padding-right: 0.5em;
+
+    &:last-child {
+      border: none;
+      padding-right: 0;
+    }
+
+    &.active {
+      text-decoration: underline;
+      color: var(--visited-link-colour);
+    }
+  }
+}
+
+.dataset-list {
+  & .publisher {
+    display: block;
+    font-size: var(--font-size-small);
+    color: var(--heading-link-colour);
+  }
+
+  & .dataset-content {
+    & div {
+      margin-top: 0.5em;
+
+      @media (--small-up) {
+        font-size: var(--font-size-medium);
+      }
+    }
+  }
+
+  & > li {
+    border: none;
+    padding-bottom: var(--spacer-25);
+    margin-bottom: var(--spacer-25);
+
+    & .image {
+      display: none;
+    }
+
+    & .label {
+      background-color: var(--grey);
+
+      &.label-story {
+        background-color: var(--yellow);
+        color: #333;
+      }
+    }
+
+    @media (--medium-up) {
+      display: flex;
+      align-items: center;
+
+      & .image {
+        display: block;
+        margin-right: var(--spacer-50);
+        flex-grow: 0;
+
+        & img {
+          width: 250px;
+          height: 220px;
+          object-fit: cover;
+          filter: grayscale(100%);
+        }
+
+        &:hover {
+          & img {
+            filter: grayscale(0%);
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination-wrapper {
+  border-top: none;
+  text-align: left;
+}
+
+.pagination {
+  margin-bottom: 0;
+
+  & > li {
+    & > a,
+    & > li > span {
+      border: none;
+      border-radius: var(--border-radius);
+      background-color: color(var(--grey) tint(80%));
+      margin-right: 0.3em;
+      color: #333;
+    }
+
+    &:first-child,
+    &:last-child,
+    &.disabled  {
+      & > a,
+      & > li > span {
+        background-color: transparent;
+      }
+    }
+
+    &.active a {
+      background-color: var(--blue);
+    }
+  }
+}
+
+
+/* mobile filters */
+@media (--small-only) {
+  .js {
+
+    & .show-filters.btn {
+      display: block;
+      text-align: left;
+      margin-bottom: var(--spacer-50);
+    }
+
+    & body.filters-modal {
+      & .secondary .filters {
+        padding: 0 var(--spacer-50) 0 0;
+
+        & > div {
+          padding: var(--spacer-50);
+          border-radius: 0;
+          min-height: 100vh;
+
+          & > :first-child {
+            margin-top: var(--header-height-small);
+          }
+        }
+
+        & .hide-filters {
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: var(--spacer-50);
+        }
+      }
+
+      & .logged-in .secondary .filters {
+        & > div > :first-child {
+          margin-top: calc(var(--header-height-small) + var(--user-bar-height));
+        }
+      }
+    }
+  }
+}
+
+/* add dataset etc */
+.admin-page-actions {
+  position: fixed;
+  right: 0.5rem;
+  z-index: 99999;
+  padding-top: 0.5em;
+  top: calc(var(--header-height-small) + var(--user-bar-height));
+
+  @media (--medium-up) {
+    top: calc(var(--header-height-medium) + var(--user-bar-height));
+  }
+  @media (--large-up) {
+    top: calc(var(--header-height-large) + var(--user-bar-height));
+  }
+
+  & .btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    border: none;
+    margin-top: var(--spacer-15);
+    @mixin btn-colour var(--dark-blue);
+
+    & i::before {
+      width: 2.5rem;
+    }
+  }
+}

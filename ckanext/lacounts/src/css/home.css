@@ -204,46 +204,48 @@
       padding-bottom: var(--spacer-50);
       @mixin extend-full-width;
     }
+  }
+}
 
-    &.community {
-      @mixin extend-full-width var(--orange);
-      color: #fff;
-      padding-top: var(--spacer-25);
-      padding-bottom: var(--spacer-25);
-      margin-bottom: 0;
+section.community {
+  background-color: var(--orange);
+  color: #fff;
+  padding-top: var(--spacer-25);
+  padding-bottom: var(--spacer-25);
+  margin-bottom: 0;
 
-      & a {
-        color: inherit;
+  & a {
+    color: inherit;
+  }
+
+  & .container {
+    & > a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      white-space: nowrap;
+      margin-right: var(--spacer-25);
+
+      & i {
+        font-size: 1.6em;
+        margin-right: 0.2em;
+      }
+    }
+
+    @media (--small-up) {
+      display: flex;
+
+      & > div {
+        margin-right: auto;
+
+        & :last-child {
+          margin-bottom: 0;
+        }
       }
 
       & > a {
-        display: inline-flex;
-        align-items: center;
-        text-decoration: none;
-        white-space: nowrap;
-        margin-right: var(--spacer-25);
-
-        & i {
-          font-size: 1.6em;
-          margin-right: 0.2em;
-        }
-      }
-
-      @media (--small-up) {
-        display: flex;
-
-        & > div {
-          margin-right: auto;
-
-          & :last-child {
-            margin-bottom: 0;
-          }
-        }
-
-        & > a {
-          margin-right: 0;
-          margin-left: var(--spacer-25);
-        }
+        margin-right: 0;
+        margin-left: var(--spacer-25);
       }
     }
   }
@@ -443,27 +445,27 @@
     padding: var(--spacer-15);
 
     &.education {
-      @mixin btn-box-col var(--orange), #fff, #fff;
+      @mixin btn-box-col var(--education-colour), #fff, #fff;
     }
 
     &.environment {
-      @mixin btn-box-col var(--green), #fff, #fff;
+      @mixin btn-box-col var(--environment-colour), #fff, #fff;
     }
 
     &.housing {
-      @mixin btn-box-col var(--red), #fff, #fff;
+      @mixin btn-box-col var(--housing-colour), #fff, #fff;
     }
 
     &.immigration {
-      @mixin btn-box-col var(--yellow), #fff, #fff;
+      @mixin btn-box-col var(--immigration-colour), #fff, #fff;
     }
 
     &.transportation {
-      @mixin btn-box-col var(--yellow-orange), #fff, #fff;
+      @mixin btn-box-col var(--transportation-colour), #fff, #fff;
     }
 
-    &.wellbeing {
-      @mixin btn-box-col var(--blue), #fff, #fff;
+    &.well-being {
+      @mixin btn-box-col var(--well-being-colour), #fff, #fff;
     }
   }
 }

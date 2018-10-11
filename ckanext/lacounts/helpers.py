@@ -3,10 +3,11 @@ import logging
 from ckan import model
 from ckan.common import config
 from ckan.plugins import toolkit
+from urlparse import urlparse, parse_qs
 log = logging.getLogger(__name__)
 
 
-def get_image_for_group(group_name):
+def get_image_for_group(group_name, return_path=False):
     '''
     Render an inline svg snippet for the named group (topic). These groups
     correlate with those created by the `create_featured_topics` command.
@@ -20,9 +21,13 @@ def get_image_for_group(group_name):
         'immigration': 'icons/passport.svg',
         'transportation': 'icons/bus.svg'
     }
+
     # Fetch svg template if there is one, otherwise return empty string.
     try:
-        svg = jinja_env.get_template(groups[group_name])
+        path = groups[group_name]
+        if return_path:
+            return path
+        svg = jinja_env.get_template(path)
     except KeyError as e:
         return ""
 
@@ -131,3 +136,18 @@ def get_editable_region(name):
         return regions[name]
     except Exception:
         return ''
+
+
+def get_topics(current_url=''):
+    topics = []
+    names = ['education', 'environment', 'housing', 'immigration', 'transportation', 'well-being']
+    dicts = toolkit.get_action('group_list')({'model': model}, {'all_fields': True, 'type': 'topic'})
+    for name in names:
+        for topic in dicts:
+            if name != topic['name']:
+                continue
+            if name in parse_qs(urlparse(current_url).query).get('groups', []):
+                topic['selected'] = True
+            topic['icon_path'] = get_image_for_group(name, return_path=True)
+            topics.append(topic)
+    return topics

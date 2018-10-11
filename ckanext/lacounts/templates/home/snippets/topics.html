@@ -6,29 +6,15 @@
     <p>With over 10 million residents spread across 4000+ square miles, Los Angeles County is diverse, distributed, data-rich and data-poor. These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change.</p>
   {% endcall %}
   <ul class="button-boxes topics-list">
-    <li class="education">
-      <a href="{{ h.url_for('topic_read', id='education') }}"><span class="icon">{% include 'icons/book.svg' %}</a></span>
-      <a class="btn" href="{{ h.url_for('topic_read', id='education') }}">Education</a>
-    </li>
-    <li class="environment">
-      <a href="{{ h.url_for('topic_read', id='environment') }}"><span class="icon">{% include 'icons/leaf.svg' %}</a></span>
-      <a class="btn" href="{{ h.url_for('topic_read', id='environment') }}">Environment</a>
-    </li>
-    <li class="housing">
-      <a href="{{ h.url_for('topic_read', id='housing') }}"><span class="icon">{% include 'icons/keys.svg' %}</a></span>
-      <a class="btn" href="{{ h.url_for('topic_read', id='housing') }}">Housing</a>
-    </li>
-    <li class="immigration">
-      <a href="{{ h.url_for('topic_read', id='immigration') }}"><span class="icon">{% include 'icons/passport.svg' %}</a></span>
-      <a class="btn" href="{{ h.url_for('topic_read', id='immigration') }}">Immigration</a>
-    </li>
-    <li class="transportation">
-      <a href="{{ h.url_for('topic_read', id='transportation') }}"><span class="icon">{% include 'icons/bus.svg' %}</a></span>
-      <a class="btn" href="{{ h.url_for('topic_read', id='transportation') }}">Transportation</a>
-    </li>
-    <li class="wellbeing">
-      <a href="{{ h.url_for('topic_read', id='well-being') }}"><span class="icon">{% include 'icons/heart.svg' %}</a></span>
-      <a class="btn" href="{{ h.url_for('topic_read', id='well-being') }}">Well-being</a>
-    </li>
+    {% for topic in h.get_topics() %}
+      <li class="{{ topic.name }}">
+        <a href="{{ h.url_for('topic_read', id=topic.name) }}">
+          <span class="icon">{% include topic.icon_path %}</span>
+        </a>
+        <a class="btn" href="{{ h.url_for('topic_read', id=topic.name) }}">
+          {{ topic.title }}
+        </a>
+      </li>
+    {% endfor %}
   </ul>
 </section>

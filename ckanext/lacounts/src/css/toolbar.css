@@ -5,6 +5,7 @@
     padding-top: var(--spacer-35);
     padding-bottom: var(--spacer-35);
     color: var(--grey);
+    float: none;
 
     & a {
       color: inherit;
@@ -17,6 +18,24 @@
       & span {
         display: inline-block;
       }
+    }
+  }
+
+  & .btn {
+    font-size: 16px;
+  }
+
+  @media (--small-up) {
+    display: flex;
+    align-items: center;
+
+    & .breadcrumb {
+      margin-right: auto;
+    }
+
+    & .btn {
+      font-size: 16px;
+      margin-left: var(--spacer-15);
     }
   }
 }

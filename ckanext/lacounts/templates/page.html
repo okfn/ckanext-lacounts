@@ -4,3 +4,29 @@
   <div class="page{% if c.userobj %} logged-in{% else %} not-logged-in{% endif %}">
     {% include "header.html" %}
 {% endblock -%}
+
+
+{% block toolbar %}
+<div class="toolbar">
+  {% block breadcrumb %}
+    {% if self.breadcrumb_content() | trim %}
+      <ol class="breadcrumb">
+        {% snippet 'snippets/home_breadcrumb_item.html' %}
+        {% block breadcrumb_content %}{% endblock %}
+      </ol>
+    {% endif %}
+  {% endblock %}
+
+  <div>
+    <a class="btn btn-primary">Give feedback</a> <a class="btn">Share</a>
+  </div>
+</div>
+
+<form class="section site-search simple-input" action="{% url_for 'dataset' %}" method="get">
+       <div class="field">
+         <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
+         <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search') }}" />
+         <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+       </div>
+     </form>
+{% endblock %}

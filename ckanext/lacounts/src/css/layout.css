@@ -1,8 +1,30 @@
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
+}
+
+.site-search {
+  margin-bottom: 1rem;
+
+  & .form-control {
+    font-size: 1.5em;
+    padding-right: 3.5rem;
+  }
+
+  & .field .btn-search {
+    outline: none;
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1.8em;
+    margin-top: -1rem;
+    right: 0.8rem;
+  }
+
+  @media (--small-up) {
+    margin-bottom: 2rem;
+  }
 }
 
 .page {
@@ -71,5 +93,6 @@
 
   & .secondary {
     font-size: 0.85em;
+    margin-top: var(--spacer-50);
   }
 }
