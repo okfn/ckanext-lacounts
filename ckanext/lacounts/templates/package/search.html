@@ -19,10 +19,12 @@
           <span class="filter-label">{{ topic.title }}</span>
         </a>
         <span class="filter-description">{{ topic.notes }}</span>
-        <a class="remove-filter" href="/dataset">
-          <i class="fa fa-times" aria-hidden="true"></i>
-          <span class="sr-only">{{ _("Remove filter") }}</span>
-        </a>
+        {% if topic == topics[0] %}
+          <a class="remove-filter" href="/dataset">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span class="sr-only">{{ _("Remove filter") }}</span>
+          </a>
+        {% endif %}
       </li>
     {% endfor %}
     <li class="filter-description">
