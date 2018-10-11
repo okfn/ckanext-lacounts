@@ -9,65 +9,26 @@
 {% block primary_content %}
 
   <h1>{{ _("Library") }}</h1>
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget.
-  </p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget.</p>
   <ul class="featured-filters">
-    <li class="education active">
-      <a class="filter" href="dataset?topic=education">
-        <span class="filter-icon">{% include 'icons/book.svg' %}</span>
-        <span class="filter-label">Education</span>
-      </a>
-      <span class="filter-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus.</span>
-      <a class="remove-filter" href="dataset"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{ _("Remove filter") }}</span></a>
-    </li>
-    <li class="environment">
-      <a class="filter" href="dataset?topic=environment">
-        <span class="filter-icon">{% include 'icons/leaf.svg' %}</span>
-        <span class="filter-label">Environment</span>
-      </a>
-      <span class="filter-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus.</span>
-      <a class="remove-filter" href="dataset"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{ _("Remove filter") }}</span></a>
-    </li>
-    <li class="housing">
-      <a class="filter" href="dataset?topic=housing">
-        <span class="filter-icon">{% include 'icons/keys.svg' %}</span>
-        <span class="filter-label">Housing</span>
-      </a>
-      <span class="filter-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus.</span>
-      <a class="remove-filter" href="dataset"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{ _("Remove filter") }}</span></a>
-    </li>
-    <li class="immigration">
-      <a class="filter" href="dataset?topic=immigration">
-        <span class="filter-icon">{% include 'icons/passport.svg' %}</span>
-        <span class="filter-label">Immigration</span>
-      </a>
-      <span class="filter-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus.</span>
-      <a class="remove-filter" href="dataset"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{ _("Remove filter") }}</span></a>
-    </li>
-    <li class="transportation">
-      <a class="filter" href="dataset?topic=transportation">
-        <span class="filter-icon">{% include 'icons/bus.svg' %}</span>
-        <span class="filter-label">Transportation</span>
-      </a>
-      <span class="filter-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus.</span>
-      <a class="remove-filter" href="dataset"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{ _("Remove filter") }}</span></a>
-    </li>
-    <li class="wellbeing">
-      <a class="filter" href="dataset?topic=well-being">
-        <span class="filter-icon">{% include 'icons/heart.svg' %}</span>
-        <span class="filter-label">Well-being</span>
-        <span class="filter-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus.</span>
-        <a class="remove-filter" href="dataset"><i class="fa fa-times" aria-hidden="true"></i><span class="sr-only">{{ _("Remove filter") }}</span></a>
-    </li>
+    {% set topics = h.get_topics() %}
+    {% for topic in topics %}
+      <li class="{{ topic.name }} active">
+        <a class="filter" href="/dataset?topic={{ topic.name }}">
+          <span class="filter-icon">{% include topic.icon_path %}</span>
+          <span class="filter-label">{{ topic.title }}</span>
+        </a>
+        <span class="filter-description">{{ topic.notes }}</span>
+        <a class="remove-filter" href="/dataset">
+          <i class="fa fa-times" aria-hidden="true"></i>
+          <span class="sr-only">{{ _("Remove filter") }}</span>
+        </a>
+      </li>
+    {% endfor %}
     <li class="filter-description">
-
-      {# TO:DO
-        Add some JS to move descriptions into here when using grid layout
-        (when .featured-filters has display: grid)
-      #}
-
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas. Vivamus ligula ligula, interdum at orci eget, elementum ultricies risus
+      {# TODO Connect to an actual dataset query
+      {# TODO Add some JS to move descriptions into here when using grid layout (when .featured-filters has display: grid) #}
+      {{ topics[0].description }}
     </li>
   </ul>
 
