@@ -1,0 +1,22 @@
+{% set current_url = h.full_current_url() %}
+{% block social %}
+
+  <ul class="social icon dropdown-menu" aria-labelledby="share">
+    {% block social_title %}{% endblock %}
+    {% block social_nav %}
+    <li class="google">
+      <a href="https://plus.google.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-google-plus"></i> <span class="sr-only">Google+</span></a>
+    </li>
+    <li class="twitter">
+      <a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-twitter"></i> <span class="sr-only">Twitter</span></a>
+    </li>
+    <li class="facebook">
+      <a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i class="fa fa-facebook-official"></i> <span class="sr-only">Facebook</span></a>
+    </li>
+    <li>
+      <a href="mailto:?&subject=L.A Counts&body=Take a look at this page {{ current_url }}" target="_blank"><i class="fa fa-envelope"></i> <span class="sr-only">Email</span></a>
+    </li>
+    {% endblock %}
+  </ul>
+
+{% endblock %}

@@ -77,7 +77,9 @@ h5 {
 /* Uppercase stuff */
 .module-heading,
 .pill,
-.show-filters {
+.show-filters,
+.additional-info h3,
+.tag {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: var(--font-size-small);
@@ -98,17 +100,18 @@ h5 {
 }
 
 /* subtle underline */
-.module-heading {
-  border-bottom: solid 1px var(--heading-colour);
+.module-heading,
+.additional-info h3 {
+  border-bottom: solid 0.2em color(var(--heading-colour) a(25%));
   padding-bottom: 0.5em;
   margin-bottom: 0.5em;
 }
 
 /* detail text */
-.notes,
 .additional-info,
 figcaption,
 .caption-header small,
-.pagination {
+.pagination,
+.license {
   font-size: 16px;
 }

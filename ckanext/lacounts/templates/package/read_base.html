@@ -1,10 +1,131 @@
 {% ckan_extends %}
 
-{% block package_info %}
-  {{ super() }}
-
-  <section class="module module-narrow social">
-    <h2 class="module-heading">{{ _('Metadata completion rate') }}</h2>
-    {{ h.get_metadata_completion_rate(pkg) }}
+{% block secondary_content %}
+  <section class="publisher button-box">
+    <p>{{ _('Published by') }} <a href="link-to-org-page">Publisher Name</a></p>
+    <a class="btn" href="link-to-source">{{ _('Go to data source') }}</a>
   </section>
+
+  {% snippet "snippets/license.html", pkg_dict=pkg %}
+
+  <section class="module module-narrow">
+    <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
+    <ul class="dataset-list">
+      <li>
+        <a>Kenya administrative level 0, 1, and 2 boundary polygon and line shapefiles, KMZ files, geodatabase, and gazeteer</a>
+      </li>
+      <li>
+        <a>ReliefWeb Crisis App Data</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="module module-narrow">
+    <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
+    <ul class="tag-list">
+      <li>
+        <a class="tag" href="/dataset?tags=analytics">analytics</a>
+      </li>
+      <li>
+        <a class="tag" href="/dataset?tags=bigdata">bigdata</a>
+      </li>
+      <li>
+        <a class="tag" href="/dataset?tags=conferences">conferences</a>
+      </li>
+      <li>
+        <a class="tag" href="/dataset?tags=data">data</a>
+      </li>
+    </ul>
+  </section>
+
+{% endblock %}
+
+
+{% block primary_content %}
+  <h1>
+      {% block page_heading %}
+        {{ h.dataset_display_name(pkg) }}
+        {% if pkg.state.startswith('draft') %}
+          [{{ _('Draft') }}]
+        {% endif %}
+        {% if pkg.state == 'deleted' %}
+          [{{ _('Deleted') }}]
+        {% endif %}
+      {% endblock %}
+    </h1>
+
+    {% block package_notes %}
+      {% if pkg.notes %}
+        <div class="notes embedded-content">
+          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    <ul class="tag-list">
+      <li>
+        <a class="tag" href="/dataset?tags=analytics">analytics</a>
+      </li>
+      <li>
+        <a class="tag" href="/dataset?tags=bigdata">bigdata</a>
+      </li>
+      <li>
+        <a class="tag" href="/dataset?tags=conferences">conferences</a>
+      </li>
+      <li>
+        <a class="tag" href="/dataset?tags=data">data</a>
+      </li>
+    </ul>
+
+    <section class="additional-info">
+      <div class="meta-data">
+        <h3>{{ _('Metadata') }}</h3>
+
+        <div class="completion-rate-chart dropdown">
+          {# Chart, assumes that metadata_completion_rate is a percentage #}
+          <svg width="100%" height="100%" viewBox="0 0 42 42">
+            <circle class="chart-centre" cx="21" cy="21" r="15.91549430918954"></circle>
+            <circle class="chart-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
+            <circle class="chart-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke-dasharray="{{ h.get_metadata_completion_rate(pkg) }} {{ 100 - h.get_metadata_completion_rate(pkg) }}" stroke-dashoffset="25"></circle>
+          </svg>
+          <a class="figure" id="completionRate" data-toggle="dropdown">{{ h.get_metadata_completion_rate(pkg) }}%<span class="sr-only"> {{ _('metadata completion rate') }}</span></a>
+
+          <div class="dropdown-menu" aria-labelledby="completionRate">
+            <div class="text">
+              <span class="count">10</span> out of <span class="total">14</span> metadata fields are complete. Find out more <a>here</a>.
+            </div>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Field</th>
+              <th scope="col">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row" class="dataset-label">State</th>
+              <td class="dataset-details">active</td>
+            </tr>
+            <tr>
+              <th scope="row" class="dataset-label">Last Updated</th>
+              <td class="dataset-details">
+      <span class="automatic-local-datetime" data-datetime="2018-09-27T15:29:09+0000">September 27, 2018, 4:29 PM (UTC+01:00)</span>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row" class="dataset-label">Created</th>
+              <td class="dataset-details">
+      <span class="automatic-local-datetime" data-datetime="2018-08-15T16:10:09+0000">August 15, 2018, 5:10 PM (UTC+01:00)</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    [disqus here]
+
 {% endblock %}

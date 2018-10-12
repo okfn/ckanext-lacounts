@@ -93,6 +93,6 @@
 
   & .secondary {
     font-size: 0.85em;
-    margin-top: var(--spacer-50);
+    margin-top: var(--spacer-25);
   }
 }
