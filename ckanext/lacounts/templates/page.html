@@ -18,7 +18,12 @@
   {% endblock %}
 
   <div>
-    <a class="btn btn-primary">Give feedback</a> <a class="btn">Share</a>
+    <a class="btn btn-primary">Give feedback</a>
+
+    <div class="dropdown">
+      <a class="btn" id="share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
+      {% snippet 'snippets/social.html' %}
+    </div>
   </div>
 </div>
 
@@ -29,4 +34,14 @@
          <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
        </div>
      </form>
+{% endblock %}
+
+
+{%- block footer %}
+  {% if self.content_action() | trim %}
+    <div class="admin-page-actions">
+      {% block content_action %}{% endblock %}
+    </div>
+  {% endif %}
+  {{ super() }}
 {% endblock %}

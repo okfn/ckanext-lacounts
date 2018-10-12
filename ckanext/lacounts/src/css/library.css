@@ -81,6 +81,7 @@
 
     & .label {
       background-color: var(--grey);
+      color: #fff;
 
       &.label-story {
         background-color: var(--yellow);
