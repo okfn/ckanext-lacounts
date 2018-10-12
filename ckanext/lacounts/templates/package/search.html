@@ -15,12 +15,12 @@
     <ul class="featured-filters">
       {% set topics = h.get_topics(current_url=h.current_url()) %}
       {% for topic in topics %}
-        <li class="{{ topic.name }} active">
+        <li class="{{ topic.name }} {% if topic.selected %}active{% endif %}">
           <a class="filter" href="/dataset?groups={{ topic.name }}">
             <span class="filter-icon">{% include topic.icon_path %}</span>
             <span class="filter-label">{{ topic.title }}</span>
           </a>
-          <span class="filter-description">{{ topic.notes }}</span>
+          <span class="filter-description">{{ topic.description }}</span>
           {% if topic.selected %}
             <a class="remove-filter" href="/dataset">
               <i class="fa fa-times" aria-hidden="true"></i>
@@ -48,30 +48,29 @@
       'remove_field': c.remove_field }
     %}
     {% for field in facets.fields %}
-      {% set search_facets_items = facets.search.get(field)['items'] %}
-      {% for value in facets.fields[field] %}
-        <span class="filtered pill">
-          {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
-            {{ facets.translated_fields[(field,value)] }}
-          {%- else -%}
-            {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
-          {%- endif %}
-          <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
-            <i class="fa fa-times"></i>
-          </a>
-        </span>
-      {% endfor %}
+      {% if field != 'groups' %}
+        {% set search_facets_items = facets.search.get(field)['items'] %}
+        {% for value in facets.fields[field] %}
+          <span class="filtered pill">
+            {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+              {{ facets.translated_fields[(field,value)] }}
+            {%- else -%}
+              {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+            {%- endif %}
+            <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
+              <i class="fa fa-times"></i>
+            </a>
+          </span>
+        {% endfor %}
+      {% endif %}
     {% endfor %}
   {% endblock %}
 
   <form id="results-controls" class="results-controls">
 
-    {# TODO: requires ckan-core patching #}
     {% block results_limit %}
       <div class="number-of-results">
-        <span class="sr-only">Showing 25</span>
-        <span class="total">&nbsp;of <strong>{{ c.page.item_count }}</strong> results.</span>
-        <span class="to-show">Show <a class="active">25</a> <em class="sr-only">or</em> <a>50</a> <em class="sr-only">or</em> <a>100</a></span>
+        <span class="total">Found <strong>{{ c.page.item_count }}</strong> results.</span>
       </div>
     {% endblock %}
 

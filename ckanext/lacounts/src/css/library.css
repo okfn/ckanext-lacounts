@@ -86,6 +86,11 @@
         background-color: var(--yellow);
         color: #333;
       }
+
+      /* TODO: review by Sam */
+      &:visited {
+        color: #fff;
+      }
     }
 
     @media (--medium-up) {
