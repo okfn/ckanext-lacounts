@@ -70,18 +70,13 @@
     {% endblock %}
 
     <ul class="tag-list">
-      <li>
-        <a class="tag" href="/dataset?tags=analytics">analytics</a>
-      </li>
-      <li>
-        <a class="tag" href="/dataset?tags=bigdata">bigdata</a>
-      </li>
-      <li>
-        <a class="tag" href="/dataset?tags=conferences">conferences</a>
-      </li>
-      <li>
-        <a class="tag" href="/dataset?tags=data">data</a>
-      </li>
+      {% for tag in pkg.tags %}
+        <li>
+          <a class="tag" href="{{ h.url_for(controller='package', action='search', tags=tag.name) }}">
+            {{ h.truncate(tag.display_name, 22) }}
+          </a>
+        </li>
+      {% endfor %}
     </ul>
 
     <section class="additional-info">
