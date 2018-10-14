@@ -126,6 +126,8 @@
       </div>
     </section>
 
-    [disqus here]
+    {% block disqus_comments %}
+      {{ h.disqus_comments() }}
+    {% endblock %}
 
 {% endblock %}
