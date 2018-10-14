@@ -2,8 +2,15 @@
 
 {% block secondary_content %}
   <section class="publisher button-box">
-    <p>{{ _('Published by') }} <a href="link-to-org-page">Publisher Name</a></p>
-    <a class="btn" href="link-to-source">{{ _('Go to data source') }}</a>
+    <p>
+      {{ _('Published by') }}
+      <a href="{{ h.url_for('organization_read', id=pkg.organization.name) }}">
+        {{ pkg.organization.title }}
+      </a>
+    </p>
+    {% if pkg.harvest_dataset_url %}
+      <a class="btn" href="{{ pkg.harvest_dataset_url }}">{{ _('Go to data source') }}</a>
+    {% endif %}
   </section>
 
   {% snippet "snippets/license.html", pkg_dict=pkg %}
