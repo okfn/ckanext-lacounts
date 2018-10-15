@@ -24,12 +24,9 @@
     <section class="module module-narrow">
       <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
       <ul class="dataset-list">
-        <li>
-          <a>Kenya administrative level 0, 1, and 2 boundary polygon and line shapefiles, KMZ files, geodatabase, and gazeteer</a>
-        </li>
-        <li>
-          <a>ReliefWeb Crisis App Data</a>
-        </li>
+        {% for story in h.get_package_stories(pkg.name) %}
+          <li><a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a></li>
+        {% endfor %}
       </ul>
     </section>
   {% endblock %}

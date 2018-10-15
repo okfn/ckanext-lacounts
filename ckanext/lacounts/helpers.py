@@ -145,6 +145,17 @@ def get_editable_region(name):
         return ''
 
 
+def get_package_stories(package_name):
+    try:
+        return toolkit.get_action('package_search')({'model': model}, {
+            'q': 'dataset_names:%s' % package_name,
+            'fq': 'dataset_type:showcase',
+        })['results']
+    except Exception as exception:
+        log.exception(exception)
+        return []
+
+
 def get_topics(current_url=''):
     topics = []
     names = ['education', 'environment', 'housing', 'immigration', 'transportation', 'well-being']
