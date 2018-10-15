@@ -131,6 +131,22 @@
                 </tr>
               </thead>
               <tbody>
+                {% if pkg_dict.metadata_created %}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+                    <td class="dataset-details">
+                        {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if pkg_dict.metadata_modified %}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Updated") }}</th>
+                    <td class="dataset-details">
+                        {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
+                    </td>
+                  </tr>
+                {% endif %}
                 {%- for field in schema.dataset_fields -%}
                   {%- if field.field_name not in exclude_fields
                       and field.display_snippet is not none -%}
@@ -147,7 +163,7 @@
                   {%- endif -%}
                 {%- endfor -%}
                 {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-                  <tr>
+                  <tr style="opacity: 0.5">
                     <th scope="row" class="dataset-label">{{ _("State") }}</th>
                     <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
                   </tr>
