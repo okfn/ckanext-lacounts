@@ -1,0 +1,20 @@
+.story {
+  & .feature-image {
+    margin-bottom: 1em;
+    
+    @media (--small-up) {
+      float: left;
+      width: 50%;
+      margin-right: var(--spacer-50);
+    }
+
+    @media (--medium-up) {
+      width: 44%;
+    }
+
+    & img {
+      width: 100%;
+    }
+  }
+
+}

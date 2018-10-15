@@ -1,0 +1,77 @@
+{% ckan_extends %}
+
+{% block bodytag %} {{ super() }} class="story primary-secondary"{% endblock %}
+
+
+{% block primary_content_inner %}
+
+  {% block package_description %}
+    {% if pkg.private %}
+      <span class="dataset-private label label-inverse pull-right">
+        <i class="fa fa-lock icon-lock"></i>
+        {{ _('Private') }}
+      </span>
+    {% endif %}
+    <h1>
+      {% block page_heading %}
+        {{ name }}
+        {% if pkg.state.startswith('draft') %}
+          [{{ _('Draft') }}]
+        {% endif %}
+      {% endblock %}
+    </h1>
+
+    {% if pkg.author %}
+      <p class="author">{{_('By')}} {{ pkg.author }}</p>
+    {% endif %}
+
+    {% block package_tags %}
+      {% snippet "showcase/snippets/tags.html", tags=pkg.tags %}
+    {% endblock %}
+
+    {% block package_notes %}
+      {% if pkg.showcase_notes_formatted %}
+        <div class="notes embedded-content ckanext-showcase-notes">
+
+          <p class="lead">
+            After months of skating by, undetected, unpermitted, it finally happened: we got a parking ticket.
+          </p>
+
+          {# if pkg.image_display_url #}
+            <figure class="feature-image">
+              <!--<img src="{{ pkg.image_display_url }}" alt="{{ name }}">-->
+              <img src="../images/story-featured-img-example.jpg" alt="">
+            </figure>
+          {# endif #}
+
+          {{ pkg.showcase_notes_formatted }}
+
+          <p class="has-pull-quote" data-pull-quote="Atwater Village has 15 times as many tickets as Mount Washington, even though they’re roughly the same size">
+            East Hollywood and Boyle Heights come out on top – proximity to Downtown or Hollywood does not help here, as those are far and away are the hardest hit neighborhoods in the entire city. Also of note: Atwater Village has 15 times as many tickets as Mount Washington, even though they’re roughly the same size (likely because Atwater Village has 15 times more road than Mount Washington).
+          </p>
+
+        </div>
+      {% endif %}
+    {% endblock %}
+
+  {% endblock %}
+
+  {% block package_search_results_list %}
+  {% endblock %}
+
+  {% block disqus_comments %}
+    {% if h.is_disqus_enabled() and pkg.allow_commenting %}
+      {{ h.disqus_comments() }}
+    {% endif %}
+  {% endblock %}
+{% endblock %}
+
+
+{%- block footer %}
+  {% if h.check_access('ckanext_showcase_update', {'id':pkg.id }) %}
+    <div class="admin-page-actions">
+      {% link_for _('Manage'), controller='ckanext.showcase.controller:ShowcaseController', action='edit', id=pkg.name, class_='btn', icon='wrench' %}
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
