@@ -71,7 +71,7 @@
 }
 
 
-@define-mixin btn-box-col $col: var(--yellow), $btnTxtCol: #333, $bgCol:color($col a(20%)) {
+@define-mixin btn-box-col $col: var(--blue), $btnTxtCol: #fff, $bgCol:color($col a(20%)) {
   background-color: $bgCol;
 
   & .icon {
@@ -448,5 +448,31 @@
         font-size: 12px;
       }
     }
+  }
+}
+
+.tag-list {
+  padding: 0;
+}
+
+.tag,
+a.tag {
+  margin-bottom: 0.75em;
+  color: #fff;
+  background-color: var(--grey);
+  padding: 0.4em 1em;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+
+  &:hover {
+    background-color: var(--blue);
+    border: none;
+    box-shadow: none;
+  }
+
+  &:visited {
+    color: #fff;
   }
 }

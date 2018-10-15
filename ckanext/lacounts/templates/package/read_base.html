@@ -1,10 +1,184 @@
 {% ckan_extends %}
 
-{% block package_info %}
-  {{ super() }}
+{% block secondary_content %}
 
-  <section class="module module-narrow social">
-    <h2 class="module-heading">{{ _('Metadata completion rate') }}</h2>
-    {{ h.get_metadata_completion_rate(pkg) }}
-  </section>
+  {% block package_publisher %}
+    <section class="publisher button-box">
+      <p>
+        {{ _('Published by') }}
+        <a href="{{ h.url_for('organization_read', id=pkg.organization.name) }}">
+          {{ pkg.organization.title }}
+        </a>
+      </p>
+      {% if pkg.harvest_dataset_url %}
+        <a class="btn" href="{{ pkg.harvest_dataset_url }}">{{ _('Go to data source') }}</a>
+      {% endif %}
+    </section>
+  {% endblock %}
+
+  {% block package_license %}
+    {% snippet "snippets/license.html", pkg_dict=pkg %}
+  {% endblock %}
+
+  {% block package_stories %}
+    {% set stories = h.get_package_stories(pkg.name) %}
+    {% if stories %}
+      <section class="module module-narrow">
+        <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
+        <ul class="dataset-list">
+          {% for story in stories %}
+            <li><a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endblock %}
+
+  {% block package_topics %}
+    {% set groups = pkg.groups %}
+    {% if groups %}
+      <section class="module module-narrow">
+        <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
+        <ul class="tag-list">
+          {% for group in groups %}
+            <li>
+              <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
+                {{ h.truncate(group.display_name, 22) }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endblock %}
+
+{% endblock %}
+
+
+{% block primary_content %}
+
+    {% block package_title %}
+      <h1>
+        {{ h.dataset_display_name(pkg) }}
+        {% if pkg.state.startswith('draft') %}
+          [{{ _('Draft') }}]
+        {% endif %}
+        {% if pkg.state == 'deleted' %}
+          [{{ _('Deleted') }}]
+        {% endif %}
+      </h1>
+    {% endblock %}
+
+    {% block package_notes %}
+      {% if pkg.notes %}
+        <div class="notes embedded-content">
+          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block package_tags %}
+      <ul class="tag-list">
+        {% for tag in pkg.tags %}
+          <li>
+            <a class="tag" href="{{ h.url_for(controller='package', action='search', tags=tag.name) }}">
+              {{ h.truncate(tag.display_name, 22) }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endblock %}
+
+    {% block package_metadata %}
+      <section class="additional-info">
+        <div class="meta-data">
+          <h3>{{ _('Metadata') }}</h3>
+
+          {% block package_metadata_completion %}
+            {% set completion = h.get_metadata_completion_rate(pkg) %}
+            <div class="completion-rate-chart dropdown">
+              <svg width="100%" height="100%" viewBox="0 0 42 42">
+                <circle class="chart-centre" cx="21" cy="21" r="15.91549430918954"></circle>
+                <circle class="chart-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
+                <circle class="chart-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke-dasharray="{{ completion.percentage }} {{ 100 - completion.percentage }}" stroke-dashoffset="25"></circle>
+              </svg>
+              <a class="figure" id="completionRate" data-toggle="dropdown">
+                {{ completion.percentage }}%<span class="sr-only">{{ _('metadata completion rate') }}</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="completionRate">
+                <div class="text">
+                  <span class="count">{{ completion.count }}</span> out of <span class="total">{{ completion.total }}</span> metadata fields are complete. Find out more <a>here</a>.
+                </div>
+              </div>
+            </div>
+          {% endblock %}
+
+          {% block package_metadata_values %}
+            {% set pkg_dict = pkg %}
+            {%- set exclude_fields = [
+                'id',
+                'title',
+                'name',
+                'notes',
+                'tag_string',
+                'license_id',
+                'owner_org',
+                ] -%}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ _('Field') }}</th>
+                  <th scope="col">{{ _('Value') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if pkg_dict.metadata_created %}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+                    <td class="dataset-details">
+                        {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
+                    </td>
+                  </tr>
+                {% endif %}
+                {% if pkg_dict.metadata_modified %}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Updated") }}</th>
+                    <td class="dataset-details">
+                        {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
+                    </td>
+                  </tr>
+                {% endif %}
+                {%- for field in schema.dataset_fields -%}
+                  {%- if field.field_name not in exclude_fields
+                      and field.display_snippet is not none -%}
+                    {% if pkg_dict.get(field.field_name) %}
+                      <tr>
+                        <th scope="row" class="dataset-label">{{
+                          h.scheming_language_text(field.label) }}</th>
+                        <td class="dataset-details"{%
+                          if field.display_property %} property="{{ field.display_property
+                          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+                          field=field, data=pkg_dict, schema=schema -%}</td>
+                      </tr>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+                  <tr style="opacity: 0.5">
+                    <th scope="row" class="dataset-label">{{ _("State") }}</th>
+                    <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          {% endblock %}
+
+        </div>
+      </section>
+    {% endblock %}
+
+    {% block disqus_comments %}
+      {{ h.disqus_comments() }}
+    {% endblock %}
+
 {% endblock %}

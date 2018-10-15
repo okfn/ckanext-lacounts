@@ -88,13 +88,13 @@
     }
   }
 
-  &.affix {
+  /*&.affix {*/
     & .container {
       @media (--large-up) {
         height: var(--header-height-medium);
       }
     }
-  }
+  /*}*/
 
   & .navbar-right {
     order: 99;

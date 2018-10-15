@@ -1,0 +1,80 @@
+.dropdown {
+  @nest .js & {
+    &.open {
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0.6rem 0.6rem 0.6rem;
+        border-color: transparent transparent color(var(--grey) tint(90%)) transparent;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -0.6rem;
+      }
+
+      & .dropdown-menu {
+        &.icon {
+          display: flex;
+          padding: 0.4em;
+          font-size: 1rem;
+
+          & > li {
+            padding: 0.2em;
+
+            & > a {
+              padding: 0.3em;
+              background-color: var(--grey);
+              border-radius: var(--border-radius);
+              color: #fff;
+              width: 1.8em;
+              height: 1.8em;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              & i {
+
+              }
+            }
+
+            &.google {
+              & > a {
+                background-color: #DC4E41;
+              }
+            }
+            &.twitter {
+              & > a {
+                background-color: #1DA1F2;
+              }
+            }
+            &.facebook {
+              & > a {
+                background-color: #3B5998;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  font-size: var(--font-size-small);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: var(--drop-shadow);
+  background-color: color(var(--grey) tint(90%));
+
+  & > li > a {
+    padding: 0.3em 0.6em;
+  }
+
+  & .text {
+    padding: 0.5em;
+  }
+}

@@ -21,6 +21,15 @@
     }
   }
 
+  & > div {
+    display: flex;
+
+    & > div {
+      margin-left: var(--spacer-15);
+      margin-right: 0;
+    }
+  }
+
   & .btn {
     font-size: 16px;
   }
@@ -35,7 +44,11 @@
 
     & .btn {
       font-size: 16px;
-      margin-left: var(--spacer-15);
+    }
+
+    & .dropdown-menu {
+      left: auto;
+      right: 0;
     }
   }
 }

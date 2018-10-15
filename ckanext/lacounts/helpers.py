@@ -81,6 +81,7 @@ def get_related_datasets_for_display(value):
 
 def get_metadata_completion_rate(package):
     # Item could be a field name or a list of field names (any match counts)
+    # The result is a dict: {rate, count, total}
     GROUPS = [
         'title',
         'owner_org',
@@ -96,7 +97,7 @@ def get_metadata_completion_rate(package):
         'frequency',
     ]
 
-    # Calculate
+    # Count
     count = 0
     for group in GROUPS:
         fields = group if isinstance(group, list) else [group]
@@ -107,9 +108,15 @@ def get_metadata_completion_rate(package):
             if value:
                 count += 1
                 break
-    rate = int(100 * (count/float(len(GROUPS))))
 
-    return rate
+    # Compose
+    completion = {
+        'count': count,
+        'total': len(GROUPS),
+        'percentage': int(100 * (count/float(len(GROUPS)))),
+    }
+
+    return completion
 
 
 def get_recent_data_stories(limit=4):
@@ -136,6 +143,17 @@ def get_editable_region(name):
         return regions[name]
     except Exception:
         return ''
+
+
+def get_package_stories(package_name):
+    try:
+        return toolkit.get_action('package_search')({'model': model}, {
+            'q': 'dataset_names:%s' % package_name,
+            'fq': 'dataset_type:showcase',
+        })['results']
+    except Exception as exception:
+        log.exception(exception)
+        return []
 
 
 def get_topics(current_url=''):

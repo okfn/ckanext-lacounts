@@ -46,7 +46,7 @@
 }
 
 @define-mixin icon-twitter {
-  content: "\f099";
+  content: "\e999";
 }
 
 @define-mixin icon-bulb {
@@ -68,9 +68,13 @@
 .fa-times:before,
 .fa-github-alt,
 .fa-envelope-o,
-.fa-twitter,
 .fa-lightbulb-o,
 .fa-search,
-.fa-plus-square {
+.fa-plus-square,
+.icon-twitter {
   @mixin icon;
+}
+
+.icon-twitter::before {
+  @mixin icon-twitter;
 }

@@ -44,13 +44,13 @@
       padding-top: calc(var(--header-height-medium) + var(--user-bar-height));
     }
   }
-  @media (--large-up) {
+  /*@media (--large-up) {
     padding-top: var(--header-height-large);
 
     &.logged-in {
       padding-top: calc(var(--header-height-large) + var(--user-bar-height));
     }
-  }
+  }*/
 
   &.active-search {
     @media (--small-up) {
@@ -93,6 +93,6 @@
 
   & .secondary {
     font-size: 0.85em;
-    margin-top: var(--spacer-50);
+    margin-top: var(--spacer-25);
   }
 }
