@@ -1,53 +1,63 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
-  <section class="publisher button-box">
-    <p>
-      {{ _('Published by') }}
-      <a href="{{ h.url_for('organization_read', id=pkg.organization.name) }}">
-        {{ pkg.organization.title }}
-      </a>
-    </p>
-    {% if pkg.harvest_dataset_url %}
-      <a class="btn" href="{{ pkg.harvest_dataset_url }}">{{ _('Go to data source') }}</a>
-    {% endif %}
-  </section>
 
-  {% snippet "snippets/license.html", pkg_dict=pkg %}
+  {% block package_publisher %}
+    <section class="publisher button-box">
+      <p>
+        {{ _('Published by') }}
+        <a href="{{ h.url_for('organization_read', id=pkg.organization.name) }}">
+          {{ pkg.organization.title }}
+        </a>
+      </p>
+      {% if pkg.harvest_dataset_url %}
+        <a class="btn" href="{{ pkg.harvest_dataset_url }}">{{ _('Go to data source') }}</a>
+      {% endif %}
+    </section>
+  {% endblock %}
 
-  <section class="module module-narrow">
-    <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
-    <ul class="dataset-list">
-      <li>
-        <a>Kenya administrative level 0, 1, and 2 boundary polygon and line shapefiles, KMZ files, geodatabase, and gazeteer</a>
-      </li>
-      <li>
-        <a>ReliefWeb Crisis App Data</a>
-      </li>
-    </ul>
-  </section>
+  {% block package_license %}
+    {% snippet "snippets/license.html", pkg_dict=pkg %}
+  {% endblock %}
 
-  {% if pkg.groups %}
+  {% block package_stories %}
     <section class="module module-narrow">
-      <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
-      <ul class="tag-list">
-        {% for group in pkg.groups %}
-          <li>
-            <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
-              {{ h.truncate(group.display_name, 22) }}
-            </a>
-          </li>
-        {% endfor %}
+      <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
+      <ul class="dataset-list">
+        <li>
+          <a>Kenya administrative level 0, 1, and 2 boundary polygon and line shapefiles, KMZ files, geodatabase, and gazeteer</a>
+        </li>
+        <li>
+          <a>ReliefWeb Crisis App Data</a>
+        </li>
       </ul>
     </section>
-  {% endif %}
+  {% endblock %}
+
+  {% block package_topics %}
+    {% if pkg.groups %}
+      <section class="module module-narrow">
+        <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
+        <ul class="tag-list">
+          {% for group in pkg.groups %}
+            <li>
+              <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
+                {{ h.truncate(group.display_name, 22) }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endblock %}
 
 {% endblock %}
 
 
 {% block primary_content %}
-  <h1>
-      {% block page_heading %}
+
+    {% block package_title %}
+      <h1>
         {{ h.dataset_display_name(pkg) }}
         {% if pkg.state.startswith('draft') %}
           [{{ _('Draft') }}]
@@ -55,8 +65,8 @@
         {% if pkg.state == 'deleted' %}
           [{{ _('Deleted') }}]
         {% endif %}
-      {% endblock %}
-    </h1>
+      </h1>
+    {% endblock %}
 
     {% block package_notes %}
       {% if pkg.notes %}
@@ -66,47 +76,43 @@
       {% endif %}
     {% endblock %}
 
-    <ul class="tag-list">
-      {% for tag in pkg.tags %}
-        <li>
-          <a class="tag" href="{{ h.url_for(controller='package', action='search', tags=tag.name) }}">
-            {{ h.truncate(tag.display_name, 22) }}
-          </a>
-        </li>
-      {% endfor %}
-    </ul>
+    {% block package_tags %}
+      <ul class="tag-list">
+        {% for tag in pkg.tags %}
+          <li>
+            <a class="tag" href="{{ h.url_for(controller='package', action='search', tags=tag.name) }}">
+              {{ h.truncate(tag.display_name, 22) }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endblock %}
 
-    <section class="additional-info">
-      <div class="meta-data">
-        <h3>{{ _('Metadata') }}</h3>
-        {% set completion = h.get_metadata_completion_rate(pkg) %}
+    {% block package_metadata %}
+      <section class="additional-info">
+        <div class="meta-data">
+          <h3>{{ _('Metadata') }}</h3>
 
-        <div class="completion-rate-chart dropdown">
-          <svg width="100%" height="100%" viewBox="0 0 42 42">
-            <circle class="chart-centre" cx="21" cy="21" r="15.91549430918954"></circle>
-            <circle class="chart-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
-            <circle class="chart-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke-dasharray="{{ completion.percentage }} {{ 100 - completion.percentage }}" stroke-dashoffset="25"></circle>
-          </svg>
-          <a class="figure" id="completionRate" data-toggle="dropdown">
-            {{ completion.percentage }}%<span class="sr-only">{{ _('metadata completion rate') }}</span>
-          </a>
-
-          <div class="dropdown-menu" aria-labelledby="completionRate">
-            <div class="text">
-              <span class="count">{{ completion.count }}</span> out of <span class="total">{{ completion.total }}</span> metadata fields are complete. Find out more <a>here</a>.
+          {% block package_metadata_completion %}
+            {% set completion = h.get_metadata_completion_rate(pkg) %}
+            <div class="completion-rate-chart dropdown">
+              <svg width="100%" height="100%" viewBox="0 0 42 42">
+                <circle class="chart-centre" cx="21" cy="21" r="15.91549430918954"></circle>
+                <circle class="chart-ring" cx="21" cy="21" r="15.91549430918954" fill="transparent"></circle>
+                <circle class="chart-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke-dasharray="{{ completion.percentage }} {{ 100 - completion.percentage }}" stroke-dashoffset="25"></circle>
+              </svg>
+              <a class="figure" id="completionRate" data-toggle="dropdown">
+                {{ completion.percentage }}%<span class="sr-only">{{ _('metadata completion rate') }}</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="completionRate">
+                <div class="text">
+                  <span class="count">{{ completion.count }}</span> out of <span class="total">{{ completion.total }}</span> metadata fields are complete. Find out more <a>here</a>.
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          {% endblock %}
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">{{ _('Field') }}</th>
-              <th scope="col">{{ _('Value') }}</th>
-            </tr>
-          </thead>
-          <tbody>
-
+          {% block package_metadata_values %}
             {% set pkg_dict = pkg %}
             {%- set exclude_fields = [
                 'id',
@@ -117,33 +123,42 @@
                 'license_id',
                 'owner_org',
                 ] -%}
-            {%- for field in schema.dataset_fields -%}
-              {%- if field.field_name not in exclude_fields
-                  and field.display_snippet is not none -%}
-                {% if pkg_dict.get(field.field_name) %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ _('Field') }}</th>
+                  <th scope="col">{{ _('Value') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for field in schema.dataset_fields -%}
+                  {%- if field.field_name not in exclude_fields
+                      and field.display_snippet is not none -%}
+                    {% if pkg_dict.get(field.field_name) %}
+                      <tr>
+                        <th scope="row" class="dataset-label">{{
+                          h.scheming_language_text(field.label) }}</th>
+                        <td class="dataset-details"{%
+                          if field.display_property %} property="{{ field.display_property
+                          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+                          field=field, data=pkg_dict, schema=schema -%}</td>
+                      </tr>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}
+                {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
                   <tr>
-                    <th scope="row" class="dataset-label">{{
-                      h.scheming_language_text(field.label) }}</th>
-                    <td class="dataset-details"{%
-                      if field.display_property %} property="{{ field.display_property
-                      }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
-                      field=field, data=pkg_dict, schema=schema -%}</td>
+                    <th scope="row" class="dataset-label">{{ _("State") }}</th>
+                    <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
                   </tr>
-                {%- endif -%}
-              {%- endif -%}
-            {%- endfor -%}
-            {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-              <tr>
-                <th scope="row" class="dataset-label">{{ _("State") }}</th>
-                <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
-              </tr>
-            {% endif %}
+                {% endif %}
+              </tbody>
+            </table>
+          {% endblock %}
 
-          </tbody>
-        </table>
-
-      </div>
-    </section>
+        </div>
+      </section>
+    {% endblock %}
 
     {% block disqus_comments %}
       {{ h.disqus_comments() }}
