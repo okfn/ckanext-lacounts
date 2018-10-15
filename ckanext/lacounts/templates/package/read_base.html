@@ -106,24 +106,42 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row" class="dataset-label">State</th>
-              <td class="dataset-details">active</td>
-            </tr>
-            <tr>
-              <th scope="row" class="dataset-label">Last Updated</th>
-              <td class="dataset-details">
-      <span class="automatic-local-datetime" data-datetime="2018-09-27T15:29:09+0000">September 27, 2018, 4:29 PM (UTC+01:00)</span>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row" class="dataset-label">Created</th>
-              <td class="dataset-details">
-      <span class="automatic-local-datetime" data-datetime="2018-08-15T16:10:09+0000">August 15, 2018, 5:10 PM (UTC+01:00)</span>
-              </td>
-            </tr>
+
+            {% set pkg_dict = pkg %}
+            {%- set exclude_fields = [
+                'id',
+                'title',
+                'name',
+                'notes',
+                'tag_string',
+                'license_id',
+                'owner_org',
+                ] -%}
+            {%- for field in schema.dataset_fields -%}
+              {%- if field.field_name not in exclude_fields
+                  and field.display_snippet is not none -%}
+                {% if pkg_dict.get(field.field_name) %}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{
+                      h.scheming_language_text(field.label) }}</th>
+                    <td class="dataset-details"{%
+                      if field.display_property %} property="{{ field.display_property
+                      }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+                      field=field, data=pkg_dict, schema=schema -%}</td>
+                  </tr>
+                {%- endif -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+              <tr>
+                <th scope="row" class="dataset-label">{{ _("State") }}</th>
+                <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+              </tr>
+            {% endif %}
+
           </tbody>
         </table>
+
       </div>
     </section>
 
