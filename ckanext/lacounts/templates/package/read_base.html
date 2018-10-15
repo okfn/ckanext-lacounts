@@ -21,22 +21,26 @@
   {% endblock %}
 
   {% block package_stories %}
-    <section class="module module-narrow">
-      <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
-      <ul class="dataset-list">
-        {% for story in h.get_package_stories(pkg.name) %}
-          <li><a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </section>
+    {% set stories = h.get_package_stories(pkg.name) %}
+    {% if stories %}
+      <section class="module module-narrow">
+        <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
+        <ul class="dataset-list">
+          {% for story in stories %}
+            <li><a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
   {% endblock %}
 
   {% block package_topics %}
-    {% if pkg.groups %}
+    {% set groups = pkg.groups %}
+    {% if groups %}
       <section class="module module-narrow">
         <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
         <ul class="tag-list">
-          {% for group in pkg.groups %}
+          {% for group in groups %}
             <li>
               <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
                 {{ h.truncate(group.display_name, 22) }}
