@@ -84,6 +84,10 @@
       {% endif %}
     {% endblock %}
 
+    {% block package_resources %}
+      {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+    {% endblock %}
+
     {% block package_tag_list %}
       <ul class="tag-list">
         {% for tag in pkg.tags %}
