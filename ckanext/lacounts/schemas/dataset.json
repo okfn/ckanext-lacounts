@@ -26,12 +26,27 @@
             "preset": "related_datasets",
             "help_text": "help text",
             "label": "Related datasets",
-            "help_text": "Links to other datasets. It supports multiple selections"
+            "help_text": "Links to other datasets. It supports multiple selections",
+            "display_snippet": null
         },
+        {
+            "field_name": "issued",
+            "label": "Issued",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+        {
+            "field_name": "modified",
+            "label": "Modified",
+            "form_snippet": null,
+            "display_snippet": "text.html"
+        },
+
         {
             "field_name": "url",
             "label": "Landing page",
-            "form_placeholder": "Landing page URL"
+            "form_placeholder": "Landing page URL",
+            "display_snippet": "url.html"
         },
         {
             "field_name": "notes",
@@ -59,7 +74,8 @@
         {
             "field_name": "contact_email",
             "label": "Email address",
-            "form_placeholder": "e.g. name@domain.com"
+            "form_placeholder": "e.g. name@domain.com",
+            "display_snippet": "email.html"
         },
         {
             "field_name": "identifier",
@@ -176,49 +192,37 @@
             "field_name": "harvest_source_id",
             "label": "Harvest source id",
             "form_snippet": null,
-            "display_snippet": "text.html"
+            "display_snippet": null
         },
         {
             "field_name": "harvest_source_url",
             "label": "Harvest source url",
             "form_snippet": null,
-            "display_snippet": "text.html"
+            "display_snippet": null
         },
         {
             "field_name": "harvest_source_title",
             "label": "Harvest source title",
             "form_snippet": null,
-            "display_snippet": "text.html"
+            "display_snippet": null
         },
         {
             "field_name": "harvest_dataset_terms",
             "label": "Harvest dataset terms",
             "form_snippet": null,
-            "display_snippet": "text.html"
+            "display_snippet": null
         },
         {
             "field_name": "harvest_dataset_url",
             "label": "Harvest dataset url",
             "form_snippet": null,
-            "display_snippet": "text.html"
-        },
-        {
-            "field_name": "issued",
-            "label": "Harvest dataset issued",
-            "form_snippet": null,
-            "display_snippet": "text.html"
-        },
-        {
-            "field_name": "modified",
-            "label": "Harvest dataset modified",
-            "form_snippet": null,
-            "display_snippet": "text.html"
+            "display_snippet": null
         },
         {
             "field_name": "harvest_timestamp",
             "label": "Harvest timestamp",
             "form_snippet": null,
-            "display_snippet": "text.html"
+            "display_snippet": null
         }
     ],
     "resource_fields": [

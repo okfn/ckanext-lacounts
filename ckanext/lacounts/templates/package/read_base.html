@@ -1,5 +1,6 @@
 {% ckan_extends %}
 
+{% set pkg_dict = pkg %}
 {% block secondary_content %}
 
   {% block package_publisher %}
@@ -120,7 +121,6 @@
           {% endblock %}
 
           {% block package_metadata_values %}
-            {% set pkg_dict = pkg %}
             {%- set exclude_fields = [
                 'id',
                 'title',
@@ -130,6 +130,36 @@
                 'license_id',
                 'owner_org',
                 ] -%}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ _('Field') }}</th>
+                  <th scope="col">{{ _('Value') }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for field in schema.dataset_fields -%}
+                  {%- if field.field_name not in exclude_fields
+                      and field.display_snippet is not none -%}
+                      <tr>
+                        <th scope="row" class="dataset-label">{{
+                          h.scheming_language_text(field.label) }}</th>
+                        <td class="dataset-details"{%
+                          if field.display_property %} property="{{ field.display_property
+                          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
+                          field=field, data=pkg_dict, schema=schema -%}</td>
+                      </tr>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tbody>
+            </table>
+          {% endblock %}
+
+        </div>
+
+        {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+        <div class="meta-data">
+          <h3>{{ _('Admin') }}</h3>
             <table class="table">
               <thead>
                 <tr>
@@ -154,32 +184,24 @@
                     </td>
                   </tr>
                 {% endif %}
-                {%- for field in schema.dataset_fields -%}
-                  {%- if field.field_name not in exclude_fields
-                      and field.display_snippet is not none -%}
-                    {% if pkg_dict.get(field.field_name) %}
-                      <tr>
-                        <th scope="row" class="dataset-label">{{
-                          h.scheming_language_text(field.label) }}</th>
-                        <td class="dataset-details"{%
-                          if field.display_property %} property="{{ field.display_property
-                          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
-                          field=field, data=pkg_dict, schema=schema -%}</td>
-                      </tr>
-                    {%- endif -%}
-                  {%- endif -%}
-                {%- endfor -%}
-                {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-                  <tr style="opacity: 0.5">
+                  <tr>
                     <th scope="row" class="dataset-label">{{ _("State") }}</th>
                     <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
                   </tr>
-                {% endif %}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Harvest Source") }}</th>
+                    <td class="dataset-details"><a href="/harvest/{{ pkg_dict.harvest_source_id }}">{{ pkg_dict.harvest_source_id }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Dataset Topic Terms") }}</th>
+                    <td class="dataset-details"> {{ pkg_dict.harvest_dataset_terms.replace('\n', ', ') }}</td>
+                  </tr>
+
               </tbody>
             </table>
-          {% endblock %}
-
         </div>
+        {% endif %}
+
       </section>
     {% endblock %}
 
