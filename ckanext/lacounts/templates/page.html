@@ -17,23 +17,27 @@
     {% endif %}
   {% endblock %}
 
-  <div>
-    <a class="btn btn-primary">Give feedback</a>
-
-    <div class="dropdown">
-      <a class="btn" id="share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
-      {% snippet 'snippets/social.html' %}
+  {% block feedback %}
+    <div>
+      <a class="btn btn-primary">Give feedback</a>
+      <div class="dropdown">
+        <a class="btn" id="share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
+        {% snippet 'snippets/social.html' %}
+      </div>
     </div>
-  </div>
+  {% endblock %}
 </div>
 
-<form class="section site-search simple-input" action="{% url_for 'dataset' %}" method="get">
-       <div class="field">
-         <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
-         <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search') }}" />
-         <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
-       </div>
-     </form>
+  {% block search %}
+    <form class="section site-search simple-input" action="{% url_for 'dataset' %}" method="get">
+      <div class="field">
+        <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
+        <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search') }}" />
+        <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+    </form>
+  {% endblock %}
+
 {% endblock %}
 
 

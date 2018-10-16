@@ -9,16 +9,16 @@
           Email: <a href="mailto:hello@lacounts.org">hello@lacounts.org</a><br/>
         </address>
         <nav>
-          <a>{{ _('FAQs') }}</a>
-          <a href="{{ h.url_for(controller='home', action='about') }}">{{ _('About') }}</a>
+          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='faqs') }}">{{ _('FAQs') }}</a>
+          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='about') }}">{{ _('About') }}</a>
         </nav>
         <nav>
-          <a>{{ _('Terms of Service') }}</a>
-          <a>{{ _('Privacy Policy') }}</a>
+          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='termsofservice') }}">{{ _('Terms of Service') }}</a>
+          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='privacypolicy') }}">{{ _('Privacy Policy') }}</a>
         </nav>
         <nav>
-          <a>{{ _('Contact Us / Feedback') }}</a>
-          <a>{{ _('Resources') }}</a>
+          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='contact') }}">{{ _('Contact Us / Feedback') }}</a>
+          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='resources') }}">{{ _('Resources') }}</a>
         </nav>
         <div>
           <ul class="platforms">
@@ -29,7 +29,7 @@
               <a href="https://github.com/okfn/ckanext-lacounts"><i class="fa fa-github-square" aria-hidden="true"></i><span class="sr-only">Github</span></a>
             </li>
             <li>
-              <a href="https://twitter.com/LA_COUNTS"><i class="fa fa-twitter-square" aria-hidden="true"></i><span class="sr-only">Twiiter</span></a>
+              <a href="https://twitter.com/LA_COUNTS"><i class="fa fa-twitter-square" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
             </li>
           </ul>
           <p>

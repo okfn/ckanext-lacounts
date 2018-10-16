@@ -65,6 +65,14 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
         with SubMapper(map, controller='ckanext.lacounts.controller:BlogController') as m:
             m.connect('blog_search', '/blog', action='search')
             m.connect('blog_read', '/blog/{id}', action='read')
+
+        with SubMapper(map, controller='ckanext.lacounts.controller:StaticController') as m:
+            m.connect('privacypolicy', '/privacy-policy', action='privacypolicy')
+            m.connect('termsofservice', '/terms-of-service', action='termsofservice')
+            m.connect('faqs', '/faqs', action='faqs')
+            m.connect('about', '/about', action='about')
+            m.connect('resources', '/resources', action='resources')
+            m.connect('contact', '/contact', action='contact')
         return map
 
     # IFacets

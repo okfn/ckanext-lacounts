@@ -1,0 +1,20 @@
+.collaborate.button-box {
+  @media (--medium-up) {
+    font-size: var(--font-size-medium);
+  }
+
+  & h4 {
+    font-weight: bold;
+    margin-bottom: 0.5em;
+
+    & a {
+      display: block;
+      color: var(--heading-link-colour);
+      font-size: 1.5em;
+    }
+  }
+
+  & .btn .secondary {
+    font-weight: normal;
+  }
+}

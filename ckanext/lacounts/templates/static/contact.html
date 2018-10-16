@@ -1,0 +1,15 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Contact Us') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Contact Us'), controller='ckanext.lacounts.controller:StaticController', action='contact' %}</li>
+{% endblock %}
+
+{% block primary_content %}
+  <h1>Contact Us</h1>
+{% endblock %}
+
+{% block feedback %}{% endblock %}
+{% block search %}{% endblock %}
+{% block secondary %}{% endblock %}
