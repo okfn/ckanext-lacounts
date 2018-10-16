@@ -10,7 +10,7 @@
     <section class="collaborate button-box">
       <h4>Collaborate with LA Counts</h4>
       <p>Are there stories, datasets or visualizations you’d like to see on LA Counts? Let us know—we’re building this together!</p>
-      <a class="btn" href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='contact') }}">Suggest additions<br><span class="secondary">to LA Counts</span></a>
+      <a class="btn" href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">Suggest additions<br><span class="secondary">to LA Counts</span></a>
     </section>
 {% endblock %}
 
@@ -19,7 +19,7 @@
 
   <p>Los Angeles County has a wealth of useful resources for learning about data and working with it. Here are a few organizations and activities to get you started helping to change LA County for the better.</p>
 
-  <p>Something missing? Let us know on the <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='contact') }}">{{ _('Contact Us') }}</a> page.</p>
+  <p>Something missing? Let us know on the <a href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">{{ _('Contact Us') }}</a> page.</p>
 
   <h2>LA County Data Science And Web Dev Orgs</h2>
   <ul>

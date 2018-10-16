@@ -1,0 +1,19 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Contact Us') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Contact Us'), controller='ckanext.contact.controllers.contact:ContactController', action='form' %}</li>
+{% endblock %}
+
+{% block primary_content %}
+  <h1>Contact Us</h1>
+  <p>To report a bug, please open an issue on <a href="https://github.com/okfn/ckanext-lacounts">Github</a>. For any other enquiries, use the form below.</p>
+
+  {% block contact_form_content %}
+    {% include "contact/snippets/form.html" %}
+  {% endblock %}
+
+{% endblock %}
+
+{% block secondary %}{% endblock %}

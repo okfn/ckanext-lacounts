@@ -43,6 +43,3 @@ class StaticController(toolkit.BaseController):
 
     def resources(self):
         return toolkit.render('static/resources.html')
-
-    def contact(self):
-        return toolkit.render('static/contact.html')

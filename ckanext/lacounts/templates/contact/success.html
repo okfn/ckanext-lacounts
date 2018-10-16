@@ -1,0 +1,14 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Contact Us') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Contact Us'), controller='ckanext.contact.controllers.contact:ContactController', action='form' %}</li>
+{% endblock %}
+
+{% block primary_content %}
+  <h1 class="page-heading">Thank you!</h1>
+  <p>Your comment has been sent, we will answer you as soon as possible.</p>
+{% endblock %}
+
+{% block secondary_content %}{% endblock %}

@@ -1,3 +1,8 @@
+.form-horizontal .form-group {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .form-control {
   font-size: 1em;
   color: var(--body-colour);
