@@ -12,6 +12,12 @@
       </p>
       {% if pkg.harvest_dataset_url %}
         <a class="btn" href="{{ pkg.harvest_dataset_url }}">{{ _('Go to data source') }}</a>
+        {% if pkg.harvest_timestamp %}
+        <span>
+            Harvested on {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg.harvest_timestamp %}
+        </span>
+        {% endif %}
+
       {% endif %}
     </section>
   {% endblock %}

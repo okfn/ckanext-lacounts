@@ -97,6 +97,16 @@
       font-size: 1.5em;
     }
   }
+
+  & span {
+    margin-top: 0.5em;
+    font-size: 0.7em;
+
+    & span {
+
+      font-size: 1em;
+    }
+  }
 }
 
 .license {
