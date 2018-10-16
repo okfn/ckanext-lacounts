@@ -55,6 +55,8 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_package_stories': helpers.get_package_stories,
             'get_topics': helpers.get_topics,
             'update_url_query': helpers.update_url_query,
+            'get_spatial_value': helpers.get_spatial_value,
+            'get_temporal_value': helpers.get_temporal_value,
         }
 
     # IRoutes

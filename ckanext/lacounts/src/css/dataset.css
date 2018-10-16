@@ -5,6 +5,7 @@
   position: relative;
   background-color: var(--body-bg);
   border-radius: 50%;
+  cursor: pointer;
 
   & .chart-centre {
     fill: var(--body-bg);
@@ -97,6 +98,16 @@
       font-size: 1.5em;
     }
   }
+
+  & span {
+    margin-top: 0.5em;
+    font-size: 0.7em;
+
+    & span {
+
+      font-size: 1em;
+    }
+  }
 }
 
 .license {
@@ -121,4 +132,8 @@
       color: var(--heading-link-colour);
     }
   }
+}
+
+.resources {
+  margin-bottom: 2em;
 }

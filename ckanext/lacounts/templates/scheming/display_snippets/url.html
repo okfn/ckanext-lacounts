@@ -1,0 +1,7 @@
+{% if data.get(field.field_name) %}
+  {% if data[field.field_name].startswith('http') %}
+    <a href="{{ data[field.field_name] }}">{{ data[field.field_name] }}</a>
+  {% else %}
+    data[field.field_name]
+  {% endif %}
+{% endif %}
