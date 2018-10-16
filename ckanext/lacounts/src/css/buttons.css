@@ -11,6 +11,10 @@
     color: $col;
     border-color: color($bor shade(10%));
   }
+
+  &:visited {
+    color: $col;
+  }
 }
 
 .btn {

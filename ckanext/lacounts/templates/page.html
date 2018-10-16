@@ -19,7 +19,7 @@
 
   {% block feedback %}
     <div>
-      <a class="btn btn-primary">Give feedback</a>
+      <a class="btn btn-primary" href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='contact') }}">Give feedback</a>
       <div class="dropdown">
         <a class="btn" id="share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
         {% snippet 'snippets/social.html' %}
