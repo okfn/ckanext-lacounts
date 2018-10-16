@@ -129,6 +129,11 @@
                 'tag_string',
                 'license_id',
                 'owner_org',
+                'spatial',
+                'spatial_text',
+                'temporal_text',
+                'temporal_start',
+                'temporal_end',
                 ] -%}
             <table class="table">
               <thead>
@@ -146,11 +151,26 @@
                           h.scheming_language_text(field.label) }}</th>
                         <td class="dataset-details"{%
                           if field.display_property %} property="{{ field.display_property
-                          }}"{% endif %}>{%- snippet 'scheming/snippets/display_field.html',
-                          field=field, data=pkg_dict, schema=schema -%}</td>
+                          }}"{% endif %}>
+                            {% if pkg_dict.get(field.field_name) %}
+                              {%- snippet 'scheming/snippets/display_field.html',
+                              field=field, data=pkg_dict, schema=schema -%}
+                            {% else %}
+                              -
+                            {% endif %}
+                        </td>
                       </tr>
                   {%- endif -%}
                 {%- endfor -%}
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Temporal extent") }}</th>
+                    <td class="dataset-details">{{ h.get_temporal_value(pkg_dict) }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" class="dataset-label">{{ _("Spatial extent") }}</th>
+                    <td class="dataset-details">{{ h.get_spatial_value(pkg_dict) }}</td>
+                    </td>
+                  </tr>
               </tbody>
             </table>
           {% endblock %}
@@ -192,11 +212,12 @@
                     <th scope="row" class="dataset-label">{{ _("Harvest Source") }}</th>
                     <td class="dataset-details"><a href="/harvest/{{ pkg_dict.harvest_source_id }}">{{ pkg_dict.harvest_source_id }}</td>
                   </tr>
+                  {% if pkg_dict.harvest_dataset_terms %}
                   <tr>
                     <th scope="row" class="dataset-label">{{ _("Dataset Topic Terms") }}</th>
                     <td class="dataset-details"> {{ pkg_dict.harvest_dataset_terms.replace('\n', ', ') }}</td>
                   </tr>
-
+                  {% endif %}
               </tbody>
             </table>
         </div>

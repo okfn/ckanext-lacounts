@@ -169,3 +169,55 @@ def get_topics(current_url=''):
             topic['icon_path'] = get_image_for_group(name, return_path=True)
             topics.append(topic)
     return topics
+
+
+def get_rounded_value(value):
+
+    if isinstance(value, basestring):
+        value = float(value)
+
+    return unicode(round(value, 3))
+
+
+def get_spatial_value(pkg_dict):
+    text = pkg_dict.get('spatial_text')
+    coords = geojson = None
+    if pkg_dict.get('spatial'):
+        if isinstance(pkg_dict['spatial'], basestring):
+            try:
+                geojson = json.loads(pkg_dict['spatial'])
+            except ValueError:
+                pass
+        else:
+            geojson = pkg_dict['spatial']
+        if geojson:
+            coords = ', '.join([
+                get_rounded_value(geojson['coordinates'][0][0]),
+                get_rounded_value(geojson['coordinates'][0][1]),
+                get_rounded_value(geojson['coordinates'][2][0]),
+                get_rounded_value(geojson['coordinates'][2][1]),
+            ])
+    if coords and text:
+        return '{} ({})'.format(text, coords)
+    elif text:
+        return text
+    elif coords:
+        return coords
+    return '-'
+
+
+def get_temporal_value(pkg_dict):
+
+    text = pkg_dict.get('temporal_start')
+    start = pkg_dict.get('temporal_start')
+    end = pkg_dict.get('temporal_end')
+
+    if text:
+        return text
+    if start and end:
+        return '{} - {}'.format(start, end)
+    if start:
+        return start
+    if end:
+        return end
+    return '-'
