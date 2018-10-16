@@ -191,37 +191,37 @@
         {
             "field_name": "harvest_source_id",
             "label": "Harvest source id",
-            "form_snippet": null,
+            "form_snippet": "hidden.html",
             "display_snippet": null
         },
         {
             "field_name": "harvest_source_url",
             "label": "Harvest source url",
-            "form_snippet": null,
+            "form_snippet": "hidden.html",
             "display_snippet": null
         },
         {
             "field_name": "harvest_source_title",
             "label": "Harvest source title",
-            "form_snippet": null,
+            "form_snippet": "hidden.html",
             "display_snippet": null
         },
         {
             "field_name": "harvest_dataset_terms",
             "label": "Harvest dataset terms",
-            "form_snippet": null,
+            "form_snippet": "hidden.html",
             "display_snippet": null
         },
         {
             "field_name": "harvest_dataset_url",
             "label": "Harvest dataset url",
-            "form_snippet": null,
+            "form_snippet": "hidden.html",
             "display_snippet": null
         },
         {
             "field_name": "harvest_timestamp",
             "label": "Harvest timestamp",
-            "form_snippet": null,
+            "form_snippet": "hidden.html",
             "display_snippet": null
         }
     ],
