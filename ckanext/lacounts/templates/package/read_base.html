@@ -48,7 +48,7 @@
         <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
         <ul class="tag-list">
           {% for group in groups %}
-            <li>
+            <li class="{{ group.name }}">
               <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
                 {{ h.truncate(group.display_name, 22) }}
               </a>
