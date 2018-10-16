@@ -1,9 +1,10 @@
 import json
+import urllib
 import logging
+import urlparse
 from ckan import model
 from ckan.common import config
 from ckan.plugins import toolkit
-from urlparse import urlparse, parse_qs
 log = logging.getLogger(__name__)
 
 
@@ -164,8 +165,17 @@ def get_topics(current_url=''):
         for topic in dicts:
             if name != topic['name']:
                 continue
-            if name in parse_qs(urlparse(current_url).query).get('groups', []):
+            if name in urlparse.parse_qs(urlparse.urlparse(current_url).query).get('groups', []):
                 topic['selected'] = True
             topic['icon_path'] = get_image_for_group(name, return_path=True)
             topics.append(topic)
     return topics
+
+
+def update_url_query(url, params):
+    url_parts = list(urlparse.urlparse(url))
+    query = dict(urlparse.parse_qsl(url_parts[4]))
+    query.update(params)
+    query = dict((k,v) for k,v in query.iteritems() if v is not None)
+    url_parts[4] = urllib.urlencode(query)
+    return urlparse.urlunparse(url_parts)

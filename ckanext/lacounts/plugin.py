@@ -54,6 +54,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_editable_region': helpers.get_editable_region,
             'get_package_stories': helpers.get_package_stories,
             'get_topics': helpers.get_topics,
+            'update_url_query': helpers.update_url_query,
         }
 
     # IRoutes
