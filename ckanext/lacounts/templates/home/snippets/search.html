@@ -1,4 +1,6 @@
-{% set placeholder = _('Try ‘parcel data’') %}
+{% set placeholder_value = [_('parcel data'), _('zoo attendance'), _('crime map'), _('watersheds')] | random  %}
+{% set placeholder = _('Try') + ' ‘' + placeholder_value + '’' %}
+
 
 <form class="module-content search-form" method="get" action="{% url_for 'dataset' %}">
   <div class="search-filters">
