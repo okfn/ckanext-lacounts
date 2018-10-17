@@ -95,6 +95,7 @@ $(document).ready(function(){
   $(".stories-list article .text").dotdotdot({
   });
 
+
   /* Content */
   /**********/
 
@@ -102,5 +103,14 @@ $(document).ready(function(){
   $('#field-related-datasets').select2({
     placeholder: 'Click to get a drop-down list or start typing a dataset title'
   });
+
+
+  /* Stories lead */
+  /* TODO: review by Sam, Adria */
+  /* Another option is split on the sever but it requires an html parser for Python */
+  /**********/
+  $('.story .notes p:first-of-type')
+    .addClass('lead')
+    .prependTo($('.story .notes'));
 
 });

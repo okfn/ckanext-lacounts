@@ -82,7 +82,9 @@
     padding-right: 0;
 
     @media (--small-up) {
-      padding-left: var(--spacer-50);
+      &.col-sm-9 {
+        padding-left: var(--spacer-50);
+      }
     }
 
     & .module-content {
@@ -94,5 +96,21 @@
   & .secondary {
     font-size: 0.85em;
     margin-top: var(--spacer-25);
+  }
+}
+
+.primary-secondary {
+  @media (--small-up) {
+    & .primary {
+      float: left;
+
+      &.col-sm-9 {
+        padding-left: 0;
+        padding-right: var(--spacer-50);
+      }
+    }
+    & .secondary {
+      float: right;
+    }
   }
 }

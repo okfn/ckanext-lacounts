@@ -231,3 +231,17 @@ def get_temporal_value(pkg_dict):
     if end:
         return end
     return '-'
+
+
+def get_story_related_stories(story):
+    context = {'model': model}
+    value = story.get('related_stories', [])
+
+    # Get stories
+    stories = []
+    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    for id in ids:
+        story = toolkit.get_action('package_show')(context, {'id': id})
+        stories.append(story)
+
+    return stories
