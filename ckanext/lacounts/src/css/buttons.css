@@ -84,6 +84,7 @@
 
   & svg {
     fill: $col;
+    transition: fill .5s;
   }
 
   & a:hover,
@@ -91,7 +92,6 @@
   & a:active {
     & svg {
       fill: color($col shade(25%));
-      transition: fill .5s;
     }
   }
 
