@@ -104,8 +104,8 @@
         flex-grow: 0;
 
         & img {
-          width: 250px;
-          height: 220px;
+          width: 200px;
+          height: 200px;
           object-fit: cover;
           filter: grayscale(100%);
         }
