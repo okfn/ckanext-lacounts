@@ -58,6 +58,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_spatial_value': helpers.get_spatial_value,
             'get_temporal_value': helpers.get_temporal_value,
             'get_story_related_stories': helpers.get_story_related_stories,
+            'get_dataset_and_stories_counts': helpers.get_dataset_and_stories_counts,
         }
 
     # IRoutes
@@ -86,6 +87,8 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def dataset_facets(self, facets_dict, package_type):
         facets_dict.clear()
         facets_dict['type_label'] = _('Type')
+        facets_dict['story_type'] = _('Story Type')
+        facets_dict['groups'] = _('Topic')
         facets_dict['organization'] = _('Publisher')
         facets_dict['res_format'] = _('Format')
         return facets_dict

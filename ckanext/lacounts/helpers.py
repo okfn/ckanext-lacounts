@@ -245,3 +245,16 @@ def get_story_related_stories(story):
         stories.append(story)
 
     return stories
+
+
+def get_dataset_and_stories_counts(search_facets):
+    datasets_count = stories_count = None
+    for item in search_facets['items']:
+        if item['name'] == 'Data':
+            datasets_count = item['count']
+        if item['name'] == 'Story':
+            stories_count = item['count']
+    return {
+        'datasets': datasets_count,
+        'stories': stories_count,
+    }

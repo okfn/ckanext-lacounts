@@ -4,7 +4,8 @@
 
 <form class="module-content search-form" method="get" action="{% url_for 'dataset' %}">
   <div class="search-filters">
-    <label for="field-main-search">{{ _("Search") }}</label>
+    {% set counts = h.get_dataset_and_stories_counts(g.search_facets['type_label']) %}
+    Search over <a href="{{ h.url_for('dataset_search') }}">{{ counts['datasets'] }} datasets</a> and <a href="{{ h.url_for('dataset_search', type_label='Story') }}">{{ counts['stories'] }} stories</a>:
   </div>
 
   <div class="search-input form-group search-giant">
