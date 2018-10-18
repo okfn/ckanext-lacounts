@@ -17,9 +17,6 @@
               {{ h.truncate(story.title, 80) }}
             </a>
           </h1>
-          <p>
-            {{ h.markdown_extract(story.showcase_notes_formatted) }}
-          </p>
         </div>
       </article>
     {% endfor %}
