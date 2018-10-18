@@ -215,9 +215,14 @@
 section.community {
   background-color: var(--orange);
   color: #fff;
-  padding-top: var(--spacer-25);
-  padding-bottom: var(--spacer-25);
   margin-bottom: 0;
+  padding-top: var(--spacer-50);
+  padding-bottom: var(--spacer-50);
+
+  @media (--small-up) {
+    padding-top: var(--spacer-25);
+    padding-bottom: var(--spacer-25);
+  }
 
   & a {
     color: inherit;
@@ -229,6 +234,7 @@ section.community {
       align-items: center;
       text-decoration: none;
       white-space: nowrap;
+      margin-top: var(--spacer-25);
       margin-right: var(--spacer-25);
 
       & i {
@@ -250,6 +256,7 @@ section.community {
 
       & > a {
         margin-right: 0;
+        margin-top: 0;
         margin-left: var(--spacer-25);
       }
     }
