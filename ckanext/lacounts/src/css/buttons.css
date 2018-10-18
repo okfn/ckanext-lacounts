@@ -106,6 +106,7 @@
     margin-bottom: 0.2em;
     display: inline-flex;
     align-items: center;
+    width: auto;
 
     & svg {
       max-height: 100%;
