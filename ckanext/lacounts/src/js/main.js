@@ -75,7 +75,9 @@ $(document).ready(function(){
   /**********/
 
   // use BS affix to detet if scrolled
-  $('.masthead').affix();
+  $('.masthead').affix({
+    offset: 1
+  });
 
 
   /* Featured Visualisation */
