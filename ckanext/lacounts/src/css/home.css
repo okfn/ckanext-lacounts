@@ -137,6 +137,11 @@
       padding-top: var(--header-height-large);
     }
 
+    & a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
     & h1 {
       color: inherit;
       font-size: 2.6em;
