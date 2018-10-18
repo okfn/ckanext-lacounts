@@ -76,6 +76,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             m.connect('faqs', '/faqs', action='faqs')
             m.connect('about', '/about', action='about')
             m.connect('resources', '/resources', action='resources')
+            m.connect('getinvolved', '/getinvolved', action='getinvolved')
 
         map.redirect('/why-la-counts', '/about', _redirect_code='301 Moved Permanently')
         return map
