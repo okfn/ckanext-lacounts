@@ -17,7 +17,7 @@ def get_image_for_group(group_name, return_path=False):
     groups = {
         'education': 'icons/book.svg',
         'environment': 'icons/leaf.svg',
-        'well-being': 'icons/heart.svg',
+        'health': 'icons/heart.svg',
         'housing': 'icons/keys.svg',
         'immigration': 'icons/passport.svg',
         'transportation': 'icons/bus.svg'
@@ -159,7 +159,7 @@ def get_package_stories(package_name):
 
 def get_topics(current_url=''):
     topics = []
-    names = ['education', 'environment', 'housing', 'immigration', 'transportation', 'well-being']
+    names = ['education', 'environment', 'housing', 'immigration', 'transportation', 'health']
     dicts = toolkit.get_action('group_list')({'model': model}, {'all_fields': True, 'type': 'topic'})
     for name in names:
         for topic in dicts:
@@ -168,6 +168,8 @@ def get_topics(current_url=''):
             if name in urlparse.parse_qs(urlparse.urlparse(current_url).query).get('groups', []):
                 topic['selected'] = True
             topic['icon_path'] = get_image_for_group(name, return_path=True)
+            if topic['name'] == 'health':
+                topic['title'] = 'Health'  # Drop the 'Wellbeing'
             topics.append(topic)
     return topics
 
