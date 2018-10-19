@@ -91,6 +91,23 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
         facets_dict['groups'] = _('Topic')
         facets_dict['organization'] = _('Publisher')
         facets_dict['res_format'] = _('Format')
+
+        return facets_dict
+
+    def group_facets(self, facets_dict, group_type, package_type):
+        facets_dict.clear()
+        facets_dict['type_label'] = _('Type')
+        facets_dict['organization'] = _('Publisher')
+        facets_dict['res_format'] = _('Format')
+
+        return facets_dict
+
+    def organization_facets(self, facets_dict, organization_type, package_type):
+        facets_dict.clear()
+        facets_dict['type_label'] = _('Type')
+        facets_dict['groups'] = _('Topic')
+        facets_dict['res_format'] = _('Format')
+
         return facets_dict
 
     # IPackageController
