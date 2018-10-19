@@ -24,6 +24,18 @@
     stroke: var(--success-colour);
   }
 
+  &.poor {
+    & .chart-segment {
+      stroke: var(--danger-colour);
+    }
+  }
+
+  &.ok {
+    & .chart-segment {
+      stroke: var(--warning-colour);
+    }
+  }
+
   & .figure {
     font-size: 0.4em;
     position: absolute;
@@ -40,6 +52,18 @@
     text-decoration: none;
   }
 
+  &.poor {
+    & .figure {
+      color: var(--danger-colour);
+    }
+  }
+
+  &.ok {
+    & .figure {
+      color: var(--warning-colour);
+    }
+  }
+
   & .dropdown-menu {
     left: auto;
     right: 0;
@@ -51,6 +75,18 @@
 
     & .count {
       color: var(--success-colour);
+    }
+  }
+
+  &.poor {
+    & .dropdown-menu .count {
+      color: var(--danger-colour);
+    }
+  }
+
+  &.ok {
+    & .dropdown-menu .count {
+      color: var(--warning-colour);
     }
   }
 }
