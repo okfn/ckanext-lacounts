@@ -91,12 +91,20 @@
   }
 }
 
+.resources,
 .additional-info {
   & h3 {
     @media (--medium-up) {
       font-size: var(--font-size-medium);
     }
   }
+}
+
+.resources {
+  padding-top: 0.5em;
+}
+
+.additional-info {
   & .meta-data {
     position: relative;
     padding-top: 0.5em;
