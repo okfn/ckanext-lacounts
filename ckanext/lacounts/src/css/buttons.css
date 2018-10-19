@@ -7,9 +7,9 @@
   &:focus,
   &:active,
   &.active {
-    background-color: color($bg shade(10%));
+    background-color: color($bg shade(25%));
     color: $col;
-    border-color: color($bor shade(10%));
+    border-color: color($bor shade(25%));
   }
 
   &:visited {
@@ -84,6 +84,15 @@
 
   & svg {
     fill: $col;
+    transition: fill .5s;
+  }
+
+  & a:hover,
+  & a:focus,
+  & a:active {
+    & svg {
+      fill: color($col shade(25%));
+    }
   }
 
   & .btn {
@@ -106,6 +115,7 @@
     margin-bottom: 0.2em;
     display: inline-flex;
     align-items: center;
+    width: auto;
 
     & svg {
       max-height: 100%;

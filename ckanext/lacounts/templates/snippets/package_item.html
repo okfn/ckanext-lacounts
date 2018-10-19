@@ -2,7 +2,7 @@
 
 {% block content %}
   {% if package.type == 'showcase' and package.image_display_url %}
-    <a class="image">
+    <a class="image" href="{{ h.url_for(controller='package', action='read', id=package.name) }}">
       <img src="{{ package.image_display_url }}" alt="">
     </a>
   {% endif %}
