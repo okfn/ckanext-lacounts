@@ -5,7 +5,11 @@
     <img src="{{ h.get_featured_image_url(default='/images/vis.jpg') }}" alt="{{ _("Visualisation") }} - Featured topic" />
     <figcaption>
       <div class="caption-header">
-        <div><a href="#"><small>{{ _("Featured visualisation") }}:</small></a></div>
+        <div>
+        {% call editable.region('featured-visualisation-title') %}
+          <a href="#"><small><p>{{ _("Featured visualisation") }}:</p></small></a>
+        {% endcall %}
+        </div>
         <button type="button" class="toggle"><span class="sr-only">Toggle description</span></button>
       </div>
       <div class="caption-body in">
