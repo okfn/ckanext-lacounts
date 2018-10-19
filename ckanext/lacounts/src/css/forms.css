@@ -28,6 +28,10 @@
   }
 }
 
+select.form-control {
+  height: 2.6em;
+}
+
 .control-large input {
   font-size: 1.2em;
   height: auto;
