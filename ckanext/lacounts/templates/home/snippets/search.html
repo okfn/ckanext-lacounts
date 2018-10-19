@@ -4,8 +4,10 @@
 
 <form class="module-content search-form" method="get" action="{% url_for 'dataset' %}">
   <div>
-    {% set counts = h.get_dataset_and_stories_counts(g.search_facets['type_label']) %}
-    Search over <a href="{{ h.url_for('dataset_search') }}">{{ counts['datasets'] }} datasets</a> and <a href="{{ h.url_for('dataset_search', type_label='Story') }}">{{ counts['stories'] }} stories</a>:
+    {% if g.search_facets.get('type_label') %}
+      {% set counts = h.get_dataset_and_stories_counts(g.search_facets['type_label']) %}
+      Search over <a href="{{ h.url_for('dataset_search') }}">{{ counts['datasets'] }} datasets</a> and <a href="{{ h.url_for('dataset_search', type_label='Story') }}">{{ counts['stories'] }} stories</a>:
+    {% endif %}
   </div>
 
   <div class="search-input form-group search-giant">
