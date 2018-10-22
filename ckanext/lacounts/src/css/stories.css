@@ -20,4 +20,24 @@
     padding-top: 1em;
   }
 
+  & .ckanext-showcase-notes {
+    & blockquote {
+      padding: 0;
+      border: none;
+      @mixin pull-quote;
+
+      &::before {
+        content: '“ ';
+      }
+
+      &::after {
+        content: ' ”';
+      }
+
+      & p {
+        display: inline;
+      }
+    }
+  }
+
 }

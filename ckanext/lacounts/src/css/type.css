@@ -122,20 +122,24 @@ figcaption,
   font-size: 16px;
 }
 
+@define-mixin pull-quote {
+  display: block;
+  font-size: 1.15em;
+  margin: 1em 0;
+  text-indent: -0.6em;
+  color: var(--orange);
+
+  @media (--medium-up) {
+    float: right;
+    width: 50%;
+    margin: 1em 0 1em var(--spacer-50);
+  }
+}
+
 p.has-pull-quote {
   &::before {
     content: "“ " attr(data-pull-quote) " ”";
-    display: block;
-    font-size: 1.15em;
-    margin: 1em 0;
-    text-indent: -0.6em;
-    color: var(--orange);
-
-    @media (--medium-up) {
-      float: right;
-      width: 50%;
-      margin: 1em 0 1em var(--spacer-50);
-    }
+    @mixin pull-quote;
   }
 }
 
