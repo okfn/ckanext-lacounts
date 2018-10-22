@@ -476,7 +476,8 @@ section.community {
       @mixin btn-box-col var(--transportation-colour), #fff, #fff;
     }
 
-    &.well-being {
+    &.well-being,
+    &.health {
       @mixin btn-box-col var(--well-being-colour), #fff, #fff;
     }
   }
