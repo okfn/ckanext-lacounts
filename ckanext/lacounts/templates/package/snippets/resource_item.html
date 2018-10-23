@@ -27,10 +27,10 @@
     <li>
       <a href="{{ url }}">
         {% if res.has_views %}
-          <i class="fa fa-table"></i>
+          <i class="fa fa-table" title="{{ _('Preview') }}"></i>
           <span class="sr-only">{{ _('Preview') }}</span>
         {% else %}
-          <i class="fa fa-info"></i>
+          <i class="fa fa-info" title="{{ _('More information') }}"></i>
           <span class="sr-only">{{ _('More information') }}</span>
         {% endif %}
       </a>
@@ -39,10 +39,10 @@
     <li>
       <a href="{{ res.url }}" class="resource-url-analytics" target="_blank">
         {% if res.has_views or res.url_type == 'upload' %}
-          <i class="fa fa-arrow-down"></i>
+          <i class="fa fa-arrow-down" title="{{ _('Download') }}"></i>
           <span class="sr-only">{{ _('Download') }}</span>
         {% else %}
-          <i class="fa fa-link"></i>
+          <i class="fa fa-link" title="{{ _('Go to resource') }}"></i>
           <span class="sr-only">{{ _('Go to resource') }}</span>
         {% endif %}
       </a>
@@ -51,7 +51,7 @@
     {% if can_edit %}
     <li>
       <a href="{{ h.url_for('resource.edit', id=pkg.name, resource_id=res.id) }}">
-        <i class="fa fa-pencil"></i>
+        <i class="fa fa-pencil" title="{{ _('Edit') }}"></i>
         <span class="sr-only">{{ _('Edit') }}</span>
       </a>
     </li>
