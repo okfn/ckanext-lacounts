@@ -24,6 +24,18 @@
     stroke: var(--success-colour);
   }
 
+  &.poor {
+    & .chart-segment {
+      stroke: var(--danger-colour);
+    }
+  }
+
+  &.ok {
+    & .chart-segment {
+      stroke: var(--warning-colour);
+    }
+  }
+
   & .figure {
     font-size: 0.4em;
     position: absolute;
@@ -40,6 +52,18 @@
     text-decoration: none;
   }
 
+  &.poor {
+    & .figure {
+      color: var(--danger-colour);
+    }
+  }
+
+  &.ok {
+    & .figure {
+      color: var(--warning-colour);
+    }
+  }
+
   & .dropdown-menu {
     left: auto;
     right: 0;
@@ -53,14 +77,34 @@
       color: var(--success-colour);
     }
   }
+
+  &.poor {
+    & .dropdown-menu .count {
+      color: var(--danger-colour);
+    }
+  }
+
+  &.ok {
+    & .dropdown-menu .count {
+      color: var(--warning-colour);
+    }
+  }
 }
 
+.resources,
 .additional-info {
   & h3 {
     @media (--medium-up) {
       font-size: var(--font-size-medium);
     }
   }
+}
+
+.resources {
+  padding-top: 0.5em;
+}
+
+.additional-info {
   & .meta-data {
     position: relative;
     padding-top: 0.5em;
@@ -136,4 +180,120 @@
 
 .resources {
   margin-bottom: 2em;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-top: var(--spacer-25);
+
+  & .format-label {
+    position: static;
+    margin-right: var(--spacer-25);
+    flex-shrink: 0;
+    width: 58px; /* override strangely specific CSS */
+    height: 62px;/* override strangely specific CSS */
+  }
+
+  & .heading {
+    font-size: 1rem;
+  }
+
+  & .description {
+    font-size: var(--font-size-small);
+  }
+
+  & .explore {
+    display: none;
+
+    @media (--medium-up) {
+      display: flex;
+      margin-left: auto;
+
+      & li {
+        display: block;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-left: var(--spacer-15);
+
+        & a {
+          background-color: color(var(--grey) tint(50%));
+          color: var(--body-bg);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+
+          &:hover {
+            background-color: var(--dark-blue);
+          }
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background-color: var(--body-bg);
+  }
+}
+
+.format-label {
+  width: 58px;
+  height: 62px;
+  background-size: auto 150px;
+  background-position: calc(0 - calc(calc(17 * 100px)) - 21px) -19px;
+
+  &[data-format=rdf],
+  &[data-format*=rdf] {
+    background-position: calc(0 - calc(calc(11 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=pdf],
+  &[data-format*=pdf] {
+    background-position: calc(0 - calc(calc(10 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=api],
+  &[data-format*=api] {
+    background-position: calc(0 - calc(calc(9 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=zip],
+  &[data-format*=zip] {
+    background-position: calc(0 - calc(calc(8 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=xls],
+  &[data-format*=xls] {
+    background-position: calc(0 - calc(calc(7 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=csv],
+  &[data-format*=csv] {
+    background-position: calc(0 - calc(calc(6 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=txt],
+  &[data-format*=txt] {
+    background-position: calc(0 - calc(calc(3 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=xml],
+  &[data-format*=xml] {
+    background-position: calc(0 - calc(calc(2 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=json],
+  &[data-format*=json] {
+    background-position: calc(0 - calc(calc(1 * 100px)) - 21px) -19px;
+  }
+
+  &[data-format=html],
+  &[data-format*=html] {
+    background-position: calc(0 - calc(calc(0 * 100px)) - 21px) -19px;
+  }
+
 }

@@ -81,3 +81,7 @@ a {
 .account-masthead .account .notifications a:hover span.text {
   background-color: transparent;
 }
+
+.page-header {
+  background-color: var(--body-bg);
+}

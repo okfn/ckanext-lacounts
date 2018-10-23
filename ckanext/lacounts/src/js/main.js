@@ -111,7 +111,7 @@ $(document).ready(function(){
   /* TODO: review by Sam, Adria */
   /* Another option is split on the sever but it requires an html parser for Python */
   /**********/
-  $('.story .notes p:first-of-type')
+  $('.story .notes > p:first-of-type')
     .addClass('lead')
     .prependTo($('.story .notes'));
 

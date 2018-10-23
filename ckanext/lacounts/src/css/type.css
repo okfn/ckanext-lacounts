@@ -83,7 +83,8 @@ h5 {
 .pill,
 .show-filters,
 .additional-info h3,
-.tag {
+.tag,
+.resources h3 {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: var(--font-size-small);
@@ -105,7 +106,8 @@ h5 {
 
 /* subtle underline */
 .module-heading,
-.additional-info h3 {
+.additional-info h3,
+.resources h3 {
   border-bottom: solid 0.2em color(var(--heading-colour) a(25%));
   padding-bottom: 0.5em;
   margin-bottom: 0.5em;
@@ -120,20 +122,24 @@ figcaption,
   font-size: 16px;
 }
 
+@define-mixin pull-quote {
+  display: block;
+  font-size: 1.15em;
+  margin: 1em 0;
+  text-indent: -0.6em;
+  color: var(--orange);
+
+  @media (--medium-up) {
+    float: right;
+    width: 50%;
+    margin: 1em 0 1em var(--spacer-50);
+  }
+}
+
 p.has-pull-quote {
   &::before {
     content: "“ " attr(data-pull-quote) " ”";
-    display: block;
-    font-size: 1.15em;
-    margin: 1em 0;
-    text-indent: -0.6em;
-    color: var(--orange);
-
-    @media (--medium-up) {
-      float: right;
-      width: 50%;
-      margin: 1em 0 1em var(--spacer-50);
-    }
+    @mixin pull-quote;
   }
 }
 
