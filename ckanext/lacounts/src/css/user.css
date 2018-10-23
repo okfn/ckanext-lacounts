@@ -1,0 +1,32 @@
+.user,
+.admin {
+  & [role=main] {
+    font-size: var(--font-size-medium);
+    padding-top: var(--spacer-15);
+  }
+
+  & .toolbar {
+    display: none;
+  }
+
+  & .page-header {
+    & .content_action {
+      display: none;
+    }
+  }
+
+  & section.community {
+    display: none;
+  }
+
+  & h1 {
+    border: none;
+    font-size: 1.8rem;
+  }
+}
+
+.user {
+  & .secondary .image {
+    display: none;
+  }
+}

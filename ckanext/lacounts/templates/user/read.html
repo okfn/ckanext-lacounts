@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block page_primary_action %}{% endblock %}
+
+{% block content_action %}
+  {{ super() }}
+  {% snippet 'snippets/add_dataset.html' %}
+{% endblock %}
