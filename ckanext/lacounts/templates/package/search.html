@@ -9,35 +9,6 @@
 {% block primary_content %}
 
   <h1>{{ _("Library") }}</h1>
-  <p>These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change. Click on a topic to filter the search results.</p>
-
-  {% block results_topics %}
-    <ul class="featured-filters">
-      {% set topics = h.get_topics(current_url=h.current_url()) %}
-      {% for topic in topics %}
-        <li class="{{ topic.name }} {% if topic.selected %}active{% endif %}">
-          <a class="filter" href="{{ h.update_url_query(h.current_url(), {'groups': topic.name, 'page': None }) }}">
-            <span class="filter-icon">{% include topic.icon_path %}</span>
-            <span class="filter-label">{{ topic.title }}</span>
-          </a>
-          <span class="filter-description">{{ topic.description }}</span>
-          {% if topic.selected %}
-            <a class="remove-filter" href="/dataset">
-              <i class="fa fa-times" aria-hidden="true"></i>
-              <span class="sr-only">{{ _("Remove filter") }}</span>
-            </a>
-          {% endif %}
-        </li>
-      {% endfor %}
-      {% for topic in topics %}
-        {% if topic.selected %}
-          <li class="filter-description">
-            {{ topic.description }}
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  {% endblock %}
 
   {% block results_filters %}
     {% set facets = {
