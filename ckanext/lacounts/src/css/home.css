@@ -208,6 +208,10 @@
       padding-top: var(--spacer-25);
       padding-bottom: var(--spacer-50);
       @mixin extend-full-width;
+
+      & .explore-link {
+        top: 2.2rem;
+      }
     }
   }
 }
