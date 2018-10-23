@@ -59,6 +59,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_temporal_value': helpers.get_temporal_value,
             'get_story_related_stories': helpers.get_story_related_stories,
             'get_dataset_and_stories_counts': helpers.get_dataset_and_stories_counts,
+            'sort_facet_items': helpers.sort_facet_items,
         }
 
     # IRoutes

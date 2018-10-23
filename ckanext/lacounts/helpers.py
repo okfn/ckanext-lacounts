@@ -260,3 +260,12 @@ def get_dataset_and_stories_counts(search_facets):
         'datasets': datasets_count,
         'stories': stories_count,
     }
+
+
+def sort_facet_items(name):
+
+    items = toolkit.h.get_facet_items_dict(name)
+
+    items.sort(key=lambda it: it['display_name'].lower())
+
+    return items
