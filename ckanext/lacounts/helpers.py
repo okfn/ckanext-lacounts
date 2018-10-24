@@ -274,5 +274,5 @@ def sort_facet_items(name):
 def get_publisher_type(publishers, name):
     for publisher in publishers:
         if publisher['name'] == name:
-            return publisher['publisher_type']
+            return publisher.get('publisher_type', '')
     return ''
