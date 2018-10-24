@@ -16,9 +16,6 @@
       width: 100%;
     }
   }
-  & aside.secondary {
-    padding-top: 1em;
-  }
 
   & .ckanext-showcase-notes {
     & blockquote {
@@ -38,6 +35,18 @@
         display: inline;
       }
     }
+
+    & .lead {
+      margin-top: 1em;
+    }
   }
 
+  & .author {
+    & .author-name {
+      font-size: 1.5em;
+    }
+    & .author-title {
+      font-style: italic;
+    }
+  }
 }

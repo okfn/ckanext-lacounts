@@ -2,24 +2,20 @@
   {% if pkg %}
 
     {% if pkg.author %}
-      <section class="module module-narrow">
+      <section class="module module-narrow author">
         <h2 class="module-heading">{{ _('About the author') }}</h2>
-        <p>
-          Submitted by
+          {% if pkg.author %}
+          <p class="author-name">{{ pkg.author }}</p>
+          {% endif %}
           {% if pkg.author_title %}
-            {{ pkg.author_title }}
+          <p class="author-title">{{ pkg.author_title }}</p>
           {% endif %}
-          {{ pkg.author }}
           {% if pkg.author_workplace %}
-            from {{ pkg.author_workplace | lower }}
-          {% endif %}
-          {% if pkg.spatial_text %}
-            at {{ pkg.spatial_text }}
+          <p class="author-workplace">{{ pkg.author_workplace }}</p>
           {% endif %}
           {% if pkg.author_email %}
-          . Contact email is <a href="mailto:{{ pkg.author_email }}">{{ pkg.author_email }}</a>
+          <p><a href="mailto:{{ pkg.author_email }}">{{ pkg.author_email }}</a></p>
           {% endif %}
-        </p>
       </section>
     {% endif %}
 
