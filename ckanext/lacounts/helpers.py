@@ -269,3 +269,10 @@ def sort_facet_items(name):
     items.sort(key=lambda it: it['display_name'].lower())
 
     return items
+
+
+def get_publisher_type(publishers, name):
+    for publisher in publishers:
+        if publisher['name'] == name:
+            return publisher.get('publisher_type', '')
+    return ''

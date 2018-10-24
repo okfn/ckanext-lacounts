@@ -20,20 +20,27 @@ Example:
 
 <ul class="hierarchy-tree-top">
   {% for node in top_nodes recursive %}
+      {% set is_publishers_index = c.controller == 'organization' and c.action == 'index' %}
+      {% set publisher_type = h.get_publisher_type(c.page.items, node.name) if is_publishers_index else '' %}
       {% set longname = h.group_tree_get_longname(node.name) %}
       {% set display_text = node.title %}
       {% if use_longnames and longname%}
           {% set display_text = longname + " (" + display_text + ")" %}
       {% endif %}
       {% if node.highlighted %}
-          <li class="highlighted" id="node_{{ node.name }}">
+        <li class="highlighted" id="node_{{ node.name }}" data-publisher-type="{{ publisher_type }}">
       {% else %}
-          <li id="node_{{ node.name }}">
+        <li id="node_{{ node.name }}" data-publisher-type="{{ publisher_type }}">
       {% endif %}
-      {% link_for display_text, named_route='publisher_read', id=node.name %}
+        {% link_for display_text, named_route='publisher_read', id=node.name %}
       {% if node.children %}
-        <ul class="hierarchy-tree"> {{ loop(node.children) }} </ul>
+        {% if is_publishers_index %}
+          <a class="hierarchy-toggle" title="Toggle subpublishers list">
+            <i class="fa fa-minus-circle"></i>
+          </a>
+        {% endif %}
+          <ul class="hierarchy-tree"> {{ loop(node.children) }} </ul>
       {% endif %}
-    </li>
+        </li>
   {% endfor %}
 </ul>
