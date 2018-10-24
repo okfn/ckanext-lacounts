@@ -159,7 +159,7 @@ def get_package_stories(package_name):
 
 def get_topics(current_url=''):
     topics = []
-    names = ['education', 'environment', 'housing', 'immigration', 'transportation', 'health']
+    names = sorted(['education', 'environment', 'housing', 'immigration', 'transportation', 'health'])
     dicts = toolkit.get_action('group_list')({'model': model}, {'all_fields': True, 'type': 'topic'})
     for name in names:
         for topic in dicts:
