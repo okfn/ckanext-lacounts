@@ -110,9 +110,77 @@ $(document).ready(function(){
   /* Stories lead */
   /* TODO: review by Sam, Adria */
   /* Another option is split on the sever but it requires an html parser for Python */
-  /**********/
+  /**********************************************************************************/
   $('.story .notes > p:first-of-type')
     .addClass('lead')
     .prependTo($('.story .notes'));
+
+
+  /* Publishers hierarchy toggle */
+  /*******************************/
+  $('#publisher-tree .hierarchy-toggle').click(function () {
+
+    // Get visibility
+    var isVisible = $(this).next().is(':visible');
+
+    // Show/hide
+    if (isVisible) {
+      $(this).next().hide();
+      $(this).children('i').addClass('fa-plus-circle').removeClass('fa-minus-circle');
+    } else {
+      $(this).next().show();
+      $(this).children('i').addClass('fa-minus-circle').removeClass('fa-plus-circle');
+    }
+
+  })
+
+  /* Publishers filter toggle */
+  /****************************/
+  $('#publisher-filter .filter-toggle').click(function () {
+
+    // Toogle current
+    $(this).parent('li').toggleClass('active');
+
+    // Update publishers
+    updatePublishers()
+
+  })
+
+  /* Publishers search */
+  /*********************/
+  $('#publisher-search .search-input').on('change paste keyup', function () {
+
+    // Update publishers
+    updatePublishers()
+
+  })
+
+
+  /* Publishers update */
+  /*********************/
+  function updatePublishers() {
+
+    // Get search term
+    var searchTerm = $('#publisher-search .search-input').val().toLowerCase();
+
+    // Get active types
+    var activeTypes = [];
+    $('#publisher-filter .filter-list').children('li.active').each(function () {
+      activeTypes.push($(this).children('a').data('publisher-type'));
+    })
+
+    // Show/hide publishers
+    // TODO: we only show/hide top-level See: #118
+    $('#publisher-tree .hierarchy-tree-top > li').each(function() {
+      var isPassSearch = $(this).children('a').text().toLowerCase().includes(searchTerm);
+      var isPassFilter = activeTypes.includes($(this).data('publisher-type'));
+      if (isPassSearch && isPassFilter) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    })
+
+  }
 
 });

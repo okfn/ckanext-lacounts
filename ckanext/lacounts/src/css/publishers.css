@@ -1,0 +1,38 @@
+#publisher-tree {
+  @media (--small-up) {
+    & .hierarchy-tree-top {
+      column-count: 2;
+    }
+  }
+  @media (--medium-up) {
+    & .hierarchy-tree-top {
+      column-count: 3;
+    }
+  }
+  & .hierarchy-tree-top li {
+    break-inside: avoid;
+    margin: 0.5em 0;
+  }
+  & .hierarchy-toggle {
+    margin-left: 0.5em;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  & .fa-minus-circle {
+    color: var(--blue);
+  }
+  & .fa-plus-circle {
+    color: var(--blue);
+  }
+}
+
+#publisher-filter {
+  & .filter-toggle {
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
