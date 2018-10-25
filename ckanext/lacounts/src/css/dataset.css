@@ -297,3 +297,24 @@
   }
 
 }
+
+.truncate {
+  transition: max-height 1s;
+  position: relative;
+
+  &.do {
+    &::after {
+      content: '';
+      position: absolute;
+      height: 2em;
+      left: 0;
+      right: 0;
+      bottom: -0.1em;
+      background: linear-gradient(to bottom, color(var(--body-bg) a(0%)) 0%,var(--body-bg) 100%);
+    }
+  }
+}
+.trunc-expand,
+.trunc-collapse {
+  cursor: pointer;
+}
