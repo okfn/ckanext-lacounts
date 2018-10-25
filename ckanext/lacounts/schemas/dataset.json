@@ -17,17 +17,29 @@
             "preset": "title"
         },
         {
-          "field_name": "owner_org",
-          "label": "Organization",
-          "preset": "dataset_organization"
+            "field_name": "owner_org",
+            "label": "Organization",
+            "preset": "dataset_organization"
         },
         {
             "field_name": "related_datasets",
             "preset": "related_datasets",
-            "help_text": "help text",
             "label": "Related datasets",
             "help_text": "Links to other datasets. It supports multiple selections",
             "display_snippet": null
+        },
+        {
+            "field_name": "groups",
+            "preset": "topics",
+            "label": "Topics",
+            "help_text": "Topics. It supports multiple selections",
+            "display_snippet": null
+        },
+        {
+            "field_name": "tag_string",
+            "form_placeholder": "eg. economy, mental health, government",
+            "label": "Tags",
+            "preset": "tag_string_autocomplete"
         },
         {
             "field_name": "issued",

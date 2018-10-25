@@ -37,6 +37,25 @@ def get_image_for_group(group_name, return_path=False):
     return img
 
 
+def get_groups_for_form(selected_groups=[]):
+    context = {'model': model}
+
+    # Get groups
+    groups = toolkit.get_action('group_list')(context, {
+        'sort': 'title asc',
+        'type': 'topic',
+        'all_fields': True,
+    })
+
+    # Mark selected
+    selected_names = map(lambda group: group['name'], selected_groups)
+    for group in groups:
+        if group['name'] in selected_names:
+            group['selected'] = 'selected'
+
+    return groups
+
+
 def get_related_datasets_for_form(selected_ids=[], exclude_ids=[]):
     context = {'model': model}
 

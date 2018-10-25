@@ -10,6 +10,14 @@
         "form_snippet": "related_datasets.html",
         "display_snippet": "related_datasets.html"
       }
+    },
+    {
+      "preset_name": "topics",
+      "values": {
+        "validators": "ignore_missing convert_group_names_into_dicts",
+        "form_snippet": "topics.html",
+        "display_snippet": "topics.html"
+      }
     }
   ]
 }

@@ -20,6 +20,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IGroupController, inherit=True)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IValidators)
 
     # IConfigurer
 
@@ -46,6 +47,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_helpers(self):
         return {
             'get_image_for_group': helpers.get_image_for_group,
+            'get_groups_for_form': helpers.get_groups_for_form,
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
             'get_metadata_completion_rate': helpers.get_metadata_completion_rate,
@@ -135,4 +137,12 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_actions(self):
         return {
             'config_option_update': actions.config_option_update,
+        }
+
+
+    # IValidators
+
+    def get_validators(self):
+        return {
+            'convert_group_names_into_dicts': validators.convert_group_names_into_dicts,
         }

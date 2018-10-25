@@ -1,0 +1,5 @@
+<ul>
+  {% for group in data.get(field.field_name, []) %}
+    <li><a href="{{ url_for('group', id=group.name) }}">{{ group.title }}</a></li>
+  {% endfor %}
+</ul>

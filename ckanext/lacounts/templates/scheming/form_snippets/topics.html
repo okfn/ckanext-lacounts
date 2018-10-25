@@ -1,0 +1,14 @@
+<div class="form-group control-full control-select">
+  <label class="control-label" for="field-groups">Topics</label>
+  <div class="controls ">
+    <select name="groups" id="field-groups" multiple="multiple" style="width: 100%">
+      {% for group in h.get_groups_for_form(selected_groups=data.get(field.field_name, [])) %}
+        <option value="{{ group.name }}" {% if group.selected %}selected{% endif %}>{{ group.display_name }}</option>
+      {% endfor %}
+    </select>
+    <div class="info-block ">
+      <i class="fa fa-info-circle"></i>
+      Add one or more topics
+    </div>
+  </div>
+</div>

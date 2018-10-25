@@ -1,5 +1,6 @@
 import json
 import logging
+import ckan.model as model
 from ckan.common import config
 from ckan.plugins import toolkit
 import ckan.lib.uploader as uploader
@@ -28,3 +29,13 @@ def validate_editable_regions(value):
             raise toolkit.Invalid('Homepage region %s is invalid' % region_name)
 
     return value
+
+
+def convert_group_names_into_dicts(names, context):
+    # TODO: fix, these groups are just ignored on package update
+    groups = []
+    names = names if isinstance(names, list) else names.strip('{}').split(',')
+    for name in names:
+        group = toolkit.get_action('group_show')(context, {'id': name})
+        groups.append(group)
+    return groups
