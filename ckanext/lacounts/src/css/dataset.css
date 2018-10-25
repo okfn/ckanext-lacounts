@@ -318,3 +318,7 @@
 .trunc-collapse {
   cursor: pointer;
 }
+
+.dataset .notes > :last-child {
+  margin-bottom: 0;
+}
