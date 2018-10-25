@@ -83,7 +83,8 @@
       background-color: var(--grey);
       color: #fff;
 
-      &.label-story {
+      &.label-story,
+      &.label-story:visited {
         background-color: var(--yellow);
         color: #333;
       }

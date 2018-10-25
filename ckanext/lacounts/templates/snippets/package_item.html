@@ -27,7 +27,9 @@
   {% if package.type == 'showcase' %}
     <ul class="dataset-resources list-unstyled">
       <li>
-        <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-story">Story</a>
+        <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-story">
+          {{ package.story_type or 'Data stories' }}
+        </a>
       </li>
     </ul>
   {% elif package.resources and not hide_resources %}
