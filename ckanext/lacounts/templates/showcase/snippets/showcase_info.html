@@ -20,28 +20,44 @@
     {% endif %}
 
     {% if pkg.embedded_datasets %}
-    <section class="module module-narrow">
-      <h2 class="module-heading">{{ _('Datasets referenced in this story') }}</h2>
-      <ul class="dataset-list">
-      {% for package in pkg.embedded_datasets %}
-        {% set truncate_title = truncate_title or 80 %}
-        {% set title = package.title or package.name %}
-        <li>{{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}</li>
-      {% endfor %}
-      </ul>
-    </section>
+      <section class="module module-narrow">
+        <h2 class="module-heading">{{ _('Datasets referenced in this story') }}</h2>
+        <ul class="dataset-list">
+        {% for package in pkg.embedded_datasets %}
+          {% set truncate_title = truncate_title or 80 %}
+          {% set title = package.title or package.name %}
+          <li>{{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}</li>
+        {% endfor %}
+        </ul>
+      </section>
     {% endif %}
 
     {% set related_stories = h.get_related_stories_for_display(pkg.get('related_stories', [])) %}
     {% if related_stories %}
-    <section class="module module-narrow">
-      <h2 class="module-heading"> {{ _('Related stories') }}</h2>
-      <ul class="dataset-list">
-      {% for package in related_stories %}
-        <li>{{ h.link_to(h.truncate(package.text, 80), package.href) }}</li>
-      {% endfor %}
-      </ul>
-    </section>
+      <section class="module module-narrow">
+        <h2 class="module-heading"> {{ _('Related stories') }}</h2>
+        <ul class="dataset-list">
+        {% for package in related_stories %}
+          <li>{{ h.link_to(h.truncate(package.text, 80), package.href) }}</li>
+        {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% set groups = pkg.groups %}
+    {% if groups %}
+      <section class="module module-narrow">
+        <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
+        <ul class="tag-list">
+          {% for group in groups %}
+            <li class="{{ group.name }}">
+              <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
+                {{ h.truncate(group.display_name, 22) }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
     {% endif %}
 
   {% endif %}
