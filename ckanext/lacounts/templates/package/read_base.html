@@ -31,11 +31,25 @@
     {% set stories = h.get_package_stories(pkg.name) %}
     {% if stories %}
       <section class="module module-narrow">
-        <h2 class="module-heading">{{ _('Stories that reference this data') }}</h2>
+        <h2 class="module-heading">{{ _('Stories that reference this dataset') }}</h2>
         <ul class="dataset-list">
           {% for story in stories %}
             <li><a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a></li>
           {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endblock %}
+
+  {% block package_datasets %}
+    {% set related_datasets = h.get_related_datasets_for_display(pkg.get('related_datasets', [])) %}
+    {% if related_datasets %}
+      <section class="module module-narrow">
+        <h2 class="module-heading"> {{ _('Related datasets') }}</h2>
+        <ul class="dataset-list">
+        {% for package in related_datasets %}
+          <li>{{ h.link_to(h.truncate(package.text, 80), package.href) }}</li>
+        {% endfor %}
         </ul>
       </section>
     {% endif %}
