@@ -51,34 +51,6 @@
   {% block package_search_results_list %}
   {% endblock %}
 
-  {% block related_stories %}
-    {% set stories = h.get_story_related_stories(pkg) %}
-    {% if stories %}
-      <section class="data-stories">
-        <h1>Related stories</h1>
-        <div class="stories-list">
-          {% for story in stories %}
-            <article>
-              <a class="image" href="/story/{{ story.name }}">
-                <img src="{{ story.image_display_url }}" alt="" />
-              </a>
-              <div class="text">
-                <h1>
-                  <a href="/story/{{ story.name }}">
-                    {{ h.truncate(story.title, 80) }}
-                  </a>
-                </h1>
-                <p>
-                  {{ h.markdown_extract(story.showcase_notes_formatted) }}
-                </p>
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
-  {% endblock %}
-
   {% block disqus_comments %}
     {% if h.is_disqus_enabled() and pkg.allow_commenting %}
       {{ h.disqus_comments() }}

@@ -5,16 +5,16 @@
       <section class="module module-narrow author">
         <h2 class="module-heading">{{ _('About the author') }}</h2>
           {% if pkg.author %}
-          <p class="author-name">{{ pkg.author }}</p>
+            <p class="author-name">{{ pkg.author }}</p>
           {% endif %}
           {% if pkg.author_title %}
-          <p class="author-title">{{ pkg.author_title }}</p>
+            <p class="author-title">{{ pkg.author_title }}</p>
           {% endif %}
           {% if pkg.author_workplace %}
-          <p class="author-workplace">{{ pkg.author_workplace }}</p>
+            <p class="author-workplace">{{ pkg.author_workplace }}</p>
           {% endif %}
           {% if pkg.author_email %}
-          <p><a href="mailto:{{ pkg.author_email }}">{{ pkg.author_email }}</a></p>
+            <p><a href="mailto:{{ pkg.author_email }}">{{ pkg.author_email }}</a></p>
           {% endif %}
       </section>
     {% endif %}
@@ -27,6 +27,18 @@
         {% set truncate_title = truncate_title or 80 %}
         {% set title = package.title or package.name %}
         <li>{{ h.link_to(h.truncate(title, truncate_title), h.url_for(controller='package', action='read', id=package.name)) }}</li>
+      {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    {% set related_stories = h.get_related_stories_for_display(pkg.get('related_stories', [])) %}
+    {% if related_stories %}
+    <section class="module module-narrow">
+      <h2 class="module-heading"> {{ _('Related stories') }}</h2>
+      <ul class="dataset-list">
+      {% for package in related_stories %}
+        <li>{{ h.link_to(h.truncate(package.text, 80), package.href) }}</li>
       {% endfor %}
       </ul>
     </section>
