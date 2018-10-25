@@ -81,6 +81,10 @@
     padding-left: 0;
     padding-right: 0;
 
+    @media (--small-only) {
+      float: none; /* was being floated at xs for some reason */
+    }
+
     @media (--small-up) {
       &.col-sm-9 {
         padding-left: var(--spacer-50);
