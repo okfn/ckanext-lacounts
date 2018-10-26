@@ -115,18 +115,6 @@
       {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
     {% endblock %}
 
-    {% block package_tag_list %}
-      <ul class="tag-list">
-        {% for tag in pkg.tags %}
-          <li>
-            <a class="tag" href="{{ h.url_for(controller='package', action='search', tags=tag.name) }}">
-              {{ h.truncate(tag.display_name, 22) }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endblock %}
-
     {% block package_metadata %}
       <section class="additional-info">
         <div class="meta-data">
@@ -218,8 +206,8 @@
         </div>
 
         {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-        <div class="meta-data">
-          <h3>{{ _('Admin') }}</h3>
+          <div class="meta-data">
+            <h3>{{ _('Admin') }}</h3>
             <table class="table">
               <thead>
                 <tr>
@@ -260,7 +248,22 @@
                   {% endif %}
               </tbody>
             </table>
-        </div>
+
+            {% if pkg.tags %}
+              <hr>
+              <ul class="tag-list">
+                {% for tag in pkg.tags %}
+                  <li>
+                    <a class="tag" href="{{ h.url_for(controller='package', action='search', tags=tag.name) }}">
+                      {{ h.truncate(tag.display_name, 22) }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+              <hr>
+            {% endif %}
+
+          </div>
         {% endif %}
 
       </section>
