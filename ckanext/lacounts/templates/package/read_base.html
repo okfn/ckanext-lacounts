@@ -57,10 +57,10 @@
 
   {% block package_topics %}
     {% set groups = pkg.groups %}
-    {% if groups %}
-      <section class="module module-narrow">
-        <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
-        <ul class="tag-list">
+    <section class="module module-narrow">
+      <h2 class="module-heading">{{ _('Find related datasets') }}</h2>
+      <ul class="tag-list">
+        {% if groups %}
           {% for group in groups %}
             <li class="{{ group.name }}">
               <a class="tag" href="{{ h.url_for(controller='package', action='search', groups=group.name) }}">
@@ -68,9 +68,16 @@
               </a>
             </li>
           {% endfor %}
-        </ul>
-      </section>
-    {% endif %}
+        {% else %}
+            <li>
+              {# TODO: actual link is not decided #}
+              <a class="tag" href="{{ h.url_for(controller='package', action='search', type_label='Data') }}">
+                All topics
+              </a>
+            </li>
+        {% endif %}
+      </ul>
+    </section>
   {% endblock %}
 
 {% endblock %}
