@@ -111,8 +111,12 @@
 
     & .completion-rate-chart {
       position: absolute;
-      top: 0.1em;
-      right: -0.1em;
+      top: 0.35em;
+      right: -0.2em;
+
+      @media (--large-up) {
+        top: 0.1em;
+      }
     }
   }
 }
