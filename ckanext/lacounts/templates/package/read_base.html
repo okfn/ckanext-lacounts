@@ -29,16 +29,22 @@
 
   {% block package_stories %}
     {% set stories = h.get_package_stories(pkg.name) %}
-    {% if stories %}
-      <section class="module module-narrow">
-        <h2 class="module-heading">{{ _('Stories that reference this dataset') }}</h2>
-        <ul class="dataset-list">
+    <section class="module module-narrow">
+      <h2 class="module-heading">{{ _('Stories that reference this dataset') }}</h2>
+      <ul class="dataset-list">
+        {% if stories %}
           {% for story in stories %}
-            <li><a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a></li>
+            <li>
+              <a href="{{ h.url_for('ckanext_showcase_read', id=story.name) }}">{{ story.title }}</a>
+            </li>
           {% endfor %}
-        </ul>
-      </section>
-    {% endif %}
+        {% else %}
+          <li class="empty">
+            <a href="https://goo.gl/forms/rQNVca7JuOdMewgH3">Suggest a story</a>
+          </li>
+        {% endif %}
+      </ul>
+    </section>
   {% endblock %}
 
   {% block package_datasets %}

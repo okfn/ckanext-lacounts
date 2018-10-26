@@ -169,6 +169,12 @@
       margin-top: 1em;
       border-bottom: solid 0.2em var(--yellow);
       padding-bottom: 0.5em;
+      &.empty {
+        border-bottom: none;
+        & a {
+          text-transform: uppercase;
+        }
+      }
     }
 
     & a {
