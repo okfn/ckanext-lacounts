@@ -100,10 +100,6 @@
   }
 }
 
-.resources {
-  padding-top: var(--spacer-50);
-}
-
 .additional-info {
   & .meta-data {
     position: relative;
@@ -323,6 +319,12 @@
   cursor: pointer;
 }
 
-.dataset .notes > :last-child {
-  margin-bottom: 0;
+.dataset {
+  & .resources {
+    padding-top: var(--spacer-50);
+  }
+  
+  & .notes > :last-child {
+    margin-bottom: 0;
+  }
 }

@@ -63,27 +63,65 @@
   }
 }
 
+.nav-simple,
 .nav-facet {
-
   & .nav-item {
     & a {
       display: flex;
       align-items: center;
       padding-top: 0.4em;
       padding-bottom: 0.4em;
+      color: inherit;
 
       &::before {
         content: '';
-        @mixin checkbox;
         position: static;
       }
 
       &:hover {
         background-color: var(--body-bg);
         color: inherit;
+      }
+    }
 
+    &.active {
+      & a {
+        background-color: var(--body-bg);
+        color: inherit;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.nav-simple {
+  & .nav-item {
+    & a {
+      &::before {
+        @mixin checkbox;
+      }
+    }
+    &.active {
+      & a::before {
+        @mixin selected;
+      }
+    }
+  }
+}
+
+.nav-facet {
+  & .nav-item {
+    & a {
+      &::before {
+        @mixin checkbox;
+      }
+
+      &:hover {
         &::before {
-          @mixin checked var(--grey);
+          /*@mixin checked var(--grey);*/
         }
 
         &::after {
@@ -94,15 +132,8 @@
 
     &.active {
       & a {
-        background-color: var(--body-bg);
-        color: inherit;
-
         &::before {
           @mixin checked;
-        }
-
-        &::after {
-          display: none;
         }
       }
     }

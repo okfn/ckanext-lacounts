@@ -17,6 +17,7 @@
 @import "home";
 @import "library";
 @import "dataset";
+@import "resource";
 @import "resources";
 @import "stories";
 @import "user";
