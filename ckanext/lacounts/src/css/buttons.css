@@ -98,6 +98,36 @@
   & .btn {
     @mixin btn-colour $col, $btnTxtCol;
   }
+
+  &.full-link {
+
+    & a {
+      transition: background-color .2s;
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: $col;
+        color: $btnTxtCol;
+
+        & .icon {
+          color: $btnTxtCol;
+        }
+
+        & svg {
+          fill: $btnTxtCol;
+        }
+
+        & .btn {
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: color($col a(0%));
+            border-color: color($col a(0%));
+          }
+        }
+      }
+    }
+  }
 }
 
 @define-mixin btn-box {
@@ -105,6 +135,7 @@
   padding: var(--spacer-25);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 
   @media (--medium-up) {
     font-size: 0.85em;
@@ -140,6 +171,20 @@
   & .btn {
     margin-top: auto;
     width: 100%;
+  }
+
+  &.full-link {
+    padding: 0;
+
+    & a {
+      padding: var(--spacer-25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
   }
 }
 

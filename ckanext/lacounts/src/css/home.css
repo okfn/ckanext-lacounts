@@ -484,6 +484,14 @@ section.community {
     &.health {
       @mixin btn-box-col var(--well-being-colour), #fff, #fff;
     }
+
+    &.full-link {
+      padding: 0;
+
+      & a {
+        padding: var(--spacer-15);
+      }
+    }
   }
 }
 
