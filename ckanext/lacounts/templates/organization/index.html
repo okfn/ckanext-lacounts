@@ -30,6 +30,10 @@
   {% endif %}
 {% endblock %}
 
+{% block secondary_content %}
+  {% snippet "organization/snippets/facets.html" %}
+{% endblock %}
+
 {% block footer %}
   {% if h.check_access('organization_create') %}
     <div class="admin-page-actions">

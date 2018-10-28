@@ -1,0 +1,32 @@
+<div id="publisher-search" class="module module-narrow module-shallow">
+  <h2 class="module-heading">
+    <i class="fa fa-info-circle"></i>
+    {{ _('Name') }}
+  </h2>
+  <div class="module-content">
+    <input class="search-input" type="text">
+  </div>
+</div>
+
+<div id="publisher-filter" class="module module-narrow module-shallow">
+  <h2 class="module-heading">
+    <i class="fa fa-info-circle"></i>
+    {{ _('Type') }}
+  </h2>
+  <div class="module-content">
+    <ul class="filter-list list-unstyled nav nav-simple nav-facet">
+      {% set schema = h.scheming_get_organization_schema('publisher') %}
+      {% for field in schema.fields %}
+        {% if field.field_name == 'publisher_type' %}
+          {% for choice in h.scheming_field_choices(field) + [{'value': '', 'label': 'Uncategorized'}] %}
+            <li class="nav-item active">
+              <a class="filter-toggle" title="Toggle publishers type" data-publisher-type="{{ choice.value }}">
+                <span class="item-label">{{ choice.label }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
