@@ -151,7 +151,7 @@ $(document).ready(function(){
   $('#publisher-search .search-input').on('change paste keyup', function () {
 
     // Update publishers
-    updatePublishers()
+    updatePublishers();
 
   })
 
@@ -180,6 +180,15 @@ $(document).ready(function(){
         $(this).hide();
       }
     })
+
+    // Add/remove publishers not found
+    if ($('#publisher-tree .hierarchy-tree-top > li:visible').length === 0) {
+      if ($('#publisher-tree .not-found').length === 0) {
+        $('#publisher-tree').append('<p class="not-found">Not found</p>');
+      }
+    } else {
+      $('#publisher-tree .not-found').remove();
+    }
 
   }
 

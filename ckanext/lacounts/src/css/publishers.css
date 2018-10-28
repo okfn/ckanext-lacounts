@@ -26,6 +26,8 @@
   & .fa-plus-circle {
     color: var(--blue);
   }
+  & .not-found {
+  }
 }
 
 #publisher-filter {
