@@ -7,12 +7,12 @@
   {% endcall %}
   <ul class="button-boxes topics-list">
     {% for topic in h.get_topics() %}
-      <li class="{{ topic.name }}">
+      <li class="{{ topic.name }} full-link">
         <a href="{{ h.url_for('topic_read', id=topic.name) }}">
           <span class="icon">{% include topic.icon_path %}</span>
-        </a>
-        <a class="btn" href="{{ h.url_for('topic_read', id=topic.name) }}">
-          {{ topic.title }}
+          <span class="btn">
+            {{ topic.title }}
+          </span>
         </a>
       </li>
     {% endfor %}

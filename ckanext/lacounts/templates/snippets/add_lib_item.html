@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <a class="btn btn-primary" id="addPage" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-plus-square"></i> Add
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="addPage">
+    {{ h.snippet ('snippets/add_dataset.html', dataset_type=dataset_type) }}
+
+    {% link_for _('Add Story'), controller='ckanext.showcase.controller:ShowcaseController', action='new', class_='btn btn-primary', icon='plus-square' %}
+  </ul>
+</div>

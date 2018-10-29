@@ -108,11 +108,7 @@
 {% block footer %}
   {% if h.check_access('package_create') %}
     <div class="admin-page-actions">
-      {% if dataset_type != 'showcase' %}
-        {{ h.snippet ('snippets/add_dataset.html', dataset_type=dataset_type) }}
-      {% else %}
-        {% link_for _('Add Story'), controller='ckanext.showcase.controller:ShowcaseController', action='new', class_='btn btn-primary', icon='plus-square' %}
-      {% endif %}
+      {% snippet 'snippets/add_lib_item.html' %}
     </div>
   {% endif %}
   {{ super() }}

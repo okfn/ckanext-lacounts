@@ -195,36 +195,3 @@
     }
   }
 }
-
-/* add dataset etc */
-.admin-page-actions {
-  position: fixed;
-  right: 0.5rem;
-  z-index: 99999;
-  padding-top: 0.5em;
-  top: calc(var(--header-height-small) + var(--user-bar-height));
-
-  @media (--medium-up) {
-    top: calc(var(--header-height-medium) + var(--user-bar-height));
-  }
-  @media (--large-up) {
-    top: calc(var(--header-height-large) + var(--user-bar-height));
-  }
-
-  & .btn {
-    width: 2.5rem;
-    height: 2.5rem;
-    overflow: hidden;
-    border-radius: 50%;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    border: none;
-    margin-top: var(--spacer-15);
-    @mixin btn-colour var(--dark-blue);
-
-    & i::before {
-      width: 2.5rem;
-    }
-  }
-}
