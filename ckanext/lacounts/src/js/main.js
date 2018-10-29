@@ -97,6 +97,34 @@ $(document).ready(function(){
   $(".stories-list article .text").dotdotdot({
   });
 
+  // Dataset description
+  // function to set an element's max-height
+  $.fn.trunc = function(h) {
+    var originalHeight = $(this).height();
+    // if taller than h, truncate
+    if ( originalHeight > h) {
+      $(this).addClass('do truncate');
+      $(this).css({"overflow":"hidden", "max-height":h + "px"});
+      $(this).after('<a class="trunc-expand">More</a>');
+    }
+    // expand
+    $(this).parent().on('click', '.trunc-expand', function() {
+      $(this).siblings('.truncate').css("max-height", originalHeight);
+      $(this).siblings('.truncate').removeClass('do');
+      $(this).after('<a class="trunc-collapse">Less</a>');
+      $(this).remove();
+    });
+    // collapse
+    $(this).parent().on('click', '.trunc-collapse', function() {
+      $(this).siblings('.truncate').css("max-height", h + "px");
+      $(this).siblings('.truncate').addClass('do');
+      $(this).after('<a class="trunc-expand">More</a>');
+      $(this).remove();
+    });
+  };
+  // Set dataset description to max 200px
+  $('.dataset .notes').trunc(200);
+
 
   /* Content */
   /**********/

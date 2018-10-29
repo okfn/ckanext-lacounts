@@ -1,5 +1,7 @@
 {% ckan_extends %}
 
+{% block bodytag %} {{ super() }} class="dataset"{% endblock %}
+
 {% set pkg_dict = pkg %}
 {% block secondary_content %}
 

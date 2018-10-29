@@ -1,0 +1,74 @@
+{% ckan_extends %}
+
+{% block bodytag %} {{ super() }} class="resource"{% endblock %}
+
+{% block pre_primary %}{% endblock %}
+
+{% block primary_content %}
+  {% block resource %}
+    {{ super() }}
+  {% endblock %}
+  {% block resource_additional_information %}
+    {{ super() }}
+  {% endblock %}
+{% endblock %}
+
+{% block resource_actions %}{% endblock %}
+
+{% block secondary_content %}
+  <section class="publisher button-box">
+    <p>
+      {{ _('Published by') }}
+      <a href="{{ h.url_for('organization_read', id=pkg.organization.name) }}">
+        {{ pkg.organization.title }}
+      </a>
+    </p>
+
+    {% if res.url and h.is_url(res.url) %}
+      <a class="btn btn-primary resource-url-analytics resource-type-{{ res.resource_type }}" href="{{ res.url }}">
+          {% if res.resource_type in ('listing', 'service') %}
+            {{ _('View') }}
+          {% elif  res.resource_type == 'api' %}
+            {{ _('API Endpoint') }}
+          {% elif not res.has_views and not res.url_type == 'upload' %}
+            {{ _('Go to resource') }}
+          {% else %}
+            {{ _('Download') }}
+          {% endif %}
+      </a>
+      {% block download_resource_button %}
+        {%if res.datastore_active %}
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+
+        <a href="{{ h.url_for(controller='ckanext.datastore.controller:DatastoreController', action='dump', resource_id=res.id, bom=True) }}"
+          target="_blank"><span>CSV</span></a>
+        <a href="{{ h.url_for(controller='ckanext.datastore.controller:DatastoreController', action='dump', resource_id=res.id, format='tsv', bom=True) }}"
+          target="_blank"><span>TSV</span></a>
+        <a href="{{ h.url_for(controller='ckanext.datastore.controller:DatastoreController', action='dump', resource_id=res.id, format='json') }}"
+          target="_blank"><span>JSON</span></a>
+        <a href="{{ h.url_for(controller='ckanext.datastore.controller:DatastoreController', action='dump', resource_id=res.id, format='xml') }}"
+          target="_blank"><span>XML</span></a>
+        {%endif%}
+      {% endblock %}
+    {% endif %}
+  </section>
+
+
+  {% block resource_license %}
+    {{ super() }}
+  {% endblock %}
+  {% block resources_list %}
+    {{ super() }}
+  {% endblock %}
+{% endblock %}
+
+{% block footer %}
+  {% if h.check_access('package_update', {'id':pkg.id }) %}
+    <div class="admin-page-actions">
+      {% link_for _('Manage'), named_route='resource_edit', id=pkg.name, resource_id=res.id, class_='btn btn-default', icon='wrench' %}
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}

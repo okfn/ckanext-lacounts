@@ -82,6 +82,11 @@ textarea.form-control {
   content: '\e901';
 }
 
+@define-mixin selected $col: var(--blue) {
+  background-color: $col;
+  border-color: $col;
+}
+
 label.checkbox {
   overflow: hidden;
 

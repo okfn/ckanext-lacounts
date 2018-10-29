@@ -1,0 +1,17 @@
+.resource-view {
+  & .actions {
+    @media (--small-only) {
+      float: none;
+    }
+    
+    & .btn {
+      font-size: var(--font-size-small);
+    }
+  }
+}
+
+.resource {
+  & .notes {
+    margin-bottom: var(--spacer-50);
+  }
+}
