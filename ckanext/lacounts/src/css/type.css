@@ -100,9 +100,6 @@ h5 {
 .label-default {
   background-color: var(--grey);
 }
-.label-story {
-  background-color: var(--yellow);
-}
 
 /* subtle underline */
 .module-heading,
