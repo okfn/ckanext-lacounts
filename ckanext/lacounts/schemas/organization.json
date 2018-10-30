@@ -11,10 +11,15 @@
             "preset": "dataset_slug"
         },
         {
-            "field_name": "title",
-            "form_placeholder": "eg. A descriptive title",
+            "field_name": "display_title",
+            "form_placeholder": "eg. City of Lakewood",
             "label": "Title",
             "preset": "title"
+        },
+        {
+            "field_name": "title",
+            "form_placeholder": "eg. Lakewood, City of",
+            "label": "Title for listings"
         },
         {
             "field_name": "description",

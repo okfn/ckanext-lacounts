@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% block heading %}
+<h1 class="heading">
+  {{ h.get_organization_display_title(organization) }}
+  {% if organization.state == 'deleted' %}
+    [{{ _('Deleted') }}]
+  {% endif %}
+</h1>
+{% endblock %}

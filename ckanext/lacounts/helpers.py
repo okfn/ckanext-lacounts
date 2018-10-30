@@ -280,3 +280,9 @@ def get_publisher_type(publishers, name):
         if publisher['name'] == name:
             return publisher.get('publisher_type', '')
     return ''
+
+
+def get_organization_display_title(organization):
+    if 'display_name' not in organization:
+        organization = toolkit.get_action('organization_show')({'model': model}, {'id': organization['id']})
+    return organization.get('display_title', organization['display_name'])

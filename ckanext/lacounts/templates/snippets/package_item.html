@@ -15,7 +15,7 @@
   {% block organization %}
     {% if package.organization %}
       <a href="{{ h.url_for('publisher_read', id=package.organization.name) }}" class="publisher">
-        {{ package.organization.title }}
+        {{ h.get_organization_display_title(package.organization) }}
       </a>
     {% endif %}
   {% endblock %}
