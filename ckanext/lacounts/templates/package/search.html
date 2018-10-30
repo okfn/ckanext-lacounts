@@ -17,21 +17,19 @@
       'remove_field': c.remove_field }
     %}
     {% for field in facets.fields %}
-      {% if field != 'groups' %}
-        {% set search_facets_items = facets.search.get(field)['items'] %}
-        {% for value in facets.fields[field] %}
-          <span class="filtered pill">
-            {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
-              {{ facets.translated_fields[(field,value)] }}
-            {%- else -%}
-              {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
-            {%- endif %}
-            <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
-              <i class="fa fa-times"></i>
-            </a>
-          </span>
-        {% endfor %}
-      {% endif %}
+      {% set search_facets_items = facets.search.get(field)['items'] %}
+      {% for value in facets.fields[field] %}
+        <span class="filtered pill">
+          {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+            {{ facets.translated_fields[(field,value)] }}
+          {%- else -%}
+            {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+          {%- endif %}
+          <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
+            <i class="fa fa-times"></i>
+          </a>
+        </span>
+      {% endfor %}
     {% endfor %}
     <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
   {% endblock %}
