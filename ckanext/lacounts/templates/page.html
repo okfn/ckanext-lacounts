@@ -36,8 +36,8 @@
     {% block search %}
       <form class="section site-search simple-input" action="{% url_for 'dataset' %}" method="get">
         <div class="field">
-          <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
-          <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search') }}" value="{{ c.q }}"/>
+          <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search datasets and stories') }}{% endblock %}</label>
+          <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search datasets and stories') }}" value="{{ c.q }}"/>
           <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
         </div>
       </form>
