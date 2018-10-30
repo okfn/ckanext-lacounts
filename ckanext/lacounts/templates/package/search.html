@@ -9,29 +9,31 @@
 {% block primary_content %}
 
   {% block results_filters %}
-    {% set facets = {
-      'fields': c.fields_grouped,
-      'search': c.search_facets,
-      'titles': c.facet_titles,
-      'translated_fields': c.translated_fields,
-      'remove_field': c.remove_field }
-    %}
-    {% for field in facets.fields %}
-      {% set search_facets_items = facets.search.get(field)['items'] %}
-      {% for value in facets.fields[field] %}
-        <span class="filtered pill">
-          {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
-            {{ facets.translated_fields[(field,value)] }}
-          {%- else -%}
-            {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
-          {%- endif %}
-          <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
-            <i class="fa fa-times"></i>
-          </a>
-        </span>
+    <div class="results_filters">
+      {% set facets = {
+        'fields': c.fields_grouped,
+        'search': c.search_facets,
+        'titles': c.facet_titles,
+        'translated_fields': c.translated_fields,
+        'remove_field': c.remove_field }
+      %}
+      {% for field in facets.fields %}
+        {% set search_facets_items = facets.search.get(field)['items'] %}
+        {% for value in facets.fields[field] %}
+          <span class="filtered pill">
+            {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+              {{ facets.translated_fields[(field,value)] }}
+            {%- else -%}
+              {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+            {%- endif %}
+            <a href="{{ facets.remove_field(field, value) }}" class="remove-filter" title="{{ _('Remove') }}">
+              <i class="fa fa-times"></i>
+            </a>
+          </span>
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
-    <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
+      <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
+    </div>
   {% endblock %}
 
     {% if c.page.item_count %}
@@ -39,12 +41,14 @@
       <form id="results-controls" class="results-controls" data-module="select-switch">
 
         {% block search_search_fields %}
-          {% if c.fields -%}
-            <span>{{ form.hidden_from_list(fields=c.fields) }}</span>
-          {%- endif %}
-          {% if c.q -%}
-            <span>{{ form.hidden('q', c.q) }}</span>
-          {%- endif %}
+          <div style="display:none">
+            {% if c.fields -%}
+              <span>{{ form.hidden_from_list(fields=c.fields) }}</span>
+            {%- endif %}
+            {% if c.q -%}
+              <span>{{ form.hidden('q', c.q) }}</span>
+            {%- endif %}
+          </div>
         {% endblock %}
 
         <div class="number-of-results">
