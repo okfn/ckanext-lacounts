@@ -16,6 +16,7 @@
 {% endblock %}
 
 {% block organizations_list %}
+  <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
   {% if c.page.items or request.params %}
     {% if c.page.items %}
       {% snippet "organization/snippets/organization_list.html", organizations=c.page.items %}
@@ -31,7 +32,12 @@
 {% endblock %}
 
 {% block secondary_content %}
-  {% snippet "organization/snippets/facets.html" %}
+  <div class="filters">
+    <div>
+      {% snippet "organization/snippets/facets.html" %}
+    </div>
+    <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+  </div>
 {% endblock %}
 
 {% block footer %}

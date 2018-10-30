@@ -4,7 +4,8 @@
 }
 
 .form-control,
-.select2-container .select2-choice {
+.select2-container .select2-choice,
+input.search-input {
   font-size: 1em;
   color: var(--body-colour);
   border: 2px solid var(--border-colour);
@@ -18,6 +19,7 @@
   &:focus {
     border-color: var(--input-focus-colour);
     box-shadow: none;
+    outline: none;
 
     & + .editor-info-block {
       border-color: var(--input-focus-colour);
@@ -28,6 +30,10 @@
     color: inherit;
     opacity: 0.5;
   }
+}
+
+input.search-input {
+  width: 100%;
 }
 
 select.form-control {

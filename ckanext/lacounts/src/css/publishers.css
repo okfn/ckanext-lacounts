@@ -2,16 +2,31 @@
   @media (--small-up) {
     & .hierarchy-tree-top {
       column-count: 2;
+      column-gap: var(--spacer-50);
     }
   }
   @media (--medium-up) {
+    font-size: var(--font-size-medium);
+
     & .hierarchy-tree-top {
       column-count: 3;
     }
   }
-  & .hierarchy-tree-top li {
-    break-inside: avoid;
-    margin: 0.5em 0;
+  & .hierarchy-tree-top {
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      display: inline-block; /* makes break-inside work consistently */
+      width: 100%; /* don't actually want it inline */
+      break-inside: avoid;
+      padding: 0.4em 0;
+
+      & li {
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+      }
+    }
   }
   & .hierarchy-toggle {
     margin-left: 0.5em;
@@ -27,6 +42,9 @@
     color: var(--blue);
   }
   & .not-found {
+    font-style: italic;
+    opacity: 0.7;
+    padding-top: 0.4em;
   }
 }
 
