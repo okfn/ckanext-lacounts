@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  // Exit if nothing is editable
+  if ($('*[data-editable]').length === 0) return;
+
   // Create editor
   var editor = ContentTools.EditorApp.get();
   editor.init('*[data-editable]', 'data-name');

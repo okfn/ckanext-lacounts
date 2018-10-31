@@ -1,4 +1,5 @@
 {% extends "page.html" %}
+{% import 'macros/editable.html' as editable with context %}
 
 {% block subtitle %}{{ _('Resources') }}{% endblock %}
 
@@ -8,54 +9,58 @@
 
 {% block secondary_content %}
     <section class="collaborate button-box">
-      <h4>Collaborate with LA Counts</h4>
-      <p>Are there stories, datasets or visualizations you’d like to see on LA Counts? Let us know—we’re building this together!</p>
-      <a class="btn" href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">Suggest additions<br><span class="secondary">to LA Counts</span></a>
+      {% call editable.region('resources-secondary') %}
+        <h4>Collaborate with LA Counts</h4>
+        <p>Are there stories, datasets or visualizations you’d like to see on LA Counts? Let us know—we’re building this together!</p>
+        <a class="btn" href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">Suggest additions<br><span class="secondary">to LA Counts</span></a>
+      {% endcall %}
     </section>
 {% endblock %}
 
 {% block primary_content %}
-  <h1>Resources</h1>
+  {% call editable.region('resources-primary') %}
+    <h1>Resources</h1>
 
-  <p>Los Angeles County has a wealth of useful resources for learning about data and working with it. Here are a few organizations and activities to get you started helping to change LA County for the better.</p>
+    <p>Los Angeles County has a wealth of useful resources for learning about data and working with it. Here are a few organizations and activities to get you started helping to change LA County for the better.</p>
 
-  <p>Something missing? Let us know on the <a href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">{{ _('Contact Us') }}</a> page.</p>
+    <p>Something missing? Let us know on the <a href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">{{ _('Contact Us') }}</a> page.</p>
 
-  <h2>LA County Data Science And Web Dev Orgs</h2>
-  <ul>
-    <li>Black Girls Code | <a href="http://www.blackgirlscode.com">http://www.blackgirlscode.com</a></li>
-    <li>City of LA Data Science Working Group | <a href="http://dsf.lacity.org/working-group">http://dsf.lacity.org/working-group</a></li>
-    <li>Fullstack LA | <a href="https://www.meetup.com/la-fullstack/">https://www.meetup.com/la-fullstack/</a></li>
-    <li>Girl Develop It | <a href="https://www.girldevelopit.com/chapters/los-angeles ">https://www.girldevelopit.com/chapters/los-angeles</a></li>
-    <li>Hack for LA | <a href="http://www.hackforla.org/">http://www.hackforla.org/</a></li>
-    <li>Learn Teach Code | <a href="https://www.meetup.com/LearnTeachCode/ ">https://www.meetup.com/LearnTeachCode/</a></li>
-    <li>Maptime LA | <a href="https://www.meetup.com/MaptimeLA/">https://www.meetup.com/MaptimeLA/</a></li>
-  </ul>
+    <h2>LA County Data Science And Web Dev Orgs</h2>
+    <ul>
+      <li>Black Girls Code | <a href="http://www.blackgirlscode.com">http://www.blackgirlscode.com</a></li>
+      <li>City of LA Data Science Working Group | <a href="http://dsf.lacity.org/working-group">http://dsf.lacity.org/working-group</a></li>
+      <li>Fullstack LA | <a href="https://www.meetup.com/la-fullstack/">https://www.meetup.com/la-fullstack/</a></li>
+      <li>Girl Develop It | <a href="https://www.girldevelopit.com/chapters/los-angeles ">https://www.girldevelopit.com/chapters/los-angeles</a></li>
+      <li>Hack for LA | <a href="http://www.hackforla.org/">http://www.hackforla.org/</a></li>
+      <li>Learn Teach Code | <a href="https://www.meetup.com/LearnTeachCode/ ">https://www.meetup.com/LearnTeachCode/</a></li>
+      <li>Maptime LA | <a href="https://www.meetup.com/MaptimeLA/">https://www.meetup.com/MaptimeLA/</a></li>
+    </ul>
 
 
-  <h2>Data Tutorials</h2>
-  <ul>
-    <li>Codecademy | <a href="https://www.codecademy.com/catalog/subject/data-science"> https://www.codecademy.com/catalog/subject/data-science</a></li>
-    <li>Coursera | <a href="https://www.coursera.org/browse/data-science?languages=en#data-analysis">https://www.coursera.org/browse/data-science?languages=en</a></li>
-    <li>D3 Tutorial | <a href="https://github.com/d3/d3/wiki/tutorials"> https://github.com/d3/d3/wiki/tutorials</a></li>
-    <li>Mike Bostock’s California maps and DIY guides |
-      <ul>
-        <li><a href="https://bl.ocks.org/mbostock/5562380">https://bl.ocks.org/mbostock/5562380 </a></li>
-        <li><a href="https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27">https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27</a></li>
-        <li><a href="https://bl.ocks.org/mbostock/670b9fe0577a29c39a1803f59c628769">https://bl.ocks.org/mbostock/670b9fe0577a29c39a1803f59c628769</a></li>
-      </ul>
-    </li>
-    <li>Data Science Masters | <a href="http://datasciencemasters.org/ ">http://datasciencemasters.org</a></li>
-    <li>Khan Academy | <a href="https://www.khanacademy.org/computing/computer-programming">https://www.khanacademy.org/computing/computer-programming</a></li>
-  </ul>
+    <h2>Data Tutorials</h2>
+    <ul>
+      <li>Codecademy | <a href="https://www.codecademy.com/catalog/subject/data-science"> https://www.codecademy.com/catalog/subject/data-science</a></li>
+      <li>Coursera | <a href="https://www.coursera.org/browse/data-science?languages=en#data-analysis">https://www.coursera.org/browse/data-science?languages=en</a></li>
+      <li>D3 Tutorial | <a href="https://github.com/d3/d3/wiki/tutorials"> https://github.com/d3/d3/wiki/tutorials</a></li>
+      <li>Mike Bostock’s California maps and DIY guides |
+        <ul>
+          <li><a href="https://bl.ocks.org/mbostock/5562380">https://bl.ocks.org/mbostock/5562380 </a></li>
+          <li><a href="https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27">https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27</a></li>
+          <li><a href="https://bl.ocks.org/mbostock/670b9fe0577a29c39a1803f59c628769">https://bl.ocks.org/mbostock/670b9fe0577a29c39a1803f59c628769</a></li>
+        </ul>
+      </li>
+      <li>Data Science Masters | <a href="http://datasciencemasters.org/ ">http://datasciencemasters.org</a></li>
+      <li>Khan Academy | <a href="https://www.khanacademy.org/computing/computer-programming">https://www.khanacademy.org/computing/computer-programming</a></li>
+    </ul>
 
-  <h2>Additional Data Resources</h2>
-  <ul>
-    <li>California Civic Data | <a href="https://www.californiacivicdata.org/">https://www.californiacivicdata.org/</a></li>
-    <li>DATA:USA &gt; Los Angeles County | <a href="https://datausa.io/profile/geo/los-angeles-county-ca/">https://datausa.io/profile/geo/los-angeles-county-ca/</a></li>
-    <li>Neighborhood Data for Social Change | <a href="https://data.myneighborhooddata.org/stories/s/xs7g-jqmb ">https://data.myneighborhooddata.org/stories/s/xs7g-jqmb</a></li>
-    <li>Race Counts &gt; Los Angeles County | <a href="http://www.racecounts.org/county/los-angeles/">http://www.racecounts.org/county/los-angeles/</a></li>
-    <li>StudyLA | <a href="http://academics.lmu.edu/studyla/">http://academics.lmu.edu/studyla/</a></li>
-    <li>Southern California Association of Governments &gt; Data and Tools | <a href="http://www.scag.ca.gov/DataAndTools/Pages/Home.aspx">http://www.scag.ca.gov/DataAndTools/Pages/Home.aspx</a></li>
-  </ul>
+    <h2>Additional Data Resources</h2>
+    <ul>
+      <li>California Civic Data | <a href="https://www.californiacivicdata.org/">https://www.californiacivicdata.org/</a></li>
+      <li>DATA:USA &gt; Los Angeles County | <a href="https://datausa.io/profile/geo/los-angeles-county-ca/">https://datausa.io/profile/geo/los-angeles-county-ca/</a></li>
+      <li>Neighborhood Data for Social Change | <a href="https://data.myneighborhooddata.org/stories/s/xs7g-jqmb ">https://data.myneighborhooddata.org/stories/s/xs7g-jqmb</a></li>
+      <li>Race Counts &gt; Los Angeles County | <a href="http://www.racecounts.org/county/los-angeles/">http://www.racecounts.org/county/los-angeles/</a></li>
+      <li>StudyLA | <a href="http://academics.lmu.edu/studyla/">http://academics.lmu.edu/studyla/</a></li>
+      <li>Southern California Association of Governments &gt; Data and Tools | <a href="http://www.scag.ca.gov/DataAndTools/Pages/Home.aspx">http://www.scag.ca.gov/DataAndTools/Pages/Home.aspx</a></li>
+    </ul>
+  {% endcall %}
 {% endblock %}

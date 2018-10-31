@@ -3,10 +3,8 @@
 <section class="community">
   <div class="container">
     <div>
-      {% call editable.region('community-banner') %}
-      <p>
-        Get involved and help build a better Los Angeles County through open data and data stories.
-      </p>
+      {% call editable.region('community-banner', read_only=(c.controller != 'home')) %}
+        <p>Get involved and help build a better Los Angeles County through open data and data stories.</p>
       {% endcall %}
     </div>
     <a href="https://goo.gl/forms/rQNVca7JuOdMewgH3"><i class="fa fa-lightbulb-o" aria-hidden="true"></i> Suggest a story</a>

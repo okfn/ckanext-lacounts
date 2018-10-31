@@ -1,4 +1,5 @@
 {% extends "page.html" %}
+{% import 'macros/editable.html' as editable with context %}
 
 {% block subtitle %}{{ _('Contact Us') }}{% endblock %}
 
@@ -7,13 +8,14 @@
 {% endblock %}
 
 {% block primary_content %}
-  <h1>Contact Us</h1>
-  <p>To report a bug, please open an issue on <a href="https://github.com/okfn/ckanext-lacounts">Github</a>. For any other enquiries, use the form below.</p>
+  {% call editable.region('contact-us') %}
+    <h1>Contact Us</h1>
+    <p>To report a bug, please open an issue on <a href="https://github.com/okfn/ckanext-lacounts">Github</a>. For any other enquiries, use the form below.</p>
+  {% endcall %}
 
   {% block contact_form_content %}
     {% include "contact/snippets/form.html" %}
   {% endblock %}
-
 {% endblock %}
 
 {% block secondary %}{% endblock %}

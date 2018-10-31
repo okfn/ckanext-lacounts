@@ -5,9 +5,6 @@
 {% block scripts %}
   {{ super() }}
   {% resource 'lacounts/home.js' %}
-  {% if h.check_access('sysadmin') %}
-    {% resource 'lacounts/editable' %}
-  {% endif %}
 {% endblock %}
 
 {% block bodytag %} {{ super() }} class="home"{% endblock %}

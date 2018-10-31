@@ -8,4 +8,7 @@
 {% block scripts %}
   {{ super() }}
   {% resource 'lacounts/theme.js' %}
+  {% if h.check_access('sysadmin') %}
+    {% resource 'lacounts/editable' %}
+  {% endif %}
 {% endblock %}
