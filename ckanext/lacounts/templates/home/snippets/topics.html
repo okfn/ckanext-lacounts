@@ -6,10 +6,12 @@
     <p>With over 10 million residents spread across 4000+ square miles, Los Angeles County is diverse, distributed, data-rich and data-poor. These six topics touch upon issues that afflict some of our poorest and most vulnerable populations. Use them as jumping off points to learn and share opportunities for improvement and change.</p>
   {% endcall %}
   <ul class="button-boxes topics-list">
-    {% for topic in h.get_topics() %}
+    {% for topic in h.get_topics(only_featured=True) %}
       <li class="{{ topic.name }} full-link">
         <a href="{{ h.url_for('topic_read', id=topic.name) }}">
-          <span class="icon">{% include topic.icon_path %}</span>
+          {% if topic.icon_path %}
+            <span class="icon">{% include topic.icon_path %}</span>
+          {% endif %}
           <span class="btn">
             {{ topic.title }}
           </span>

@@ -29,8 +29,9 @@ def get_image_for_group(group_name, return_path=False):
         if return_path:
             return path
         svg = jinja_env.get_template(path)
-    except KeyError as e:
-        return ""
+    except KeyError:
+        # TODO: provide default icon
+        return ''
 
     img = toolkit.literal("<span class='image %s'>" % group_name
                           + svg.render() + "</span>")
@@ -161,20 +162,20 @@ def get_package_stories(package_name):
         return []
 
 
-def get_topics(current_url=''):
+def get_topics(current_url='', only_featured=False):
     topics = []
-    names = sorted(['education', 'environment', 'housing', 'immigration', 'transportation', 'health'])
-    dicts = toolkit.get_action('group_list')({'model': model}, {'all_fields': True, 'type': 'topic'})
-    for name in names:
-        for topic in dicts:
-            if name != topic['name']:
-                continue
-            if name in urlparse.parse_qs(urlparse.urlparse(current_url).query).get('groups', []):
-                topic['selected'] = True
-            topic['icon_path'] = get_image_for_group(name, return_path=True)
-            if topic['name'] == 'health':
-                topic['title'] = 'Health'  # Drop the 'Wellbeing'
-            topics.append(topic)
+    dicts = toolkit.get_action('group_list')({'model': model},
+        {'all_fields': True, 'type': 'topic', 'include_extras': True})
+    for topic in dicts:
+        if only_featured and topic.get('featured') != 'yes':
+            continue
+        if topic['name'] in urlparse.parse_qs(urlparse.urlparse(current_url).query).get('groups', []):
+            topic['selected'] = True
+        topic['icon_path'] = get_image_for_group(topic['name'], return_path=True)
+        # Change "Health + Wellbeing" to "Health"
+        if topic['name'] == 'health':
+            topic['title'] = 'Health'
+        topics.append(topic)
     return topics
 
 

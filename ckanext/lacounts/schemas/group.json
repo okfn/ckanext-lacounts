@@ -30,6 +30,23 @@
             "help_text": "Each term should be placed on a new line"
         },
         {
+            "field_name": "featured",
+            "help_text": "Featured topics are shown on the home page",
+            "label": "Featured topic",
+            "preset": "select",
+            "required" : true,
+            "choices": [
+                {
+                    "label": "No",
+                    "value": "no"
+                },
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                }
+            ]
+        },
+        {
             "field_name": "image",
             "form_snippet": "organization_image.html",
             "label": "Image"
