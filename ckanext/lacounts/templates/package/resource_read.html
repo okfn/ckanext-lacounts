@@ -41,7 +41,7 @@
     <p>
       {{ _('Published by') }}
       <a href="{{ h.url_for('organization_read', id=pkg.organization.name) }}">
-        {{ pkg.organization.title }}
+        {{ h.get_organization_display_title(pkg.organization) }}
       </a>
     </p>
 
