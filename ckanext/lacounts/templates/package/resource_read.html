@@ -15,6 +15,27 @@
 
 {% block resource_actions %}{% endblock %}
 
+{% block resource_content %}
+  {% block resource_read_title %}<h1 class="page-heading">{{ h.resource_display_name(res) | truncate(50) }}</h1>{% endblock %}
+  {% block resource_read_url %}
+    {% if res.url and h.is_url(res.url) %}
+      <p class="text-muted ellipsis">{{ _('URL:') }} <a class="resource-url-analytics" href="{{ res.url }}" title="{{ res.url }}">{{ res.url }}</a></p>
+    {% elif res.url %}
+      <p class="text-muted break-word">{{ _('URL:') }} {{ res.url }}</p>
+    {% endif %}
+  {% endblock %}
+  <div class="prose notes" property="rdfs:label">
+    {% if res.description %}
+      {{ h.render_markdown(res.description) }}
+    {% endif %}
+    {% if not res.description and c.package.notes %}
+      <h3>{{ _('From the dataset description') }}</h3>
+      <blockquote>{{ h.markdown_extract(h.get_translated(c.package, 'notes')) }}</blockquote>
+      <p>{% trans dataset=c.package.title, url=h.url_for(controller='package', action='read', id=c.package['name']) %}Source: <a href="{{ url }}">{{ dataset }}</a>{% endtrans %}
+    {% endif %}
+  </div>
+{% endblock %}
+
 {% block secondary_content %}
   <section class="publisher button-box">
     <p>
