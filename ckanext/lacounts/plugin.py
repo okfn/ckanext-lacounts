@@ -62,6 +62,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'sort_facet_items': helpers.sort_facet_items,
             'get_publisher_type': helpers.get_publisher_type,
             'get_organization_display_title': helpers.get_organization_display_title,
+            'get_resources_ordered': helpers.get_resources_ordered,
         }
 
     # IRoutes

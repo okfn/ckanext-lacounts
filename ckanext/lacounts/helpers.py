@@ -286,3 +286,14 @@ def get_organization_display_title(organization):
     if 'display_name' not in organization:
         organization = toolkit.get_action('organization_show')({'model': model}, {'id': organization['id']})
     return organization.get('display_title', organization['display_name'])
+
+
+def get_resources_ordered(resources):
+    downloadable_resources = []
+    other_resources = []
+    for resource in (resources or []):
+        if resource.get('has_views') or resource.get('url_type') == 'upload':
+            downloadable_resources.append(resource)
+        else:
+            other_resources.append(resource)
+    return downloadable_resources + other_resources

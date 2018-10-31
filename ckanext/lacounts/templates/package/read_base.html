@@ -113,9 +113,7 @@
       {% endif %}
     {% endblock %}
 
-    {% block package_resources %}
-      {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
-    {% endblock %}
+    {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=h.get_resources_ordered(pkg.resources) %}
 
     {% block package_metadata %}
       <section class="additional-info">
