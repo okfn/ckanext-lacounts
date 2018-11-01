@@ -32,6 +32,9 @@
           </span>
         {% endfor %}
       {% endfor %}
+      {% if facets.fields|length > 0 %}
+        <a href="/dataset" class="remove-all">{{ _('Remove all filters') }}</a>
+      {% endif %}
       <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
     </div>
   {% endblock %}
