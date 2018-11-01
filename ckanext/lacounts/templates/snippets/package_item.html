@@ -1,14 +1,5 @@
 {% ckan_extends %}
 
-{% block content %}
-  {% if package.type == 'showcase' and package.image_display_url %}
-    <a class="image" href="{{ h.url_for(controller='package', action='read', id=package.name) }}">
-      <img src="{{ package.image_display_url }}" alt="">
-    </a>
-  {% endif %}
-  {{ super() }}
-{% endblock %}
-
 {% block heading %}
   {{ super() }}
 
@@ -22,29 +13,38 @@
 {% endblock %}
 
 {% block notes %}
-  {{ super() }}
-
-  {% if package.type == 'showcase' %}
-    <ul class="dataset-resources list-unstyled">
-      <li>
-        <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default">
-          {{ package.story_type or 'Data stories' }}
-        </a>
-      </li>
-    </ul>
-  {% elif package.resources and not hide_resources %}
-    {% block resources_outer %}
-      <ul class="dataset-resources list-unstyled">
-        {% block resources_inner %}
-          {% for resource in h.dict_list_reduce(package.resources, 'format') %}
-          <li>
-            <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default" data-format="{{ resource.lower() }}">{{ resource }}</a>
-          </li>
-          {% endfor %}
-        {% endblock %}
-      </ul>
-    {% endblock %}
+  <div class="dataset-notes">
+  {% if package.type == 'showcase' and package.image_display_url %}
+    <a class="image" href="{{ h.url_for(controller='package', action='read', id=package.name) }}">
+      <img src="{{ package.image_display_url }}" alt="">
+    </a>
   {% endif %}
+  <div>
+    {{ super() }}
+
+    {% if package.type == 'showcase' %}
+      <ul class="dataset-resources list-unstyled">
+        <li>
+          <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default">
+            {{ package.story_type or 'Data stories' }}
+          </a>
+        </li>
+      </ul>
+    {% elif package.resources and not hide_resources %}
+      {% block resources_outer %}
+        <ul class="dataset-resources list-unstyled">
+          {% block resources_inner %}
+            {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+            <li>
+              <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default" data-format="{{ resource.lower() }}">{{ resource }}</a>
+            </li>
+            {% endfor %}
+          {% endblock %}
+        </ul>
+      {% endblock %}
+    {% endif %}
+    </div>
+  </div>
 {% endblock %}
 
 {% block resources %}
