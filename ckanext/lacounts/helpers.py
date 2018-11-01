@@ -128,7 +128,10 @@ def get_recent_data_stories(limit=4):
     showcases = []
     items = toolkit.get_action('ckanext_showcase_list')({'model': model}, {})
     for item in items:
-        showcase = toolkit.get_action('package_show')({'model': model}, {'id': item['id']})
+        try:
+            showcase = toolkit.get_action('package_show')({'model': model}, {'id': item['id']})
+        except toolkit.NotAuthorized:
+            continue
         if (not showcase.get('image_display_url') or
                 showcase.get('story_type') == 'Blog post'):
             continue
