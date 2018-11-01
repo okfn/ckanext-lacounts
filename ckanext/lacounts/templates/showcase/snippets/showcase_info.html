@@ -21,7 +21,7 @@
 
     {% if pkg.referenced_datasets %}
       <section class="module module-narrow">
-        <h2 class="module-heading">{{ _('Datasets referenced in this story') }}</h2>
+        <h2 class="module-heading">{{ _('Datasets') }}</h2>
         <ul class="dataset-list">
         {% for package in pkg.referenced_datasets %}
           {% set truncate_title = truncate_title or 80 %}
