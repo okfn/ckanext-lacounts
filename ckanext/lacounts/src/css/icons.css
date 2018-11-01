@@ -78,3 +78,8 @@
 .icon-twitter::before {
   @mixin icon-twitter;
 }
+
+.fa.trending {
+  color: var(--yellow);
+  font-size: 200%;
+}

@@ -21,6 +21,15 @@
   {% endblock %}
 {% endblock %}
 
+{% block heading_meta %}
+  {% if package.get('state', '').startswith('draft') %}
+    <span class="label label-info">{{ _('Draft') }}</span>
+  {% elif package.get('state', '').startswith('deleted') %}
+    <span class="label label-danger">{{ _('Deleted') }}</span>
+  {% endif %}
+  {{ h.popular('recent views', package.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if package.tracking_summary }}
+{% endblock %}
+
 {% block notes %}
   {{ super() }}
 

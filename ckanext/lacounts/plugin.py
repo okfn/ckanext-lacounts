@@ -30,6 +30,9 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     def update_config_schema(self, schema):
         schema.update({
+            'ckanext.lacounts.trending_min': [
+                toolkit.get_validator('ignore_missing'),
+            ],
             'ckanext.lacounts.editable_regions': [
                 toolkit.get_validator('ignore_missing'),
                 validators.validate_editable_regions,
@@ -63,6 +66,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_publisher_type': helpers.get_publisher_type,
             'get_organization_display_title': helpers.get_organization_display_title,
             'get_resources_ordered': helpers.get_resources_ordered,
+            'get_minimum_views_for_trending': helpers.get_minimum_views_for_trending,
         }
 
     # IRoutes

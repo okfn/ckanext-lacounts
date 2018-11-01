@@ -7,7 +7,6 @@
   <div>
     <a class="heading" href="{{ url }}" title="{{ res.name or res.description }}">
       {{ h.resource_display_name(res) | truncate(50) }}
-      {{ h.popular('views', res.tracking_summary.total, min=10) }}
     </a>
     {% if res.description %}
       <p class="description">

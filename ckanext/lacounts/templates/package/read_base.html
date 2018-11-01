@@ -103,6 +103,7 @@
           [{{ _('Deleted') }}]
         {% endif %}
       </h1>
+      {{ h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary }}
     {% endblock %}
 
     {% block package_notes %}

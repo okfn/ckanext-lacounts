@@ -301,3 +301,7 @@ def get_resources_ordered(resources):
         else:
             other_resources.append(resource)
     return downloadable_resources + other_resources
+
+
+def get_minimum_views_for_trending():
+    return int(config.get('ckanext.lacounts.trending_min', '10')) or 10
