@@ -10,20 +10,29 @@
 
   & .form-control {
     font-size: 1.5em;
-    padding-right: 3.5rem;
+    padding-right: 2.7em;
   }
 
   & .field .btn-search {
     outline: none;
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2em;
+    height: 2em;
     font-size: 1.8em;
-    margin-top: -1rem;
-    right: 0.8rem;
+    margin-top: -1em;
+    right: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (--small-up) {
     margin-bottom: 2rem;
+  }
+
+  &.pinned {
+    font-size: 0.7em;
+    padding-bottom: var(--spacer-25);
+    @mixin extend-full-width var(--grey);
   }
 }
 

@@ -1,21 +1,3 @@
-@define-mixin extend-full-width $bgCol: color(var(--grey) tint(90%)) {
-  background-color: $bgCol;
-  position: relative;
-  z-index: 0;
-
-  &::before {
-    content: '';
-    background-color: $bgCol;
-    position: absolute;
-    width: 100vw;
-    right: 100%;
-    top: 0;
-    bottom: 0;
-    z-index: -1;
-    box-shadow: 100vw 0 0 0 $bgCol;
-  }
-}
-
 .helper-info {
   text-align: right;
   pointer-events: none;

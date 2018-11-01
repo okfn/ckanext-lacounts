@@ -14,6 +14,7 @@
     "postcss-import": "^11.0.0",
     "postcss-mixins": "^6.2.0",
     "postcss-nesting": "^4.2.1",
-    "twitter-fetcher": "^18.0.2"
+    "twitter-fetcher": "^18.0.2",
+    "zebra_pin": "^2.0.0"
   }
 }

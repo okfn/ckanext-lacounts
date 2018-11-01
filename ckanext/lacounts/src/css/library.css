@@ -60,13 +60,13 @@
     color: var(--heading-link-colour);
   }
 
-  & .dataset-content {
-    & div {
-      margin-top: 0.5em;
+  & .dataset-notes {
+    display: flex;
+    width: 100%;
+    margin-top: 0.5em;
 
-      @media (--small-up) {
-        font-size: var(--font-size-medium);
-      }
+    @media (--small-up) {
+      font-size: var(--font-size-medium);
     }
   }
 
@@ -89,7 +89,6 @@
         color: #333;
       }
 
-      /* TODO: review by Sam */
       &:visited {
         color: #fff;
       }
@@ -101,12 +100,12 @@
 
       & .image {
         display: block;
-        margin-right: var(--spacer-50);
+        margin-right: var(--spacer-35);
         flex-grow: 0;
 
         & img {
-          width: 200px;
-          height: 200px;
+          width: 120px;
+          height: 120px;
           object-fit: cover;
           filter: grayscale(100%);
         }

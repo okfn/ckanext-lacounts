@@ -30,7 +30,7 @@ module.exports = function(grunt) {
       },
       main: {
         files: {
-          'ckanext/lacounts/fanstatic/theme.js': ['node_modules/jquery.dotdotdot/dist/jquery.dotdotdot.js', 'node_modules/twitter-fetcher/js/twitterFetcher.js', 'ckanext/lacounts/src/js/main.js']
+          'ckanext/lacounts/fanstatic/theme.js': ['node_modules/jquery.dotdotdot/dist/jquery.dotdotdot.js', 'node_modules/zebra_pin/dist/zebra_pin.min.js', 'ckanext/lacounts/src/js/main.js']
         }
       },
       home: {
