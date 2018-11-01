@@ -74,9 +74,19 @@ $(document).ready(function(){
   /* Header */
   /**********/
 
-  // use BS affix to detet if scrolled
+  // use BS affix to detect if scrolled
   $('.masthead').affix({
     offset: 1
+  });
+
+  // get header height (without px)
+  var padTop = parseInt($('.page').css('padding-top'), 10);
+
+  // use Zebra Pin to detect if scrolled to search bar
+  // (BS affix doesn't work accurately)
+  new $.Zebra_Pin($('.site-search'), {
+    top_spacing: padTop,
+    class_name: "pinned"
   });
 
 
