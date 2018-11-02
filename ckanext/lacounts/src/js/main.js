@@ -132,8 +132,8 @@ $(document).ready(function(){
       $(this).remove();
     });
   };
-  // Set dataset description to max 200px
-  $('.dataset .notes').trunc(200);
+  // Set dataset description to max 100px
+  $('.dataset .notes').trunc(100);
 
 
   /* Content */
