@@ -42,16 +42,17 @@
         width: auto;
         color: var(--blue);
       }
+    }
 
-      &:focus {
-        background-color: var(--blue);
-        outline: none;
-        border-radius: 50%;
+    & input:focus + button {
+      background-color: var(--blue);
+      outline: none;
+      border-radius: 50%;
 
-        & i {
-          color: #fff;
-        }
+      & i {
+        color: #fff;
       }
     }
+
   }
 }
