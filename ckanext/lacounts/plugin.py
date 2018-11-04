@@ -83,7 +83,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             m.connect('privacypolicy', '/privacy', action='privacypolicy')
             m.connect('termsofservice', '/terms', action='termsofservice')
             m.connect('faqs', '/faqs', action='faqs')
-            m.connect('about', '/about', action='about')
+            m.connect('aboutus', '/about', action='aboutus')
             m.connect('resources', '/resources', action='resources')
             m.connect('getinvolved', '/getinvolved', action='getinvolved')
 

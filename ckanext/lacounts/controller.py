@@ -32,7 +32,7 @@ class StaticController(toolkit.BaseController):
     def faqs(self):
         return toolkit.render('static/faqs.html')
 
-    def about(self):
+    def aboutus(self):
         return toolkit.render('static/about.html')
 
     def termsofservice(self):
