@@ -114,6 +114,12 @@
         top: 0.1em;
       }
     }
+
+    & tr:first-child th,
+    & tr:first-child td {
+      border-top: none;
+      padding-top: 0;
+    }
   }
 }
 

@@ -171,12 +171,6 @@
                 'temporal_end',
                 ] -%}
             <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">{{ _('Field') }}</th>
-                  <th scope="col">{{ _('Value') }}</th>
-                </tr>
-              </thead>
               <tbody>
                 {%- for field in schema.dataset_fields -%}
                   {%- if field.field_name not in exclude_fields
@@ -216,12 +210,6 @@
           <div class="meta-data">
             <h3>{{ _('Admin') }}</h3>
             <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">{{ _('Field') }}</th>
-                  <th scope="col">{{ _('Value') }}</th>
-                </tr>
-              </thead>
               <tbody>
                 {% if pkg_dict.metadata_created %}
                   <tr>
