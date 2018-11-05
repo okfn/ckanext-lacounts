@@ -61,6 +61,10 @@
   content: "\f0fe";
 }
 
+@define-mixin icon-fire {
+  content: "\e904";
+}
+
 .fa {
   display: inline-flex;
 }
@@ -71,7 +75,8 @@
 .fa-lightbulb-o,
 .fa-search,
 .fa-plus-square,
-.icon-twitter {
+.icon-twitter,
+.icon-trending {
   @mixin icon;
 }
 
@@ -79,7 +84,6 @@
   @mixin icon-twitter;
 }
 
-.fa.trending {
-  color: var(--yellow);
-  font-size: 200%;
+.icon-trending::before {
+  @mixin icon-fire;
 }

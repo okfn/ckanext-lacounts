@@ -103,7 +103,9 @@
           [{{ _('Deleted') }}]
         {% endif %}
       </h1>
-      {{ h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary }}
+      {# move to placeholder below
+        h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary
+      #}
     {% endblock %}
 
     {% block package_notes %}
@@ -113,6 +115,10 @@
         </div>
       {% endif %}
     {% endblock %}
+
+    <div class="primary-meta">
+      <span class="trending" title="17 recent views"><i class="icon-trending"></i> Trending.</span> <span>This dataset updates every year.</span>
+    </div>
 
     {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=h.get_resources_ordered(pkg.resources) %}
 

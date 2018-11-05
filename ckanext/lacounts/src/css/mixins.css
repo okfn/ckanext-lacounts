@@ -15,3 +15,21 @@
     box-shadow: 100vw 0 0 0 $bgCol;
   }
 }
+
+@define-mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+@define-mixin tip $bg: color(var(--grey) tint(90%)), $shadow: var(--drop-shadow) {
+  border-radius: var(--border-radius);
+  box-shadow: $shadow;
+  background-color: $bg;
+  font-size: var(--font-size-small);
+}

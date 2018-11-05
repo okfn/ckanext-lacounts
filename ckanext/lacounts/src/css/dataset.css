@@ -192,18 +192,26 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  margin-top: var(--spacer-25);
 
   & .format-label {
-    position: static;
-    margin-right: var(--spacer-25);
-    flex-shrink: 0;
-    width: 58px; /* override strangely specific CSS */
-    height: 62px;/* override strangely specific CSS */
+    display: none;
+
+    @media (--small-up) {
+      display: block;
+      position: static;
+      margin-right: var(--spacer-15);
+      flex-shrink: 0;
+      width: var(--format-icon-width); /* override strangely specific CSS */
+      height: var(--format-icon-height);/* override strangely specific CSS */
+    }
   }
 
   & .heading {
-    font-size: 1rem;
+    font-size: var(--font-size-small);
+
+    @media (--medium-up) {
+      font-size: var(--font-size-medium);
+    }
   }
 
   & .description {
@@ -219,22 +227,71 @@
 
       & li {
         display: block;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-left: var(--spacer-15);
 
         & a {
-          background-color: color(var(--grey) tint(50%));
-          color: var(--body-bg);
           text-decoration: none;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 44px;
-          height: 44px;
+          position: relative;
+          height: 36px;
+          margin-left: var(--spacer-15);
 
-          &:hover {
-            background-color: var(--dark-blue);
+          & .text {
+            font-size: var(--font-size-small);
+            margin-left: 0.2em;
+          }
+
+          @media (hover: hover) {
+            background-color: color(var(--grey) tint(50%));
+            width: 36px;
+            border-radius: 18px;
+            color: var(--body-bg);
+
+            & i {
+              font-size: 0.9em;
+              position: relative;
+
+              /* compensate for font-awesome inconsistencies */
+              &.fa-table,
+              &.fa-arrow-down,
+              &.fa-link,
+              &.fa-info {
+                top: 1px;
+              }
+            }
+
+            & .text {
+              @mixin sr-only;
+            }
+
+            &:hover {
+              background-color: var(--dark-blue);
+
+              &::after {
+                content: '';
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-width: 0.6rem 0.6rem 0 0.6rem;
+                border-color: color(var(--grey) tint(90%)) transparent transparent transparent;
+                position: absolute;
+                bottom: 100%;
+                left: 50%;
+                margin-left: -0.6em;
+              }
+
+              &::before {
+                content: attr(data-label);
+                position: absolute;
+                bottom: 100%;
+                margin-bottom: 0.5em;
+                @mixin tip color(var(--grey) tint(90%)), var(--shadow);
+                color: var(--body-colour);
+                padding: 0.5em;
+                text-align: center;
+              }
+            }
           }
         }
       }
@@ -247,61 +304,107 @@
 }
 
 .format-label {
-  width: 58px;
-  height: 62px;
+  width: var(--format-icon-width);
+  height: var(--format-icon-height);
   background-size: auto 150px;
-  background-position: calc(0 - calc(calc(17 * 100px)) - 21px) -19px;
+  background-position: calc(0 - calc(calc(0 * 50px)) - 10px) -108px;
 
   &[data-format=rdf],
   &[data-format*=rdf] {
-    background-position: calc(0 - calc(calc(11 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(12 * 50px)) - 10px) -108px;
   }
 
   &[data-format=pdf],
   &[data-format*=pdf] {
-    background-position: calc(0 - calc(calc(10 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(11 * 50px)) - 10px) -108px;
   }
 
   &[data-format=api],
   &[data-format*=api] {
-    background-position: calc(0 - calc(calc(9 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(10 * 50px)) - 10px) -108px;
   }
 
   &[data-format=zip],
   &[data-format*=zip] {
-    background-position: calc(0 - calc(calc(8 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(9 * 50px)) - 10px) -108px;;
   }
 
   &[data-format=xls],
   &[data-format*=xls] {
-    background-position: calc(0 - calc(calc(7 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(8 * 50px)) - 10px) -108px;
   }
 
   &[data-format=csv],
   &[data-format*=csv] {
-    background-position: calc(0 - calc(calc(6 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(7 * 50px)) - 10px) -108px;
   }
 
   &[data-format=txt],
   &[data-format*=txt] {
-    background-position: calc(0 - calc(calc(3 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(4 * 50px)) - 10px) -108px;
   }
 
   &[data-format=xml],
   &[data-format*=xml] {
-    background-position: calc(0 - calc(calc(2 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(3 * 50px)) - 10px) -108px;
   }
 
   &[data-format=json],
   &[data-format*=json] {
-    background-position: calc(0 - calc(calc(1 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(2 * 50px)) - 10px) -108px;
   }
 
   &[data-format=html],
   &[data-format*=html] {
-    background-position: calc(0 - calc(calc(0 * 100px)) - 21px) -19px;
+    background-position: calc(0 - calc(calc(1 * 50px)) - 10px) -108px;
   }
 
+  /* override Geoview ext */
+  &[data-format=wfs],
+  &[data-format*=wfs],
+  &[data-format=wms],
+  &[data-format*=wms],
+  &[data-format=gml],
+  &[data-format*=gml],
+  &[data-format=kml],
+  &[data-format*=kml],
+  &[data-format=wmts],
+  &[data-format*=wmts],
+  &[data-format=geojson],
+  &[data-format*=geojson] {
+    background-image: url("../../../base/images/sprite-resource-icons.png");
+    background-size: auto 150px;
+  }
+
+  &[data-format=wfs],
+  &[data-format*=wfs] {
+    background-position: calc(0 - calc(calc(18 * 50px)) - 10px) -108px;
+  }
+
+  &[data-format=wms],
+  &[data-format*=wms] {
+    background-position: calc(0 - calc(calc(13 * 50px)) - 10px) -108px;
+  }
+
+  &[data-format=gml],
+  &[data-format*=gml] {
+    background-position: calc(0 - calc(calc(19 * 50px)) - 10px) -108px;
+  }
+
+  &[data-format=kml],
+  &[data-format*=kml] {
+    background-position: calc(0 - calc(calc(21 * 50px)) - 10px) -108px;
+  }
+
+  &[data-format=wmts],
+  &[data-format*=wmts] {
+    background-position: calc(0 - calc(calc(20 * 50px)) - 10px) -108px;
+  }
+
+  &[data-format=geojson],
+  &[data-format*=geojson] {
+    background-position: calc(0 - calc(calc(22 * 50px)) - 10px) -108px;
+  }
 }
 
 .truncate {
@@ -323,14 +426,50 @@
 .trunc-expand,
 .trunc-collapse {
   cursor: pointer;
+
+  @media (--small-up) {
+    float: left;
+  }
 }
 
 .dataset {
   & .resources {
     padding-top: var(--spacer-50);
   }
-  
+
   & .notes > :last-child {
     margin-bottom: 0;
+  }
+
+  & .primary-meta {
+    font-size: var(--font-size-small);
+
+    & > span {
+      display: flex;
+      align-items: center;
+      margin-top: 0.5em;
+    }
+
+    & .icon-trending {
+      font-size: 1.5em;
+      width: auto;
+    }
+
+    @media (--small-up) {
+      display: flex;
+      align-items: center;
+
+      & > span {
+        & + span {
+          padding-left: 0.5em;
+          margin-left: 0.5em;
+          border-left: solid 1px var(--grey);
+        }
+      }
+
+      & :first-child {
+        margin-left: auto;
+      }
+    }
   }
 }

@@ -21,11 +21,8 @@
   }
 
   & .content {
-    background-color: #fff;
-    font-size: 16px;
+    @mixin tip #fff;
     padding: var(--spacer-15);
-    border-radius: var(--border-radius);
-    box-shadow: var(--drop-shadow);
     text-align: left;
     position: relative;
     margin-top: 0.8rem;
