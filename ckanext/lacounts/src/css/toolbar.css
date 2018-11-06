@@ -1,4 +1,6 @@
 .toolbar {
+  display: none;
+  
   & .breadcrumb {
     font-style: italic;
     font-size: 1em;

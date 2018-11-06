@@ -33,6 +33,14 @@
     font-size: 0.7em;
     padding-bottom: var(--spacer-25);
     @mixin extend-full-width var(--grey);
+
+    & .form-control {
+      margin-top: 2px;
+
+      &:not(:focus) {
+        border-color: #fff;
+      }
+    }
   }
 }
 
@@ -75,7 +83,11 @@
 }
 
 [role=main] {
-  padding-bottom: var(--spacer-75);
+  padding-bottom: var(--spacer-15);
+
+  @media (--small-only) {
+    padding-bottom: var(--spacer-35);
+  }
 
   & .wrapper {
     margin-left: 0;

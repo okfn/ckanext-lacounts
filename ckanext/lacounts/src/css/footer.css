@@ -1,3 +1,27 @@
+.pre-footer-connectivity {
+  @media (--small-up) {
+    display: none;
+  }
+
+  & .connectivity {
+    margin-bottom: var(--spacer-35);
+
+    & .btn {
+      width: 100%;
+      margin-top: var(--spacer-25);
+    }
+
+    & .dropdown-menu {
+      width: 100%;
+      justify-content: center;
+
+      & a {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
 .site-footer {
   background-color: var(--grey);
   color: color(#fff a(90%));

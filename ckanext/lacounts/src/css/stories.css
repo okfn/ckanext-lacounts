@@ -39,6 +39,11 @@
     & .lead {
       margin-top: 1em;
     }
+
+    & .embed {
+      max-width: 100%;
+      overflow-x: auto;
+    }
   }
 
   & .author {

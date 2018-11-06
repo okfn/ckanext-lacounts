@@ -23,13 +23,7 @@
     {% endblock %}
 
     {% block feedback %}
-      <div>
-        <a class="btn btn-primary" href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">Give feedback</a>
-        <div class="dropdown">
-          <a class="btn" id="share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
-          {% snippet 'snippets/social.html' %}
-        </div>
-      </div>
+      {% snippet 'snippets/connectivity.html' %}
     {% endblock %}
   </div>
 

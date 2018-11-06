@@ -154,6 +154,11 @@ $(document).ready(function(){
     .prependTo($('.story .notes'));
 
 
+  /* Story embeds */
+  // Wrap iframes, to control width
+  $( ".ckanext-showcase-notes iframe" ).wrap( "<div class='embed'></div>" );
+
+
   /* Publishers hierarchy toggle */
   /*******************************/
   $('#publisher-tree .hierarchy-toggle').click(function () {
