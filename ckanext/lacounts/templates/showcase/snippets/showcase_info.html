@@ -32,18 +32,6 @@
       </section>
     {% endif %}
 
-    {% set related_stories = h.get_related_stories_for_display(pkg.get('related_stories', [])) %}
-    {% if related_stories %}
-      <section class="module module-narrow">
-        <h2 class="module-heading"> {{ _('Related stories') }}</h2>
-        <ul class="dataset-list">
-        {% for package in related_stories %}
-          <li>{{ h.link_to(h.truncate(package.text, 80), package.href) }}</li>
-        {% endfor %}
-        </ul>
-      </section>
-    {% endif %}
-
     {% set groups = pkg.groups %}
     {% if groups %}
       <section class="module module-narrow">
