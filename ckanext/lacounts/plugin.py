@@ -67,6 +67,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_organization_display_title': helpers.get_organization_display_title,
             'get_resources_ordered': helpers.get_resources_ordered,
             'get_minimum_views_for_trending': helpers.get_minimum_views_for_trending,
+            'get_frequency_period': helpers.get_frequency_period,
         }
 
     # IRoutes

@@ -117,7 +117,11 @@
     {% endblock %}
 
     <div class="primary-meta">
-      <span class="trending" title="17 recent views"><i class="icon-trending"></i> Trending.</span> <span>This dataset updates every year.</span>
+      <span class="trending" title="17 recent views"> <i class="icon-trending"></i> Trending.</span>
+      {% set period = h.get_frequency_period(pkg) %}
+      {% if period %}
+        <span>This dataset updates every {{ period }}.</span>
+      {% endif %}
     </div>
 
     {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=h.get_resources_ordered(pkg.resources) %}

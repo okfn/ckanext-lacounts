@@ -305,3 +305,14 @@ def get_resources_ordered(resources):
 
 def get_minimum_views_for_trending():
     return int(config.get('ckanext.lacounts.trending_min', '10')) or 10
+
+
+def get_frequency_period(package):
+    MAPPING = {
+        'daily': 'day',
+        'weekly': 'week',
+        'biweekly': 'two weeks',
+        'monthly': 'month',
+        'annually': 'year',
+    }
+    return MAPPING.get(package.get('frequency'))
