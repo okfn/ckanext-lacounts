@@ -161,8 +161,7 @@
   }
 
   & .search-form {
-    padding-top: var(--spacer-50);
-    margin-bottom: 0;
+    margin-bottom: var(--spacer-15);
   }
 
   & .homepage > .container > section {
