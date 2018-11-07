@@ -1,4 +1,7 @@
 {# show the popularity icon #}
 {% if number >= min %}
-  <span class="fa fa-fire trending" title="{{ title.format(number=number) }}"></span>
+  <span class="trending" title="{{ title.format(number=number) }}">
+    <i class="icon-trending"></i>
+  </span>
 {% endif %}
+

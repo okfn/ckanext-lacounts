@@ -103,9 +103,6 @@
           [{{ _('Deleted') }}]
         {% endif %}
       </h1>
-      {# move to placeholder below
-        h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary
-      #}
     {% endblock %}
 
     {% block package_notes %}
@@ -117,7 +114,7 @@
     {% endblock %}
 
     <div class="primary-meta">
-      <span class="trending" title="17 recent views"> <i class="icon-trending"></i> Trending.</span>
+      {{ h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary }}
       {% set period = h.get_frequency_period(pkg) %}
       {% if period %}
         <span>This dataset updates every {{ period }}.</span>
