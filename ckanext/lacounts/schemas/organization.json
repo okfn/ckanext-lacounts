@@ -69,11 +69,6 @@
             "display_snippet": null,
             "form_snippet": "org_hierarchy.html",
             "validators": "ignore_missing"
-        },
-        {
-            "field_name": "image",
-            "form_snippet": "organization_image.html",
-            "label": "Image"
         }
     ]
 }
