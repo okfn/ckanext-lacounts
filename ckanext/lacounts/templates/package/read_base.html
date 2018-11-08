@@ -117,8 +117,10 @@
       {{ h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary }}
       {% set period = h.get_frequency_period(pkg) %}
       {% if period %}
-        <span>This dataset updates every {{ period }}.</span>
+        <span>This dataset updates every {{ period }}</span>
       {% endif %}
+      {% resource 'lacounts/disqus' %}
+      <span class="disqus-comment-count" data-disqus-identifier="dataset::{{ pkg.id }}"></span>
     </div>
 
     {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=h.get_resources_ordered(pkg.resources) %}
