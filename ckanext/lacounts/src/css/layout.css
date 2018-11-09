@@ -96,6 +96,16 @@
     &::before {
       display: none;
     }
+
+    &.no-nav {
+      & .primary {
+        width: 100%;
+        padding-left: 0;
+      }
+      & .secondary {
+        display: none;
+      }
+    }
   }
 
   & .primary {

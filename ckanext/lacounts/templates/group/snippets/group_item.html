@@ -1,5 +1,29 @@
 {% ckan_extends %}
 
-  {% block image %}
-    {{ h.get_image_for_group(group.name) }}
+
+{% block item %}
+  <li class="{% if group.featured != "no" %}featured {% endif %}topic-item {{ group.name }}">
+  {% block item_inner %}
+    <a href="{{ url }}" title="{{ _('View {name}').format(name=group.display_name) }}">
+      {% if group.featured != "no" %}
+        {% block image %}
+          {{ h.get_image_for_group(group.name) }}
+        {% endblock %}
+      {% endif %}
+
+      <div class="text">
+        {% block title %}
+          {{ super() }}
+        {% endblock %}
+
+        {% block datasets %}
+          {{ super() }}
+        {% endblock %}
+        <span class="count">X Stories</span>
+      </div>
+    </a>
   {% endblock %}
+  </li>
+{% endblock %}
+
+{% if position is divisibleby 3 %}{% endif %}

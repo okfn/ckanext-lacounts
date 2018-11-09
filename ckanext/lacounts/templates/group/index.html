@@ -2,6 +2,23 @@
 
 {% block subtitle %}{{ _('Topics') }}{% endblock %}
 
+{% block wrapper_class %} no-nav{% endblock %}
+
 {% block breadcrumb_content %}
   <li class="active">{% link_for _('Topics'), controller='group', action='index', named_route=group_type + '_index' %}</li>
+{% endblock %}
+
+{% block groups_search_form %}{% endblock %}
+
+{% block page_primary_action %}{% endblock %}
+
+{% block secondary_content %}{% endblock %}
+
+{%- block footer %}
+  {% if h.check_access('group_create') %}
+    <div class="admin-page-actions">
+      {% link_for _('Add Group'), named_route=group_type+'/new', class_='btn btn-primary', icon='plus-square' %}
+    </div>
+  {% endif %}
+  {{ super() }}
 {% endblock %}
