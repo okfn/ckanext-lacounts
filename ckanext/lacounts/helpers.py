@@ -304,7 +304,7 @@ def get_resources_ordered(resources):
 
 
 def get_minimum_views_for_trending():
-    return int(config.get('ckanext.lacounts.trending_min', '10')) or 10
+    return int(config.get('ckanext.lacounts.trending_min') or '10') or 10
 
 
 def get_frequency_period(package):
