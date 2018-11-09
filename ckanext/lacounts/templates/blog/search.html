@@ -2,9 +2,13 @@
 
 {% block main_content %}
 <h2>Blog Posts</h2>
-<ul>
+<div>
   {% for post in posts %}
-    <li><a href="{{ h.url_for('blog_read', id=post.name) }}">{{ post.title|truncate(30) }}</a></li>
+    <h2><a href="{{ h.url_for('blog_read', id=post.name) }}">{{ post.title|truncate(30) }}</a></h2>
+    {% if post.image_display_url %}
+      <img width="200" src="{{ post.image_display_url }}" alt="" />
+    {% endif %}
+    <p>{{ h.markdown_extract(post.notes, extract_length=160) }}</p>
   {% endfor %}
-</ul>
+</div>
 {% endblock %}

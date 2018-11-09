@@ -13,12 +13,10 @@ class BlogController(ShowcaseController):
         context = {'model': model}
         showcases = toolkit.get_action('ckanext_showcase_list')(context, {})
         for showcase in showcases:
-            for extra in showcase.get('extras', []):
-                if extra['key'] == 'story_type' \
-                   and extra['value'] == 'Blog post':
-                    posts.append(showcase)
-        return toolkit.render(self._search_template('blog'),
-                              extra_vars={'posts': posts})
+            showcase = toolkit.get_action('package_show')(context, {'id': showcase['id']})
+            if showcase.get('story_type') == 'Blog post':
+                posts.append(showcase)
+        return toolkit.render(self._search_template('blog'), extra_vars={'posts': posts})
 
     def _search_template(self, package_type):
         return 'blog/search.html'
