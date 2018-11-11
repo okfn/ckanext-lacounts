@@ -4,12 +4,12 @@
 <ul class="topic-list">
 {% block group_list_inner %}
   {% for group in groups %}
-    {% if group.featured != "no" %}
+    {% if group.featured == "yes" %}
       {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
     {% endif %}
   {% endfor %}
   {% for group in groups %}
-    {% if group.featured == "no" %}
+    {% if group.featured != "yes" %}
       {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
     {% endif %}
   {% endfor %}
