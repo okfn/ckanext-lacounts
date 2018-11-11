@@ -19,6 +19,14 @@
       </section>
     {% endif %}
 
+    {% if pkg.methodology_dict %}
+      <section class="module module-narrow methodology">
+        <h2 class="module-heading">{{ _('Methodology') }}</h2>
+          <p>{{ h.markdown_extract(pkg.methodology_dict.notes, 90) }}</p>
+          <p><a href="/story/{{ pkg.methodology_dict.name }}">Read more</a></p>
+      </section>
+    {% endif %}
+
     {% if pkg.referenced_datasets %}
       <section class="module module-narrow">
         <h2 class="module-heading">{{ _('Datasets') }}</h2>
