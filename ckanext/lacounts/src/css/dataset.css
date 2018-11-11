@@ -476,8 +476,8 @@
     }
   }
 
-  .trunc-expand,
-  .trunc-collapse {
+  & .trunc-expand,
+  & .trunc-collapse {
     @media (--small-up) {
       float: left;
     }
