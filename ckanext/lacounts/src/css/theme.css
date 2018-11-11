@@ -22,5 +22,6 @@
 @import "resources";
 @import "stories";
 @import "topics";
+@import "blog";
 @import "details";
 @import "user";

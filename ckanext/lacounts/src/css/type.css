@@ -44,7 +44,8 @@ h1 {
   }
 }
 
-h2 {
+h2,
+body.blog article h1 {
   font-size: 1.6rem;
 }
 

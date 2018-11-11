@@ -104,7 +104,11 @@ $(document).ready(function(){
   /*****************/
 
   // story previews
-  $(".stories-list article .text").dotdotdot({
+  $(".stories-list article .text").dotdotdot({});
+
+  // blog previews
+  $("body.blog article .text").dotdotdot({
+    keep: ".more"
   });
 
   // function to set an element's max-height

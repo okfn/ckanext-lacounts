@@ -1,14 +1,33 @@
 {% extends 'page.html' %}
 
-{% block main_content %}
-<h2>Blog Posts</h2>
-<div>
+{% block bodytag %} {{ super() }} class="blog"{% endblock %}
+
+{% block breadcrumb_content %}
+  <li><a href="{{ h.url_for('blog_search') }}">{{ _('Blog') }}</a></li>
+{% endblock %}
+
+{% block primary %}
+<h1>{{ _('LA Counts news') }}</h1>
+<ul class="post-list">
   {% for post in posts %}
-    <h2><a href="{{ h.url_for('blog_read', id=post.name) }}">{{ post.title|truncate(30) }}</a></h2>
-    {% if post.image_display_url %}
-      <img width="200" src="{{ post.image_display_url }}" alt="" />
-    {% endif %}
-    <p>{{ h.markdown_extract(post.notes, extract_length=160) }}</p>
+    <li>
+      <article>
+        <h1><a href="{{ h.url_for('blog_read', id=post.name) }}">{{ post.title }}</a></h1>
+        <div>
+          {% if post.image_display_url %}
+            <figure class="feature-image">
+              <img src="{{ post.image_display_url }}" alt="">
+            </figure>
+          {% endif %}
+
+          <div class="text">
+            {{ h.markdown_extract(post.notes, extract_length=900) }}
+            <a href="{{ h.url_for('blog_read', id=post.name) }}" class="more">{{ _('Read more') }}</a>
+          </div>
+          
+        </div>
+      </article>
+    </li>
   {% endfor %}
 </div>
 {% endblock %}

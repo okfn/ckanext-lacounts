@@ -1,0 +1,48 @@
+body.blog {
+  & .post-list {
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      display: block;
+      padding-bottom: var(--spacer-35);
+      margin-bottom: var(--spacer-35);
+      border-bottom: solid 0.2em color(var(--grey) a(20%));
+    }
+
+    & h1 {
+      display: block;
+      border: none;
+      padding-bottom: 0;
+      margin-bottom: var(--spacer-25);
+    }
+
+    & article > div {
+      display: flex;
+    }
+
+    & .feature-image {
+      display: none;
+
+      @media (--small-up) {
+        display: block;
+        margin-right: var(--spacer-35);
+
+        & img {
+          width: 10rem;
+
+          @supports (object-fit: cover) {
+            height: 10rem;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+  @nest .js & {
+    & article .text {
+      height: 10rem;
+    }
+  }
+}
