@@ -42,3 +42,12 @@
   {% endfor %}
 </div>
 {% endblock %}
+
+{% block footer %}
+  {% if h.check_access('ckanext_showcase_create') %}
+    <div class="admin-page-actions">
+      {% link_for _('Add Blog Post'), named_route='story/new', class_='btn btn-primary', icon='plus-square' %}
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
