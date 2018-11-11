@@ -17,9 +17,18 @@
         {% endblock %}
 
         {% block datasets %}
-          {{ super() }}
+          {% set count = h.expand_topic_package_count(group) %}
+          {% if count.dataset %}
+            <strong class="count">{{ ungettext('{num} Dataset', '{num} Datasets', count.dataset).format(num=count.dataset) }}</strong>
+          {% else %}
+            <span class="count">{{ _('0 Datasets') }}</span>
+          {% endif %}
+          {% if count.story %}
+            <strong class="count">{{ ungettext('{num} Stories', '{num} Stories', count.story).format(num=count.story) }}</strong>
+          {% else %}
+            <span class="count">{{ _('0 Stories') }}</span>
+          {% endif %}
         {% endblock %}
-        <span class="count">X Stories</span>
       </div>
     </a>
   {% endblock %}

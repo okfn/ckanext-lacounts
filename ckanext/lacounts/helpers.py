@@ -316,3 +316,15 @@ def get_frequency_period(package):
         'annually': 'year',
     }
     return MAPPING.get(package.get('frequency'))
+
+
+def expand_topic_package_count(topic):
+    package_count = topic.get('package_count') or 0
+    story_count = toolkit.get_action('package_search')({'modle': model}, {
+        'fq': 'dataset_type:showcase groups:%s' % topic['name'],
+    })['count'] if package_count else 0
+    return {
+        'package': package_count,
+        'dataset': package_count - story_count,
+        'story': story_count,
+    }
