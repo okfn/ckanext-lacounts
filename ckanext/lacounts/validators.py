@@ -28,3 +28,7 @@ def validate_editable_regions(value):
             raise toolkit.Invalid('Homepage region %s is invalid' % region_name)
 
     return value
+
+
+def set_default_publisher_title(key, data, errors, context):
+    data[('title',)] = data.get(('title',)) or data.get(('display_title',))

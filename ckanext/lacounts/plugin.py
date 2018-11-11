@@ -20,6 +20,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IGroupController, inherit=True)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IValidators)
 
     # IConfigurer
 
@@ -68,6 +69,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_resources_ordered': helpers.get_resources_ordered,
             'get_minimum_views_for_trending': helpers.get_minimum_views_for_trending,
             'get_frequency_period': helpers.get_frequency_period,
+            'get_publisher_types': helpers.get_publisher_types,
             'expand_topic_package_count': helpers.expand_topic_package_count,
         }
 
@@ -143,4 +145,11 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_actions(self):
         return {
             'config_option_update': actions.config_option_update,
+        }
+
+    # IValidators
+
+    def get_validators(self):
+        return {
+            'set_default_publisher_title': validators.set_default_publisher_title,
         }

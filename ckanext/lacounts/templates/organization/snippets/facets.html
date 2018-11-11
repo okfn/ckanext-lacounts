@@ -15,16 +15,15 @@
   </h2>
   <div class="module-content">
     <ul class="filter-list list-unstyled nav nav-simple nav-facet">
-      {% set schema = h.scheming_get_organization_schema('publisher') %}
-      {% for field in schema.fields %}
-        {% if field.field_name == 'publisher_type' %}
-          {% for choice in h.scheming_field_choices(field) + [{'value': '', 'label': 'Uncategorized'}] %}
-            <li class="nav-item active">
-              <a class="filter-toggle" title="Toggle publishers type" data-publisher-type="{{ choice.value }}">
-                <span class="item-label">{{ choice.label }}</span>
-              </a>
-            </li>
-          {% endfor %}
+      {% for publisher_type in h.get_publisher_types() %}
+        {% if publisher_type.count %}
+          <li class="nav-item active">
+            <a class="filter-toggle" title="Toggle publishers type" data-publisher-type="{{ publisher_type.value }}">
+              <span class="item-label">{{ publisher_type.label }}</span>
+              <span class="hidden separator"> - </span>
+              <span class="item-count badge">{{ publisher_type.count }}</span>
+            </a>
+          </li>
         {% endif %}
       {% endfor %}
     </ul>

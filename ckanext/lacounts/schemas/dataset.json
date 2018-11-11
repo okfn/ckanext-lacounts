@@ -14,7 +14,8 @@
             "field_name": "title",
             "form_placeholder": "eg. A descriptive title",
             "label": "Title",
-            "preset": "title"
+            "preset": "title",
+            "required": true
         },
         {
           "field_name": "owner_org",

@@ -14,12 +14,14 @@
             "field_name": "display_title",
             "form_placeholder": "eg. City of Lakewood",
             "label": "Title",
-            "preset": "title"
+            "preset": "title",
+            "required": true
         },
         {
             "field_name": "title",
             "form_placeholder": "eg. Lakewood, City of",
-            "label": "Title for listings"
+            "label": "Title for listings",
+            "validators": "set_default_publisher_title"
         },
         {
             "field_name": "description",

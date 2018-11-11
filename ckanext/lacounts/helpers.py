@@ -318,6 +318,34 @@ def get_frequency_period(package):
     return MAPPING.get(package.get('frequency'))
 
 
+def get_publisher_types():
+    context = {'model': model}
+    default = {'value': 'uncategorized', 'label': 'Uncategorized'}
+
+    # Count publishers for types
+    counter = {}
+    names = toolkit.get_action('organization_list')(context, {'type': 'publisher'})
+    for name in names:
+        publisher = toolkit.get_action('organization_show')(context, {'id': name})
+        publisher_type = publisher.get('publisher_type') or default['value']
+        counter.setdefault(publisher_type, 0)
+        counter[publisher_type] += 1
+
+    # Compose type list
+    types = []
+    schema = toolkit.h.scheming_get_organization_schema('publisher')
+    for field in schema['fields']:
+        if field['field_name'] == 'publisher_type':
+            for choice in toolkit.h.scheming_field_choices(field) + [default]:
+                types.append({
+                    'value': choice['value'],
+                    'label': choice['label'],
+                    'count': counter.get(choice['value'], 0),
+                })
+
+    return types
+
+  
 def expand_topic_package_count(topic):
     package_count = topic.get('package_count') or 0
     story_count = toolkit.get_action('package_search')({'modle': model}, {
@@ -328,3 +356,4 @@ def expand_topic_package_count(topic):
         'dataset': package_count - story_count,
         'story': story_count,
     }
+

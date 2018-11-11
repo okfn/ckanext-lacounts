@@ -26,7 +26,7 @@ Example:
       {% if node.highlighted %}
         <li class="highlighted" id="node_{{ node.name }}" data-publisher-type="{{ publisher_type }}">
       {% else %}
-        <li id="node_{{ node.name }}" data-publisher-type="{{ publisher_type }}">
+        <li id="node_{{ node.name }}" data-publisher-type="{{ publisher_type or 'uncategorized' }}">
       {% endif %}
         {% link_for display_text, named_route='publisher_read', id=node.name %}
       {% if node.children %}
