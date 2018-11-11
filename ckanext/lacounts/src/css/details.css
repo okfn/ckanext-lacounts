@@ -1,0 +1,32 @@
+/* Topic and Publisher pages */
+body.details {
+  & .context-info {
+    margin-bottom: var(--spacer-50);
+
+    & .module-content {
+      padding: 0;
+    }
+
+    & .nums {
+      margin-top: 0;
+      padding-top: 0;
+      border: none;
+    }
+
+    & .follow_button {
+      margin-bottom: 0;
+    }
+  }
+
+  & .search-form {
+    & .control-order-by {
+      @media (--small-up) {
+        font-size: 0.85em;
+      }
+    }
+  }
+
+  & .search-bar {
+    margin-bottom: var(--spacer-35);
+  }
+}

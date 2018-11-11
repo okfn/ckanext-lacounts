@@ -107,7 +107,6 @@ $(document).ready(function(){
   $(".stories-list article .text").dotdotdot({
   });
 
-  // Dataset description
   // function to set an element's max-height
   $.fn.trunc = function(h) {
     var originalHeight = $(this).height();
@@ -133,7 +132,9 @@ $(document).ready(function(){
     });
   };
   // Set dataset description to max 100px
-  $('.dataset .notes').trunc(100);
+  $('body.dataset .notes').trunc(100);
+  // Set topic and publissher description to max 100px
+  $('body.details .notes').trunc(100);
 
 
   /* Content */

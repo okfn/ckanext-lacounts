@@ -40,6 +40,24 @@ select.form-control {
   height: 2.6em;
 }
 
+.control-order-by {
+  display: flex;
+  align-items: center;
+  margin: 0;
+
+  & label {
+    white-space: nowrap;
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: inherit;
+  }
+
+  & select {
+    font-weight: bold;
+    border: none;
+  }
+}
+
 .control-large input {
   font-size: 1.2em;
   height: auto;

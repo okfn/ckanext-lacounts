@@ -188,7 +188,8 @@
   }
 }
 
-.button-box {
+.button-box,
+.context-info {
   @mixin btn-box;
   @mixin btn-box-col;
 }

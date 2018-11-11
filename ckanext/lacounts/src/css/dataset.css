@@ -314,6 +314,7 @@
   height: var(--format-icon-height);
   background-size: auto 150px;
   background-position: calc(0 - calc(calc(0 * 50px)) - 10px) -108px;
+  filter: grayscale(100%);
 
   &[data-format=rdf],
   &[data-format*=rdf] {
@@ -432,10 +433,6 @@
 .trunc-expand,
 .trunc-collapse {
   cursor: pointer;
-
-  @media (--small-up) {
-    float: left;
-  }
 }
 
 .dataset {
@@ -476,6 +473,13 @@
       & :first-child {
         margin-left: auto;
       }
+    }
+  }
+
+  .trunc-expand,
+  .trunc-collapse {
+    @media (--small-up) {
+      float: left;
     }
   }
 }

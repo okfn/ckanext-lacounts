@@ -1,8 +1,32 @@
 {% ckan_extends %}
 
+{% block bodytag %} {{ super() }} class="topic details"{% endblock %}
+
 {% block subtitle %}{{ c.group_dict.display_name }} - {{ _('Topics') }}{% endblock %}
 
 {% block breadcrumb_content %}
   <li>{% link_for _('Topics'), controller='group', action='index', named_route=group_type + '_index' %}</li>
   <li class="active">{% link_for c.group_dict.display_name|truncate(35), controller='group', action='read', id=c.group_dict.name, named_route=group_type + '_read' %}</li>
+{% endblock %}
+
+{% block primary_content %}
+  {% block heading %}
+  <h1 class="heading">
+    {{ c.group.display_name }}
+    {% if c.group.state == 'deleted' %}
+      [{{ _('Deleted') }}]
+    {% endif %}
+  </h1>
+  {% endblock %}
+  {% block description %}
+  {% if c.group.description %}
+  <div class="notes">
+    {{ c.group.description }}
+  </div>
+  {% endif %}
+  {% endblock %}
+
+  {% block page_header %}{% endblock %}
+
+  {{ super() }}
 {% endblock %}

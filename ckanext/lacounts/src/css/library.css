@@ -9,24 +9,6 @@
     align-items: center;
     font-size: 0.85em;
   }
-
-  & .control-order-by {
-    display: flex;
-    align-items: center;
-    margin: 0;
-
-    & label {
-      white-space: nowrap;
-      margin-bottom: 0;
-      font-weight: normal;
-      font-size: inherit;
-    }
-
-    & select {
-      font-weight: bold;
-      border: none;
-    }
-  }
 }
 
 .remove-all {
