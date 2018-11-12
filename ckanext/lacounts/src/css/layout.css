@@ -34,16 +34,55 @@ html {
   }
 
   &.pinned {
-    font-size: 0.7em;
-    padding-bottom: var(--spacer-25);
     @mixin extend-full-width var(--grey);
+  }
+}
 
-    & .form-control {
-      margin-top: 2px;
+.masthead + .site-search,
+.site-search.pinned {
+  font-size: 0.7em;
+  padding-bottom: var(--spacer-25);
 
-      &:not(:focus) {
-        border-color: #fff;
-      }
+  & .form-control {
+    margin-top: 2px;
+
+    &:not(:focus) {
+      border-color: #fff;
+    }
+  }
+}
+
+.masthead + .site-search {
+  position: fixed;
+  background-color: var(--grey);
+  top: var(--header-height-small);
+  width: 100%;
+  z-index: 99;
+  padding-bottom: 0;
+  height: var(--search-height-small);
+
+  @media (--medium-up) {
+    height: var(--search-height-medium);
+  }
+
+  @media (--large-up) {
+    height: var(--search-height-large);
+  }
+
+  & .btn-search {
+    padding-top: 2px;
+    margin-right: var(--container-padding);
+  }
+
+  @media (--medium-up) {
+    top: var(--header-height-medium);
+  }
+
+  @nest .logged-in & {
+    top: calc(var(--header-height-small) + var(--user-bar-height));
+
+    @media (--medium-up) {
+      top: calc(var(--header-height-medium) + var(--user-bar-height));
     }
   }
 }
@@ -52,26 +91,27 @@ html {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: var(--header-height-small);
+  margin-top: var(--spacer-35);
+  padding-top: calc(var(--header-height-small) + var(--search-height-small));
 
   &.logged-in {
-    padding-top: calc(var(--header-height-small) + var(--user-bar-height));
+    padding-top: calc(var(--header-height-small) + var(--user-bar-height) + var(--search-height-small));
   }
 
   @media (--medium-up) {
-    padding-top: var(--header-height-medium);
+    padding-top: calc(var(--header-height-medium) + var(--search-height-medium));
 
     &.logged-in {
-      padding-top: calc(var(--header-height-medium) + var(--user-bar-height));
+      padding-top: calc(var(--header-height-medium) + var(--user-bar-height) + var(--search-height-medium));
     }
   }
-  /*@media (--large-up) {
-    padding-top: var(--header-height-large);
+  @media (--large-up) {
+    padding-top: calc(var(--header-height-medium) + var(--search-height-large));
 
     &.logged-in {
-      padding-top: calc(var(--header-height-large) + var(--user-bar-height));
+      padding-top: calc(var(--header-height-medium) + var(--user-bar-height) + var(--search-height-large));
     }
-  }*/
+  }
 
   &.active-search {
     @media (--small-up) {

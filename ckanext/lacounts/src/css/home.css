@@ -90,6 +90,10 @@
       background-color: color(var(--grey) a(0%));
       transition: background-color 1s;
     }
+
+    & + .site-search {
+      display: none;
+    }
   }
 
   & .hero {
