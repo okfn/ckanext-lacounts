@@ -1,12 +1,4 @@
 {% ckan_extends %}
 
-{% block subtitle %}{{ h.get_organization_display_title(c.group_dict) }} - {{ _('Publishers') }}{% endblock %}
-
-{% block breadcrumb_content %}
-    <li>{% link_for _('Publishers'), named_route=group_type+'_index' %}</li>
- {% set parent_list =  h.group_tree_parents(c.group_dict.name)  %}
- {% for parent_node in parent_list %}
-    <li>{% link_for parent_node.title|truncate(35), named_route=group_type+'_read', id=parent_node.name, suppress_active_class=true %}</li>
- {% endfor %}
-    <li class="active">{% link_for h.get_organization_display_title(c.group_dict)|truncate(35), named_route=group_type+'_read', id=c.group_dict.name %}</li>
+{% block page_primary_action %}
 {% endblock %}
