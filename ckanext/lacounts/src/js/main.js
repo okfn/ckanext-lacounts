@@ -243,12 +243,14 @@ $(document).ready(function(){
   /* jump to top */
   /***************/
   $(window).scroll(function() {
-    var scroll = $(window).scrollTop();
+    if (padTop) { // not defined on home page
+      var scrollPos = $(window).scrollTop();
 
-    if(scroll  > padTop) {
-      $('.to-top').addClass('active')
-    } else {
-      $('.to-top').removeClass('active')
+      if(scrollPos  > padTop) {
+        $('.to-top').addClass('active')
+      } else {
+        $('.to-top').removeClass('active')
+      }
     }
   });
 
