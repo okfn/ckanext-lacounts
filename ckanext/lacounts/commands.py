@@ -5,21 +5,39 @@ from ckan.plugins import toolkit
 import ckanapi
 
 
-groups = OrderedDict([
-    ('education', 'Education'),
-    ('environment', 'Environment'),
-    ('well-being', 'Well Being'),
-    ('housing', 'Housing'),
-    ('immigration', 'Immigration'),
-    ('transportation', 'Transportation')
-])
+topics = [
+    # name, title, featured
+    ('administrative-boundaries', 'Administrative Boundaries', False),
+    ('arts-culture', 'Arts + Culture', False),
+    ('census', 'Census', False),
+    ('community-economic-development', 'Community + Economic Development', False),
+    ('demographics', 'Demographics', False),
+    ('education', 'Education', True),
+    ('environment', 'Environment', True),
+    ('equity', 'Equity', False),
+    ('food', 'Food', False),
+    ('government-services', 'Government Services', False),
+    ('government-spending', 'Government Spending', False),
+    ('health', 'Health + Wellbeing', True),
+    ('housing', 'Housing', True),
+    ('immigration', 'Immigration', True),
+    ('infrastructure', 'Infrastructure', False),
+    ('la-counts', 'LA Counts', False),
+    ('natural-disasters', 'Natural Disasters', False),
+    ('philanthropy', 'Philanthropy', False),
+    ('recreation', 'Recreation', False),
+    ('safety', 'Safety', False),
+    ('schools', 'Schools', False),
+    ('transportation', 'Transportation', True),
+    ('water', 'Water', False),
+]
 
 
-class CreateFeaturedTopics(toolkit.CkanCommand):
+class CreateTopics(toolkit.CkanCommand):
     '''Create featured topics
 
     Usage:
-      create_featured_topics             - create featured topics
+      create_topics             - create topics
     '''
 
     summary = __doc__.split('\n')[0]
@@ -32,15 +50,21 @@ class CreateFeaturedTopics(toolkit.CkanCommand):
 
         local_ckan = ckanapi.LocalCKAN()
 
-        for name, title in groups.items():
+        for name, title, featured in topics:
+            featured = 'yes' if featured else 'no'
+
+            # Check
+            try:
+                local_ckan.action.group_show(id=name)
+                print('Existed topic "%s"' % name)
+                continue
+            except ckanapi.errors.NotFound:
+                pass
+
+            # Create
             try:
                 local_ckan.action.group_create(
-                    name=name,
-                    title=title,
-                    type='topic'
-                )
-                print('Created group %s ' % name)
-            except ckanapi.ValidationError as e:
-                if 'Group name already exists in database' \
-                   in e.error_dict['name']:
-                    print('Group %s already exists' % name)
+                    name=name, title=title, type='topic', featured=featured)
+                print('Created topic "%s"' % name)
+            except ckanapi.ValidationError as error:
+                print('Error: %s' % error)

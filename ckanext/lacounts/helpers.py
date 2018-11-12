@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 def get_image_for_group(group_name, return_path=False):
     '''
     Render an inline svg snippet for the named group (topic). These groups
-    correlate with those created by the `create_featured_topics` command.
+    correlate with those created by the `create_topics` command.
     '''
     jinja_env = toolkit.config['pylons.app_globals'].jinja_env
     groups = {
@@ -345,7 +345,7 @@ def get_publisher_types():
 
     return types
 
-  
+
 def expand_topic_package_count(topic):
     package_count = topic.get('package_count') or 0
     story_count = toolkit.get_action('package_search')({'modle': model}, {

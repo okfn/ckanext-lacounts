@@ -39,18 +39,18 @@ JS is built (minified) with `grunt uglify`.
 
 You can watch both for changes with `grunt`.
 
-### Create featured topics
+### Create topics
 
 There are pre-defined _topics_ (groups) that can be created with a paster command.
 
 #### In development
 
 ```sh
-docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster create_featured_topics"
+docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster create_topics"
 ```
 
 #### In production & staging
 
 ```sh
-deis run "paster --plugin=ckanext-lacounts create_featured_topics -c production.ini"
+deis run "paster --plugin=ckanext-lacounts create_topics -c production.ini"
 ```

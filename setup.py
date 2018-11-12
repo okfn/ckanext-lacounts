@@ -92,7 +92,7 @@ setup(
         ckan = ckan.lib.extract:extract_ckan
 
         [paste.paster_command]
-        create_featured_topics=ckanext.lacounts.commands:CreateFeaturedTopics
+        create_topics=ckanext.lacounts.commands:CreateTopics
     ''',
 
     # If you are changing from the default layout of your extension, you may
