@@ -31,7 +31,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   display: inline-block;
   padding-bottom: 0.1em;
@@ -46,15 +46,15 @@ h1 {
 
 h2,
 body.blog article h1 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 h3 {
-  font-size: 1.45rem;
+  font-size: 1.3rem;
 }
 
 h3.dataset-heading {
-  font-size: 1.45em;
+  font-size: 1.3em;
   font-weight: 900;
   display: inline-block;
   padding-bottom: 0.1em;
@@ -68,15 +68,15 @@ h3.dataset-heading {
 }
 
 h4 {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 h5 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
 }
 
 .lead {
-  font-size: 1.4em;
+  font-size: 1.2em;
 }
 
 /* Uppercase stuff */
