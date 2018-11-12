@@ -558,3 +558,54 @@ a.tag {
     color: #fff;
   }
 }
+
+.to-top {
+  position: fixed;
+  top: 50vh;
+  right: -5vw;
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-top: -1.1rem;
+  background-color: var(--blue);
+  color: var(--body-bg);
+  transition: all 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: solid 0.2rem var(--body-bg);
+  box-sizing: content-box;
+  z-index: 1;
+
+  &.active {
+    right: 1vw;
+  }
+
+  & i {
+    font-size: 0.9rem;
+  }
+
+  & .text {
+    font-size: 0.4rem;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  &:hover {
+    text-decoration: none;
+    background-color: color(var(--blue) shade(25%));
+    color: var(--body-bg);
+  }
+
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    border-color: color(var(--blue) shade(25%));
+    color: var(--body-bg);
+  }
+
+  &:visited {
+    color: var(--body-bg);
+  }
+}

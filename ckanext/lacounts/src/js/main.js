@@ -240,4 +240,16 @@ $(document).ready(function(){
 
   }
 
+  /* jump to top */
+  /***************/
+  $(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+    if(scroll  > padTop) {
+      $('.to-top').addClass('active')
+    } else {
+      $('.to-top').removeClass('active')
+    }
+  });
+
 });
