@@ -7,16 +7,6 @@
   <li class="active">{% link_for _('Resources'), controller='ckanext.lacounts.controller:StaticController', action='resources' %}</li>
 {% endblock %}
 
-{% block secondary_content %}
-    <section class="collaborate button-box">
-      {% call editable.region('resources-secondary') %}
-        <h4>Collaborate with LA Counts</h4>
-        <p>Are there stories, datasets or visualizations you’d like to see on LA Counts? Let us know—we’re building this together!</p>
-        <a class="btn" href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">Suggest additions<br><span class="secondary">to LA Counts</span></a>
-      {% endcall %}
-    </section>
-{% endblock %}
-
 {% block primary_content %}
   {% call editable.region('resources-primary') %}
     <h1>Resources</h1>
@@ -64,3 +54,5 @@
     </ul>
   {% endcall %}
 {% endblock %}
+
+{% block secondary %}{% endblock %}
