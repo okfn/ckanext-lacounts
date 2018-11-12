@@ -562,7 +562,7 @@ a.tag {
 .to-top {
   position: fixed;
   top: 50vh;
-  right: -5vw;
+  right: -12vw;
   width: 2.2rem;
   height: 2.2rem;
   margin-top: -1.1rem;
@@ -578,7 +578,8 @@ a.tag {
   box-sizing: content-box;
   z-index: 1;
 
-  &.active {
+  &.active,
+  &:focus {
     right: 1vw;
   }
 

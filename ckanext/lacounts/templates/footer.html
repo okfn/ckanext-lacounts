@@ -1,12 +1,13 @@
+  <div class="pre-footer-connectivity container">
+    {% snippet 'snippets/connectivity.html' %}
+  </div>
+  {% snippet 'snippets/community.html' %}
+
   <a href="#" class="to-top">
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
     <span class="text"><span class="sr-only">{{ _('Go back to') }} </span><span>{{ _('top') }}</span></span>
   </a>
 
-  <div class="pre-footer-connectivity container">
-    {% snippet 'snippets/connectivity.html' %}
-  </div>
-  {% snippet 'snippets/community.html' %}
   <footer class="site-footer">
     <div class="container">
       <a class="logo" href="{{ h.url_for('home.index') }}"><img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
