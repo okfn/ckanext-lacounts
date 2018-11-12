@@ -91,7 +91,6 @@ html {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin-top: var(--spacer-35);
   padding-top: calc(var(--header-height-small) + var(--search-height-small));
 
   &.logged-in {
@@ -127,6 +126,7 @@ html {
 }
 
 [role=main] {
+  margin-top: var(--spacer-35);
   padding-bottom: var(--spacer-15);
 
   @media (--small-only) {
