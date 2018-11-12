@@ -1,0 +1,14 @@
+url,publisher,source_name,publisher_type,parent,type
+https://data.chhs.ca.gov,California Health and Human Services Agency,,state,,ckan
+https://data.cnra.ca.gov,California Natural Resources Agency,,state,,ckan
+https://data.culvercity.org,City of Culver City,,city,,socrata
+https://data.lacity.org,City of Los Angeles,Los Angeles Open Data,city,,socrata
+https://performance-lacity.data.socrata.com/,City of Los Angeles,Performance LA,city,,socrata
+https://controllerdata.lacity.org,City of Los Angeles,ControlPanel LA,city,,socrata
+https://data.smgov.net,City of Santa Monica,,city,,socrata
+https://data.weho.org,City of West Hollywood,,city,,socrata
+https://data.lacounty.gov,County of Los Angeles,,county,,socrata
+https://bythenumbers.sco.ca.gov,California State Controller,California State Controller's Office Local Government Financial Data,state,,socrata
+http://geohub.lacity.org,City of Los Angeles,Los Angeles GeoHub,city,,esri_geoportal
+http://gisdata-scag.opendata.arcgis.com,Southern California Association of Governments,SCAG GIS Open Data Portal,regional,,esri_geoportal
+http://datalb.longbeach.gov,City of Long Beach,,city,,esri_geoportal
