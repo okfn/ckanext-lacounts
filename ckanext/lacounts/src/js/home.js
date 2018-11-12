@@ -33,4 +33,34 @@ $(document).ready(function(){
     $( ".helper-info" ).addClass("show");
   }
 
+  /* Banner images */
+  /*****************/
+
+  function setImage(id, elementReady) {
+
+    function elementReady(id) {
+      var e = document.getElementById(id);
+      e.className += " ready";
+    }
+
+    var bannerImages = [
+      "images/banner1.jpg",
+      "images/banner2.jpg",
+      "images/banner3.jpg",
+      "images/banner4.jpg"
+    ];
+
+    var imgCount = bannerImages.length;
+    var imgNumber = Math.floor(imgCount*Math.random());
+
+    document.getElementById(id).src=bannerImages[imgNumber];
+
+    elementReady(id);
+  }
+
+  if ( $(".navbar-toggle").css("display") == "none" ) {
+    // not small screens
+    setImage("BannerImage");
+  }
+
 });

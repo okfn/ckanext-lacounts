@@ -138,13 +138,27 @@
       right: 0;
       bottom: 0;
       left: 0;
-      mix-blend-mode: soft-light;
-      opacity: 0.3;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(to bottom, var(--grey) 0%, color(var(--grey) a(0%)) 100%); 
+      }
 
       & img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        opacity: 0;
+        transition: opacity 1s;
+
+        &.ready {
+          opacity: 0.3;
+        }
       }
     }
 
