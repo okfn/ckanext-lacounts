@@ -37,6 +37,11 @@
   --header-height-small: 76px;
   --header-height-medium: 100px;
   --header-height-large: 126px;
+
+  --search-height-small: 68px;
+  --search-height-medium: 76px;
+  --search-height-large: 86px;
+
   --container-padding: 2.5rem;
   --border-radius: 3px;
   --spacer-15: 0.8rem;

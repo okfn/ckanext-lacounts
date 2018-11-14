@@ -1,11 +1,10 @@
 .toolbar {
   display: none;
-  
+  margin-bottom: var(--spacer-15);
+
   & .breadcrumb {
     font-style: italic;
     font-size: 1em;
-    padding-top: var(--spacer-35);
-    padding-bottom: var(--spacer-35);
     color: var(--grey);
     float: none;
 

@@ -82,13 +82,6 @@ $(document).ready(function(){
   // get header height (without px)
   var padTop = parseInt($('.page').css('padding-top'), 10);
 
-  // use Zebra Pin to detect if scrolled to search bar
-  // (BS affix doesn't work accurately)
-  new $.Zebra_Pin($('.site-search'), {
-    top_spacing: padTop,
-    class_name: "pinned"
-  });
-
 
   /* Featured Visualisation */
   /**************************/
@@ -239,5 +232,19 @@ $(document).ready(function(){
     }
 
   }
+
+  /* jump to top */
+  /***************/
+  $(window).scroll(function() {
+    if (padTop) { // not defined on home page
+      var scrollPos = $(window).scrollTop();
+
+      if(scrollPos  > padTop) {
+        $('.to-top').addClass('active')
+      } else {
+        $('.to-top').removeClass('active')
+      }
+    }
+  });
 
 });
