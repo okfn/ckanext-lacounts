@@ -2,6 +2,16 @@
   {% if pkg %}
 
     {% if pkg.author %}
+
+      {% set author_names = pkg.author.split(' ') %}
+      <div class="author-avatar" data-initials="{{ author_names[0] | truncate(1, True, '') }}{{ author_names[1] | truncate(1, True, '') }}">
+        <span style="background-image: url();"></span>
+        {# TO:DO
+          Photo (approx 512px) as background-image of span.
+          If no photo, could either be empty of a 1px transparent PNG
+        #}
+      </div>
+
       <section class="module module-narrow author">
         <h2 class="module-heading">{{ _('About the author') }}</h2>
           {% if pkg.author_profile_dict %}

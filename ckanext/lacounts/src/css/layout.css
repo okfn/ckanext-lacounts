@@ -161,9 +161,7 @@ html {
     }
 
     @media (--small-up) {
-      &.col-sm-9 {
-        padding-left: var(--spacer-50);
-      }
+      padding-left: var(--spacer-50);
     }
 
     & .module-content {
@@ -182,11 +180,8 @@ html {
   @media (--small-up) {
     & .primary {
       float: left;
-
-      &.col-sm-9 {
-        padding-left: 0;
-        padding-right: var(--spacer-50);
-      }
+      padding-left: 0;
+      padding-right: var(--spacer-50);
     }
     & .secondary {
       float: right;
