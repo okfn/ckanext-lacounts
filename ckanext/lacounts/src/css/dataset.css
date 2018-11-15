@@ -238,8 +238,6 @@
           text-decoration: none;
           display: flex;
           align-items: center;
-          justify-content: center;
-          position: relative;
           height: 36px;
           margin-left: var(--spacer-15);
 
@@ -264,38 +262,6 @@
               &.fa-link,
               &.fa-info {
                 top: 1px;
-              }
-            }
-
-            & .text {
-              @mixin sr-only;
-            }
-
-            &:hover {
-              background-color: var(--dark-blue);
-
-              &::after {
-                content: '';
-                width: 0;
-                height: 0;
-                border-style: solid;
-                border-width: 0.6rem 0.6rem 0 0.6rem;
-                border-color: color(var(--grey) tint(90%)) transparent transparent transparent;
-                position: absolute;
-                bottom: 100%;
-                left: 50%;
-                margin-left: -0.6em;
-              }
-
-              &::before {
-                content: attr(data-label);
-                position: absolute;
-                bottom: 100%;
-                margin-bottom: 0.5em;
-                @mixin tip color(var(--grey) tint(90%)), var(--shadow);
-                color: var(--body-colour);
-                padding: 0.5em;
-                text-align: center;
               }
             }
           }
@@ -435,6 +401,52 @@
   cursor: pointer;
 }
 
+.trending {
+  & .icon-trending {
+    font-size: 1.5em;
+    width: auto;
+  }
+}
+
+@media (hover: hover) {
+  .explore li a,
+  .trending {
+    position: relative;
+    justify-content: center;
+
+    & .text {
+      @mixin sr-only;
+    }
+
+    &:hover {
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0.6rem 0.6rem 0 0.6rem;
+        border-color: color(var(--grey) tint(90%)) transparent transparent transparent;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -0.6em;
+      }
+
+      &::before {
+        content: attr(data-label);
+        position: absolute;
+        bottom: 100%;
+        margin-bottom: 0.5em;
+        @mixin tip color(var(--grey) tint(90%)), var(--shadow);
+        color: var(--body-colour);
+        padding: 0.5em;
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
 .dataset {
   & .resources {
     padding-top: var(--spacer-50);
@@ -453,14 +465,9 @@
       margin-top: 0.5em;
     }
 
-    & .icon-trending {
-      font-size: 1.5em;
-      width: auto;
-    }
-
     @media (--small-up) {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
 
       & > span {
         & + span {

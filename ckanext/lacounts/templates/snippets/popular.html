@@ -1,7 +1,7 @@
 {# show the popularity icon #}
 {% if number >= min %}
-  <span class="trending" title="{{ title.format(number=number) }}">
+  <span class="trending" data-label="{{ title.format(number=number) }}">
     <i class="icon-trending"></i>
+    <span class="text">{{ title.format(number=number) }}</span>
   </span>
 {% endif %}
-
