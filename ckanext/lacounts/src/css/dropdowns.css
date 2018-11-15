@@ -1,58 +1,64 @@
-.dropdown {
-  @nest .js & {
-    &.open {
-      &::after {
-        content: '';
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 0.6rem 0.6rem 0.6rem;
-        border-color: transparent transparent color(var(--grey) tint(90%)) transparent;
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -0.6rem;
-      }
+.dropdown,
+.js .dropdown {
+  &.open,
+  &:hover {
+    &::before { /* blank, hoverable content */
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 0.6rem;
+    }
+    &::after { /* arrow */
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0.6rem 0.6rem 0.6rem;
+      border-color: transparent transparent color(var(--grey) tint(90%)) transparent;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -0.6rem;
+    }
 
-      & .dropdown-menu {
-        &.icon {
-          display: flex;
-          padding: 0.4em;
-          font-size: 1rem;
+    & .dropdown-menu {
+      display: block;
 
-          & > li {
+      &.icon {
+        display: flex;
+        padding: 0.4em;
+        font-size: 1rem;
+
+        & > li {
+          padding: 0.3em;
+
+          & > a {
             padding: 0.3em;
+            background-color: var(--grey);
+            border-radius: var(--border-radius);
+            color: #fff;
+            width: 1.8em;
+            height: 1.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
 
+          &.google {
             & > a {
-              padding: 0.3em;
-              background-color: var(--grey);
-              border-radius: var(--border-radius);
-              color: #fff;
-              width: 1.8em;
-              height: 1.8em;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-
-              & i {
-
-              }
+              background-color: #DC4E41;
             }
-
-            &.google {
-              & > a {
-                background-color: #DC4E41;
-              }
+          }
+          &.twitter {
+            & > a {
+              background-color: #1DA1F2;
             }
-            &.twitter {
-              & > a {
-                background-color: #1DA1F2;
-              }
-            }
-            &.facebook {
-              & > a {
-                background-color: #3B5998;
-              }
+          }
+          &.facebook {
+            & > a {
+              background-color: #3B5998;
             }
           }
         }
