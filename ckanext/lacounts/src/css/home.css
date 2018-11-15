@@ -1,70 +1,25 @@
-.helper-info {
-  text-align: right;
-  pointer-events: none;
+.home {
+  & .helper-info {
+    text-align: right;
 
-  & .header {
-    display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 1.5em;
-    margin: 0;
-    background-color: var(--grey);
-    color: #fff;
-    pointer-events: auto;
-
-    @nest .background--dark & {
-      background-color: #fff;
-      color: var(--grey);
-    }
-  }
-
-  & .content {
-    @mixin tip #fff;
-    padding: var(--spacer-15);
-    text-align: left;
-    position: relative;
-    margin-top: 0.8rem;
-    opacity: 0;
-
-    @media (--small-up) {
-      position: absolute;
-    }
-
-    & :last-child {
-      margin-bottom: 0;
-    }
-
-    &::before {
-      content: '';
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 0.6rem 0.6rem 0.6rem;
+    & .header::after {
       border-color: transparent transparent #fff transparent;
-      position: absolute;
-      bottom: 100%;
-      right: 0.8rem;
     }
-  }
-
-  @nest .js & {
-    & .header {
-      cursor: pointer;
-    }
-  }
-
-  &.show {
-    pointer-events: auto;
 
     & .content {
-      opacity: 0.9;
+      background-color: #fff;
+
+      @media (--small-only) {
+        position: static;
+      }
+
+      &::before {
+        left: auto;
+        right: 0.8rem;
+      }
     }
   }
-}
 
-.home {
   & .page {
     padding-top: 0;
 
@@ -146,7 +101,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        background: linear-gradient(to bottom, var(--grey) 0%, color(var(--grey) a(0%)) 100%); 
+        background: linear-gradient(to bottom, var(--grey) 0%, color(var(--grey) a(0%)) 100%);
       }
 
       & img {
