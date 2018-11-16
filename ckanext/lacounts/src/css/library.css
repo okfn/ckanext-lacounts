@@ -143,6 +143,10 @@
   }
 }
 
+.filters {
+  margin-top: 0.2rem;
+  margin-bottom: var(--spacer-35);
+}
 
 /* mobile filters */
 @media (--small-only) {
@@ -156,6 +160,7 @@
 
     & body.filters-modal {
       & .secondary .filters {
+        margin: 0;
         padding: 0 var(--spacer-50) 0 0;
 
         & > div {

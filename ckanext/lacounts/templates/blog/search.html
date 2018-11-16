@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block primary %}
+{% snippet 'snippets/connectivity.html' %}
 <h1>{{ _('LA Counts news') }}</h1>
 <ul class="post-list">
   {% for post in posts %}
