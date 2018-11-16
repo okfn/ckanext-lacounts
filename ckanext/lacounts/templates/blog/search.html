@@ -31,9 +31,11 @@
 
         {% if post.groups %}
           <div class="topics">
-            <ul class="dataset-resources list-unstyled">
+            <ul class="tag-list">
               {% for topic in post.groups %}
-                <li><a class="label label-default" href="{{ h.url_for('topic_read', id=topic.name) }}">{{ topic.display_name }}</a></li>
+                <li class="{{ topic.name }}">
+                  <a class="tag" href="{{ h.url_for('topic_read', id=topic.name) }}">{{ topic.display_name }}</a>
+                </li>
               {% endfor %}
             </ul>
           </div>
