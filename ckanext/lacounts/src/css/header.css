@@ -182,11 +182,6 @@
         & > a {
           border-color: var(--yellow);
           border-width: 0.15em;
-          color: var(--yellow);
-          &:hover {
-            color: #fff;
-            text-decoration: underline;
-          }
 
           @media (--small-up) {
             padding-left: 1em;
@@ -195,10 +190,16 @@
             margin-right: 0;
           }
         }
-        &.active {
+
+        &:not(.active){
           & > a {
-            color: #fff;
-            text-decoration: underline;
+            background-color: var(--yellow);
+            color: var(--grey);
+
+            &:hover {
+              background-color: #fff;
+              border-color: #fff;
+            }
           }
         }
       }
