@@ -152,3 +152,9 @@ p.has-pull-quote {
     list-style-position: inside;
   }
 }
+
+hr {
+  margin-top: var(--spacer-15);
+  margin-bottom: var(--spacer-15);
+  border-top: 0.2rem solid color(var(--body-colour) a(10%));
+}

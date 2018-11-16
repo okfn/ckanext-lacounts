@@ -21,7 +21,8 @@
 
   & .topic-item {
     display: block;
-    padding-bottom: var(--spacer-50);
+    padding-top: var(--spacer-25);
+    padding-bottom: var(--spacer-25);
     grid-column: span 4;
 
     @media (--large-up) {
@@ -126,5 +127,10 @@
         @mixin topic-list-item-colour var(--transportation-colour);
       }
     }
+  }
+
+  & .separator {
+    display: block;
+    grid-column: span 12;
   }
 }
