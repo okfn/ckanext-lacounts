@@ -117,7 +117,7 @@ h5 {
 }
 
 /* detail text */
-.additional-info,
+.additional-info .table tbody,
 figcaption,
 .caption-header small,
 .pagination,

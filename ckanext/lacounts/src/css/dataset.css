@@ -117,19 +117,9 @@
 
     & tr:first-child th,
     & tr:first-child td {
-      border-top: none;
       padding-top: 0;
     }
   }
-}
-
-.table>thead>tr>th,
-.table>tbody>tr>th,
-.table>tfoot>tr>th,
-.table>thead>tr>td,
-.table>tbody>tr>td,
-.table>tfoot>tr>td {
-  padding: 0.6em 0;
 }
 
 
