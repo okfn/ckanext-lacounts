@@ -1,1 +1,1 @@
-$(document).ready(function(){$(".helper-info .header").on("click",function(){$(this).parent(".helper-info").toggleClass("show")}),null==localStorage.getItem("showHelperLibrary")&&(localStorage.setItem("showHelperLibrary",1),$(".helper-info").addClass("show"))});
+$(document).ready(function(){null==localStorage.getItem("showHelperLibrary")&&(localStorage.setItem("showHelperLibrary",1),$("#libraryHelper").addClass("display"))});

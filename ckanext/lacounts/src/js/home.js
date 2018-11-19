@@ -20,18 +20,14 @@ $(document).ready(function(){
   /* Helper info */
   /***************/
 
-  // toggle helper
-  $( ".helper-info .header" ).on( "click", function() {
-    $(this).parent(".helper-info").toggleClass( "show" );
-  });
-
   // show by default on first visit
   var showHelper = localStorage.getItem('showHelper');
   if (showHelper== null) {
     localStorage.setItem('showHelper', 1);
     // add class to show helper
-    $( ".helper-info" ).addClass("show");
+    $( "#featuredvisHelper" ).addClass("display");
   }
+
 
   /* Banner images */
   /*****************/
@@ -62,5 +58,15 @@ $(document).ready(function(){
     // not small screens
     setImage("BannerImage");
   }
+
+
+  /* Featured Visualisation */
+  /**************************/
+
+  // toggle BS collapse on description
+  $(".featured-visualisation .toggle").on("click", function() {
+    $(this).parents(".caption-header").toggleClass("show-as-collapsed");
+    $(this).parents("figcaption").children(".caption-body").collapse('toggle');
+  });
 
 });

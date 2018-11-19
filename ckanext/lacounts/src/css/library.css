@@ -143,6 +143,10 @@
   }
 }
 
+.filters {
+  margin-top: 0.2rem;
+  margin-bottom: var(--spacer-35);
+}
 
 /* mobile filters */
 @media (--small-only) {
@@ -156,6 +160,7 @@
 
     & body.filters-modal {
       & .secondary .filters {
+        margin: 0;
         padding: 0 var(--spacer-50) 0 0;
 
         & > div {
@@ -164,7 +169,7 @@
           min-height: 100vh;
 
           & > :first-child {
-            margin-top: var(--header-height-small);
+            margin-top: calc(var(--header-height-small) + var(--search-height-small));
           }
         }
 
@@ -178,7 +183,7 @@
 
       & .logged-in .secondary .filters {
         & > div > :first-child {
-          margin-top: calc(var(--header-height-small) + var(--user-bar-height));
+          margin-top: calc(var(--header-height-small) + var(--user-bar-height) + var(--search-height-small));
         }
       }
     }

@@ -19,25 +19,6 @@
   {% endblock %}
 
   {% block toolbar %}
-  <div class="toolbar">
-    {% block breadcrumb %}
-      {% if self.breadcrumb_content() | trim %}
-        <ol class="breadcrumb">
-          {% snippet 'snippets/home_breadcrumb_item.html' %}
-          {% block breadcrumb_content %}{% endblock %}
-        </ol>
-      {% endif %}
-    {% endblock %}
-
-    {% block feedback %}
-      {% snippet 'snippets/connectivity.html' %}
-    {% endblock %}
-  </div>
-
-    {% block search %}
-
-    {% endblock %}
-
   {% endblock %}
 
   <div class="row wrapper{% block wrapper_class %}{% endblock %}{% if self.secondary()|trim == '' or c.action=='resource_read' %} no-nav{% endif %}">
@@ -54,6 +35,10 @@
   </div>
 {% endblock %}
 
+{% block primary_content %}
+  {% snippet 'snippets/connectivity.html' %}
+  {{ super() }}
+{% endblock %}
 
 {%- block footer %}
   {% if self.content_action() | trim %}

@@ -13,85 +13,101 @@
 {% endblock %}
 
 
-{% block primary_content_inner %}
+{% block primary %}
+  <div class="primary col-sm-10 col-xs-12">
 
-  {% block package_description %}
+  {% block primary_content_inner %}
 
-    {% if pkg.private %}
-      <span class="dataset-private label label-inverse pull-right">
-        <i class="fa fa-lock icon-lock"></i>
-        {{ _('Private') }}
-      </span>
-    {% endif %}
+    {% snippet 'snippets/connectivity.html' %}
 
-    <h1>
-      {% block page_heading %}
-        {{ name }}
-        {% if pkg.state.startswith('draft') %}
-          [{{ _('Draft') }}]
+    {% block package_description %}
+
+      {% if pkg.private %}
+        <span class="dataset-private label label-inverse pull-right">
+          <i class="fa fa-lock icon-lock"></i>
+          {{ _('Private') }}
+        </span>
+      {% endif %}
+
+      <h1>
+        {% block page_heading %}
+          {{ name }}
+          {% if pkg.state.startswith('draft') %}
+            [{{ _('Draft') }}]
+          {% endif %}
+        {% endblock %}
+      </h1>
+
+      {% block package_author %}
+        {% if pkg.author %}
+          <p class="author">{{_('By')}} {{ pkg.author }}</p>
         {% endif %}
       {% endblock %}
-    </h1>
 
-    {% block package_author %}
-      {% if pkg.author %}
-        <p class="author">{{_('By')}} {{ pkg.author }}</p>
+      {% block package_tags %}
+        {% snippet "showcase/snippets/tags.html", tags=pkg.tags %}
+      {% endblock %}
+
+      {% block package_notes %}
+        {% if pkg.showcase_notes_formatted %}
+          <div class="notes embedded-content ckanext-showcase-notes">
+            {% if pkg.image_display_url %}
+              <figure class="feature-image">
+                <img src="{{ pkg.image_display_url }}" alt="{{ pkg.name }}">
+              </figure>
+            {% endif %}
+            {{ pkg.showcase_notes_formatted }}
+          </div>
+        {% endif %}
+      {% endblock %}
+
+    {% endblock %}
+
+    {% block package_search_results_list %}
+    {% endblock %}
+
+    {% block related_stories %}
+      {% set stories = h.get_story_related_stories(pkg) %}
+      {% if stories %}
+        <section class="data-stories">
+          <h1>Related stories</h1>
+          <div class="stories-list">
+            {% for story in stories %}
+              <article>
+                <a class="image" href="/story/{{ story.name }}">
+                  <img src="{{ story.image_display_url }}" alt="" />
+                </a>
+                <div class="text">
+                  <h1>
+                    <a href="/story/{{ story.name }}">
+                      {{ h.truncate(story.title, 80) }}
+                    </a>
+                  </h1>
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+        </section>
       {% endif %}
     {% endblock %}
 
-    {% block package_tags %}
-      {% snippet "showcase/snippets/tags.html", tags=pkg.tags %}
-    {% endblock %}
-
-    {% block package_notes %}
-      {% if pkg.showcase_notes_formatted %}
-        <div class="notes embedded-content ckanext-showcase-notes">
-          {% if pkg.image_display_url %}
-            <figure class="feature-image">
-              <img src="{{ pkg.image_display_url }}" alt="{{ pkg.name }}">
-            </figure>
-          {% endif %}
-          {{ pkg.showcase_notes_formatted }}
-        </div>
+    {% block disqus_comments %}
+      {% if h.is_disqus_enabled() and pkg.allow_commenting %}
+        {{ h.disqus_comments() }}
       {% endif %}
     {% endblock %}
 
   {% endblock %}
 
-  {% block package_search_results_list %}
-  {% endblock %}
+  </div>
+{% endblock %}
 
-  {% block related_stories %}
-    {% set stories = h.get_story_related_stories(pkg) %}
-    {% if stories %}
-      <section class="data-stories">
-        <h1>Related stories</h1>
-        <div class="stories-list">
-          {% for story in stories %}
-            <article>
-              <a class="image" href="/story/{{ story.name }}">
-                <img src="{{ story.image_display_url }}" alt="" />
-              </a>
-              <div class="text">
-                <h1>
-                  <a href="/story/{{ story.name }}">
-                    {{ h.truncate(story.title, 80) }}
-                  </a>
-                </h1>
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
+{% block secondary %}
+<aside class="secondary col-sm-2">
+  {% block secondary_content %}
+  {{ super() }}
   {% endblock %}
-
-  {% block disqus_comments %}
-    {% if h.is_disqus_enabled() and pkg.allow_commenting %}
-      {{ h.disqus_comments() }}
-    {% endif %}
-  {% endblock %}
-
+</aside>
 {% endblock %}
 
 {%- block footer %}

@@ -30,12 +30,21 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
+h1,
+.module h1 {
+  margin-top: 0.5em;
+}
+
+h2 {
+  margin-top: 1.5em;
+}
+
 h1 {
   font-size: 1.5rem;
   font-weight: 900;
   display: inline-block;
-  padding-bottom: 0.1em;
   margin-bottom: 0.5em;
+  padding-bottom: 0.1em;
   border-bottom: solid 0.15em var(--yellow);
 
   & a:hover,
@@ -112,7 +121,7 @@ h5 {
 }
 
 /* detail text */
-.additional-info,
+.additional-info .table tbody,
 figcaption,
 .caption-header small,
 .pagination,
@@ -146,4 +155,10 @@ p.has-pull-quote {
   & ol {
     list-style-position: inside;
   }
+}
+
+hr {
+  margin-top: var(--spacer-15);
+  margin-bottom: var(--spacer-15);
+  border-top: 0.2rem solid color(var(--body-colour) a(10%));
 }

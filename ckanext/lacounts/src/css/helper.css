@@ -1,0 +1,70 @@
+.helper-info {
+  pointer-events: none;
+  display: inline-block;
+
+  & .header {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1.5em;
+    margin: 0;
+    background-color: var(--grey);
+    color: #fff;
+    pointer-events: auto;
+    position: relative;
+
+    @nest .background--dark & {
+      background-color: #fff;
+      color: var(--grey);
+    }
+  }
+
+  & .content {
+    @mixin tip;
+    padding: var(--spacer-15);
+    text-align: left;
+    margin-top: 0.8rem;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+
+    @media (--small-up) {
+      left: auto;
+    }
+
+
+    & :last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  @nest .js & {
+    & .header {
+      cursor: pointer;
+    }
+  }
+
+  &.display {
+    pointer-events: auto;
+
+    & .header::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 0.6rem 0.6rem 0.6rem;
+      border-color: transparent transparent color(var(--grey) tint(90%)) transparent;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-top: 0.2em;
+      margin-left: -0.5em;
+    }
+
+    & .content {
+      opacity: 1;
+    }
+  }
+}
