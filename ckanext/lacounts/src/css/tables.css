@@ -1,0 +1,30 @@
+.table {
+  & > thead > tr > th,
+  & > tbody > tr > th,
+  & > tfoot > tr > th,
+  & > thead > tr > td,
+  & > tbody > tr > td,
+  & > tfoot > tr > td {
+    padding: 0.6em 0;
+    border-top: none;
+    border-bottom: 0.2rem solid color(var(--body-colour) a(10%));
+  }
+
+  & > thead > tr > th {
+    border-bottom: 0.3rem solid var(--body-colour);
+    font-weight: 900;
+  }
+
+  & tbody {
+    font-size: var(--font-size-small);
+
+    @media (--medium-up) {
+      font-size: var(--font-size-medium);
+    }
+
+    & tr:last-child th,
+    & tr:last-child td {
+      border-bottom: none;
+    }
+  }
+}

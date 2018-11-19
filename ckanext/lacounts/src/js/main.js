@@ -83,13 +83,12 @@ $(document).ready(function(){
   var padTop = parseInt($('.page').css('padding-top'), 10);
 
 
-  /* Featured Visualisation */
-  /**************************/
+  /* Helper info */
+  /***************/
 
-  // toggle BS collapse on description
-  $(".featured-visualisation .toggle").on("click", function() {
-    $(this).parents(".caption-header").toggleClass("show-as-collapsed");
-    $(this).parents("figcaption").children(".caption-body").collapse('toggle');
+  // toggle helper
+  $( ".helper-info .header" ).on( "click", function() {
+    $(this).parent(".helper-info").toggleClass( "display" );
   });
 
 

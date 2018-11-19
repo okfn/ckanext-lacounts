@@ -1,5 +1,10 @@
 {% ckan_extends %}
 
+{% block scripts %}
+  {{ super() }}
+  {% resource 'lacounts/library.js' %}
+{% endblock %}
+
 {% block subtitle %}{{ _("Library") }}{% endblock %}
 
 {% block breadcrumb_content %}
@@ -7,6 +12,16 @@
 {% endblock %}
 
 {% block primary_content %}
+  {% snippet 'snippets/connectivity.html' %}
+  <h1>{{ _("Library") }}</h1>
+  <div class="helper-info" id="libraryHelper">
+    <h4 class="header"><span class="sr-only">What is this</span>?</h4>
+    <div class="content">
+      <p>
+        {{ _("Welcome to the LA Counts Library! Harvested from federal, state, regional, and local data publishers, these open datasets and related data stories collectively describe what we know and what we don't know about Los Angeles County. Use this data to examine governmental complexities, explain how things work, and explore the potential for social change in and across Los Angeles County.") }}
+      </p>
+    </div>
+  </div>
 
   {% block results_filters %}
     <div class="results_filters">

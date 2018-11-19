@@ -94,6 +94,7 @@
 {% block primary_content %}
 
     {% block package_title %}
+      {% snippet 'snippets/connectivity.html' %}
       <h1>
         {{ h.dataset_display_name(pkg) }}
         {% if pkg.state.startswith('draft') %}

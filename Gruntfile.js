@@ -37,6 +37,11 @@ module.exports = function(grunt) {
         files: {
           'ckanext/lacounts/fanstatic/home.js': ['node_modules/twitter-fetcher/js/twitterFetcher.js', 'ckanext/lacounts/src/js/home.js']
         }
+      },
+      library: {
+        files: {
+          'ckanext/lacounts/fanstatic/library.js': ['ckanext/lacounts/src/js/library.js']
+        }
       }
     },
 
