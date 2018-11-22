@@ -2,6 +2,7 @@ import json
 import urllib
 import logging
 import urlparse
+import hashlib
 from ckan import model
 from ckan.common import config
 from ckan.plugins import toolkit
@@ -257,16 +258,27 @@ def get_story_related_stories(story):
     return stories
 
 
-def get_dataset_and_stories_counts(search_facets):
-    datasets_count = stories_count = None
-    for item in search_facets['items']:
-        if item['name'] == 'Data':
-            datasets_count = item['count']
-        if item['name'] == 'Story':
-            stories_count = item['count']
+def get_homepage_counts():
+    datasets_count = stories_count = publishers_count = None
+    q = toolkit.get_action('package_search')({}, {
+        'q': '*:*',
+        'facet': True,
+        'facet.field': ['type_label'],
+        'rows': 0,
+    })
+
+    datasets_count = q['facets']['type_label']['Data']
+    stories_count = q['facets']['type_label']['Story']
+
+    q = toolkit.get_action('organization_list')({}, {
+        'type': 'publisher',
+    })
+    publishers_count = len(q)
+
     return {
         'datasets': datasets_count,
         'stories': stories_count,
+        'publishers': publishers_count,
     }
 
 
@@ -357,3 +369,37 @@ def expand_topic_package_count(topic):
         'story': story_count,
     }
 
+
+def get_author_initials(pkg):
+    initials = 'LA'
+    name = None
+    if pkg.get('author_profile_dict'):
+        name = pkg['author_profile_dict'].get('author')
+    if not name:
+        name = pkg.get('author')
+
+    if name:
+        name = name.split(' ')
+        if len(name) > 1:
+            initials = name[0][:1] + name[1][:1]
+        else:
+            initials = name[0][1]
+    return initials.upper()
+
+
+def get_gravatar_image_url(pkg):
+    email = None
+    if pkg.get('author_profile_dict'):
+        email = pkg['author_profile_dict'].get('author_email')
+    if not email:
+        email = pkg.get('author_email')
+    if not email:
+        return
+
+    base_url = 'https://www.gravatar.com/avatar/{hash}?s=512i&d=mp'
+
+    m = hashlib.md5()
+    m.update(email.lower().strip())
+    email_hash = m.hexdigest()
+
+    return base_url.format(hash=email_hash)

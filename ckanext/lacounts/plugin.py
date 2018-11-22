@@ -62,7 +62,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_spatial_value': helpers.get_spatial_value,
             'get_temporal_value': helpers.get_temporal_value,
             'get_story_related_stories': helpers.get_story_related_stories,
-            'get_dataset_and_stories_counts': helpers.get_dataset_and_stories_counts,
+            'get_homepage_counts': helpers.get_homepage_counts,
             'sort_facet_items': helpers.sort_facet_items,
             'get_publisher_type': helpers.get_publisher_type,
             'get_organization_display_title': helpers.get_organization_display_title,
@@ -71,6 +71,8 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_frequency_period': helpers.get_frequency_period,
             'get_publisher_types': helpers.get_publisher_types,
             'expand_topic_package_count': helpers.expand_topic_package_count,
+            'get_author_initials': helpers.get_author_initials,
+            'get_gravatar_image_url': helpers.get_gravatar_image_url,
         }
 
     # IRoutes

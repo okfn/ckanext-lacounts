@@ -1,15 +1,16 @@
 {% block package_info %}
   {% if pkg %}
 
-    {% if pkg.author %}
+    {% if pkg.author or pkg.author_profile_dict %}
 
-      {% set author_names = pkg.author.split(' ') %}
-      <div class="author-avatar" data-initials="{{ author_names[0] | truncate(1, True, '') }}{{ author_names[1] | truncate(1, True, '') }}">
-        <span style="background-image: url();"></span>
-        {# TO:DO
-          Photo (approx 512px) as background-image of span.
-          If no photo, could either be empty of a 1px transparent PNG
-        #}
+      {% set initials = h.get_author_initials(pkg) %}
+      {% set gravatar_img = h.get_gravatar_image_url(pkg) %}
+      <div class="author-avatar" data-initials="{{ initials }}">
+        {% if gravatar_img %}
+          <span style="background-image: url('{{ gravatar_img }}');"></span>
+        {% else %}
+          <span style="background-image: url();"></span>
+        {% endif %}
       </div>
 
       <section class="module module-narrow author">
