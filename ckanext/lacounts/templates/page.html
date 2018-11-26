@@ -35,11 +35,6 @@
   </div>
 {% endblock %}
 
-{% block primary_content %}
-  {% snippet 'snippets/connectivity.html' %}
-  {{ super() }}
-{% endblock %}
-
 {%- block footer %}
   {% if self.content_action() | trim %}
     <div class="admin-page-actions">

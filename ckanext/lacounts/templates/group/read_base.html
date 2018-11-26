@@ -11,6 +11,7 @@
 
 {% block primary_content %}
   {% block heading %}
+  {% snippet 'snippets/connectivity.html' %}
   <h1 class="heading">
     {{ c.group.display_name }}
     {% if c.group.state == 'deleted' %}
