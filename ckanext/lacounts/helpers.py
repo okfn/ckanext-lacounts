@@ -212,12 +212,15 @@ def get_spatial_value(pkg_dict):
         else:
             geojson = pkg_dict['spatial']
         if geojson:
-            coords = ', '.join([
-                get_rounded_value(geojson['coordinates'][0][0]),
-                get_rounded_value(geojson['coordinates'][0][1]),
-                get_rounded_value(geojson['coordinates'][2][0]),
-                get_rounded_value(geojson['coordinates'][2][1]),
-            ])
+            try:
+                coords = ', '.join([
+                    get_rounded_value(geojson['coordinates'][0][0][0]),
+                    get_rounded_value(geojson['coordinates'][0][0][1]),
+                    get_rounded_value(geojson['coordinates'][0][2][0]),
+                    get_rounded_value(geojson['coordinates'][0][2][1]),
+                ])
+            except TypeError:
+                pass
     if coords and text:
         return '{} ({})'.format(text, coords)
     elif text:

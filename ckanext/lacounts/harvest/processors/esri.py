@@ -1,6 +1,5 @@
 import logging
 from operator import itemgetter
-from ckanext.lacounts.harvest import helpers
 log = logging.getLogger(__name__)
 
 
@@ -12,17 +11,22 @@ def esri_geoportal_processor(package, harvest_object):
     # Spatial
     coordinates = package.pop('spatial_text', '').split(',')
     if len(coordinates) == 4:
-        min_x, min_y, max_x, max_y = coordinates
-        package['spatial'] = {
-            'type': 'Polygon',
-            'coordinates': [
-                [min_x, min_y],
-                [min_x, max_y],
-                [max_x, max_y],
-                [max_x, min_y],
-                [min_x, min_y],
-            ],
-        }
+        try:
+            min_x, min_y, max_x, max_y = map(float, coordinates)
+            package['spatial'] = {
+                'type': 'Polygon',
+                'coordinates': [
+                    [
+                        [min_x, min_y],
+                        [min_x, max_y],
+                        [max_x, max_y],
+                        [max_x, min_y],
+                        [min_x, min_y],
+                    ]
+                ],
+            }
+        except ValueError:
+            pass
 
     # Terms
     terms = []
