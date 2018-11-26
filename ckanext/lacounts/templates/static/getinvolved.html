@@ -13,6 +13,25 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
   {% endcall %}
 
+  <h2 id="working-groups">{{ _('Working groups') }}</h2>
+
+  <ul class="working-groups-list">
+    <li>
+      <h3><a href="#">Working group</a></h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+      </p>
+      <a class="btn" href="#">{{ _('Join group') }}</a>
+    </li>
+    <li>
+      <h3><a href="#">Working group</a></h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+      </p>
+      <a class="btn" href="#">{{ _('Join group') }}</a>
+    </li>
+  </ul>
+
   <h2 id="events">{{ _('Events') }}</h2>
   <table class="table">
     <thead>
@@ -63,6 +82,9 @@
 
 {% block secondary_content  %}
 <ul class="nav nav-pills nav-stacked">
+  <li>
+    <a href="#working-groups">Working groups</a>
+  </li>
   <li>
     <a href="#events">Events</a>
   </li>
