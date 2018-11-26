@@ -11,6 +11,11 @@
     <li class="active">{% link_for h.get_organization_display_title(c.group_dict)|truncate(35), named_route=group_type+'_read', id=c.group_dict.name %}</li>
 {% endblock %}
 
+{% block primary_content %}
+  {% snippet 'snippets/connectivity.html' %}
+  {{ super() }}
+{% endblock %}
+
 {% block content_action %}
 {% endblock %}
 

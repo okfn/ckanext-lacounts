@@ -11,6 +11,7 @@
 
 {% block primary_content %}
   {% block heading %}
+  {% snippet 'snippets/connectivity.html' %}
   <h1 class="heading">
     {{ c.group.display_name }}
     {% if c.group.state == 'deleted' %}
@@ -27,6 +28,16 @@
   {% endblock %}
 
   {% block page_header %}{% endblock %}
+
+  <ul class="working-groups-list">
+    <li>
+      <h3><a href="#">{{ c.group.display_name }} working group</a></h3>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+      </p>
+      <a class="btn" href="#">{{ _('Join group') }}</a>
+    </li>
+  </ul>
 
   {{ super() }}
 {% endblock %}
