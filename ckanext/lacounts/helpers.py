@@ -266,9 +266,9 @@ def get_homepage_counts():
         'facet.field': ['type_label'],
         'rows': 0,
     })
-
-    datasets_count = q['facets']['type_label']['Data']
-    stories_count = q['facets']['type_label']['Story']
+    if q.get('facets', {}).get('type_label', {}).get('Data'):
+        datasets_count = q['facets']['type_label']['Data']
+        stories_count = q['facets']['type_label']['Story']
 
     q = toolkit.get_action('organization_list')({}, {
         'type': 'publisher',
