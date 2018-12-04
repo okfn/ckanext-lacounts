@@ -5,6 +5,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from routes.mapper import SubMapper
 
+from ckanext.lacounts.model import tables_exist
 from ckanext.lacounts import helpers, validators, jobs, actions
 
 log = logging.getLogger(__name__)
@@ -25,6 +26,15 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     # IConfigurer
 
     def update_config(self, config_):
+        if not tables_exist():
+            log.critical(u'''
+The lacounts extension requires database initialization. Please run the
+following to create the database tables:
+    paster --plugin=ckanext-lacounts get_involved init-db
+''')
+        else:
+            log.debug(u'LA Counts "Get Involved" tables exist')
+
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'lacounts')

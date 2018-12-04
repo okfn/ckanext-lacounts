@@ -54,3 +54,13 @@ docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_exten
 ```sh
 deis run "paster --plugin=ckanext-lacounts create_topics -c production.ini"
 ```
+
+### Initialize 'Get Involved' database tables
+
+The 'Get Involved' pages require additional database tables to be initialized: `events` and `volunteering`. These are created with the following paster command:
+
+#### In development
+
+```sh
+docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster get_involved init-db -c ../../production.ini"
+```
