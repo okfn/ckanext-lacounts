@@ -6,7 +6,8 @@ from ckan.lib.plugins import DefaultTranslation
 from routes.mapper import SubMapper
 
 from ckanext.lacounts.model import tables_exist
-from ckanext.lacounts import helpers, validators, jobs, actions
+from ckanext.lacounts import helpers, validators, jobs
+from ckanext.lacounts.logic import actions
 
 log = logging.getLogger(__name__)
 _ = toolkit._
