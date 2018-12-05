@@ -125,7 +125,7 @@ def get_metadata_completion_rate(package):
     return completion
 
 
-def get_recent_data_stories(limit=4):
+def get_recent_data_stories(limit=4, topic=None):
     showcases = []
     items = toolkit.get_action('ckanext_showcase_list')({'model': model}, {})
     for item in items:
@@ -136,6 +136,15 @@ def get_recent_data_stories(limit=4):
         if (not showcase.get('image_display_url') or
                 showcase.get('story_type') == 'Blog post'):
             continue
+
+        if topic:
+            has_topic = False
+            for group in showcase.get('groups'):
+                if group['name'] == topic:
+                    has_topic = True
+                    break
+            if not has_topic:
+                continue
         showcases.append(showcase)
         if len(showcases) == limit:
             break

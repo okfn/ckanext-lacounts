@@ -39,5 +39,18 @@
     </li>
   </ul>
 
+  {% set stories = h.get_recent_data_stories(topic=c.group.name) %}
+
+  {% if stories %}
+    <section class="data-stories">
+      <h2> Recent Data Stories</h1>
+  
+  
+      {% snippet 'snippets/stories_list.html', stories=stories %}
+    </section>
+
+  {% endif %}
+
+
   {{ super() }}
 {% endblock %}
