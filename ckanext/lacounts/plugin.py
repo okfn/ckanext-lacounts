@@ -1,5 +1,5 @@
 import logging
-from functools import partial
+
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
@@ -7,7 +7,7 @@ from routes.mapper import SubMapper
 
 from ckanext.lacounts.model import tables_exist
 from ckanext.lacounts import helpers, validators, jobs
-from ckanext.lacounts.logic import actions
+from ckanext.lacounts.logic import actions, auth
 
 log = logging.getLogger(__name__)
 _ = toolkit._
@@ -22,6 +22,7 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IGroupController, inherit=True)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IValidators)
 
     # IConfigurer
@@ -158,11 +159,25 @@ following to create the database tables:
     def get_actions(self):
         return {
             'config_option_update': actions.config_option_update,
+            'event_create': actions.event_create,
+            'event_delete': actions.event_delete,
+            'event_show': actions.event_show,
+            'event_list': actions.event_list
+        }
+
+    # IAuthFunctions
+
+    def get_auth_functions(self):
+        return {
+            'ckanext_lacounts_event_create': auth.event_create,
+            'ckanext_lacounts_event_delete': auth.event_delete,
+            'ckanext_lacounts_event_show': auth.event_show
         }
 
     # IValidators
 
     def get_validators(self):
         return {
-            'set_default_publisher_title': validators.set_default_publisher_title,
+            'set_default_publisher_title':
+                validators.set_default_publisher_title,
         }

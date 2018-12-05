@@ -16,6 +16,29 @@ do::
     python setup.py develop
     pip install -r requirements.txt
 
+
+## API (*Get Involved* page actions)
+
+All actions in the extension are available in the CKAN Action API.
+
+Event actions:
+
+```sh
+# create a new event (sysadmins only)
+curl -X POST http://127.0.0.1:5000/api/3/action/event_create -H "Authorization:{YOUR-API-KEY}" -d '{"name": "My New Event", "free": "yes", "date": "2019-01-21"}'
+
+# delete an event (sysadmins only)
+curl -X POST http://127.0.0.1:5000/api/3/action/event_delete -H "Authorization:{YOUR-API-KEY}" -d '{"id": "my-event-id"}'
+
+# show an event
+curl http://127.0.0.1:5000/api/3/action/event_show -d '{"id": "my-event-id"}'
+
+# list events ``limit`` and ``offset`` are optional.
+curl http://127.0.0.1:5000/api/3/action/event_list -H "Authorization:{YOUR-API-KEY}" -d '{"limit":<int>, "offset":<int>}'
+```
+
+
+
 ## Running the Tests
 
 To run the tests, do::
