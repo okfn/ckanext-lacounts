@@ -138,7 +138,7 @@ def get_recent_data_stories(limit=4):
             continue
         showcases.append(showcase)
         if len(showcases) == limit:
-            continue
+            break
     return showcases
 
 
