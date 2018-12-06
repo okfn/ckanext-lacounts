@@ -160,6 +160,7 @@ following to create the database tables:
         return {
             'config_option_update': actions.config_option_update,
             'event_create': actions.event_create,
+            'event_update': actions.event_update,
             'event_delete': actions.event_delete,
             'event_show': actions.event_show,
             'event_list': actions.event_list

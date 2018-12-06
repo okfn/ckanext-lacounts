@@ -60,6 +60,11 @@ class LACountsBaseModel(object):
 
         return event_dicts
 
+    def save(self):
+        Session.add(self)
+        Session.commit()
+        return self.as_dict()
+
     def as_dict(self):
         _dict = OrderedDict()
         table = orm.class_mapper(self.__class__).mapped_table

@@ -33,6 +33,51 @@ class TestEventCreate():
         nosetools.assert_true(event_result['date'] == '2012-09-21 00:00:00')
 
 
+class TestEventUpdate(helpers.FunctionalTestBase):
+
+    def test_event_update(self):
+        '''Sysadmins can update an existing event'''
+        sysadmin = Sysadmin()
+
+        event = factories.Event(
+            name='My Test Event',
+            date='2010-09-21',
+            free=True
+        )
+
+        event_result = toolkit.get_action('event_show')(
+            data_dict={'id': event['id']}
+        )
+
+        nosetools.assert_true(event_result['name'] == 'My Test Event')
+        nosetools.assert_true(event_result['date'] == '2010-09-21 00:00:00')
+        nosetools.assert_true(event_result['free'])
+
+        updated_event = toolkit.get_action('event_update')(
+            context={'user': sysadmin['name']},
+            data_dict={
+                'id': event['id'],
+                'name': 'My Updated Event',
+                'date': '2013-09-21',
+                'free': False
+            }
+        )
+
+        nosetools.assert_true(updated_event['name'] == 'My Updated Event')
+        nosetools.assert_true(updated_event['date'] == '2013-09-21 00:00:00')
+        nosetools.assert_false(updated_event['free'])
+
+    def test_event_update_bad_id(self):
+        '''Bad event id raises ObjectNotFound.'''
+        sysadmin = Sysadmin()
+
+        with nosetools.assert_raises(toolkit.ObjectNotFound):
+            toolkit.get_action('event_update')(
+                context={'user': sysadmin['name']},
+                data_dict={'id': 'bad-id'}
+            )
+
+
 class TestEventShow(helpers.FunctionalTestBase):
 
     def test_event_show(self):

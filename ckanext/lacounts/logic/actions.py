@@ -24,6 +24,27 @@ def event_create(context, data_dict):
     return event
 
 
+@validate(schema.event_update_schema)
+def event_update(context, data_dict):
+    '''Update an Event'''
+    toolkit.check_access('ckanext_lacounts_event_create', context, data_dict)
+
+    event = Event.get(id=data_dict['id'])
+
+    if event is None:
+        raise toolkit.ObjectNotFound
+
+    ignored_keys = ['id']
+
+    for k, v in data_dict.items():
+        if k not in ignored_keys:
+            setattr(event, k, v)
+
+    updated_event = event.save()
+
+    return updated_event
+
+
 # Delete Actions
 
 @validate(schema.event_delete_schema)

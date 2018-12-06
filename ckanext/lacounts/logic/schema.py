@@ -28,6 +28,18 @@ def event_create_schema():
     return schema
 
 
+def event_update_schema():
+    schema = {
+        'id': [not_empty, unicode],
+        'name': [ignore_missing, unicode],
+        'url': [ignore_missing, unicode],
+        'date': [ignore_missing, isodate],
+        'free': [ignore_missing, boolean_validator],
+        'topic_tags': [ignore_missing, topic_exists]
+    }
+    return schema
+
+
 def event_delete_schema():
     schema = {
         'id': [not_empty, unicode]
