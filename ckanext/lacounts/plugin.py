@@ -40,6 +40,8 @@ following to create the database tables:
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'lacounts')
+        toolkit.add_ckan_admin_tab(config_, 'getinvolved_admin',
+                                   'Get Involved')
 
     def update_config_schema(self, schema):
         schema.update({
@@ -106,6 +108,11 @@ following to create the database tables:
 
         with SubMapper(map, controller='ckanext.lacounts.controller:GetInvolvedController') as m: # noqa
             m.connect('getinvolved', '/getinvolved', action='index')
+            m.connect('getinvolved_admin', '/ckan-admin/get_involved_admin',
+                      action='manage_get_involved'),
+            m.connect('getinvolved_event_remove',
+                      '/ckan-admin/getinvolved_remove_event',
+                      action='remove_event')
 
         map.redirect('/why-la-counts', '/about',
                      _redirect_code='301 Moved Permanently')
