@@ -23,6 +23,24 @@ Actions for the *Get Involved* page are available in the CKAN Action API.
 
 **Event** actions:
 
+Available parameters:
+
+- `id`: a uuid (required for some actions, see below)
+- `name`: a string (required)
+- `date`: a date string e.g. "2019-01-21" (required)
+- `free`: a boolean-like, e.g. "yes" or true (required)
+- `url`: a string url
+- `location`: a string
+- `topic_tags`: a list of strings, e.g. ["Housing", "Employment"]
+
+A full example for `event_create`:
+
+```sh
+$ curl -X POST http://127.0.0.1:5000/api/3/action/event_create -H "Authorization:{YOUR-API-KEY}" -d '{"name": "My New Event", "free": "yes", "date": "2019-01-21", "url": "http://example.com/event-details", "location": "Downton, Los Angeles", "topic_tags": ["Housing", "Employment"]}'
+```
+
+All Event actions:
+
 ```sh
 # create a new event (sysadmins only)
 curl -X POST http://127.0.0.1:5000/api/3/action/event_create -H "Authorization:{YOUR-API-KEY}" -d '{"name": "My New Event", "free": "yes", "date": "2019-01-21"}'

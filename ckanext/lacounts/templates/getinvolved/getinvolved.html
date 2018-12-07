@@ -4,7 +4,7 @@
 {% block subtitle %}{{ _('Get Involved') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{% link_for _('Get Involved'), controller='ckanext.lacounts.controller:StaticController', action='getinvolved' %}</li>
+  <li class="active">{% link_for _('Get Involved'), controller='ckanext.lacounts.controller:GetInvolvedController', action='getinvolved' %}</li>
 {% endblock %}
 
 {% block primary_content %}
@@ -33,50 +33,58 @@
   </ul>
 
   <h2 id="events">{{ _('Events') }}</h2>
+  {% if c.events %}
   <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Location</th>
+        <th>{{ _('Date') }}</th>
+        <th>{{ _('Event') }}</th>
+        <th>{{ _('Location') }}</th>
+        <th>{{ _('Free?') }}</th>
       </tr>
     </thead>
     <tbody>
+      {% for event in c.events|sort(reverse=True, attribute='date') %}
       <tr>
-        <td>Date 1</td>
-        <td>Event 1</td>
-        <td>Location 1</td>
+        <td>{{ h.render_datetime(event.date) }}</td>
+        <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
+        <td>{{ event.location }}</td>
+        <td>{% if event.free %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
       </tr>
-      <tr>
-        <td>Date 2</td>
-        <td>Event 2</td>
-        <td>Location 2</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
+  {% else %}
+    <p>{{ _('There are currently no events.') }}</p>
+  {% endif %}
 
   <h2 id="Volunteering">{{ _('Volunteering') }}</h2>
+  {% if c.volunteering %}
   <table class="table">
     <thead>
       <tr>
         <th>Date</th>
         <th>Event</th>
         <th>Location</th>
+        <th>URL</th>
+        <th>Free?</th>
       </tr>
     </thead>
     <tbody>
+      {% for opportunity in c.volunteering|sort(attribute='date') %}
       <tr>
-        <td>Date 1</td>
-        <td>Event 1</td>
-        <td>Location 1</td>
+        <td>{{ opportunity.date }}</td>
+        <td>{{ opportunity.name }}</td>
+        <td>{{ opportunity.location }}</td>
+        <td>{{ opportunity.url }}</td>
+        <td>{% if opportunity.free %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
       </tr>
-      <tr>
-        <td>Date 2</td>
-        <td>Event 2</td>
-        <td>Location 2</td>
-      </tr>
+      {% endfor %}
     </tbody>
   </table>
+  {% else %}
+    <p>{{ _('There are currently no volunteering opportunities.') }}</p>
+  {% endif %}
 
 {% endblock %}
 

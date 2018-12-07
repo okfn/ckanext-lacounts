@@ -1,7 +1,7 @@
 from ckan.plugins import toolkit
 
 ignore_missing = toolkit.get_validator('ignore_missing')
-topic_exists = toolkit.get_validator('group_id_or_name_exists')
+list_of_strings = toolkit.get_validator('list_of_strings')
 boolean_validator = toolkit.get_validator('boolean_validator')
 empty = toolkit.get_validator('empty')
 not_empty = toolkit.get_validator('not_empty')
@@ -13,9 +13,10 @@ def event_base_schema():
     schema = {
         'name': [not_empty, unicode],
         'url': [ignore_missing, unicode],
+        'location': [ignore_missing, unicode],
         'date': [not_empty, isodate],
         'free': [not_empty, boolean_validator],
-        'topic_tags': [ignore_missing, topic_exists]
+        'topic_tags': [ignore_missing, list_of_strings]
     }
     return schema
 
@@ -33,9 +34,10 @@ def event_update_schema():
         'id': [not_empty, unicode],
         'name': [ignore_missing, unicode],
         'url': [ignore_missing, unicode],
+        'location': [ignore_missing, unicode],
         'date': [ignore_missing, isodate],
         'free': [ignore_missing, boolean_validator],
-        'topic_tags': [ignore_missing, topic_exists]
+        'topic_tags': [ignore_missing, list_of_strings]
     }
     return schema
 

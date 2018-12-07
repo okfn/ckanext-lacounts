@@ -42,5 +42,9 @@ class StaticController(toolkit.BaseController):
     def resources(self):
         return toolkit.render('static/resources.html')
 
-    def getinvolved(self):
-        return toolkit.render('static/getinvolved.html')
+
+class GetInvolvedController(toolkit.BaseController):
+
+    def index(self):
+        toolkit.c.events = toolkit.get_action('event_list')(data_dict={})
+        return toolkit.render('getinvolved/getinvolved.html')

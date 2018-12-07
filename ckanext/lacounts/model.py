@@ -83,11 +83,12 @@ class LACountsBaseModel(object):
 
 
 class Event(LACountsBaseModel, Base):
-    __tablename__ = u'events'
+    __tablename__ = u'event'
 
     id = Column(Unicode, primary_key=True, default=make_uuid)
-    name = Column(Unicode)
-    url = Column(Unicode)
+    name = Column(Unicode, nullable=False)
+    url = Column(Unicode, nullable=False, default='')
+    location = Column(Unicode, nullable=False, default='')
     date = Column(DateTime)
     free = Column(Boolean)
     topic_tags = Column(JSON)

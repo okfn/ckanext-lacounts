@@ -93,19 +93,22 @@ following to create the database tables:
         # These named routes are used for custom dataset forms which will use
         # the names below based on the dataset.type ('dataset' is the default
         # type)
-        with SubMapper(map, controller='ckanext.lacounts.controller:BlogController') as m:
+        with SubMapper(map, controller='ckanext.lacounts.controller:BlogController') as m: # noqa
             m.connect('blog_search', '/blog', action='search')
             m.connect('blog_read', '/blog/{id}', action='read')
 
-        with SubMapper(map, controller='ckanext.lacounts.controller:StaticController') as m:
+        with SubMapper(map, controller='ckanext.lacounts.controller:StaticController') as m: # noqa
             m.connect('privacypolicy', '/privacy', action='privacypolicy')
             m.connect('termsofservice', '/terms', action='termsofservice')
             m.connect('faqs', '/faqs', action='faqs')
             m.connect('aboutus', '/about', action='aboutus')
             m.connect('resources', '/resources', action='resources')
-            m.connect('getinvolved', '/getinvolved', action='getinvolved')
 
-        map.redirect('/why-la-counts', '/about', _redirect_code='301 Moved Permanently')
+        with SubMapper(map, controller='ckanext.lacounts.controller:GetInvolvedController') as m: # noqa
+            m.connect('getinvolved', '/getinvolved', action='index')
+
+        map.redirect('/why-la-counts', '/about',
+                     _redirect_code='301 Moved Permanently')
         return map
 
     # IFacets
