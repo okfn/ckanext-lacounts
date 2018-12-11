@@ -128,10 +128,6 @@ class GetInvolvedController(toolkit.BaseController):
         vars = {'data': data, 'errors': errors,
                 'error_summary': error_summary}
 
-        # convert tags if not supplied in data
-        if data and not data.get('topic_string'):
-            data['topic_string'] = ', '.join(data.get('topic_tags', []))
-
         return toolkit.render("getinvolved/event_form.html",
                               extra_vars=vars)
 
@@ -159,10 +155,6 @@ class GetInvolvedController(toolkit.BaseController):
         vars = {'data': data, 'errors': errors, 'form_style': 'edit',
                 'error_summary': error_summary, 'action': 'edit'}
 
-        # convert tags if not supplied in data
-        if data and not data.get('topic_string'):
-            data['topic_string'] = ', '.join(data.get('topic_tags', []))
-
         return toolkit.render("getinvolved/event_form.html",
                               extra_vars=vars)
 
@@ -171,8 +163,11 @@ class GetInvolvedController(toolkit.BaseController):
             data_dict = clean_dict(dict_fns.unflatten(
                 tuplize_dict(parse_params(toolkit.request.params))))
 
-            data_dict['topic_tags'] = \
-                data_dict.pop('topic_string', '').split(',')
+            # If only one topic, it is a string, so make it a list.
+            if not isinstance(data_dict.get('topic_tags', []), list):
+                data_dict['topic_tags'] = [data_dict['topic_tags'], ]
+            elif data_dict.get('topic_tags') is None:
+                data_dict['topic_tags'] = []
 
             context['message'] = data_dict.get('log_message', '')
 

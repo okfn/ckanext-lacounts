@@ -141,6 +141,11 @@ $(document).ready(function(){
     placeholder: 'Click to get a drop-down list or start typing a dataset title'
   });
 
+  // Groups
+  $('#field-groups-get-involved').select2({
+    placeholder: 'Click to get a drop-down list or start typing a topic title'
+  })
+
 
   /* Stories lead */
   /* TODO: review by Sam, Adria */

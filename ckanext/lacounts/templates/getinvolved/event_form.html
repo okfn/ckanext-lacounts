@@ -28,8 +28,20 @@
       </div>
     </div>
 
-    {% set tag_attrs = {'data-module': 'autocomplete', 'data-module-tags': '', 'data-module-source': '/api/2/util/topic/autocomplete?incomplete=?'} %}
-    {{ form.input('topic_string', id='field-tags', label=_('Topic Tags'), placeholder=_('eg. economy, mental health, government'), value=data.topic_string, error=errors.topic_string, classes=['control-full', 'control-large'], attrs=tag_attrs) }}
+    <div class="form-group control-large control-select">
+      <label class="control-label" for="field-groups-get-involved">Topics</label>
+      <div class="controls ">
+        <select name="topic_tags" id="field-groups-get-involved" multiple="multiple" style="width: 100%">
+          {% for group in h.get_groups_for_form(selected_groups=[]) %}
+            <option value="{{ group.name }}" {% if group.name in data.get('topic_tags', []) %}selected{% endif %}>{{ group.display_name }}</option>
+          {% endfor %}
+        </select>
+        <div class="info-block ">
+          <i class="fa fa-info-circle"></i>
+          Add one or more topics
+        </div>
+      </div>
+    </div>
 
     {% block form_actions %}
       <div class="form-actions">
