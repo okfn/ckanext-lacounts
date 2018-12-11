@@ -62,3 +62,60 @@ def event_list_schema():
         'offset': [ignore_missing, natural_number_validator]
     }
     return schema
+
+
+def volunteering_base_schema():
+    schema = {
+        'organization': [not_empty, unicode],
+        'url': [ignore_missing, unicode],
+        'description': [ignore_missing, unicode],
+        'email': [ignore_missing, unicode],
+        'topic_tags': [ignore_missing, list_of_strings],
+        'created_on': [ignore_missing, isodate],
+        'is_filled': [not_empty, boolean_validator]
+    }
+    return schema
+
+
+def volunteering_create_schema():
+    schema = volunteering_base_schema()
+    schema.update({
+        'id': [empty]
+    })
+    return schema
+
+
+def volunteering_update_schema():
+    schema = {
+        'id': [not_empty, unicode],
+        'organization': [not_empty, unicode],
+        'url': [ignore_missing, unicode],
+        'description': [ignore_missing, unicode],
+        'email': [ignore_missing, unicode],
+        'topic_tags': [ignore_missing, list_of_strings],
+        'created_on': [ignore_missing, isodate],
+        'is_filled': [not_empty, boolean_validator]
+    }
+    return schema
+
+
+def volunteering_list_schema():
+    schema = {
+        'limit': [ignore_missing, natural_number_validator],
+        'offset': [ignore_missing, natural_number_validator]
+    }
+    return schema
+
+
+def volunteering_delete_schema():
+    schema = {
+        'id': [not_empty, unicode]
+    }
+    return schema
+
+
+def volunteering_show_schema():
+    schema = {
+        'id': [not_empty, unicode]
+    }
+    return schema

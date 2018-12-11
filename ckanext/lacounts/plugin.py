@@ -119,6 +119,15 @@ following to create the database tables:
             m.connect('getinvolved_edit_event',
                       '/ckan-admin/getinvolved_edit_event',
                       action='edit_event')
+            m.connect('getinvolved_volunteering_remove',
+                      '/ckan-admin/getinvolved_remove_volunteering',
+                      action='remove_volunteering')
+            m.connect('getinvolved_new_volunteering',
+                      '/ckan-admin/getinvolved_new_volunteering',
+                      action='new_volunteering')
+            m.connect('getinvolved_edit_volunteering',
+                      '/ckan-admin/getinvolved_edit_volunteering',
+                      action='edit_volunteering')
 
         map.redirect('/why-la-counts', '/about',
                      _redirect_code='301 Moved Permanently')
@@ -179,7 +188,12 @@ following to create the database tables:
             'event_update': actions.event_update,
             'event_delete': actions.event_delete,
             'event_show': actions.event_show,
-            'event_list': actions.event_list
+            'event_list': actions.event_list,
+            'volunteering_create': actions.volunteering_create,
+            'volunteering_update': actions.volunteering_update,
+            'volunteering_delete': actions.volunteering_delete,
+            'volunteering_show': actions.volunteering_show,
+            'volunteering_list': actions.volunteering_list
         }
 
     # IAuthFunctions
@@ -188,7 +202,10 @@ following to create the database tables:
         return {
             'ckanext_lacounts_event_create': auth.event_create,
             'ckanext_lacounts_event_delete': auth.event_delete,
-            'ckanext_lacounts_event_show': auth.event_show
+            'ckanext_lacounts_event_show': auth.event_show,
+            'ckanext_lacounts_volunteering_create': auth.volunteering_create,
+            'ckanext_lacounts_volunteering_delete': auth.volunteering_delete,
+            'ckanext_lacounts_volunteering_show': auth.volunteering_show
         }
 
     # IValidators

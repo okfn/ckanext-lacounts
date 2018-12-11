@@ -7,7 +7,7 @@ import ckan.logic.action.update as update_core
 from ckan.logic import validate
 
 from ckanext.lacounts.logic import schema
-from ckanext.lacounts.model import Event
+from ckanext.lacounts.model import Event, VolunteeringOpportunity
 
 log = logging.getLogger(__name__)
 
@@ -23,6 +23,102 @@ def event_create(context, data_dict):
 
     return event
 
+
+@validate(schema.volunteering_create_schema)
+def volunteering_create(context, data_dict):
+    '''Create a Volunteering Opportunity'''
+    toolkit.check_access('ckanext_lacounts_volunteering_create',
+                         context, data_dict)
+
+    volunteering = VolunteeringOpportunity.create(**data_dict)
+
+    return volunteering
+
+
+# Delete Actions
+
+@validate(schema.event_delete_schema)
+def event_delete(context, data_dict):
+    '''Delete an Event'''
+    toolkit.check_access('ckanext_lacounts_event_delete', context, data_dict)
+
+    event = Event.get(id=data_dict['id'])
+
+    if event is None:
+        raise toolkit.ObjectNotFound
+
+    event.delete()
+
+
+@validate(schema.volunteering_delete_schema)
+def volunteering_delete(context, data_dict):
+    '''Delete a Volunteering Opportunity'''
+    toolkit.check_access('ckanext_lacounts_volunteering_delete',
+                         context, data_dict)
+
+    volunteering = VolunteeringOpportunity.get(id=data_dict['id'])
+
+    if volunteering is None:
+        raise toolkit.ObjectNotFound
+
+    volunteering.delete()
+
+
+# Show Actions
+
+@toolkit.side_effect_free
+@validate(schema.event_show_schema)
+def event_show(context, data_dict):
+    '''Show an Event'''
+    toolkit.check_access('ckanext_lacounts_event_show', context, data_dict)
+
+    event = Event.get(id=data_dict['id'])
+
+    if event is None:
+        raise toolkit.ObjectNotFound
+
+    return event.as_dict()
+
+
+@toolkit.side_effect_free
+@validate(schema.volunteering_show_schema)
+def volunteering_show(context, data_dict):
+    '''Show a Volunteering Opportunity'''
+    toolkit.check_access('ckanext_lacounts_volunteering_show',
+                         context, data_dict)
+
+    volunteering = VolunteeringOpportunity.get(id=data_dict['id'])
+
+    if volunteering is None:
+        raise toolkit.ObjectNotFound
+
+    return volunteering.as_dict()
+
+
+@toolkit.side_effect_free
+@validate(schema.event_list_schema)
+def event_list(context, data_dict):
+    '''List of Events'''
+    toolkit.check_access('ckanext_lacounts_event_show', context, data_dict)
+
+    events = Event.list(**data_dict)
+
+    return events
+
+
+@toolkit.side_effect_free
+@validate(schema.volunteering_list_schema)
+def volunteering_list(context, data_dict):
+    '''List of Volunteering Opportunities.'''
+    toolkit.check_access('ckanext_lacounts_volunteering_show', context,
+                         data_dict)
+
+    volunteering = VolunteeringOpportunity.list(**data_dict)
+
+    return volunteering
+
+
+# Update Actions
 
 @validate(schema.event_update_schema)
 def event_update(context, data_dict):
@@ -45,49 +141,27 @@ def event_update(context, data_dict):
     return updated_event
 
 
-# Delete Actions
+@validate(schema.volunteering_update_schema)
+def volunteering_update(context, data_dict):
+    '''Update an Volunteering Opportunities'''
+    toolkit.check_access('ckanext_lacounts_volunteering_create',
+                         context, data_dict)
 
-@validate(schema.event_delete_schema)
-def event_delete(context, data_dict):
-    '''Delete an Event'''
-    toolkit.check_access('ckanext_lacounts_event_delete', context, data_dict)
+    volunteering = VolunteeringOpportunity.get(id=data_dict['id'])
 
-    event = Event.get(id=data_dict['id'])
-
-    if event is None:
+    if volunteering is None:
         raise toolkit.ObjectNotFound
 
-    event.delete()
+    ignored_keys = ['id']
 
+    for k, v in data_dict.items():
+        if k not in ignored_keys:
+            setattr(volunteering, k, v)
 
-# Show Actions
+    updated_volunteering = volunteering.save()
 
-@toolkit.side_effect_free
-@validate(schema.event_show_schema)
-def event_show(context, data_dict):
-    '''Show an Event'''
-    toolkit.check_access('ckanext_lacounts_event_show', context, data_dict)
+    return updated_volunteering
 
-    event = Event.get(id=data_dict['id'])
-
-    if event is None:
-        raise toolkit.ObjectNotFound
-
-    return event.as_dict()
-
-
-@toolkit.side_effect_free
-@validate(schema.event_list_schema)
-def event_list(context, data_dict):
-    '''List of Events'''
-    toolkit.check_access('ckanext_lacounts_event_show', context, data_dict)
-
-    events = Event.list(**data_dict)
-
-    return events
-
-
-# Update Actions
 
 def config_option_update(context, data_dict):
     # https://github.com/ckan/ckan/blob/master/ckan/logic/action/update.py#L1198

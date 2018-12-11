@@ -49,26 +49,41 @@
   {% endif %}
 
 
-  <h2 id="Volunteering">{{ _('Volunteering') }}</h2>
+  <h2 id="Volunteering">{{ _('Volunteering Opportunities') }}</h2>
+
+  <div class="form-actions">
+    <a class="btn btn-primary" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering'%}">{{ _('Add New Volunteering Opportunity') }}</a>
+  </div>
+
   {% if c.volunteering %}
   <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Event</th>
-        <th>Location</th>
-        <th>URL</th>
-        <th>Free?</th>
+        <th>Organization</th>
+        <th>{{ _('URL') }}</th>
+        <th>{{ _('Description') }}</th>
+        <th>{{ _('Email') }}</th>
+        <th>{{ _('Created') }}</th>
+        <th>{{ _('Is Filled') }}</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      {% for opportunity in c.volunteering|sort(attribute='date') %}
+      {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
       <tr>
-        <td>{{ opportunity.date }}</td>
-        <td>{{ opportunity.name }}</td>
-        <td>{{ opportunity.location }}</td>
+        <td>{{ opportunity.organization }}</td>
         <td>{{ opportunity.url }}</td>
-        <td>{% if opportunity.free %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
+        <td>{{ opportunity.description }}</td>
+        <td>{{ opportunity.email }}</td>
+        <td>{{ opportunity.created_on }}</td>
+        <td>{% if opportunity.is_filled %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
+        <td>
+          {% set locale = h.dump_json({'content': _('Are you sure you want to remove this voluntary opportunity?')}) %}
+          <div class="pull-right">
+            <a class="btn btn-primary btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_volunteering', id=opportunity.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
+            <a class="btn btn-danger btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_volunteering', id=opportunity.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
+          </div>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

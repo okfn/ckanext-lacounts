@@ -94,11 +94,26 @@ class Event(LACountsBaseModel, Base):
     topic_tags = Column(JSON)
 
 
+class VolunteeringOpportunity(LACountsBaseModel, Base):
+    __tablename__ = u'volunteering_opportunity'
+
+    id = Column(Unicode, primary_key=True, default=make_uuid)
+    organization = Column(Unicode, nullable=False, default='')
+    url = Column(Unicode, nullable=False, default='')
+    description = Column(Unicode, nullable=False, default='')
+    email = Column(Unicode, nullable=False, default='')
+    topic_tags = Column(JSON)
+    created_on = Column(Date, default=datetime.date.today)
+    is_filled = Column(Boolean, default=False)
+
+
 def create_tables():
     Event.__table__.create()
+    VolunteeringOpportunity.__table__.create()
 
-    log.info(u'Event database tables created')
+    log.info(u'Get Involved database tables created')
 
 
 def tables_exist():
-    return Event.__table__.exists()
+    return Event.__table__.exists() \
+        and VolunteeringOpportunity.__table__.exists()
