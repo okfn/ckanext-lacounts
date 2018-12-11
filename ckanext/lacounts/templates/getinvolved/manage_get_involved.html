@@ -8,13 +8,13 @@
   <h1 class="page-heading">
     {% block page_heading %}{{  _('Manage Events & Volunteering Opportunities') }}{% endblock %}
   </h1>
-  {% block form %}
-    <form class="dataset-form form-horizontal add-member-form" method='post'>
-
-    </form>
-  {% endblock %}
 
   <h3 class="page-heading">{{ _('Events') }}</h3>
+
+  <div class="form-actions">
+    <a class="btn btn-primary" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='new_event'%}">{{ _('Add New Event') }}</a>
+  </div>
+
   {% if c.events %}
   <table class="table">
     <thead>
@@ -22,7 +22,7 @@
         <th>{{ _('Date') }}</th>
         <th>{{ _('Event') }}</th>
         <th>{{ _('Location') }}</th>
-        <th>{{ _('Free?') }}</th>
+        <th style="width: 8%">{{ _('Free?') }}</th>
         <th></th>
       </tr>
     </thead>
@@ -35,8 +35,9 @@
         <td>{% if event.free %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
         <td>
           {% set locale = h.dump_json({'content': _('Are you sure you want to remove this event?')}) %}
-          <div class="btn-group pull-right">
-            <a class="btn btn-danger btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_event', id=event.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{% block delete_button_text %}{{ _('Remove') }}{% endblock %}</a>
+          <div class="pull-right">
+            <a class="btn btn-primary btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_event', id=event.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
+            <a class="btn btn-danger btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_event', id=event.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
           </div>
         </td>
       </tr>

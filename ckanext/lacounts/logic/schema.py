@@ -32,11 +32,11 @@ def event_create_schema():
 def event_update_schema():
     schema = {
         'id': [not_empty, unicode],
-        'name': [ignore_missing, unicode],
+        'name': [not_empty, unicode],
         'url': [ignore_missing, unicode],
         'location': [ignore_missing, unicode],
-        'date': [ignore_missing, isodate],
-        'free': [ignore_missing, boolean_validator],
+        'date': [not_empty, isodate],
+        'free': [not_empty, boolean_validator],
         'topic_tags': [ignore_missing, list_of_strings]
     }
     return schema

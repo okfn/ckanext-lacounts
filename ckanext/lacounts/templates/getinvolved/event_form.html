@@ -1,0 +1,62 @@
+{% extends "admin/base.html" %}
+
+{% import 'macros/form.html' as form %}
+
+{% block primary_content_inner %}
+  <h1 class="{% block page_heading_class %}page-heading{% endblock %}">{% if form_style != 'edit' %}{{ _('Create an Event') }}{% else %}{{ _('Update an Event') }}{% endif %}</h1>
+
+  <form id="dataset-edit" class="dataset-form form-horizontal" method="post" action="" data-module="basic-form" enctype="multipart/form-data">
+
+    {% block errors %}{{ form.errors(error_summary) }}{% endblock %}
+
+    {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('eg. An event name'), value=data.name, error=errors.name, classes=['control-full', 'control-large'], is_required=True) }}
+
+    {{ form.input('date', type="date", label=_('Event Date'), id='field-date', value=data.date, error=errors.date, classes=['control-full', 'control-large'], is_required=True) }}
+
+    {{ form.input('url', label=_('Event URL'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-full', 'control-large']) }}
+
+    {{ form.input('location', label=_('Location'), id='field-location', value=data.location, error=errors.location, classes=['control-full', 'control-large']) }}
+
+    <div class="form-group control-large">
+      <label for="field-free" class="control-label">{{ _('Free?') }}</label>
+      <div class="controls">
+        <select id="field-free" name="free" class="form-control">
+          {% for option in [('True', _('True')), ('False', _('False'))] %}
+          <option value="{{ option[0] }}" {% if option[0] == data.free|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    {% set tag_attrs = {'data-module': 'autocomplete', 'data-module-tags': '', 'data-module-source': '/api/2/util/topic/autocomplete?incomplete=?'} %}
+    {{ form.input('topic_string', id='field-tags', label=_('Topic Tags'), placeholder=_('eg. economy, mental health, government'), value=data.topic_string, error=errors.topic_string, classes=['control-full', 'control-large'], attrs=tag_attrs) }}
+
+    {% block form_actions %}
+      <div class="form-actions">
+        {% block delete_button %}
+          {% if form_style == 'edit' and h.check_access('ckanext_lacounts_event_delete', {'id': data.id}) and not data.state == 'deleted' %}
+            {% set locale = h.dump_json({'content': _('Are you sure you want to delete this event?')}) %}
+            <a class="btn btn-danger pull-left" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_event', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+          {% endif %}
+        {% endblock %}
+        {% block save_button %}
+          <button class="btn btn-primary" type="submit">{% if form_style != 'edit' %}{{ _('Create Event') }}{% else %}{{ _('Update Event') }}{% endif %}</button>
+        {% endblock %}
+        {{ form.required_message() }}
+      </div>
+    {% endblock %}
+  </form>
+
+{% endblock %}
+
+
+{% block secondary_content %}
+  {{ super() }}
+  <div class="module module-narrow module-shallow">
+    <div class="module-content">
+      {% trans %}
+         <p>Use this form to create a new Event for the <em>Get Involved</em> page.</p>
+      {% endtrans %}
+    </div>
+  </div>
+{% endblock %}

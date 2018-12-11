@@ -50,7 +50,7 @@ class TestEventUpdate(helpers.FunctionalTestBase):
         )
 
         nosetools.assert_true(event_result['name'] == 'My Test Event')
-        nosetools.assert_true(event_result['date'] == '2010-09-21 00:00:00')
+        nosetools.assert_true(event_result['date'] == '2010-09-21')
         nosetools.assert_true(event_result['free'])
 
         updated_event = toolkit.get_action('event_update')(
@@ -95,7 +95,7 @@ class TestEventShow(helpers.FunctionalTestBase):
         nosetools.assert_true(event_result['free'])
         nosetools.assert_true(
             event_result['url'] == 'http://example.com/my-event')
-        nosetools.assert_true(event_result['date'] == '2012-09-21 00:00:00')
+        nosetools.assert_true(event_result['date'] == '2012-09-21')
 
     def test_event_show_bad_id(self):
         '''

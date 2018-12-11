@@ -4,7 +4,7 @@ import uuid
 import logging
 import datetime
 
-from sqlalchemy import Column, Unicode, DateTime, Boolean
+from sqlalchemy import Column, Unicode, Date, Boolean
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.dialects.postgresql import JSON
 from sqlalchemy import orm
@@ -89,7 +89,7 @@ class Event(LACountsBaseModel, Base):
     name = Column(Unicode, nullable=False)
     url = Column(Unicode, nullable=False, default='')
     location = Column(Unicode, nullable=False, default='')
-    date = Column(DateTime)
+    date = Column(Date)
     free = Column(Boolean)
     topic_tags = Column(JSON)
 

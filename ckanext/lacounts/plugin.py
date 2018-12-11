@@ -113,6 +113,12 @@ following to create the database tables:
             m.connect('getinvolved_event_remove',
                       '/ckan-admin/getinvolved_remove_event',
                       action='remove_event')
+            m.connect('getinvolved_new_event',
+                      '/ckan-admin/getinvolved_new_event',
+                      action='new_event')
+            m.connect('getinvolved_edit_event',
+                      '/ckan-admin/getinvolved_edit_event',
+                      action='edit_event')
 
         map.redirect('/why-la-counts', '/about',
                      _redirect_code='301 Moved Permanently')

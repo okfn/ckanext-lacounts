@@ -1,9 +1,16 @@
 import logging
 from ckan import model
 from ckan.plugins import toolkit
+import ckan.lib.navl.dictization_functions as dict_fns
+import ckan.logic as logic
+
 from ckanext.showcase.controller import ShowcaseController
 log = logging.getLogger(__name__)
 _ = toolkit._
+
+tuplize_dict = logic.tuplize_dict
+clean_dict = logic.clean_dict
+parse_params = logic.parse_params
 
 
 class BlogController(ShowcaseController):
@@ -13,10 +20,13 @@ class BlogController(ShowcaseController):
         context = {'model': model}
         showcases = toolkit.get_action('ckanext_showcase_list')(context, {})
         for showcase in showcases:
-            showcase = toolkit.get_action('package_show')(context, {'id': showcase['id']})
+            showcase = \
+                toolkit.get_action('package_show')(context,
+                                                   {'id': showcase['id']})
             if showcase.get('story_type') == 'Blog post':
                 posts.append(showcase)
-        return toolkit.render(self._search_template('blog'), extra_vars={'posts': posts})
+        return toolkit.render(self._search_template('blog'),
+                              extra_vars={'posts': posts})
 
     def _search_template(self, package_type):
         return 'blog/search.html'
@@ -78,7 +88,7 @@ class GetInvolvedController(toolkit.BaseController):
             toolkit.abort(401, _('User not authorized to view page'))
 
         if 'cancel' in toolkit.request.params:
-            toolkit.redirect_to(
+            return toolkit.redirect_to(
                 controller='ckanext.lacounts.controller:GetInvolvedController',
                 action='manage_get_involved')
 
@@ -95,6 +105,92 @@ class GetInvolvedController(toolkit.BaseController):
                 toolkit.h.flash_success(_('The event has been removed.'))
         elif not event_id:
             toolkit.h.flash_error(_('The event was not found.'))
+
+        return toolkit.redirect_to(
+            controller='ckanext.lacounts.controller:GetInvolvedController',
+            action='manage_get_involved')
+
+    def new_event(self, data=None, errors=None, error_summary=None):
+
+        context = {'model': model, 'session': model.Session,
+                   'user': toolkit.c.user}
+        try:
+            toolkit.check_access('sysadmin', context)
+        except toolkit.NotAuthorized:
+            toolkit.abort(401, _('User not authorized to create event'))
+
+        if toolkit.request.method == 'POST' and not data:
+            return self._save(context)
+
+        data = data or {}
+        errors = errors or {}
+        error_summary = error_summary or {}
+        vars = {'data': data, 'errors': errors,
+                'error_summary': error_summary}
+
+        # convert tags if not supplied in data
+        if data and not data.get('topic_string'):
+            data['topic_string'] = ', '.join(data.get('topic_tags', []))
+
+        return toolkit.render("getinvolved/event_form.html",
+                              extra_vars=vars)
+
+    def edit_event(self, data=None, errors=None, error_summary=None):
+
+        context = {'model': model, 'session': model.Session,
+                   'user': toolkit.c.user}
+        data_dict = {'id': toolkit.request.params['id']}
+
+        try:
+            toolkit.check_access('sysadmin', context)
+        except toolkit.NotAuthorized:
+            toolkit.abort(403, _('Not authorized to edit event'))
+
+        if toolkit.request.method == 'POST' and not data:
+            return self._save(context, 'update')
+
+        try:
+            old_data = toolkit.get_action('event_show')(context, data_dict)
+            data = data or old_data
+        except (toolkit.ObjectNotFound, toolkit.NotAuthorized):
+            toolkit.abort(404, _('Event not found'))
+
+        errors = errors or {}
+        vars = {'data': data, 'errors': errors, 'form_style': 'edit',
+                'error_summary': error_summary, 'action': 'edit'}
+
+        # convert tags if not supplied in data
+        if data and not data.get('topic_string'):
+            data['topic_string'] = ', '.join(data.get('topic_tags', []))
+
+        return toolkit.render("getinvolved/event_form.html",
+                              extra_vars=vars)
+
+    def _save(self, context, type="create"):
+        try:
+            data_dict = clean_dict(dict_fns.unflatten(
+                tuplize_dict(parse_params(toolkit.request.params))))
+
+            data_dict['topic_tags'] = \
+                data_dict.pop('topic_string', '').split(',')
+
+            context['message'] = data_dict.get('log_message', '')
+
+            if type == 'create':
+                toolkit.get_action('event_create')(context, data_dict)
+                toolkit.h.flash_success(_('The event has been created.'))
+            elif type == 'update':
+                toolkit.get_action('event_update')(context, data_dict)
+                toolkit.h.flash_success(_('The event has been updated.'))
+        except (toolkit.ObjectNotFound, toolkit.NotAuthorized) as e:
+            toolkit.abort(404, _('Event not found'))
+        except toolkit.ValidationError as e:
+            errors = e.error_dict
+            error_summary = e.error_summary
+            if type == 'create':
+                return self.new_event(data_dict, errors, error_summary)
+            elif type == 'update':
+                return self.edit_event(data_dict, errors, error_summary)
 
         return toolkit.redirect_to(
             controller='ckanext.lacounts.controller:GetInvolvedController',
