@@ -93,6 +93,7 @@ setup(
 
         [paste.paster_command]
         create_topics=ckanext.lacounts.commands:CreateTopics
+        get_involved=ckanext.lacounts.commands:GetInvolved
     ''',
 
     # If you are changing from the default layout of your extension, you may

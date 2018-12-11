@@ -1,0 +1,105 @@
+{% extends "admin/base.html" %}
+
+{% import 'macros/form.html' as form %}
+
+{% set user = c.user_dict %}
+
+{% block primary_content_inner %}
+  <h1 class="page-heading">
+    {% block page_heading %}{{  _('Manage Events & Volunteering Opportunities') }}{% endblock %}
+  </h1>
+
+  <h3 class="page-heading">{{ _('Events') }}</h3>
+
+  <div class="form-actions">
+    <a class="btn btn-primary" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='new_event'%}">{{ _('Add New Event') }}</a>
+  </div>
+
+  {% if c.events %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ _('Date') }}</th>
+        <th>{{ _('Event') }}</th>
+        <th>{{ _('Location') }}</th>
+        <th style="width: 8%">{{ _('Free?') }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in c.events|sort(reverse=True, attribute='date') %}
+      <tr>
+        <td>{{ h.render_datetime(event.date) }}</td>
+        <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
+        <td>{{ event.location }}</td>
+        <td>{% if event.free %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
+        <td>
+          {% set locale = h.dump_json({'content': _('Are you sure you want to remove this event?')}) %}
+          <div class="pull-right">
+            <a class="btn btn-primary btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_event', id=event.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
+            <a class="btn btn-danger btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_event', id=event.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>{{ _('There are currently no events.') }}</p>
+  {% endif %}
+
+
+  <h2 id="Volunteering">{{ _('Volunteering Opportunities') }}</h2>
+
+  <div class="form-actions">
+    <a class="btn btn-primary" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering'%}">{{ _('Add New Volunteering Opportunity') }}</a>
+  </div>
+
+  {% if c.volunteering %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>{{ _('URL') }}</th>
+        <th>{{ _('Description') }}</th>
+        <th>{{ _('Email') }}</th>
+        <th>{{ _('Created') }}</th>
+        <th>{{ _('Is Filled') }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
+      <tr>
+        <td>{{ opportunity.organization }}</td>
+        <td>{{ opportunity.url }}</td>
+        <td>{{ opportunity.description }}</td>
+        <td>{{ opportunity.email }}</td>
+        <td>{{ opportunity.created_on }}</td>
+        <td>{% if opportunity.is_filled %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
+        <td>
+          {% set locale = h.dump_json({'content': _('Are you sure you want to remove this voluntary opportunity?')}) %}
+          <div class="pull-right">
+            <a class="btn btn-primary btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_volunteering', id=opportunity.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
+            <a class="btn btn-danger btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_volunteering', id=opportunity.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>{{ _('There are currently no volunteering opportunities.') }}</p>
+  {% endif %}
+{% endblock %}
+
+{% block secondary_content %}
+  {{ super() }}
+  <div class="module module-narrow module-shallow">
+    <div class="module-content">
+      {% trans %}
+         <p><strong>Get Involved:</strong> Admins can add and remove Events and Volunteering Opportunities here.</p>
+      {% endtrans %}
+    </div>
+  </div>
+{% endblock %}

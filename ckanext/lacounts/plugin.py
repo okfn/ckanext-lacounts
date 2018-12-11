@@ -1,11 +1,13 @@
 import logging
-from functools import partial
+
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from routes.mapper import SubMapper
 
-from ckanext.lacounts import helpers, validators, jobs, actions
+from ckanext.lacounts.model import tables_exist
+from ckanext.lacounts import helpers, validators, jobs
+from ckanext.lacounts.logic import actions, auth
 
 log = logging.getLogger(__name__)
 _ = toolkit._
@@ -20,14 +22,26 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IPackageController, inherit=True)
     plugins.implements(plugins.IGroupController, inherit=True)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IValidators)
 
     # IConfigurer
 
     def update_config(self, config_):
+        if not tables_exist():
+            log.critical(u'''
+The lacounts extension requires database initialization. Please run the
+following to create the database tables:
+    paster --plugin=ckanext-lacounts get_involved init-db
+''')
+        else:
+            log.debug(u'LA Counts "Get Involved" tables exist')
+
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'lacounts')
+        toolkit.add_ckan_admin_tab(config_, 'getinvolved_admin',
+                                   'Get Involved')
 
     def update_config_schema(self, schema):
         schema.update({
@@ -81,19 +95,42 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
         # These named routes are used for custom dataset forms which will use
         # the names below based on the dataset.type ('dataset' is the default
         # type)
-        with SubMapper(map, controller='ckanext.lacounts.controller:BlogController') as m:
+        with SubMapper(map, controller='ckanext.lacounts.controller:BlogController') as m: # noqa
             m.connect('blog_search', '/blog', action='search')
             m.connect('blog_read', '/blog/{id}', action='read')
 
-        with SubMapper(map, controller='ckanext.lacounts.controller:StaticController') as m:
+        with SubMapper(map, controller='ckanext.lacounts.controller:StaticController') as m: # noqa
             m.connect('privacypolicy', '/privacy', action='privacypolicy')
             m.connect('termsofservice', '/terms', action='termsofservice')
             m.connect('faqs', '/faqs', action='faqs')
             m.connect('aboutus', '/about', action='aboutus')
             m.connect('resources', '/resources', action='resources')
-            m.connect('getinvolved', '/getinvolved', action='getinvolved')
 
-        map.redirect('/why-la-counts', '/about', _redirect_code='301 Moved Permanently')
+        with SubMapper(map, controller='ckanext.lacounts.controller:GetInvolvedController') as m: # noqa
+            m.connect('getinvolved', '/getinvolved', action='index')
+            m.connect('getinvolved_admin', '/ckan-admin/get_involved_admin',
+                      action='manage_get_involved'),
+            m.connect('getinvolved_event_remove',
+                      '/ckan-admin/getinvolved_remove_event',
+                      action='remove_event')
+            m.connect('getinvolved_new_event',
+                      '/ckan-admin/getinvolved_new_event',
+                      action='new_event')
+            m.connect('getinvolved_edit_event',
+                      '/ckan-admin/getinvolved_edit_event',
+                      action='edit_event')
+            m.connect('getinvolved_volunteering_remove',
+                      '/ckan-admin/getinvolved_remove_volunteering',
+                      action='remove_volunteering')
+            m.connect('getinvolved_new_volunteering',
+                      '/ckan-admin/getinvolved_new_volunteering',
+                      action='new_volunteering')
+            m.connect('getinvolved_edit_volunteering',
+                      '/ckan-admin/getinvolved_edit_volunteering',
+                      action='edit_volunteering')
+
+        map.redirect('/why-la-counts', '/about',
+                     _redirect_code='301 Moved Permanently')
         return map
 
     # IFacets
@@ -147,11 +184,34 @@ class LacountsPlugin(plugins.SingletonPlugin, DefaultTranslation):
     def get_actions(self):
         return {
             'config_option_update': actions.config_option_update,
+            'event_create': actions.event_create,
+            'event_update': actions.event_update,
+            'event_delete': actions.event_delete,
+            'event_show': actions.event_show,
+            'event_list': actions.event_list,
+            'volunteering_create': actions.volunteering_create,
+            'volunteering_update': actions.volunteering_update,
+            'volunteering_delete': actions.volunteering_delete,
+            'volunteering_show': actions.volunteering_show,
+            'volunteering_list': actions.volunteering_list
+        }
+
+    # IAuthFunctions
+
+    def get_auth_functions(self):
+        return {
+            'ckanext_lacounts_event_create': auth.event_create,
+            'ckanext_lacounts_event_delete': auth.event_delete,
+            'ckanext_lacounts_event_show': auth.event_show,
+            'ckanext_lacounts_volunteering_create': auth.volunteering_create,
+            'ckanext_lacounts_volunteering_delete': auth.volunteering_delete,
+            'ckanext_lacounts_volunteering_show': auth.volunteering_show
         }
 
     # IValidators
 
     def get_validators(self):
         return {
-            'set_default_publisher_title': validators.set_default_publisher_title,
+            'set_default_publisher_title':
+                validators.set_default_publisher_title,
         }
