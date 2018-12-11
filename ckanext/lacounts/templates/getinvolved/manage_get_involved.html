@@ -36,8 +36,8 @@
         <td>
           {% set locale = h.dump_json({'content': _('Are you sure you want to remove this event?')}) %}
           <div class="pull-right">
-            <a class="btn btn-primary btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_event', id=event.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
-            <a class="btn btn-danger btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_event', id=event.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
+            <a class="btn btn-primary btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_event', id=event.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
+            <a class="btn btn-danger btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_event', id=event.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
           </div>
         </td>
       </tr>
@@ -80,8 +80,8 @@
         <td>
           {% set locale = h.dump_json({'content': _('Are you sure you want to remove this voluntary opportunity?')}) %}
           <div class="pull-right">
-            <a class="btn btn-primary btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_volunteering', id=opportunity.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
-            <a class="btn btn-danger btn-small" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_volunteering', id=opportunity.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
+            <a class="btn btn-primary btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='edit_volunteering', id=opportunity.id %}" title="{{ _('Edit') }}">{{ _('Edit') }}</a>
+            <a class="btn btn-danger btn-sm" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='remove_volunteering', id=opportunity.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Remove') }}">{{ _('Remove') }}</a>
           </div>
         </td>
       </tr>
