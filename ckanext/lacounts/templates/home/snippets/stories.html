@@ -5,21 +5,10 @@
     <h1>Recent data stories</h1>
     <p>Data stories help to illuminate the power of open data. LA Counts features 5 types of stories: data stories; data visualizations; profiles and interviews; methodologies; and white papers and research.</p>
   {% endcall %}
-  <div class="stories-list">
-    {% for story in h.get_recent_data_stories() %}
-      <article>
-        <a class="image" href="/story/{{ story.name }}">
-          <img src="{{ story.image_display_url }}" alt="" />
-        </a>
-        <div class="text">
-          <h1>
-            <a href="/story/{{ story.name }}">
-              {{ h.truncate(story.title, 80) }}
-            </a>
-          </h1>
-        </div>
-      </article>
-    {% endfor %}
-  </div>
+
+  {% set stories = h.get_recent_data_stories() %}
+
+  {% snippet 'snippets/stories_list.html', stories=stories %}
+
   <a href="{{ h.url_for('dataset', type_label='Story') }}" class="explore-link">View all stories</a>
 </section>
