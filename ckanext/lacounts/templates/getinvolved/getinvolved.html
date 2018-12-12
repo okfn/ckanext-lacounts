@@ -99,3 +99,20 @@
   </li>
 </ul>
 {% endblock %}
+
+{%- block footer %}
+  {% if h.check_access('ckanext_lacounts_event_create') %}
+    <div class="admin-page-actions">
+      <div class="dropdown">
+        <a class="btn btn-primary" id="addPage" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-plus-square"></i> Add
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="addPage">
+          {% link_for _('Add Event'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_event', class_='btn btn-primary', icon='plus-square' %}
+          {% link_for _('Add Volunteering Opportunity'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering', class_='btn btn-primary', icon='plus-square' %}
+        </ul>
+      </div>
+    </div>
+  {% endif %}
+  {{ super() }}
+{% endblock %}
