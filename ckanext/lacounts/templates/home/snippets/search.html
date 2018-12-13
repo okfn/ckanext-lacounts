@@ -6,7 +6,7 @@
   <div>
     {% if g.search_facets.get('type_label') %}
       {% set counts = h.get_homepage_counts() %}
-      Search <a href="{{ h.url_for('dataset_search', type_label='Data') }}">{{ counts['datasets'] }} datasets</a> from <a href="{{ h.url_for('publisher_index') }}">{{counts['publishers'] }} publishers</a> and <a href="{{ h.url_for('dataset_search', type_label='Story') }}">{{ counts['stories'] }} stories</a>:
+      Search <a href="{{ h.url_for('dataset_search', type_label='Story') }}">{{ counts['stories'] }} stories</a> and <a href="{{ h.url_for('dataset_search', type_label='Data') }}">{{ counts['datasets'] }} datasets</a> from <a href="{{ h.url_for('publisher_index') }}">{{counts['publishers'] }} publishers</a>:
     {% endif %}
   </div>
 
