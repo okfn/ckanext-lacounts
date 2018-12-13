@@ -64,18 +64,18 @@
     <thead>
       <tr>
         <th>Organization</th>
-        <th>{{ _('URL') }}</th>
+        <th>{{ _('Contact (email)') }}</th>
         <th>{{ _('Description') }}</th>
-        <th>{{ _('Email') }}</th>
+        <th>{{ _('Date Posted') }}</th>
       </tr>
     </thead>
     <tbody>
       {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
       <tr>
         <td>{{ opportunity.organization }}</td>
-        <td>{{ opportunity.url }}</td>
+        <td><a href="mailto:{{ opportunity.email }}">{{ opportunity.email }}</a></td>
         <td>{{ opportunity.description }}</td>
-        <td>{{ opportunity.email }}</td>
+        <td>{{ opportunity.created_on }}</td>
       </tr>
       {% endfor %}
     </tbody>
