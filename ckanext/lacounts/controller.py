@@ -57,8 +57,10 @@ class GetInvolvedController(toolkit.BaseController):
 
     def index(self):
         toolkit.c.events = toolkit.get_action('event_list')(data_dict={})
-        toolkit.c.volunteering = \
+        volunteering = \
             toolkit.get_action('volunteering_list')(data_dict={})
+        toolkit.c.volunteering = [v for v in volunteering
+                                  if not v['is_filled']]
         return toolkit.render('getinvolved/getinvolved.html')
 
     def manage_get_involved(self):

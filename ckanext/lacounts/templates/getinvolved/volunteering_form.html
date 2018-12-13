@@ -23,7 +23,7 @@
       <label for="field-is_filled" class="control-label">{{ _('Is Filled?') }}</label>
       <div class="controls">
         <select id="field-is_filled" name="is_filled" class="form-control">
-          {% for option in [('True', _('True')), ('False', _('False'))] %}
+          {% for option in [('False', _('False')), ('True', _('True'))] %}
           <option value="{{ option[0] }}" {% if option[0] == data.is_filled|trim %}selected="selected"{% endif %}>{{ option[1] }}</option>
           {% endfor %}
         </select>
