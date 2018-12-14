@@ -60,7 +60,7 @@
     <thead>
       <tr>
         <th>Organization</th>
-        <th>{{ _('URL') }}</th>
+        <th>{{ _('Organization URL') }}</th>
         <th>{{ _('Description') }}</th>
         <th>{{ _('Email') }}</th>
         <th>{{ _('Created') }}</th>
@@ -73,9 +73,9 @@
       <tr>
         <td>{{ opportunity.organization }}</td>
         <td>{{ opportunity.url }}</td>
-        <td>{{ opportunity.description }}</td>
+        <td>{{ h.render_markdown(opportunity.description) }}</td>
         <td>{{ opportunity.email }}</td>
-        <td>{{ opportunity.created_on }}</td>
+        <td>{{ h.render_datetime(opportunity.created_on, date_format="%Y-%d-%m") }}</td>
         <td>{% if opportunity.is_filled %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
         <td>
           {% set locale = h.dump_json({'content': _('Are you sure you want to remove this voluntary opportunity?')}) %}

@@ -11,7 +11,7 @@
 
     {{ form.input('organization', id='field-organization', label="Organization", placeholder=_('eg. Organization name'), value=data.organization, error=errors.organization, classes=['control-full', 'control-large'], is_required=True) }}
 
-    {{ form.input('url', label=_('URL'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-full', 'control-large']) }}
+    {{ form.input('url', label=_('Organization URL'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-full', 'control-large']) }}
 
     {{ form.markdown('description', label=_('Description'), id='field-description', placeholder=_('A description of the volunteering opportunity'), value=data.description, error=errors.description, classes=['control-full', 'control-large']) }}
 

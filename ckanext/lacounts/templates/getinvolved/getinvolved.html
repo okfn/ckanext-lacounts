@@ -72,9 +72,9 @@
     <tbody>
       {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
       <tr>
-        <td>{{ opportunity.organization }}</td>
+        <td>{% if opportunity.url %}<a href="{{ opportunity.url }}" target="_blank" rel="nofollow">{{ opportunity.organization }}</a>{% else %}{{ opportunity.organization }}{% endif %}</td>
         <td><a href="mailto:{{ opportunity.email }}">{{ opportunity.email }}</a></td>
-        <td>{{ opportunity.description }}</td>
+        <td>{{ h.render_markdown(opportunity.description) }}</td>
         <td>{{ h.render_datetime(opportunity.created_on, date_format="%Y-%d-%m") }}</td>
       </tr>
       {% endfor %}
