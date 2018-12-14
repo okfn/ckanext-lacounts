@@ -1,3 +1,7 @@
+#libraryHelper .header {
+  font-size: 1rem;
+}
+
 /* search results */
 .results-controls {
   margin-top: var(--spacer-35);
