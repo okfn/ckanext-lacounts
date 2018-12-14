@@ -3,10 +3,6 @@
 
 {% block subtitle %}{{ _('Contact Us') }}{% endblock %}
 
-{% block breadcrumb_content %}
-  <li class="active">{% link_for _('Contact Us'), controller='ckanext.contact.controllers.contact:ContactController', action='form' %}</li>
-{% endblock %}
-
 {% block primary_content %}
   {% call editable.region('contact-us') %}
     <h1>Contact Us</h1>
