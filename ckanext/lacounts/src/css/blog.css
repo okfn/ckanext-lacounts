@@ -38,6 +38,11 @@ body.blog {
         }
       }
     }
+
+    & .topics .tag-list li a.tag {
+      color: #fff;
+      background-color: var(--grey);
+    }
   }
 
   @nest .js & {
