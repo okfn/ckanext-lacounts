@@ -39,9 +39,13 @@ body.blog {
       }
     }
 
-    & .topics .tag-list li a.tag {
-      color: #fff;
-      background-color: var(--grey);
+    & .topics {
+      margin-top:1rem;
+
+      & .tag-list li a.tag {
+        color: #fff;
+        background-color: var(--grey);
+      }
     }
   }
 
