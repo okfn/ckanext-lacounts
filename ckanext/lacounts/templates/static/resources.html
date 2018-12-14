@@ -9,49 +9,74 @@
 
 {% block primary_content %}
   {% call editable.region('resources-primary') %}
-    <h1>Resources</h1>
 
-    <p>Los Angeles County has a wealth of useful resources for learning about data and working with it. Here are a few organizations and activities to get you started helping to change LA County for the better.</p>
+<h1>Resources</h1>
 
-    <p>Something missing? Let us know on the <a href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">{{ _('Contact Us') }}</a> page.</p>
+<p>Los Angeles County has a wealth of useful resources for learning about data and working with it. Here are a few organizations and activities to get you started helping to change LA County for the better.</p>
 
-    <h2>LA County Data Science And Web Dev Orgs</h2>
+<p>Something missing? Let us know on the <a href="/contact">Contact Us</a> page.</p>
+
+<h2>LA Counts technical resources</h2>
+
+<ul>
+  <li><a href="https://github.com/la-counts" target="_blank">LA Counts’ github organization</a></li>
+  <li>
+    <a href="https://docs.ckan.org/en/2.8/contents.html" target="_blank">CKAN’s master documentation</a>
     <ul>
-      <li>Black Girls Code | <a href="http://www.blackgirlscode.com">http://www.blackgirlscode.com</a></li>
-      <li>City of LA Data Science Working Group | <a href="http://dsf.lacity.org/working-group">http://dsf.lacity.org/working-group</a></li>
-      <li>Fullstack LA | <a href="https://www.meetup.com/la-fullstack/">https://www.meetup.com/la-fullstack/</a></li>
-      <li>Girl Develop It | <a href="https://www.girldevelopit.com/chapters/los-angeles ">https://www.girldevelopit.com/chapters/los-angeles</a></li>
-      <li>Hack for LA | <a href="http://www.hackforla.org/">http://www.hackforla.org/</a></li>
-      <li>Learn Teach Code | <a href="https://www.meetup.com/LearnTeachCode/ ">https://www.meetup.com/LearnTeachCode/</a></li>
-      <li>Maptime LA | <a href="https://www.meetup.com/MaptimeLA/">https://www.meetup.com/MaptimeLA/</a></li>
+      <li><a href="https://docs.ckan.org/en/2.8/api/index.html" target="_blank">Dataset API queries</a></li>
     </ul>
+  </li>
+  <li><a href="/faqs#datasets">Metadata</a></li>
+</ul>
+
+<h2>Free Data Analysis and Visualization Tools</h2>
+
+<ul>
+  <li>ArcGIS Online - <a href="https://learn.arcgis.com/en/projects/get-started-with-arcgis-online/" target="_blank">Getting Started</a></li>
+  <li><a href="https://databasic.io" target="_blank">Databasic.io</a></li>
+  <li><a href="https://github.com/d3/d3/wiki/tutorials" target="_blank">D3 Tutorial</a></li>
+  <li><a href="https://beta.observablehq.com/collection/@observablehq/tutorial" target="_blank">Observable Tutorials</a></li>
+  <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+  <li><a href="http://jupyter.org/" target="_blank">Jupyter</a></li>
+  <li><a href="https://www.tableau.com/learn/training" target="_blank">Tableau</a></li>
+  <li>R</li>
+  <li>QGIS - <a href="https://www.qgistutorials.com/en/docs/making_a_map.htm" target="_blank">Making A Map</a></li>
+</ul>
+
+<h2>Data Tutorials and Learning</h2>
+
+<ul>
+  <li>Codecademy Data Science</li>
+  <li>Coursera The Data Scientist’s Toolbox</li>
+  <li>Data Science Masters free self-study curriculum</li>
+  <li>NICAR-LEARN [Free video tutorials for a variety of analysis tools]</li>
+  <li>Opportunity Insights’ public course Using Big Data to Solve Economic and Social Problems</li>
+</ul>
+
+<h2>Local, Public Data Communities</h2>
+
+<ul>
+  <li><a href="http://datadonuts.la/" target="_blank">Data + Donuts</a></li>
+  <li>DataKind LA (with link/OK from Will High)</li>
+  <li><a href="http://datascience.la/" target="_blank">DataScience LA</a></li>
+  <li>City of Los Angeles’ Open Data Literacy Program</li>
+  <li><a href="http://designanddata.org" target="_blank">Design and Data (Lex’s project)</a></li>
+  <li><a href="https://groups.google.com/forum/#!forum/lacounts" target="_blank">LA Counts working groups</a></li>
+  <li><a href="https://www.meetup.com/MaptimeLA/" target="_blank">Maptime LA</a></li>
+  <li><a href="https://www.meetup.com/rladies-la/" target="_blank">R-Ladies Los Angeles</a></li>
+</ul>
+
+<h2>Other Public Data Communities</h2>
+
+<ul>
+  <li>CfA (Charlotte - data)</li>
+  <li>City Bureau</li>
+  <li>DDD</li>
+  <li>SF data school</li>
+  <li>WPRDC</li>
+</ul>
 
 
-    <h2>Data Tutorials</h2>
-    <ul>
-      <li>Codecademy | <a href="https://www.codecademy.com/catalog/subject/data-science"> https://www.codecademy.com/catalog/subject/data-science</a></li>
-      <li>Coursera | <a href="https://www.coursera.org/browse/data-science?languages=en#data-analysis">https://www.coursera.org/browse/data-science?languages=en</a></li>
-      <li>D3 Tutorial | <a href="https://github.com/d3/d3/wiki/tutorials"> https://github.com/d3/d3/wiki/tutorials</a></li>
-      <li>Mike Bostock’s California maps and DIY guides |
-        <ul>
-          <li><a href="https://bl.ocks.org/mbostock/5562380">https://bl.ocks.org/mbostock/5562380 </a></li>
-          <li><a href="https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27">https://bl.ocks.org/mbostock/39b34968ad5eab65de1d7da81f78bb27</a></li>
-          <li><a href="https://bl.ocks.org/mbostock/670b9fe0577a29c39a1803f59c628769">https://bl.ocks.org/mbostock/670b9fe0577a29c39a1803f59c628769</a></li>
-        </ul>
-      </li>
-      <li>Data Science Masters | <a href="http://datasciencemasters.org/ ">http://datasciencemasters.org</a></li>
-      <li>Khan Academy | <a href="https://www.khanacademy.org/computing/computer-programming">https://www.khanacademy.org/computing/computer-programming</a></li>
-    </ul>
-
-    <h2>Additional Data Resources</h2>
-    <ul>
-      <li>California Civic Data | <a href="https://www.californiacivicdata.org/">https://www.californiacivicdata.org/</a></li>
-      <li>DATA:USA &gt; Los Angeles County | <a href="https://datausa.io/profile/geo/los-angeles-county-ca/">https://datausa.io/profile/geo/los-angeles-county-ca/</a></li>
-      <li>Neighborhood Data for Social Change | <a href="https://data.myneighborhooddata.org/stories/s/xs7g-jqmb ">https://data.myneighborhooddata.org/stories/s/xs7g-jqmb</a></li>
-      <li>Race Counts &gt; Los Angeles County | <a href="http://www.racecounts.org/county/los-angeles/">http://www.racecounts.org/county/los-angeles/</a></li>
-      <li>StudyLA | <a href="http://academics.lmu.edu/studyla/">http://academics.lmu.edu/studyla/</a></li>
-      <li>Southern California Association of Governments &gt; Data and Tools | <a href="http://www.scag.ca.gov/DataAndTools/Pages/Home.aspx">http://www.scag.ca.gov/DataAndTools/Pages/Home.aspx</a></li>
-    </ul>
   {% endcall %}
 {% endblock %}
 
