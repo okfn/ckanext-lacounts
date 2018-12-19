@@ -26,9 +26,11 @@
         {
             "field_name": "harvest_terms",
             "form_placeholder": "eg. nature\npollution\nco2",
-            "form_snippet": "textarea.html",
+            "form_snippet": "textarea_json.html",
             "label": "Harvest terms",
-            "help_text": "Each term should be placed on a new line"
+            "help_text": "Each term should be placed on a new line. Terms are case-insensitive. Plurals are automatically added.",
+            "validators": "convert_to_list",
+            "output_validators": "convert_from_list"
         },
         {
             "field_name": "featured",

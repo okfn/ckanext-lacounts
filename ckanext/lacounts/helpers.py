@@ -415,3 +415,7 @@ def get_gravatar_image_url(pkg):
     email_hash = m.hexdigest()
 
     return base_url.format(hash=email_hash)
+
+
+def list_to_newlines(value):
+    return '\n'.join(value)

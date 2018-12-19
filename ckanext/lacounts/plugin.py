@@ -87,6 +87,7 @@ following to create the database tables:
             'expand_topic_package_count': helpers.expand_topic_package_count,
             'get_author_initials': helpers.get_author_initials,
             'get_gravatar_image_url': helpers.get_gravatar_image_url,
+            'list_to_newlines': helpers.list_to_newlines,
         }
 
     # IRoutes
@@ -216,4 +217,6 @@ following to create the database tables:
         return {
             'set_default_publisher_title':
                 validators.set_default_publisher_title,
+            'convert_to_list': validators.convert_to_list,
+            'convert_from_list': validators.convert_from_list,
         }

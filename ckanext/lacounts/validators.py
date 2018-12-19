@@ -32,3 +32,20 @@ def validate_editable_regions(value):
 
 def set_default_publisher_title(key, data, errors, context):
     data[('title',)] = data.get(('title',)) or data.get(('display_title',))
+
+
+def convert_to_list(value, context):
+    if not value:
+        return None
+
+    value = [v.strip().lower() for v in value.split('\n')]
+
+    return json.dumps(value)
+
+
+def convert_from_list(value, context):
+
+    if not value:
+        return []
+    else:
+        return json.loads(value)
