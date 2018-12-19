@@ -63,7 +63,7 @@ def normalize_frequency(value):
 
 
 def normalize_terms(value):
-    return map(normalize_term, value.splitlines())
+    return map(normalize_term, value)
 
 
 def normalize_term(term):

@@ -150,7 +150,7 @@
                   {% if pkg_dict.harvest_dataset_terms %}
                   <tr>
                     <th scope="row" class="dataset-label">{{ _("Dataset Topic Terms") }}</th>
-                    <td class="dataset-details"> {{ pkg_dict.harvest_dataset_terms.replace('\n', ', ') }}</td>
+                    <td class="dataset-details"> {{ pkg_dict.harvest_dataset_terms|join(', ') }}</td>
                   </tr>
                   {% endif %}
               </tbody>

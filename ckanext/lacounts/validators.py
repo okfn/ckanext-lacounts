@@ -51,4 +51,7 @@ def convert_from_list(value, context):
     if not value:
         return []
     else:
+        if '\n' in value:
+            # Legacy format
+            return value.split('\n')
         return json.loads(value)

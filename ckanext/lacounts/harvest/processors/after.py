@@ -34,8 +34,8 @@ def after_processor(package, harvest_object):
         package.get('frequency'))
 
     # Terms
-    package['harvest_dataset_terms'] = "\n".join(map(
-        helpers.normalize_term, package.get('harvest_dataset_terms', [])))
+    package['harvest_dataset_terms'] = map(
+            helpers.normalize_term, package.get('harvest_dataset_terms', []))
 
     # Groups
     package = helpers.update_groups(
