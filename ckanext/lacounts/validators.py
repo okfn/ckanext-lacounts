@@ -38,7 +38,10 @@ def convert_to_list(value, context):
     if not value:
         return None
 
-    value = [v.strip().lower() for v in value.split('\n')]
+    if isinstance(value, list):
+        value = [v.strip().lower() for v in value]
+    else:
+        value = [v.strip().lower() for v in value.split('\n')]
 
     return json.dumps(value)
 
