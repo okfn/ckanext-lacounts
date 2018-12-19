@@ -172,11 +172,13 @@ following to create the database tables:
     # IGroupController
 
     def create(self, entity):
-        if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job'):
+        if getattr(entity, 'type') == 'topic' and not getattr(
+                toolkit.c, 'job', False):
             toolkit.enqueue_job(jobs.update_groups, [entity.name])
 
     def edit(self, entity):
-        if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job'):
+        if getattr(entity, 'type') == 'topic' and not getattr(
+                toolkit.c, 'job', False):
             toolkit.enqueue_job(jobs.update_groups, [entity.name])
 
     # IActions
