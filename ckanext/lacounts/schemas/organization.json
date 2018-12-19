@@ -8,7 +8,7 @@
             "field_name": "name",
             "form_placeholder": "eg. my-publisher",
             "label": "URL",
-            "preset": "dataset_slug"
+            "preset": "group_or_org_slug"
         },
         {
             "field_name": "display_title",

@@ -8,7 +8,7 @@
             "field_name": "name",
             "form_placeholder": "eg. my-topic",
             "label": "URL",
-            "preset": "dataset_slug"
+            "preset": "group_or_org_slug"
         },
         {
             "field_name": "title",

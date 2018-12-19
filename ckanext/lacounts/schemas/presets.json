@@ -10,6 +10,13 @@
         "form_snippet": "related_datasets.html",
         "display_snippet": "related_datasets.html"
       }
+    },
+    {
+      "preset_name": "group_or_org_slug",
+      "values": {
+        "validators": "not_empty unicode name_validator group_name_validator",
+        "form_snippet": "slug.html"
+      }
     }
   ]
 }
