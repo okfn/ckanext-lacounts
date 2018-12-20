@@ -4,8 +4,8 @@
 
   & .header {
     display: inline-block;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.25em;
+    height: 1.25em;
     border-radius: 50%;
     text-align: center;
     line-height: 1.5em;
@@ -25,7 +25,8 @@
     @mixin tip;
     padding: var(--spacer-15);
     text-align: left;
-    margin-top: 0.8rem;
+    margin-top: 0.4rem;
+    margin-left: -0.5em;
     opacity: 0;
     position: absolute;
     left: 0;
@@ -60,7 +61,7 @@
       top: 100%;
       left: 50%;
       margin-top: 0.2em;
-      margin-left: -0.5em;
+      margin-left: -1em;
     }
 
     & .content {
