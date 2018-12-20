@@ -281,22 +281,22 @@
       }
 
       &.education a {
-        background-color: var(--orange);
+        background-color: var(--grey);
       }
       &.environment a {
-        background-color: var(--environment-colour);
+        background-color: var(--grey);
       }
       &.housing a {
-        background-color: var(--housing-colour);
+        background-color: var(--grey);
       }
       &.immigration a {
-        background-color: var(--immigration-colour);
+        background-color: var(--grey);
       }
       &.transportation a {
-        background-color: var(--transportation-colour);
+        background-color: var(--grey);
       }
       &.well-being a {
-        background-color: var(--well-being-colour);
+        background-color: var(--grey);
       }
     }
   }
@@ -423,22 +423,22 @@
           }
 
           &.education a .filter-icon {
-            background-color: var(--orange);
+            background-color: var(--grey);
           }
           &.environment a .filter-icon {
-            background-color: var(--environment-colour);
+            background-color: var(--grey);
           }
           &.housing a .filter-icon {
-            background-color: var(--housing-colour);
+            background-color: var(--grey);
           }
           &.immigration a .filter-icon {
-            background-color: var(--immigration-colour);
+            background-color: var(--grey);
           }
           &.transportation a .filter-icon {
-            background-color: var(--transportation-colour);
+            background-color: var(--grey);
           }
           &.well-being a .filter-icon {
-            background-color: var(--well-being-colour);
+            background-color: var(--grey);
           }
         }
       }
@@ -532,22 +532,22 @@
 
   & li {
       &.education a {
-        background-color: var(--orange);
+        background-color: var(--grey);
       }
       &.environment a {
-        background-color: var(--environment-colour);
+        background-color: var(--grey);
       }
       &.housing a {
-        background-color: var(--housing-colour);
+        background-color: var(--grey);
       }
       &.immigration a {
-        background-color: var(--immigration-colour);
+        background-color: var(--grey);
       }
       &.transportation a {
-        background-color: var(--transportation-colour);
+        background-color: var(--grey);
       }
       &.well-being a {
-        background-color: var(--well-being-colour);
+        background-color: var(--grey);
       }
   }
 }
