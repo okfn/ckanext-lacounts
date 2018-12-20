@@ -1,8 +1,10 @@
-import os
-import json
 import logging
 from urlparse import urlparse
+
+import inflect
+
 from ckanext.lacounts.helpers import toolkit, model
+
 log = logging.getLogger(__name__)
 
 
@@ -39,13 +41,23 @@ def update_groups(package, groups):
     # package: we look for package['harvest_dataset_terms']
     # groups: you can pass groups with extras to improve performance otherwise we query db
     package['groups'] = []
-    dataset_terms = normalize_terms(package.get('harvest_dataset_terms', ''))
+    dataset_terms = pluralize(normalize_terms(package.get('harvest_dataset_terms', '')))
     if dataset_terms:
         for group in groups:
-            group_terms = normalize_terms(group.get('harvest_terms', ''))
+            group_terms = pluralize(normalize_terms(group.get('harvest_terms', '')))
             if set(dataset_terms).intersection(group_terms):
                 package['groups'].append(group)
+
     return package
+
+
+def pluralize(terms):
+
+    p = inflect.engine()
+    plurals = []
+    for term in terms:
+        plurals.append(p.plural(term))
+    return terms + plurals
 
 
 def list_groups_with_extras():
