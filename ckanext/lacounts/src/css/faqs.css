@@ -1,0 +1,21 @@
+.faqs h2 {
+    margin-top: 2em;
+}
+
+.faqs h2 {
+    margin-top: 1.5em;
+}
+
+.headerlink {
+  color: var(--grey);
+  font-size: var(--font-size-small);
+  visibility: hidden;
+
+}
+
+h2:hover .headerlink {
+ visibility: visible;
+}
+h3:hover .headerlink {
+ visibility: visible;
+}
