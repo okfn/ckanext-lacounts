@@ -1,4 +1,3 @@
-import ast
 import time
 import logging
 from ckan import model
@@ -15,20 +14,17 @@ def update_groups(group_name):
     # Get groups
     groups = helpers.list_groups_with_extras()
 
-    # Get extras
-    extras = (model.Session
-        .query(model.PackageExtra)
-        .filter(model.PackageExtra.key == 'harvest_dataset_terms')
-        .filter(model.PackageExtra.value != '[]')
-        .all())
-
     # Get packages
     offset = 0
     limit = 1000
     packages = []
     while True:
         page = toolkit.get_action('package_search')(
-            {'model': model}, {'start': offset, 'rows': limit})['results']
+            {'model': model}, {
+                'start': offset,
+                'rows': limit,
+                'fq': 'dataset_type:dataset',
+                })['results']
         if not page:
             break
         packages.extend(page)
