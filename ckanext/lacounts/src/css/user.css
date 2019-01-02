@@ -71,6 +71,10 @@
   }
 }
 
+.getinvolved .admin-page-actions {
+  top: 75px;
+}
+
 
 /* back-end */
 .user,
