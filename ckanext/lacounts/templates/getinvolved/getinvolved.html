@@ -35,6 +35,11 @@
   </ul>
 
   <h2 id="events">{{ _('Events') }}</h2>
+  {% call editable.region('get-involved-events') %}
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+  </p>
+  {% endcall %}
   {% if c.events %}
   <table class="table">
     <thead>
@@ -61,6 +66,11 @@
   {% endif %}
 
   <h2 id="Volunteering">{{ _('Volunteer Opportunities') }}</h2>
+  {% call editable.region('get-involved-volunteering') %}
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+  </p>
+  {% endcall %}
   {% if c.volunteering %}
   <table class="table">
     <thead>
