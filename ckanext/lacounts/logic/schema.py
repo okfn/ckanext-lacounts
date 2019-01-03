@@ -12,6 +12,7 @@ natural_number_validator = toolkit.get_validator('natural_number_validator')
 def event_base_schema():
     schema = {
         'name': [not_empty, unicode],
+        'description': [ignore_missing, unicode],
         'url': [ignore_missing, unicode],
         'location': [ignore_missing, unicode],
         'date': [not_empty, isodate],
@@ -32,6 +33,7 @@ def event_create_schema():
 def event_update_schema():
     schema = {
         'id': [not_empty, unicode],
+        'description': [ignore_missing, unicode],
         'name': [not_empty, unicode],
         'url': [ignore_missing, unicode],
         'location': [ignore_missing, unicode],

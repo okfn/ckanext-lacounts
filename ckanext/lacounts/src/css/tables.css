@@ -28,3 +28,18 @@
     }
   }
 }
+
+.getinvolved .table {
+  & > tbody > tr > td,
+  & > tbody > tr.hasDescription {
+    border: none;
+  }
+
+  & > tbody > tr {
+    border-bottom: 0.2rem solid color(var(--body-colour) a(10%));
+  }
+
+  & > tbody > tr:last-child {
+    border-bottom: none;
+  }
+}

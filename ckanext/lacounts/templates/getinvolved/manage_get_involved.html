@@ -21,6 +21,7 @@
       <tr>
         <th style="width: 15%">{{ _('Date') }}</th>
         <th>{{ _('Event') }}</th>
+        <th>{{ _('Description') }}</th>
         <th>{{ _('Location') }}</th>
         <th style="width: 6%">{{ _('Free?') }}</th>
         <th style="width: 15%"></th>
@@ -31,6 +32,7 @@
       <tr>
         <td>{{ h.render_datetime(event.date, date_format="%b %d, %Y") }}</td>
         <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
+        <td>{{ h.render_markdown(event.description) }}</td>
         <td>{{ event.location }}</td>
         <td>{% if event.free %}{{ _('Yes') }}{% else %}{{ _('No') }}{% endif %}</td>
         <td>

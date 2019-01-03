@@ -88,6 +88,7 @@ class Event(LACountsBaseModel, Base):
 
     id = Column(Unicode, primary_key=True, default=make_uuid)
     name = Column(Unicode, nullable=False)
+    description = Column(Unicode, nullable=False, default='')
     url = Column(Unicode, nullable=False, default='')
     location = Column(Unicode, nullable=False, default='')
     date = Column(Date)

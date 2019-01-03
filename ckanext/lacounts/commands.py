@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import os
 import sys
+
+from sqlalchemy.sql import text
+from sqlalchemy import create_engine
 
 from ckanext.lacounts.model import create_tables, tables_exist
 from ckan.plugins import toolkit
@@ -92,9 +96,23 @@ class GetInvolved(toolkit.CkanCommand):
         cmd = self.args[0]
         if cmd == 'init-db':
             self.init_db()
+        elif cmd == 'update-db':
+            self.update_db()
         else:
             self.parser.print_usage()
             sys.exit(1)
+
+    def update_db(self):
+        '''Temporary method to update the db with a new column'''
+        DB_ENGINE = os.environ.get('CKAN_SQLALCHEMY_URL')
+        engine = create_engine(DB_ENGINE)
+
+        print(u'Attempt to update event table')
+        q = text(
+            "ALTER TABLE event "
+            "ADD COLUMN IF NOT EXISTS description varchar NOT NULL DEFAULT '';"
+        )
+        engine.execute(q)
 
     def init_db(self):
 

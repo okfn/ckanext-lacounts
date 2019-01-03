@@ -11,6 +11,8 @@
 
     {{ form.input('name', id='field-name', label=_('Name'), placeholder=_('eg. An event name'), value=data.name, error=errors.name, classes=['control-full', 'control-large'], is_required=True) }}
 
+    {{ form.markdown('description', label=_('Description'), id='field-description', placeholder=_('A description of the event'), value=data.description, error=errors.description, classes=['control-full', 'control-large']) }}
+
     {{ form.input('date', type="date", label=_('Event Date'), id='field-date', value=data.date, error=errors.date, classes=['control-full', 'control-large'], is_required=True) }}
 
     {{ form.input('url', label=_('Event URL'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-full', 'control-large']) }}

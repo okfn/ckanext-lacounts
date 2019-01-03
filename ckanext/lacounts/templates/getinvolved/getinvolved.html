@@ -56,11 +56,17 @@
     </thead>
     <tbody>
       {% for event in c.events|sort(reverse=True, attribute='date') %}
-      <tr>
+      <tr {% if event.description %}class="hasDescription"{% endif %}>
         <td>{{ h.render_datetime(event.date, date_format="%b %d, %Y") }}</td>
         <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
         <td>{{ event.location }}</td>
       </tr>
+      {% if event.description %}
+        <tr>
+          <td></td>
+          <td colspan="2">{{ h.render_markdown(event.description) }}</td>
+        </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>
