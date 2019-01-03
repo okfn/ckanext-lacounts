@@ -12,6 +12,7 @@ from sqlalchemy.util import OrderedDict
 
 from ckan.model.meta import metadata, Session
 
+
 log = logging.getLogger(__name__)
 
 
@@ -102,6 +103,7 @@ class VolunteeringOpportunity(LACountsBaseModel, Base):
     url = Column(Unicode, nullable=False, default='')
     description = Column(Unicode, nullable=False, default='')
     email = Column(Unicode, nullable=False, default='')
+    email_contact = Column(Unicode, nullable=False, default='')
     topic_tags = Column(JSON)
     created_on = Column(Date, default=datetime.date.today)
     is_filled = Column(Boolean, default=False)

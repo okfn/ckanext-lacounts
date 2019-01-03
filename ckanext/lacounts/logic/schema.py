@@ -70,6 +70,7 @@ def volunteering_base_schema():
         'url': [ignore_missing, unicode],
         'description': [ignore_missing, unicode],
         'email': [ignore_missing, unicode],
+        'email_contact': [ignore_missing, unicode],
         'topic_tags': [ignore_missing, list_of_strings],
         'created_on': [ignore_missing, isodate],
         'is_filled': [not_empty, boolean_validator]
@@ -92,6 +93,7 @@ def volunteering_update_schema():
         'url': [ignore_missing, unicode],
         'description': [ignore_missing, unicode],
         'email': [ignore_missing, unicode],
+        'email_contact': [ignore_missing, unicode],
         'topic_tags': [ignore_missing, list_of_strings],
         'created_on': [ignore_missing, isodate],
         'is_filled': [not_empty, boolean_validator]

@@ -11,13 +11,24 @@
 
     {{ form.input('organization', id='field-organization', label="Organization", placeholder=_('eg. Organization name'), value=data.organization, error=errors.organization, classes=['control-full', 'control-large'], is_required=True) }}
 
-    {{ form.input('url', label=_('Organization URL'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-full', 'control-large']) }}
+    {% call form.input('url', label=_('Organization URL'), id='field-url', placeholder=_('http://www.example.com'), value=data.url, error=errors.url, classes=['control-full', 'control-medium']) %}
+      <span class="info-block info-block-small">
+        <i class="fa fa-info-circle"></i>
+        {{ _('This will be the url for the Organization name entered above. Leave blank if you wish') }}
+      </span>
+    {% endcall %}
 
     {{ form.markdown('description', label=_('Description'), id='field-description', placeholder=_('A description of the volunteering opportunity'), value=data.description, error=errors.description, classes=['control-full', 'control-large']) }}
 
-    {{ form.input('email', label=_('Contact Email'), id='field-email', type='email', value=data.email, error=errors.email, placeholder=_('eg. joe@example.com'), classes=['control-large', 'control-full']) }}
+    {{ form.input('email', label=_('Email'), id='field-email', type='email', value=data.email, error=errors.email, placeholder=_('eg. joe@example.com'), classes=['control-large', 'control-full']) }}
 
-{#     {{ form.input('created', type="date", label=_('Created Date'), id='field-created', value=data.created, error=errors.created, classes=['control-full', 'control-large'], is_required=True) }} #}
+    {% call form.input('email_contact', id='field-email-contact', label=_('Email contact name'), placeholder=_('eg. Joe Smith'), value=data.email_contact, error=errors.email_contact, classes=['control-medium']) %}
+      <span class="info-block info-block-small">
+        <i class="fa fa-info-circle"></i>
+        {{ _('This will be the link text for the email provide above. Leave blank if you wish') }}
+      </span>
+    {% endcall %}
+
 
     <div class="form-group control-large">
       <label for="field-is_filled" class="control-label">{{ _('Is Filled?') }}</label>
