@@ -107,3 +107,9 @@ The 'Get Involved' pages require additional database tables to be initialized: `
 ```sh
 docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster get_involved init-db -c ../../production.ini"
 ```
+
+#### In production & staging
+
+```sh
+deis run "paster --plugin=ckanext-lacounts get_involved init-db -c production.ini"
+```
