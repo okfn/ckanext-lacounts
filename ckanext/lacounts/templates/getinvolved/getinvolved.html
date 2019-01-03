@@ -63,7 +63,7 @@
     <p>{{ _('There are currently no events.') }}</p>
   {% endif %}
 
-  <h2 id="Volunteering">{{ _('Volunteer Opportunities') }}</h2>
+  <h2 id="Volunteering">{{ _('Volunteer opportunities') }}</h2>
   {% call editable.region('get-involved-volunteering') %}
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
@@ -119,7 +119,7 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="addPage">
           {% link_for _('Add Event'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_event', class_='btn btn-primary', icon='plus-square' %}
-          {% link_for _('Add Volunteering Opportunity'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering', class_='btn btn-primary', icon='plus-square' %}
+          {% link_for _('Add Volunteering opportunity'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering', class_='btn btn-primary', icon='plus-square' %}
         </ul>
       </div>
     </div>
