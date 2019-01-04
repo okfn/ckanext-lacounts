@@ -100,7 +100,7 @@ $(document).ready(function(){
 
   // blog previews
   $("body.blog article .text").dotdotdot({
-    keep: ".more"
+    keep: ".more, .topics"
   });
 
   // function to set an element's max-height
