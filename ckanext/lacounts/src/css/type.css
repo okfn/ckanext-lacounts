@@ -153,7 +153,7 @@ p.has-pull-quote {
 .notes {
   & ul,
   & ol {
-    list-style-position: inside;
+    list-style-position: outside;
   }
 }
 
