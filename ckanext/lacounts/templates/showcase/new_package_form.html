@@ -1,0 +1,19 @@
+{% ckan_extends %}
+
+{% block form_actions %}
+<div class="form-actions">
+  {% block delete_button %}
+    {% if form_style == 'edit' and h.check_access('ckanext_showcase_delete', {'id': data.id}) and not data.state == 'deleted' %}
+      {% set locale = h.dump_json({'content': _('Are you sure you want to delete this showcase?')}) %}
+      <a class="btn btn-danger pull-left" href="{% url_for controller='ckanext.showcase.controller:ShowcaseController', action='delete', id=data.id %}" data-module="confirm-action" data-module-i18n="{{ locale }}">{% block delete_button_text %}{{ _('Delete') }}{% endblock %}</a>
+    {% endif %}
+  {% endblock %}
+  {% block cancel_button %}
+    <a href="{{ h.url_for('dataset_search', type_label='Story') }}" class="btn btn-secondary">{{ _('Cancel') }}</a>
+  {% endblock %}
+  {% block save_button %}
+    <button class="btn btn-primary" type="submit" name="save">{% block save_button_text %}{% if form_style != 'edit' %}{{ _('Create Showcase') }}{% else %}{{ _('Update Showcase') }}{% endif %}{% endblock %}</button>
+  {% endblock %}
+  {{ form.required_message() }}
+</div>
+{% endblock %}
