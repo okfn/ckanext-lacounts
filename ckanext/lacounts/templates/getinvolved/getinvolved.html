@@ -85,19 +85,23 @@
     <thead>
       <tr>
         <th>Organization</th>
-        <th>{{ _('Contact (email)') }}</th>
-        <th>{{ _('Description') }}</th>
-        <th style="width: 15%">{{ _('Date opened') }}</th>
+        <th style="width: 55%">{{ _('Contact (email)') }}</th>
+        <th style="width: 16%">{{ _('Date opened') }}</th>
       </tr>
     </thead>
     <tbody>
       {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
-      <tr>
+      <tr {% if opportunity.description %}class="hasDescription"{% endif %}>
         <td>{% if opportunity.url %}<a href="{{ opportunity.url }}" target="_blank" rel="nofollow">{{ opportunity.organization }}</a>{% else %}{{ opportunity.organization }}{% endif %}</td>
         <td>{% if opportunity.email_contact %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email_contact }}</a>{% else %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email }}</a>{% endif %}</td>
-        <td>{{ h.render_markdown(opportunity.description) }}</td>
         <td>{{ h.render_datetime(opportunity.created_on, date_format="%b %d, %Y") }}</td>
       </tr>
+      {% if opportunity.description %}
+        <tr>
+          <td></td>
+          <td colspan="2">{{ h.render_markdown(opportunity.description) }}</td>
+        </tr>
+      {% endif %}
       {% endfor %}
     </tbody>
   </table>
