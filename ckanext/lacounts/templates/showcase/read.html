@@ -18,25 +18,31 @@
 
   {% block primary_content_inner %}
 
-    {% snippet 'snippets/connectivity.html' %}
-
     {% block package_description %}
 
-      {% if pkg.private %}
-        <span class="dataset-private label label-inverse pull-right">
-          <i class="fa fa-lock icon-lock"></i>
-          {{ _('Private') }}
-        </span>
-      {% endif %}
+      <div class="container-fluid">
 
-      <h1>
-        {% block page_heading %}
-          {{ name }}
-          {% if pkg.state.startswith('draft') %}
-            [{{ _('Draft') }}]
-          {% endif %}
-        {% endblock %}
-      </h1>
+        {% if pkg.private %}
+          <span class="dataset-private label label-inverse pull-right">
+            <i class="fa fa-lock icon-lock"></i>
+            {{ _('Private') }}
+          </span>
+        {% endif %}
+
+        <div class="col-md-7 col-sm-6">
+          <h1>
+            {% block page_heading %}
+              {{ name }}
+              {% if pkg.state.startswith('draft') %}
+                [{{ _('Draft') }}]
+              {% endif %}
+            {% endblock %}
+          </h1>
+        </div>
+
+        {% snippet 'snippets/connectivity.html' %}
+
+      </div>
 
       {% block package_author %}
         {% if pkg.author %}

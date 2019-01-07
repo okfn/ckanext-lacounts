@@ -92,4 +92,16 @@
     background-color: var(--grey);
   }
 
+  & .container-fluid {
+    padding: 0;
+
+    & div[class^="col-"] {
+      padding: 0;
+    }
+
+    & .connectivity > .btn:first-child {
+      margin-left: 0;
+    }
+  }
+
 }
