@@ -251,4 +251,12 @@ $(document).ready(function(){
     }
   });
 
+  /* Get Involved */
+  /****************/
+  $('.getinvolved .toggle_description').on('click', function(ev) {
+    var desc = $('#' + $(ev.currentTarget).data('target'));
+    desc.slideToggle(200);
+    ev.currentTarget.blur();
+  });
+
 });

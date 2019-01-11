@@ -52,6 +52,7 @@
         <th style="width: 15%">{{ _('Date') }}</th>
         <th style="width: 50%">{{ _('Event') }}</th>
         <th>{{ _('Location') }}</th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
     <tbody>
@@ -60,11 +61,14 @@
         <td>{{ h.render_datetime(event.date, date_format="%b %d, %Y") }}</td>
         <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
         <td>{{ event.location }}</td>
+        <td class="toggle_description_cell">{% if event.description %}
+          <button type="button" class="btn btn-xs toggle_description" data-target="event_description_{{ loop.index }}">More info <span class="caret"></span></button>
+        {% endif %}</td>
       </tr>
       {% if event.description %}
-        <tr>
+        <tr class="description_row">
           <td></td>
-          <td colspan="2">{{ h.render_markdown(event.description) }}</td>
+          <td colspan="3"><span class="description" id="event_description_{{ loop.index }}">{{ h.render_markdown(event.description) }}</span></td>
         </tr>
       {% endif %}
       {% endfor %}
@@ -87,19 +91,23 @@
         <th>Organization</th>
         <th style="width: 55%">{{ _('Contact (email)') }}</th>
         <th style="width: 16%">{{ _('Date opened') }}</th>
+        <th style="width: 10%"></th>
       </tr>
     </thead>
     <tbody>
       {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
       <tr {% if opportunity.description %}class="hasDescription"{% endif %}>
         <td>{% if opportunity.url %}<a href="{{ opportunity.url }}" target="_blank" rel="nofollow">{{ opportunity.organization }}</a>{% else %}{{ opportunity.organization }}{% endif %}</td>
-        <td>{% if opportunity.email_contact %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email_contact }}</a>{% else %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email }}</a>{% endif %}</td>
+        <td>{% if opportunity.email_contact and opportunity.email %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email_contact }}</a>{% elif opportunity.email_contact %}{{ opportunity.email_contact }}{% else %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email }}</a>{% endif %}</td>
         <td>{{ h.render_datetime(opportunity.created_on, date_format="%b %d, %Y") }}</td>
+        <td class="toggle_description_cell">{% if opportunity.description %}
+          <button type="button" class="btn btn-xs toggle_description" data-target="op_description_{{ loop.index }}">More info <span class="caret"></span></button>
+        {% endif %}</td>
       </tr>
       {% if opportunity.description %}
-        <tr>
+        <tr class="description_row">
           <td></td>
-          <td colspan="2">{{ h.render_markdown(opportunity.description) }}</td>
+          <td colspan="3"><span class="description" id="op_description_{{ loop.index }}">{{ h.render_markdown(opportunity.description) }}</span></td>
         </tr>
       {% endif %}
       {% endfor %}

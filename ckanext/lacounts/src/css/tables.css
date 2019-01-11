@@ -42,4 +42,22 @@
   & > tbody > tr:last-child {
     border-bottom: none;
   }
+
+  & .toggle_description_cell {
+    padding-top: 0.4em;
+  }
+}
+
+.js .getinvolved .table {
+
+  & .toggle_description {
+    display: inline;
+  }
+  & tr.description_row td {
+    padding:0;
+
+    & .description {
+      display: none;
+    }
+  }
 }
