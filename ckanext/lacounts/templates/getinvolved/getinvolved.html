@@ -39,45 +39,6 @@
     </li>
   </ul>
 
-  <h2 id="events">{{ _('Events') }}</h2>
-  {% call editable.region('get-involved-events') %}
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
-  </p>
-  {% endcall %}
-  {% if c.events %}
-  <table class="table">
-    <thead>
-      <tr>
-        <th style="width: 15%">{{ _('Date') }}</th>
-        <th style="width: 50%">{{ _('Event') }}</th>
-        <th>{{ _('Location') }}</th>
-        <th style="width: 10%"></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for event in c.events|sort(reverse=False, attribute='date') %}
-      <tr {% if event.description %}class="hasDescription"{% endif %}>
-        <td>{{ h.render_datetime(event.date, date_format="%b %d, %Y") }}</td>
-        <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
-        <td>{{ event.location }}</td>
-        <td class="toggle_description_cell">{% if event.description %}
-          <button type="button" class="btn btn-xs toggle_description" data-target="event_description_{{ loop.index }}">More info <span class="caret"></span></button>
-        {% endif %}</td>
-      </tr>
-      {% if event.description %}
-        <tr class="description_row">
-          <td></td>
-          <td colspan="3"><span class="description" id="event_description_{{ loop.index }}">{{ h.render_markdown(event.description) }}</span></td>
-        </tr>
-      {% endif %}
-      {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-    <p>{{ _('There are currently no events.') }}</p>
-  {% endif %}
-
   <h2 id="Volunteering">{{ _('Volunteer opportunities') }}</h2>
   {% call editable.region('get-involved-volunteering') %}
   <p>
@@ -115,6 +76,46 @@
   </table>
   {% else %}
     <p>{{ _('There are currently no volunteering opportunities.') }}</p>
+  {% endif %}
+
+
+  <h2 id="events">{{ _('Events') }}</h2>
+  {% call editable.region('get-involved-events') %}
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+  </p>
+  {% endcall %}
+  {% if c.events %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th style="width: 15%">{{ _('Date') }}</th>
+        <th style="width: 50%">{{ _('Event') }}</th>
+        <th>{{ _('Location') }}</th>
+        <th style="width: 10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in c.events|sort(reverse=False, attribute='date') %}
+      <tr {% if event.description %}class="hasDescription"{% endif %}>
+        <td>{{ h.render_datetime(event.date, date_format="%b %d, %Y") }}</td>
+        <td>{% if event.url %}<a href="{{ event.url }}" target="_blank" rel="nofollow">{{ event.name }}</a>{% else %}{{ event.name }}{% endif %}</td>
+        <td>{{ event.location }}</td>
+        <td class="toggle_description_cell">{% if event.description %}
+          <button type="button" class="btn btn-xs toggle_description" data-target="event_description_{{ loop.index }}">More info <span class="caret"></span></button>
+        {% endif %}</td>
+      </tr>
+      {% if event.description %}
+        <tr class="description_row">
+          <td></td>
+          <td colspan="3"><span class="description" id="event_description_{{ loop.index }}">{{ h.render_markdown(event.description) }}</span></td>
+        </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>{{ _('There are currently no events.') }}</p>
   {% endif %}
 
 {% endblock %}
