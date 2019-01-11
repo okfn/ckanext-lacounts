@@ -378,14 +378,17 @@
     display: inline-block;
 
     & img {
-      height: 26px;
+      height: 39px;
+      margin-top: -12px;
 
       @media (--medium-up) {
-        height: 32px;
+        margin-top: -14px;
+        height: 48px;
       }
 
       @media (--large-up) {
-        height: 38px;
+        margin-top: -15px;
+        height: 55px;
       }
     }
   }
