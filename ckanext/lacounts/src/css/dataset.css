@@ -171,6 +171,9 @@
           text-transform: uppercase;
         }
       }
+      &.suggest-empty {
+        border-bottom: none;
+      }
     }
 
     & a {
