@@ -39,16 +39,22 @@ def get_image_for_group(group_name, return_path=False):
     return img
 
 
-def get_related_datasets_for_form(selected_ids=[], exclude_ids=[]):
+# TODO: handle more than 1000 datasets?!
+# TODO: this helpers also exists in `ckanext.showcase`. Rename/merge?
+def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=None):
     context = {'model': model}
 
     # Get search results
-    search_datasets = toolkit.get_action('package_search')
-    search = search_datasets(context, {
+    query = {
         'fq': 'dataset_type:dataset',
         'include_private': False,
         'sort': 'organization asc, title asc',
-    })
+        'rows': 1000,
+    }
+    if topic_name:
+        query['q'] = 'groups:%s' % topic_name
+    search_datasets = toolkit.get_action('package_search')
+    search = search_datasets(context, query)
 
     # Get orgs
     orgs = []
@@ -68,6 +74,7 @@ def get_related_datasets_for_form(selected_ids=[], exclude_ids=[]):
     return orgs
 
 
+# TODO: this helpers also exists in `ckanext.showcase`. Merge?
 def get_related_datasets_for_display(value):
     context = {'model': model}
 

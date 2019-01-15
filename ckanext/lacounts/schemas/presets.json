@@ -12,6 +12,14 @@
       }
     },
     {
+      "preset_name": "featured_datasets",
+      "values": {
+        "validators": "ignore_missing",
+        "form_snippet": "featured_datasets.html",
+        "display_snippet": "featured_datasets.html"
+      }
+    },
+    {
       "preset_name": "group_or_org_slug",
       "values": {
         "validators": "not_empty unicode name_validator group_name_validator",
