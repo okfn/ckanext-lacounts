@@ -141,6 +141,11 @@ $(document).ready(function(){
     placeholder: 'Click to get a drop-down list or start typing a dataset title'
   });
 
+  // Activate select2 widget for featured stories
+  $('#field-featured-stories').select2({
+    placeholder: 'Click to get a drop-down list or start typing a story title'
+  });
+
   // Activate select2 widget for featured datasets
   $('#field-featured-datasets').select2({
     placeholder: 'Click to get a drop-down list or start typing a dataset title'

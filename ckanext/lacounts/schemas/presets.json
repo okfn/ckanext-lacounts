@@ -12,6 +12,14 @@
       }
     },
     {
+      "preset_name": "featured_stories",
+      "values": {
+        "validators": "ignore_missing",
+        "form_snippet": "featured_stories.html",
+        "display_snippet": "featured_stories.html"
+      }
+    },
+    {
       "preset_name": "featured_datasets",
       "values": {
         "validators": "ignore_missing",
