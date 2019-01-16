@@ -39,10 +39,19 @@
 
   {% set stories = h.get_featured_data_stories(topic_dict=c.group_dict, limit=4) %}
   {% if stories %}
-    <section class="data-stories">
+    <section class="featured-list">
       <h2>Featured Data Stories</h1>
       {% snippet 'snippets/stories_list.html', stories=stories, showTextPreview=True %}
-      <a href="/dataset?type_label=Story&groups={{ c.group.name }}" class="explore-link">View all</a>
+      <a href="/dataset?groups={{ c.group.name }}&type_label=Story" class="explore-link">View all</a>
+    </section>
+  {% endif %}
+
+  {% set datasets = h.get_featured_datasets(topic_dict=c.group_dict, limit=4) %}
+  {% if datasets %}
+    <section class="featured-list">
+      <h2>Featured Datasets</h1>
+      {% snippet 'snippets/featured_datasets_list.html', datasets=datasets, showTextPreview=True %}
+      <a href="/dataset?groups={{ c.group.name }}&type_label=Data" class="explore-link">View all</a>
     </section>
   {% endif %}
 

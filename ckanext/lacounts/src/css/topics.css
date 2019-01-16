@@ -136,7 +136,7 @@
 }
 
 .topic.details {
-  & .data-stories {
+  & .featured-list {
     margin-bottom: var(--spacer-50);
     margin-top: var(--spacer-25);
     position: relative;

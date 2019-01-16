@@ -208,12 +208,35 @@ def get_recent_data_stories(topic_name=None, limit=None):
 
 
 def get_featured_data_stories(topic_dict, limit=None):
-    featured_stories = []
-    stories = get_recent_data_stories(topic_name=topic_dict['name'], limit=limit)
-    for story in stories:
-        if story['id'] in topic_dict.get('featured_stories', []):
-            featured_stories.append(story)
-    return featured_stories
+    context = {'model': model}
+    value = topic_dict.get('featured_stories', [])
+
+    # Get datasets
+    stories = []
+    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    for id in ids:
+        story = toolkit.get_action('package_show')(context, {'id': id, type: 'showcase'})
+        stories.append(story)
+        if len(stories) == limit:
+            break
+
+    return stories
+
+
+def get_featured_datasets(topic_dict, limit=None):
+    context = {'model': model}
+    value = topic_dict.get('featured_datasets', [])
+
+    # Get datasets
+    datasets = []
+    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    for id in ids:
+        dataset = toolkit.get_action('package_show')(context, {'id': id})
+        datasets.append(dataset)
+        if len(datasets) == limit:
+            break
+
+    return datasets
 
 
 def get_featured_image_url(default):
