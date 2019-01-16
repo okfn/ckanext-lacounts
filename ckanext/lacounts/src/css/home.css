@@ -257,10 +257,6 @@ section.community {
     }
 
     & figcaption {
-/*      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;*/
       background-color: color(var(--body-bg) a(90%));
       padding: var(--spacer-25) var(--spacer-25) calc(var(--spacer-25) / 2) var(--spacer-25);
       border-style: solid;
