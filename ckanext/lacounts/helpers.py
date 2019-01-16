@@ -419,3 +419,7 @@ def get_gravatar_image_url(pkg):
 
 def list_to_newlines(value):
     return '\n'.join(value)
+
+
+def get_bubble_rows():
+    return toolkit.get_action('publishers_list')({'model': model}, {})

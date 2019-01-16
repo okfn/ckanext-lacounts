@@ -9,6 +9,9 @@ from ckan.logic import validate
 from ckanext.lacounts.logic import schema
 from ckanext.lacounts.model import Event, VolunteeringOpportunity
 
+from ckan.model.meta import Session
+
+
 log = logging.getLogger(__name__)
 
 
@@ -116,6 +119,39 @@ def volunteering_list(context, data_dict):
     volunteering = VolunteeringOpportunity.list(**data_dict)
 
     return volunteering
+
+
+@toolkit.side_effect_free
+@validate(schema.publishers_list_schema)
+def publishers_list(context, data_dict):
+    '''List of Publishers suitable for home page visualization.
+
+    [
+        {
+            "id": 8ba00479-47ec-4dc0-9f10-dc9619302c03,
+            "slug": "county-of-los-angeles",
+            "title": "County of Los Angeles",
+            "value": 84,
+            "package": "county",
+            "url": "/publisher/county-of-los-angeles"
+        },
+        ...
+    ]
+    '''
+    res = Session.execute("""
+SELECT public.group.title, public.group.name AS slug,
+       public.group.id, public.group_extra.value AS package,
+       (SELECT count(*) FROM public.package
+        WHERE public.package.owner_org=public.group.id
+        AND public.package.private=False) AS value
+FROM public.group
+INNER JOIN public.group_extra ON public.group_extra.group_id=public.group.id
+WHERE public.group_extra.key='publisher_type'
+AND public.group.state='active'
+AND public.group.type='publisher'
+""").fetchall()
+
+    return [dict(r, url='/publisher/{}'.format(r.slug)) for r in res]
 
 
 # Update Actions
