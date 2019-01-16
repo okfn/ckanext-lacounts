@@ -56,3 +56,18 @@
   {% endif %}
 
 {% endblock %}
+
+{% block secondary %}
+  <aside class="secondary col-sm-3">
+    <div class="topics-menu">
+      {% set topics = h.get_topics(only_featured=True) %}
+      <ul>
+        {% for topic in topics %}
+          <li {% if topic.name == c.group_dict.name %}class="active"{% endif %}>
+            <a href="/topic/{{ topic.name }}">{{ topic.title|upper }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+{% endblock %}

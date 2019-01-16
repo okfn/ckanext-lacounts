@@ -148,9 +148,34 @@
 
       @media (--small-up) {
         position: absolute;
-        top: 0.8rem;
+        /* top: 0.8rem; */
+        top: 0;
         right: 0;
       }
+    }
+  }
+}
+
+.topics-menu {
+  & ul {
+    list-style-type: none;
+  }
+  & li {
+    margin: 1.25em 0;
+    padding: 0.25em 0.5em;
+    border-left: solid 0.3em white;
+    &:first-child {
+      margin-top: 0;
+    }
+    & a {
+      color: var(--grey);
+    }
+  }
+  & li.active {
+    border-color: var(--yellow);
+    & a {
+      color: black;
+      font-weight: bold;
     }
   }
 }
