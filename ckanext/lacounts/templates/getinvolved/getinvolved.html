@@ -126,10 +126,10 @@
     <a href="#working-groups">Working groups</a>
   </li>
   <li>
-    <a href="#events">Events</a>
+    <a href="#Volunteering">Volunteering</a>
   </li>
   <li>
-    <a href="#Volunteering">Volunteering</a>
+    <a href="#events">Events</a>
   </li>
 </ul>
 {% endblock %}
@@ -142,8 +142,8 @@
           <i class="fa fa-plus-square"></i> Add
         </a>
         <ul class="dropdown-menu" aria-labelledby="addPage">
-          {% link_for _('Add Event'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_event', class_='btn btn-primary', icon='plus-square' %}
           {% link_for _('Add Volunteering opportunity'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering', class_='btn btn-primary', icon='plus-square' %}
+          {% link_for _('Add Event'), controller='ckanext.lacounts.controller:GetInvolvedController', action='new_event', class_='btn btn-primary', icon='plus-square' %}
         </ul>
       </div>
     </div>
