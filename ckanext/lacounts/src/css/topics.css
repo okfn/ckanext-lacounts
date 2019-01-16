@@ -134,3 +134,23 @@
     grid-column: span 12;
   }
 }
+
+.topic.details {
+  & .data-stories {
+    margin-bottom: var(--spacer-50);
+    margin-top: var(--spacer-25);
+    position: relative;
+    & .explore-link {
+      font-size: 1.1em;
+      font-weight: 900;
+      color: var(--grey);
+      margin-top: 1rem;
+
+      @media (--small-up) {
+        position: absolute;
+        top: 0.8rem;
+        right: 0;
+      }
+    }
+  }
+}

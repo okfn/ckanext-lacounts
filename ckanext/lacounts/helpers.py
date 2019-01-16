@@ -181,7 +181,7 @@ def get_metadata_completion_rate(package):
     return completion
 
 
-def get_recent_data_stories(limit=4, topic=None):
+def get_recent_data_stories(topic_name=None, limit=None):
     showcases = []
     items = toolkit.get_action('ckanext_showcase_list')({'model': model}, {})
     for item in items:
@@ -193,10 +193,10 @@ def get_recent_data_stories(limit=4, topic=None):
                 showcase.get('story_type') == 'Blog post'):
             continue
 
-        if topic:
+        if topic_name:
             has_topic = False
             for group in showcase.get('groups'):
-                if group['name'] == topic:
+                if group['name'] == topic_name:
                     has_topic = True
                     break
             if not has_topic:
@@ -205,6 +205,15 @@ def get_recent_data_stories(limit=4, topic=None):
         if len(showcases) == limit:
             break
     return showcases
+
+
+def get_featured_data_stories(topic_dict, limit=None):
+    featured_stories = []
+    stories = get_recent_data_stories(topic_name=topic_dict['name'], limit=limit)
+    for story in stories:
+        if story['id'] in topic_dict.get('featured_stories', []):
+            featured_stories.append(story)
+    return featured_stories
 
 
 def get_featured_image_url(default):

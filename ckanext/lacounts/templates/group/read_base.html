@@ -32,25 +32,18 @@
   <ul class="working-groups-list">
     <li>
       <h3><a href="#">{{ c.group.display_name }} working group</a></h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
       <a class="btn" href="#">{{ _('Join group') }}</a>
     </li>
   </ul>
 
-  {% set stories = h.get_recent_data_stories(topic=c.group.name) %}
-
+  {% set stories = h.get_featured_data_stories(topic_dict=c.group_dict, limit=4) %}
   {% if stories %}
     <section class="data-stories">
-      <h2> Recent Data Stories</h1>
-  
-  
-      {% snippet 'snippets/stories_list.html', stories=stories %}
+      <h2>Featured Data Stories</h1>
+      {% snippet 'snippets/stories_list.html', stories=stories, showTextPreview=True %}
+      <a href="/dataset?type_label=Story&groups={{ c.group.name }}" class="explore-link">View all</a>
     </section>
-
   {% endif %}
 
-
-  {{ super() }}
 {% endblock %}

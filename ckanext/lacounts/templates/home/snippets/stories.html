@@ -6,7 +6,7 @@
     <p>Data stories help to illuminate the power of open data. LA Counts features 5 types of stories: data stories; data visualizations; profiles and interviews; methodologies; and white papers and research.</p>
   {% endcall %}
 
-  {% set stories = h.get_recent_data_stories() %}
+  {% set stories = h.get_recent_data_stories(limit=4) %}
 
   {% snippet 'snippets/stories_list.html', stories=stories %}
 
