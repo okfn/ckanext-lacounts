@@ -1,0 +1,5 @@
+<ul>
+  {% for story in h.get_related_stories_for_display(data[field.field_name]) %}
+    <li><a href="{{ story.href }}">{{ story.text }}</a></li>
+  {% endfor %}
+</ul>

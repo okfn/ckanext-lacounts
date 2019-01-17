@@ -39,16 +39,22 @@ def get_image_for_group(group_name, return_path=False):
     return img
 
 
-def get_related_datasets_for_form(selected_ids=[], exclude_ids=[]):
+# TODO: handle more than 1000 datasets?!
+# TODO: this helpers also exists in `ckanext.showcase`. Add-topic/rename/merge?
+def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=None):
     context = {'model': model}
 
     # Get search results
-    search_datasets = toolkit.get_action('package_search')
-    search = search_datasets(context, {
+    query = {
         'fq': 'dataset_type:dataset',
         'include_private': False,
         'sort': 'organization asc, title asc',
-    })
+        'rows': 1000,
+    }
+    if topic_name:
+        query['q'] = 'groups:%s' % topic_name
+    search_datasets = toolkit.get_action('package_search')
+    search = search_datasets(context, query)
 
     # Get orgs
     orgs = []
@@ -68,6 +74,38 @@ def get_related_datasets_for_form(selected_ids=[], exclude_ids=[]):
     return orgs
 
 
+# TODO: this helpers also exists in `ckanext.showcase`. Add-topic/rename/merge?
+def get_related_stories_for_form(selected_ids=[], exclude_ids=[], topic_name=None):
+    context = {'model': model}
+
+    # Get search results
+    query = {
+        'fq': 'dataset_type:showcase',
+        'include_private': False,
+        'sort': 'organization asc, title asc',
+        # Should be enough for stories
+        'rows': 1000,
+    }
+    if topic_name:
+        query['q'] = 'groups:%s' % topic_name
+    search_datasets = toolkit.get_action('package_search')
+    search = search_datasets(context, query)
+
+    # Get datasets
+    datasets = []
+    selected_ids = selected_ids if isinstance(selected_ids, list) else selected_ids.strip('{}').split(',')
+    for package in search['results']:
+        dataset = {'text': package['title'], 'value': package['id']}
+        if package['id'] in exclude_ids:
+            continue
+        if package['id'] in selected_ids:
+            dataset['selected'] = 'selected'
+        datasets.append(dataset)
+
+    return datasets
+
+
+# TODO: this helpers also exists in `ckanext.showcase`. Rename/merge?
 def get_related_datasets_for_display(value):
     context = {'model': model}
 
@@ -78,6 +116,24 @@ def get_related_datasets_for_display(value):
         try:
             dataset = toolkit.get_action('package_show')(context, {'id': id})
             href = toolkit.url_for('dataset_read', id=dataset['name'], qualified=False)
+            datasets.append({'text': dataset['title'], 'href': href})
+        except toolkit.ObjectNotFound:
+            pass
+
+    return datasets
+
+
+# TODO: this helpers also exists in `ckanext.showcase`. Merge?
+def get_related_stories_for_display(value):
+    context = {'model': model}
+
+    # Get datasets
+    datasets = []
+    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    for id in ids:
+        try:
+            dataset = toolkit.get_action('package_show')(context, {'id': id})
+            href = toolkit.url_for('ckanext_showcase_read', id=dataset['name'], qualified=False)
             datasets.append({'text': dataset['title'], 'href': href})
         except toolkit.ObjectNotFound:
             pass
@@ -125,7 +181,7 @@ def get_metadata_completion_rate(package):
     return completion
 
 
-def get_recent_data_stories(limit=4, topic=None):
+def get_recent_data_stories(topic_name=None, limit=None):
     showcases = []
     items = toolkit.get_action('ckanext_showcase_list')({'model': model}, {})
     for item in items:
@@ -137,10 +193,10 @@ def get_recent_data_stories(limit=4, topic=None):
                 showcase.get('story_type') == 'Blog post'):
             continue
 
-        if topic:
+        if topic_name:
             has_topic = False
             for group in showcase.get('groups'):
-                if group['name'] == topic:
+                if group['name'] == topic_name:
                     has_topic = True
                     break
             if not has_topic:
@@ -149,6 +205,38 @@ def get_recent_data_stories(limit=4, topic=None):
         if len(showcases) == limit:
             break
     return showcases
+
+
+def get_featured_data_stories(topic_dict, limit=None):
+    context = {'model': model}
+    value = topic_dict.get('featured_stories', [])
+
+    # Get datasets
+    stories = []
+    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    for id in ids:
+        story = toolkit.get_action('package_show')(context, {'id': id, type: 'showcase'})
+        stories.append(story)
+        if len(stories) == limit:
+            break
+
+    return stories
+
+
+def get_featured_datasets(topic_dict, limit=None):
+    context = {'model': model}
+    value = topic_dict.get('featured_datasets', [])
+
+    # Get datasets
+    datasets = []
+    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    for id in ids:
+        dataset = toolkit.get_action('package_show')(context, {'id': id})
+        datasets.append(dataset)
+        if len(datasets) == limit:
+            break
+
+    return datasets
 
 
 def get_featured_image_url(default):

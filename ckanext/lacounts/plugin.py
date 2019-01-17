@@ -65,9 +65,13 @@ following to create the database tables:
         return {
             'get_image_for_group': helpers.get_image_for_group,
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
+            'get_related_stories_for_form': helpers.get_related_stories_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
+            'get_related_stories_for_display': helpers.get_related_stories_for_display,
             'get_metadata_completion_rate': helpers.get_metadata_completion_rate,
             'get_recent_data_stories': helpers.get_recent_data_stories,
+            'get_featured_data_stories': helpers.get_featured_data_stories,
+            'get_featured_datasets': helpers.get_featured_datasets,
             'get_featured_image_url': helpers.get_featured_image_url,
             'get_editable_region': helpers.get_editable_region,
             'get_package_stories': helpers.get_package_stories,

@@ -134,3 +134,48 @@
     grid-column: span 12;
   }
 }
+
+.topic.details {
+  & .featured-list {
+    margin-bottom: var(--spacer-50);
+    margin-top: var(--spacer-25);
+    position: relative;
+    & .explore-link {
+      font-size: 1.1em;
+      font-weight: 900;
+      color: var(--grey);
+      margin-top: 1rem;
+
+      @media (--small-up) {
+        position: absolute;
+        /* top: 0.8rem; */
+        top: 0;
+        right: 0;
+      }
+    }
+  }
+}
+
+.topics-menu {
+  & ul {
+    list-style-type: none;
+  }
+  & li {
+    margin: 1.25em 0;
+    padding: 0.25em 0.5em;
+    border-left: solid 0.3em white;
+    &:first-child {
+      margin-top: 0;
+    }
+    & a {
+      color: var(--grey);
+    }
+  }
+  & li.active {
+    border-color: var(--yellow);
+    & a {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}

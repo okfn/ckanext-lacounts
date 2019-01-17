@@ -10,6 +10,10 @@
               {{ h.truncate(story.title, 80) }}
             </a>
           </h1>
+          {% if showTextPreview %}
+            {% set notes = h.markdown_extract(story.notes, extract_length=80) %}
+            <p>{{ notes }}</p>
+          {% endif %}
         </div>
       </article>
     {% endfor %}

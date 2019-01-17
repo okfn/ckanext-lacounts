@@ -1,0 +1,22 @@
+  <div class="stories-list">
+    {% for dataset in datasets %}
+      <article>
+        {% if dataset.image_display_url %}
+          <a class="image" href="/dataset/{{ dataset.name }}">
+            <img src="{{ dataset.image_display_url }}" alt="" />
+          </a>
+        {% endif %}
+        <div class="text">
+          <h1>
+            <a href="/dataset/{{ dataset.name }}">
+              {{ h.truncate(dataset.title, 80) }}
+            </a>
+          </h1>
+          {% if showTextPreview %}
+            {% set notes = h.markdown_extract(dataset.notes, extract_length=80) %}
+            <p>{{ notes }}</p>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>

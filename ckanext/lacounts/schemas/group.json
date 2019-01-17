@@ -33,6 +33,22 @@
             "output_validators": "convert_from_list"
         },
         {
+            "field_name": "featured_stories",
+            "preset": "featured_stories",
+            "help_text": "help text",
+            "label": "Featured stories",
+            "help_text": "Links to featured stories. It supports multiple selections",
+            "display_snippet": null
+        },
+        {
+            "field_name": "featured_datasets",
+            "preset": "featured_datasets",
+            "help_text": "help text",
+            "label": "Featured datasets",
+            "help_text": "Links to featured datasets. It supports multiple selections",
+            "display_snippet": null
+        },
+        {
             "field_name": "featured",
             "help_text": "Featured topics are shown on the home page",
             "label": "Featured topic",

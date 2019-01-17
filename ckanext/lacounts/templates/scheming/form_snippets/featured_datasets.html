@@ -1,0 +1,18 @@
+<div class="form-group control-full control-select">
+  <label class="control-label" for="field-featured-datasets">Featured datasets</label>
+  <div class="controls ">
+    <select name="featured_datasets" id="field-featured-datasets" multiple="multiple" style="width: 100%">
+    {% for org in h.get_related_datasets_for_form(selected_ids=data.get(field.field_name, []), topic_name=data.get('name')) %}
+      <optgroup label="{{ org.text }}">
+      {% for dataset in org.children %}
+        <option value={{ dataset.value }} {% if dataset.selected %}selected{% endif %}>{{ dataset.text }}</option>
+      {% endfor %}
+      </optgroup>
+    {% endfor %}
+    </select>
+    <div class="info-block ">
+      <i class="fa fa-info-circle"></i>
+      {{ field.help_text }}
+    </div>
+  </div>
+</div>

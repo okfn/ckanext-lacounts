@@ -32,25 +32,42 @@
   <ul class="working-groups-list">
     <li>
       <h3><a href="#">{{ c.group.display_name }} working group</a></h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
-      </p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
       <a class="btn" href="#">{{ _('Join group') }}</a>
     </li>
   </ul>
 
-  {% set stories = h.get_recent_data_stories(topic=c.group.name) %}
-
+  {% set stories = h.get_featured_data_stories(topic_dict=c.group_dict, limit=4) %}
   {% if stories %}
-    <section class="data-stories">
-      <h2> Recent Data Stories</h1>
-  
-  
-      {% snippet 'snippets/stories_list.html', stories=stories %}
+    <section class="featured-list">
+      <h1>Featured Data Stories</h1>
+      {% snippet 'snippets/stories_list.html', stories=stories, showTextPreview=True %}
+      <a href="/dataset?groups={{ c.group.name }}&type_label=Story" class="explore-link">View all stories</a>
     </section>
-
   {% endif %}
 
+  {% set datasets = h.get_featured_datasets(topic_dict=c.group_dict, limit=4) %}
+  {% if datasets %}
+    <section class="featured-list">
+      <h1>Featured Datasets</h1>
+      {% snippet 'snippets/featured_datasets_list.html', datasets=datasets, showTextPreview=True %}
+      <a href="/dataset?groups={{ c.group.name }}&type_label=Data" class="explore-link">View all datasets</a>
+    </section>
+  {% endif %}
 
-  {{ super() }}
+{% endblock %}
+
+{% block secondary %}
+  <aside class="secondary col-sm-3">
+    <div class="topics-menu">
+      {% set topics = h.get_topics(only_featured=True) %}
+      <ul>
+        {% for topic in topics %}
+          <li {% if topic.name == c.group_dict.name %}class="active"{% endif %}>
+            <a href="/topic/{{ topic.name }}">{{ topic.title|upper }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
 {% endblock %}
