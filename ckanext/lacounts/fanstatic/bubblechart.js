@@ -4,7 +4,36 @@ var svg = d3.select("svg"),
 
 var format = d3.format(",d");
 
-var color = d3.scaleOrdinal(d3.schemeCategory20c);
+var color = function(type) {
+  switch (type) {
+    case 'Federal':
+      out = '#31a354';
+      break;
+    case 'State':
+      out = '#fdae6b';
+      break;
+    case 'Regional':
+      out = '#fdd0a2';
+      break;
+    case 'City':
+      out = '#c6dbef';
+      break;
+    case 'County':
+      out = '#9ecae1';
+      break;
+    case 'Private':
+      out = '#a1d99b';
+      break;
+    case 'Non profit':
+      out = '#e6550d';
+      break;
+    default:
+      out = '#c7e9c0';
+      break;
+  }
+    return out
+}
+
 
 var pack = d3.pack()
     .size([width, height])
