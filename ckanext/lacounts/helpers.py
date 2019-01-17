@@ -280,6 +280,8 @@ def get_homepage_counts():
     })
     if q.get('facets', {}).get('type_label', {}).get('Data'):
         datasets_count = q['facets']['type_label']['Data']
+
+    if q.get('facets', {}).get('type_label', {}).get('Story'):
         stories_count = q['facets']['type_label']['Story']
 
     q = toolkit.get_action('organization_list')({}, {

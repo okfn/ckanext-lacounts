@@ -150,8 +150,11 @@ WHERE public.group_extra.key='publisher_type'
 AND public.group.state='active'
 AND public.group.type='publisher'
 """).fetchall()
+    out = [dict(r, url='/publisher/{}'.format(r.slug)) for r in res]
 
-    return [dict(r, url='/publisher/{}'.format(r.slug)) for r in res]
+    for item in out:
+        item['package'] = item['package'].capitalize()
+    return out
 
 
 # Update Actions

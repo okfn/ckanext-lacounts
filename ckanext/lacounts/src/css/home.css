@@ -164,6 +164,28 @@
         top: 2.2rem;
       }
     }
+
+    &.featured-visualisation {
+      padding-top: var(--spacer-25);
+      padding-bottom: var(--spacer-50);
+      @mixin extend-full-width;
+
+      & .explore-link {
+        top: 2.2rem;
+        &::after {
+          color: var(--yellow);
+        }
+        &:hover {
+          &::after {
+            box-shadow: 0 0.1em 0 var(--yellow);
+          }
+        }
+
+      }
+    }
+
+
+
   }
 }
 
@@ -253,66 +275,6 @@ section.community {
         &:after {
           transform: rotate(0deg);
         }
-      }
-    }
-
-    & figcaption {
-      background-color: color(var(--body-bg) a(90%));
-      padding: var(--spacer-25) var(--spacer-25) calc(var(--spacer-25) / 2) var(--spacer-25);
-      border-style: solid;
-      border-color: color(var(--grey) a(10%));
-      border-width: 0 1px 1px 1px;
-      border-radius: var(--border-radius);
-
-      & .caption-header {
-        display: flex;
-        justify-content: space-between;
-        padding-bottom: calc(var(--spacer-25) / 2);
-        align-items: flex-start;
-
-        & > * {
-          margin-top: 0;
-          margin-bottom: 0;
-
-          & small {
-            display: block;
-            margin-bottom: 0.2em;
-          }
-
-          & a {
-            text-decoration: none;
-          }
-        }
-
-        &.show-as-collapsed {
-          align-items: center;
-          & .toggle {
-            &:after {
-              transform: rotate(0deg);
-            }
-          }
-        }
-      }
-
-      & .caption-body {
-        & :last-child {
-          margin-bottom: calc(var(--spacer-25) / 2);
-        }
-        & h3 {
-          color: #fff;
-          margin-top: 0;
-        }
-      }
-
-      @media (--medium-up) {
-        left: var(--spacer-25);
-        right: var(--spacer-25);
-        bottom: var(--spacer-25);
-        border-width: 0;
-      }
-
-      @media (--large-up) {
-        right: 66%;
       }
     }
   }
