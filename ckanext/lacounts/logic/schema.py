@@ -123,3 +123,11 @@ def volunteering_show_schema():
         'id': [not_empty, unicode]
     }
     return schema
+
+
+def publishers_list_schema():
+    schema = {
+        # 'limit': [ignore_missing, natural_number_validator],
+        # 'offset': [ignore_missing, natural_number_validator]
+    }
+    return schema
