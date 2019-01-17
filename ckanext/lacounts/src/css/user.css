@@ -104,6 +104,12 @@
   }
 }
 
+.page-header {
+  & .nav-tabs a:hover {
+    background-color: var(--blue);
+  }
+}
+
 .user {
   & .secondary .image {
     display: none;
