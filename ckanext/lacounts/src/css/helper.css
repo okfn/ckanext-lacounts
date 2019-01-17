@@ -26,7 +26,7 @@
     @mixin tip;
     padding: var(--spacer-15);
     text-align: left;
-    margin-top: 0.4rem;
+    margin-top: -0.2rem;
     margin-left: -0.5em;
     opacity: 0;
     position: absolute;
