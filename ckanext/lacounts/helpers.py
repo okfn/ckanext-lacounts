@@ -368,6 +368,8 @@ def get_homepage_counts():
     })
     if q.get('facets', {}).get('type_label', {}).get('Data'):
         datasets_count = q['facets']['type_label']['Data']
+
+    if q.get('facets', {}).get('type_label', {}).get('Story'):
         stories_count = q['facets']['type_label']['Story']
 
     q = toolkit.get_action('organization_list')({}, {
@@ -507,3 +509,7 @@ def get_gravatar_image_url(pkg):
 
 def list_to_newlines(value):
     return '\n'.join(value)
+
+
+def get_bubble_rows():
+    return toolkit.get_action('publishers_list')({'model': model}, {})

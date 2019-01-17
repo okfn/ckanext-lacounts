@@ -1,41 +1,6 @@
 {% block package_info %}
   {% if pkg %}
 
-    {% if pkg.author or pkg.author_profile_dict %}
-
-      {% set initials = h.get_author_initials(pkg) %}
-      {% set gravatar_img = h.get_gravatar_image_url(pkg) %}
-      <div class="author-avatar" data-initials="{{ initials }}">
-        {% if gravatar_img %}
-          <span style="background-image: url('{{ gravatar_img }}');"></span>
-        {% else %}
-          <span style="background-image: url();"></span>
-        {% endif %}
-      </div>
-
-      <section class="module module-narrow author">
-        <h2 class="module-heading">{{ _('About the author') }}</h2>
-          {% if pkg.author_profile_dict %}
-            <p class="author-name">{{ pkg.author_profile_dict.title }}</p>
-            <p class="author-notes">{{ h.markdown_extract(pkg.author_profile_dict.notes, 90) }}</p>
-            <p class="author-more"><a href="/story/{{ pkg.author_profile_dict.name }}">Read more</a></p>
-          {% else %}
-            {% if pkg.author %}
-              <p class="author-name">{{ pkg.author }}</p>
-            {% endif %}
-            {% if pkg.author_title %}
-              <p class="author-title">{{ pkg.author_title }}</p>
-            {% endif %}
-            {% if pkg.author_workplace %}
-              <p class="author-workplace">{{ pkg.author_workplace }}</p>
-            {% endif %}
-            {% if pkg.author_email %}
-              <p><a href="mailto:{{ pkg.author_email }}">{{ pkg.author_email }}</a></p>
-            {% endif %}
-          {% endif %}
-      </section>
-    {% endif %}
-
     {% if pkg.methodology_dict %}
       <section class="module module-narrow methodology">
         <h2 class="module-heading">{{ _('Methodology') }}</h2>

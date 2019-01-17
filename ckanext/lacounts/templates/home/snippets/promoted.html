@@ -1,32 +1,21 @@
 {% import 'macros/editable.html' as editable with context %}
 
-<section class="featured-visualisation background--light">
+<section class="featured-visualisation">
+
+  {% call editable.region('publishers-viz-home') %}
+    <h1>Publishers by volume</h1>
+
+    <p>This visualization provides insight into the publishers responsible for the datasets on this site.</p>
+  {% endcall %}
   <figure>
-    <img src="{{ h.get_featured_image_url(default='/images/vis.jpg') }}" alt="{{ _("Visualisation") }} - Featured topic" />
-    <figcaption>
-      <div class="caption-header">
-        <div>
-        {% call editable.region('featured-visualisation-title') %}
-          <a href="#"><small><p>{{ _("Featured visualisation") }}:</p></small></a>
-        {% endcall %}
-        </div>
-        <button type="button" class="toggle"><span class="sr-only">Toggle description</span></button>
-      </div>
-      <div class="caption-body in">
-        {% call editable.region('featured-visualisation') %}
-          <h3>Where are L.A.'s dirtiest streets?</h3>
-          <p>Inspectors gave failing cleanliness grades to more than 370 miles of streets and alleys in Los Angeles, or about 4% of the city. The grades were based on observations of illegal dumping, bulky items, loose litter and weeds in those areas.</p>
-        {% endcall %}
-        <a href="#" class="explore-link">{{ _("See full visualisation") }}</a>
-      </div>
-    </figcaption>
+
+    <svg width="960" height="960" font-size="14" text-anchor="middle" style="width: 100%" viewBox="0 0 960 960" preserveAspectRatio="xMidYMid meet"></svg>
   </figure>
-  <div class="helper-info" id="featuredvisHelper">
-    <h4 class="header"><span class="sr-only">{{ _("What is this") }}</span>?</h4>
-    <div class="content">
-      <p>
-        We spotlight community work that brings awareness to areas of special need and interest for Los Angeles County. Projects featured here are created by the LA Counts community. Get involved and your work could appear here!
-      </p>
-    </div>
-  </div>
+    <script type="text/javascript">
+        var rows = {{ h.get_bubble_rows()|tojson|safe }};
+    </script>
+
+    {% resource 'lacounts/bubble' %}
+
+  <a href="/publisher" class="explore-link">{{ _("View all publishers") }}</a>
 </section>

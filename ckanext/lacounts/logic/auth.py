@@ -31,3 +31,9 @@ def volunteering_delete(context, data_dict):
 def volunteering_show(context, data_dict):
     '''All can show voluntary opportunities.'''
     return {'success': True}
+
+
+@toolkit.auth_allow_anonymous_access
+def publishers_show(context, data_dict):
+    '''All can show publishers.'''
+    return {'success': True}

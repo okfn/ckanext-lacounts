@@ -92,6 +92,7 @@ following to create the database tables:
             'get_author_initials': helpers.get_author_initials,
             'get_gravatar_image_url': helpers.get_gravatar_image_url,
             'list_to_newlines': helpers.list_to_newlines,
+            'get_bubble_rows': helpers.get_bubble_rows
         }
 
     # IRoutes
@@ -200,7 +201,8 @@ following to create the database tables:
             'volunteering_update': actions.volunteering_update,
             'volunteering_delete': actions.volunteering_delete,
             'volunteering_show': actions.volunteering_show,
-            'volunteering_list': actions.volunteering_list
+            'volunteering_list': actions.volunteering_list,
+            'publishers_list': actions.publishers_list
         }
 
     # IAuthFunctions
@@ -212,7 +214,8 @@ following to create the database tables:
             'ckanext_lacounts_event_show': auth.event_show,
             'ckanext_lacounts_volunteering_create': auth.volunteering_create,
             'ckanext_lacounts_volunteering_delete': auth.volunteering_delete,
-            'ckanext_lacounts_volunteering_show': auth.volunteering_show
+            'ckanext_lacounts_volunteering_show': auth.volunteering_show,
+            'ckanext_lacounts_publishers_show': auth.publishers_show
         }
 
     # IValidators
