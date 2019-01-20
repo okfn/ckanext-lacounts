@@ -39,28 +39,37 @@ def get_image_for_group(group_name, return_path=False):
     return img
 
 
-# TODO: handle more than 1000 datasets?!
 # TODO: this helpers also exists in `ckanext.showcase`. Add-topic/rename/merge?
 def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=None):
     context = {'model': model}
 
-    # Get search results
-    query = {
-        'fq': 'dataset_type:dataset',
-        'include_private': False,
-        'sort': 'organization asc, title asc',
-        'rows': 1000,
-    }
-    if topic_name:
-        query['q'] = 'groups:%s' % topic_name
-    search_datasets = toolkit.get_action('package_search')
-    search = search_datasets(context, query)
+    # Get packages
+    limit = 200  # ckan hard-limit is 1000
+    page = 1
+    packages = []
+    while True:
+        query = {
+            'fq': 'dataset_type:dataset',
+            'include_private': False,
+            'sort': 'organization asc, title asc',
+            'rows': limit,
+            'start': limit * (page - 1),
+        }
+        if topic_name:
+            query['q'] = 'groups:%s' % topic_name
+        response = toolkit.get_action('package_search')(context, query)
+        results = response.get('results', [])
+        if len(results):
+            packages.extend(results)
+            page = page + 1
+        else:
+            break
 
     # Get orgs
     orgs = []
     current_org = None
     selected_ids = selected_ids if isinstance(selected_ids, list) else selected_ids.strip('{}').split(',')
-    for package in search['results']:
+    for package in packages:
         if package['id'] in exclude_ids:
             continue
         if package['owner_org'] != current_org:
@@ -78,23 +87,32 @@ def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=No
 def get_related_stories_for_form(selected_ids=[], exclude_ids=[], topic_name=None):
     context = {'model': model}
 
-    # Get search results
-    query = {
-        'fq': 'dataset_type:showcase',
-        'include_private': False,
-        'sort': 'organization asc, title asc',
-        # Should be enough for stories
-        'rows': 1000,
-    }
-    if topic_name:
-        query['q'] = 'groups:%s' % topic_name
-    search_datasets = toolkit.get_action('package_search')
-    search = search_datasets(context, query)
+    # Get packages
+    limit = 200  # ckan hard-limit is 1000
+    page = 1
+    packages = []
+    while True:
+        query = {
+            'fq': 'dataset_type:showcase',
+            'include_private': False,
+            'sort': 'organization asc, title asc',
+            'rows': limit,
+            'start': limit * (page - 1),
+        }
+        if topic_name:
+            query['q'] = 'groups:%s' % topic_name
+        response = toolkit.get_action('package_search')(context, query)
+        results = response.get('results', [])
+        if len(results):
+            packages.extend(results)
+            page = page + 1
+        else:
+            break
 
     # Get datasets
     datasets = []
     selected_ids = selected_ids if isinstance(selected_ids, list) else selected_ids.strip('{}').split(',')
-    for package in search['results']:
+    for package in packages:
         dataset = {'text': package['title'], 'value': package['id']}
         if package['id'] in exclude_ids:
             continue
