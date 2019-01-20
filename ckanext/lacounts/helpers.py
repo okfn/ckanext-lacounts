@@ -44,7 +44,7 @@ def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=No
     context = {'model': model}
 
     # Get packages
-    limit = 200  # ckan hard-limit is 1000
+    limit = 500  # ckan hard-limit is 1000
     page = 1
     packages = []
     while True:
@@ -88,7 +88,7 @@ def get_related_stories_for_form(selected_ids=[], exclude_ids=[], topic_name=Non
     context = {'model': model}
 
     # Get packages
-    limit = 200  # ckan hard-limit is 1000
+    limit = 500  # ckan hard-limit is 1000
     page = 1
     packages = []
     while True:
