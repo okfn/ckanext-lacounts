@@ -49,8 +49,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Organization</th>
-        <th style="width: 55%">{{ _('Contact') }}</th>
+        <th>{{ _('Contact') }}</th>
+        <th style="width: 50%">Organization</th>
         <th style="width: 16%">{{ _('Date opened') }}</th>
         <th style="width: 10%"></th>
       </tr>
@@ -58,8 +58,8 @@
     <tbody>
       {% for opportunity in c.volunteering|sort(reverse=True, attribute='created_on') %}
       <tr {% if opportunity.description %}class="hasDescription"{% endif %}>
-        <td>{% if opportunity.url %}<a href="{{ opportunity.url }}" target="_blank" rel="nofollow">{{ opportunity.organization }}</a>{% else %}{{ opportunity.organization }}{% endif %}</td>
         <td>{% if opportunity.email_contact and opportunity.email %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email_contact }}</a>{% elif opportunity.email_contact %}{{ opportunity.email_contact }}{% else %}<a href="mailto:{{ opportunity.email }}">{{ opportunity.email }}</a>{% endif %}</td>
+        <td>{% if opportunity.url %}<a href="{{ opportunity.url }}" target="_blank" rel="nofollow">{{ opportunity.organization }}</a>{% else %}{{ opportunity.organization }}{% endif %}</td>
         <td>{{ h.render_datetime(opportunity.created_on, date_format="%b %d, %Y") }}</td>
         <td class="toggle_description_cell">{% if opportunity.description %}
           <button type="button" class="btn btn-xs toggle_description" data-target="op_description_{{ loop.index }}">More info <span class="caret"></span></button>
