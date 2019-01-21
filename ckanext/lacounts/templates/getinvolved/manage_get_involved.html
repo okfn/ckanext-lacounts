@@ -6,13 +6,13 @@
 
 {% block primary_content_inner %}
   <h1 class="page-heading">
-    {% block page_heading %}{{  _('Manage Events & Volunteering Opportunities') }}{% endblock %}
+    {% block page_heading %}{{  _('Manage Events & Volunteer Opportunities') }}{% endblock %}
   </h1>
 
-  <h2 id="Volunteering">{{ _('Volunteering opportunities') }}</h2>
+  <h2 id="Volunteering">{{ _('Volunteer opportunities') }}</h2>
 
   <div class="form-actions">
-    <a class="btn btn-primary" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering'%}">{{ _('Add New Volunteering Opportunity') }}</a>
+    <a class="btn btn-primary" href="{% url_for controller='ckanext.lacounts.controller:GetInvolvedController', action='new_volunteering'%}">{{ _('Add New Volunteer Opportunity') }}</a>
   </div>
 
   {% if c.volunteering %}
@@ -47,7 +47,7 @@
     </tbody>
   </table>
   {% else %}
-    <p>{{ _('There are currently no volunteering opportunities.') }}</p>
+    <p>{{ _('There are currently no volunteer opportunities.') }}</p>
   {% endif %}
 
   <h3 class="page-heading">{{ _('Events') }}</h3>
@@ -98,7 +98,7 @@
   <div class="module module-narrow module-shallow">
     <div class="module-content">
       {% trans %}
-         <p><strong>Get Involved:</strong> Admins can add and remove Events and Volunteering Opportunities here.</p>
+         <p><strong>Get Involved:</strong> Admins can add and remove Events and Volunteer Opportunities here.</p>
       {% endtrans %}
     </div>
   </div>

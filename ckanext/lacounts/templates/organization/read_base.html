@@ -11,16 +11,21 @@
     <li class="active">{% link_for h.get_organization_display_title(c.group_dict)|truncate(35), named_route=group_type+'_read', id=c.group_dict.name %}</li>
 {% endblock %}
 
-{% block primary_content %}
-  {% snippet 'snippets/connectivity.html' %}
-  {{ super() }}
-{% endblock %}
-
 {% block content_action %}
 {% endblock %}
 
-{% block content_primary_nav %}
-  {{ h.build_nav_icon('publisher_read', _('Datasets'), id=c.group_dict.name) }}
-  {{ h.build_nav_icon('publisher_activity', _('Activity Stream'), id=c.group_dict.name, offset=0) }}
-  {{ h.build_nav_icon('publisher_about', _('About'), id=c.group_dict.name) }}
+{% block primary_content %}
+  {% block page_header %}
+  {% endblock %}
+  {% if self.page_primary_action() | trim %}
+    <div class="page_primary_action">
+      {% block page_primary_action %}{% endblock %}
+    </div>
+  {% endif %}
+  {% block primary_content_inner %}
+  {% endblock %}
+{% endblock %}
+
+{% block secondary_content %}
+  {% block organization_facets %}{% endblock %}
 {% endblock %}

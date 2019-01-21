@@ -1,4 +1,40 @@
 {% ckan_extends %}
 
+{% block primary_content_inner %}
+
+    {% block package_title %}
+      {% snippet 'snippets/connectivity.html' %}
+      <h1>
+        {{ c.group_dict.display_name }}
+        {% if c.group_dict.state.startswith('draft') %}
+          [{{ _('Draft') }}]
+        {% endif %}
+        {% if c.group_dict.state == 'deleted' %}
+          [{{ _('Deleted') }}]
+        {% endif %}
+      </h1>
+    {% endblock %}
+
+    {% block package_notes %}
+      {% if c.group_dict.description %}
+        <div class="notes embedded-content">
+          {{ h.render_markdown(h.get_translated(c.group_dict, 'description')) }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {{ super() }}
+
+{% endblock %}
+
 {% block page_primary_action %}
+{% endblock %}
+
+{%- block footer %}
+  {% if h.check_access('organization_update', {'id': c.group_dict.id }) %}
+    <div class="admin-page-actions">
+      {% link_for _('Manage'), named_route='organization_edit', id=c.group_dict.name, class_='btn btn-default', icon='wrench' %}
+    </div>
+  {% endif %}
+  {{ super() }}
 {% endblock %}
