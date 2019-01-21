@@ -82,34 +82,48 @@ JS is built (minified) with `grunt uglify`.
 
 You can watch both for changes with `grunt`.
 
-### Create topics
+## Create initial data
 
-There are pre-defined _topics_ (groups) that can be created with a paster command.
+There are scripts defined in the `scripts` folder that create initial objects:
+* topics (groups)
+* harvest sources + publishers (organizations)
 
-#### In development
+To run them you'll need a sysadmin API key and the URL of the site to update (dev, staging or production). For instance:
 
-```sh
-docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster create_topics"
-```
+    python create_topics.py http://localhost:5000 API-KEY
 
-#### In production & staging
+    python create_source.py https://lacounts-staging.l3.ckan.io/ API-KEY
 
-```sh
-deis run "paster --plugin=ckanext-lacounts create_topics -c production.ini"
-```
+Note: Some of them require extra libraries (eg slugify)
 
-### Initialize 'Get Involved' database tables
+
+## Initialize 'Get Involved' database tables
 
 The 'Get Involved' pages require additional database tables to be initialized: `events` and `volunteering`. These are created with the following paster command:
 
-#### In development
+### In development
 
 ```sh
 docker-compose -f docker-compose.dev.yml run --rm ckan-dev bash -c "cd src_extensions/ckanext-lacounts && python setup.py develop && paster get_involved init-db -c ../../production.ini"
 ```
 
-#### In production & staging
+### In production & staging
 
 ```sh
 deis run "paster --plugin=ckanext-lacounts get_involved init-db -c production.ini"
 ```
+
+## Database
+
+Apart from the tables defined in the application, the following view is used to generate reports and can be created manually:
+
+    CREATE VIEW topic_terms_sources
+        AS SELECT t.name AS term, s.url AS source_url, s.title as source_title, COUNT(*)
+        FROM tag t
+            JOIN package_tag pt ON t.id = pt.tag_id
+            JOIN package_extra pe ON pt.package_id = pe.package_id
+            JOIN harvest_object ho ON pe.package_id = ho.package_id
+            JOIN harvest_source s ON s.id = ho.harvest_source_id
+        WHERE pe.key = 'harvest_source_id'
+        GROUP BY s.url, s.title, t.name
+        ORDER BY COUNT(*) DESC;
