@@ -1,1 +1,2 @@
 inflect
+textblob==0.15.2
