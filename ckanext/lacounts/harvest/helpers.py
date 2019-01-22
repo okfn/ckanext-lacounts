@@ -2,6 +2,7 @@ import logging
 from urlparse import urlparse
 
 import inflect
+from textblob import TextBlob
 
 from ckanext.lacounts.helpers import toolkit, model
 
@@ -80,3 +81,19 @@ def normalize_terms(value):
 
 def normalize_term(term):
     return term.strip().lower()
+
+
+def get_terms_from_text(text):
+
+    blob = TextBlob(text)
+
+    exclude = ['[', ']']
+
+    tags = normalize_terms([
+        t[0] for t in blob.tags
+        if t[1].startswith('NN') and not t[0][0] in exclude])
+    noun_phrases = [
+        np for np in normalize_terms(blob.noun_phrases)
+        if np not in tags and not np[0] in exclude]
+
+    return tags + noun_phrases
