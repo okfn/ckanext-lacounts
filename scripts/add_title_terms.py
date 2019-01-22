@@ -21,10 +21,13 @@ def add_title_terms():
 
         if title_terms:
             new_terms = json.dumps(current_terms + title_terms)
-            print(new_terms)
             statement = sqlalchemy.text("UPDATE package_extra SET value = :value WHERE package_id = :id AND key = 'harvest_dataset_terms'")
-
             res = engine.execute(statement, value=new_terms, id=row['package_id'])
+
+            statement = sqlalchemy.text("UPDATE package_extra_revision SET value = :value WHERE package_id = :id AND key = 'harvest_dataset_terms'")
+            res = engine.execute(statement, value=new_terms, id=row['package_id'])
+
+
             print('Updated package {}, new terms: {}'.format(row['package_id'], title_terms))
 
 
