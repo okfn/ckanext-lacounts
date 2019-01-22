@@ -37,6 +37,12 @@ def after_processor(package, harvest_object):
     package['harvest_dataset_terms'] = map(
             helpers.normalize_term, package.get('harvest_dataset_terms', []))
 
+    # For all harvesters, extract nouns from titles as terms as well
+    title_terms = helpers.get_terms_from_text(package.get('title'))
+    for term in title_terms:
+        if term not in package['harvest_dataset_terms']:
+            package['harvest_dataset_terms'].append(term)
+
     # Groups
     package = helpers.update_groups(
         package, groups=helpers.list_groups_with_extras())
