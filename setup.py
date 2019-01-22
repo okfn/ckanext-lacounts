@@ -92,7 +92,6 @@ setup(
         ckan = ckan.lib.extract:extract_ckan
 
         [paste.paster_command]
-        create_topics=ckanext.lacounts.commands:CreateTopics
         get_involved=ckanext.lacounts.commands:GetInvolved
     ''',
 

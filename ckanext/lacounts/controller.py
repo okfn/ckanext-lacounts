@@ -5,6 +5,9 @@ import ckan.lib.navl.dictization_functions as dict_fns
 import ckan.logic as logic
 
 from ckanext.showcase.controller import ShowcaseController
+
+from ckanext.lacounts.admin import create_topics_csv
+
 log = logging.getLogger(__name__)
 _ = toolkit._
 
@@ -325,3 +328,23 @@ class GetInvolvedController(toolkit.BaseController):
         return toolkit.redirect_to(
             controller='ckanext.lacounts.controller:GetInvolvedController',
             action='manage_get_involved')
+
+
+class AdminController(toolkit.BaseController):
+
+    def download_terms_sources_csv(self):
+
+        context = {'model': model, 'session': model.Session,
+                   'user': toolkit.c.user or toolkit.c.author}
+
+        try:
+            toolkit.check_access('sysadmin', context, {})
+        except toolkit.NotAuthorized:
+            toolkit.abort(401, _('User not authorized to access this resource'))
+
+        output_csv = create_topics_csv()
+
+        toolkit.response.headers['Content-type'] = 'text/csv'
+        toolkit.response.headers['Content-disposition'] = 'attachment;filename=topic_terms_sources.csv'
+
+        return output_csv

@@ -135,6 +135,9 @@ following to create the database tables:
                       '/ckan-admin/getinvolved_edit_volunteering',
                       action='edit_volunteering')
 
+        with SubMapper(map, controller='ckanext.lacounts.controller:AdminController') as m: # noqa
+            m.connect('download_terms_sources_csv', '/ckan-admin/terms-sources-csv', action='download_terms_sources_csv')
+
         map.redirect('/why-la-counts', '/about',
                      _redirect_code='301 Moved Permanently')
         return map
