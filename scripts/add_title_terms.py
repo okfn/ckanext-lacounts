@@ -12,7 +12,11 @@ def add_title_terms():
     connection = engine.connect()
     res = connection.execute('SELECT * FROM tmp_title_terms')
     for row in res:
-        current_terms = json.loads(row['value'])
+        try:
+            current_terms = json.loads(row['value'])
+        except ValueError:
+            continue
+
         title_terms = [t for t in helpers.get_terms_from_text(row['title']) if t not in current_terms]
 
         if title_terms:
