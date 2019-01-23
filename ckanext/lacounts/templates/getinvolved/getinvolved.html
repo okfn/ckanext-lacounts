@@ -39,7 +39,7 @@
     </li>
   </ul>
 
-  <h2 id="Volunteering">{{ _('Volunteer opportunities') }}</h2>
+  <h2 id="volunteering">{{ _('Volunteer opportunities') }}</h2>
   {% call editable.region('get-involved-volunteering') %}
   <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
@@ -121,17 +121,19 @@
 {% endblock %}
 
 {% block secondary_content  %}
-<ul class="nav nav-pills nav-stacked">
-  <li>
-    <a href="#working-groups">Working groups</a>
-  </li>
-  <li>
-    <a href="#Volunteering">Volunteer opportunities</a>
-  </li>
-  <li>
-    <a href="#events">Events</a>
-  </li>
-</ul>
+<div class="aside-subnav-menu">
+  <ul class="">
+    <li>
+      <a href="#working-groups">Working groups</a>
+    </li>
+    <li>
+      <a href="#volunteering">Volunteer opportunities</a>
+    </li>
+    <li>
+      <a href="#events">Events</a>
+    </li>
+  </ul>
+</div>
 {% endblock %}
 
 {%- block footer %}

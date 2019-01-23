@@ -169,6 +169,7 @@
     }
     & a {
       color: var(--grey);
+      text-transform: uppercase;
     }
   }
   & li.active {
