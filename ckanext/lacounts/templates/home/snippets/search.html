@@ -1,5 +1,5 @@
-{% set placeholder_value = [_('parcel data'), _('zoo attendance'), _('crime map'), _('watersheds')] | random  %}
-{% set placeholder = _('Try') + ' ‘' + placeholder_value + '’' %}
+{% set placeholder_value = [_('Search for topics like ‘environment’'), _('Search for topics like ‘housing’'), _('Search for topics like ‘immigration’'), _('Find data on ‘school districts’'), _('Find data on ‘food consumption’'), _('Find stories on ‘parking tickets’'), _('Find stories on ‘equity’')] | random  %}
+{% set placeholder = placeholder_value %}
 
 
 <form class="module-content search-form" method="get" action="{% url_for 'dataset' %}">
