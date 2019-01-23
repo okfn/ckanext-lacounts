@@ -118,12 +118,19 @@
 .pagination-wrapper {
   border-top: none;
   text-align: left;
+  padding-top: 0;
+  margin-bottom: 20px;
+  margin-top: -30px;
 }
 
 .pagination {
   margin-bottom: 0;
 
   & > li {
+
+    font-size: 0.85em;
+    font-weight: bold;
+
     & > a,
     & > li > span {
       border: none;

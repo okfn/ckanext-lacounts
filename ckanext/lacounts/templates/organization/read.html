@@ -23,7 +23,36 @@
       {% endif %}
     {% endblock %}
 
-    {{ super() }}
+    {% block groups_search_form %}
+      {% set facets = {
+        'fields': c.fields_grouped,
+        'search': c.search_facets,
+        'titles': c.facet_titles,
+        'translated_fields': c.translated_fields,
+        'remove_field': c.remove_field }
+      %}
+
+     {% set sorting_selected = c.sort_by_selected %}
+     {% set sorting = [
+       (_('Relevance'), 'score desc, metadata_modified desc'),
+       (_('Name Ascending'), 'title_string asc'),
+       (_('Name Descending'), 'title_string desc'),
+       (_('Last Modified'), 'metadata_modified desc'),
+       (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+     %}
+     {% if not c.q and not h.get_query_param('sort') %}
+       {% set sorting_selected = 'metadata_modified desc' %}
+     {% endif %}
+
+     {% snippet 'snippets/search_form.html', form_id='organization-datasets-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=sorting_selected, count=c.page.item_count, facets=facets, placeholder=_('Search datasets...'), show_empty=request.params, fields=c.fields %}
+   {% endblock %}
+   {% block packages_list %}
+     {{ c.page.pager(q=c.q) }}
+     {{ super() }}
+   {% endblock %}
+
+   {% block page_pagination %}
+   {% endblock %}
 
 {% endblock %}
 
