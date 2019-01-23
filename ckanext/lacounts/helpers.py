@@ -531,3 +531,7 @@ def list_to_newlines(value):
 
 def get_bubble_rows():
     return toolkit.get_action('publishers_list')({'model': model}, {})
+
+
+def get_query_param(name, default=None):
+    return toolkit.request.params.get(name, default)

@@ -6,10 +6,19 @@
     <form class="section site-search simple-input" action="/dataset" method="get">
       <div class="container field">
         <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search datasets and stories') }}{% endblock %}</label>
-        <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search datasets and stories') }}" value="{{ c.q }}"/>
+        <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search datasets and stories') }}" value="{{ c.q }}" autocomplete="off"  >
         <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+        {% if c.fields %} 
+          <span>{{ form.hidden_from_list(fields=c.fields, except_names=['q']) }}</span>
+        {%- endif %}
+        <input type="hidden" name="sort" value="{{ c.sort_by_selected }}" />
       </div>
+
     </form>
+
+
+
+
 {% endblock -%}
 
 

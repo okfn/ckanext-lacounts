@@ -1,5 +1,6 @@
 import logging
 
+
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
@@ -92,7 +93,8 @@ following to create the database tables:
             'get_author_initials': helpers.get_author_initials,
             'get_gravatar_image_url': helpers.get_gravatar_image_url,
             'list_to_newlines': helpers.list_to_newlines,
-            'get_bubble_rows': helpers.get_bubble_rows
+            'get_bubble_rows': helpers.get_bubble_rows,
+            'get_query_param': helpers.get_query_param,
         }
 
     # IRoutes
