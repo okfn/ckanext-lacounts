@@ -8,10 +8,69 @@
 {% endblock %}
 
 {% block primary_content %}
-  {% call editable.region('about') %}
-    <h1>About</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <h1>About</h1>
+  <h2 id="about-who">Who: a team of changemakers</h2>
+  {% call editable.region('about-who') %}
+  <p>A small, scrappy team backed by California Community Foundation has spent the last few years punching above its weight class, working to catalog and coalesce the open data for and about the 10 million Angelenos in Los Angeles County. Since 2013, we have explored, imagined, investigated, researched, and dreamed about the possibilities and power of open data combined with meaningful stories, all with the aim of establishing the first and only platform to gather all of Los Angeles County's open data into one place . We've interviewed data journalists and data practitioners, surveyed and spoken with data publishers, performed a landscape analysis of data-focused initiatives, assembled and curated thousands of datasets, connected with other open data proponents, explored opportunities for partnerships, highlighted important open data projects across the county, constructed an initial test site, run through a series of beta tests, and established an open source, open data tool for change. You're welcome.</p>
+  {% endcall %}
+
+  <h2 id="about-tech">What: our technology</h2>
+  {% call editable.region('about-tech') %}
+  <p>LA Counts is both a tool for change and a community of changemakers. Free, open source, and open data, LA counts is replicable, portable and above all, transparent. (Check out our <a href="https://lacounts.org/blog">blog</a> where we regularly model transparency--about our successes as well as our challenges!) With this tool, our community works towards tackling pressing issues through data, developing dataset standards that benefit Los Angeles County. We also work to unpack what we know (and what we don't know) about our region though data stories.</p>
+
+  <p>Open data platforms provide the public with powerful lenses through which different insights about government and industry models and actions can be revealed. Through them publicly available data becomes accessible, data providers can be held accountable, and advocates, activists, funders and policymakers can make better, more well-informed decisions.</p>
+
+  <p>Our current harvesting technique limits us to sharing data from open data portals. We'd like to share more: we'd like to highlight publicly available private data but we need that data to be hosted somewhere in order to point to it. Here's where you, the LA Counts community, come in. Do you have data that you'd like to share publicly? Have you made FOIA requests for data? Where is is stored? <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbxDUcAAhnN6xUQfv6xHc2lAbn_11sOYE2SYEOzFgHsLYicg/viewform" target="_blank">Suggest a dataset</a>!</p>
+
+  <p>Open source is more than just publicly accessible code, it's a thriving culture, a movement that carries with it an ethos of transparency and collaboration. The development and extensions work that our community accomplishes with CKAN--a global, open source, open data platform--will bolster other open source public digital infrastructure that support a free and open web.</p>
+  {% endcall %}
+
+  <h2 id="about-when">When: The time is now</h2>
+  {% call editable.region('about-when') %}
+  <p>Ultimately, LA Counts is a community tool—built, managed and strengthened by the people who use it. In these critical early days, your participation will determine the success of this effort. Help by identifying new resources and suggesting datasets to add to those already available. <a href="/contact">Drop us a note</a> to recommend ways to make this platform even more useful. And, of course, share your experiences with others as you put LA Counts data to work.</p>
+  {% endcall %}
+
+  <h2 id="about-where">Where: Los Angeles County</h2>
+  {% call editable.region('about-where') %}
+  <p>How much do you know about Los Angeles County? Sprawling over 4000 square miles, LA County is home to over 10 million residents--our population is greater than 42 states. LA County boasts 88 separate cities and numerous unincorporated areas. That means we have 88 mayors and 88 separate governments. While most people know about LAUSD, unlike other large metropolitan areas, we have multiple school districts: 93 of them are spread throughout the County. We're also blessed with a population that speaks 200 different languages. The County is a maze of bureaucracy, filled with hundreds of disconnected, overlapping, and sometimes competing agencies working for Angelenos. But what does this have to do with data? Read on.</p>
+  {% endcall %}
+
+  <h2 id="about-why">Why: our needs</h2>
+  {% call editable.region('about-why') %}
+  <p>Despite its massive population, size and level of need, Los Angeles County is arguably the least well funded major metropolitan area in the United States. We simply don’t know enough nor do we have enough open data about our county to tell its complete story. Without accessible and defensible data, funders and decision-makers are hesitant to invest in issues affecting our county and everyone misses out. We can change this!  Demographic data, poverty statistics, educational needs, sub-ethnicities, housing and healthcare scarcity remain hidden--masked by the aggregate data of a huge population buried under byzantine governmental complexity. The sheer size, complexity and diversity of Los Angeles County can be a barrier for funders, policy-makers, journalists and activists to the understanding and addressing the needs of the under-represented and under-served.</p>
+
+  <p>While we know a good deal about Los Angeles County, there is much we don't yet know, or can't yet share with our community. Some of the hurdles we face are technological, and some of them (perhaps most of them) are bureaucratic. The governments of Los Angeles County and the cities within it generate huge amounts of data but a surprising amount of it is not publicly available. We, along with our community, aim to change that.</p>
+  {% endcall %}
+
+  <h2 id="about-how">How: a community of datanauts</h2>
+  {% call editable.region('about-how') %}
+  <p>All this is to say, that as a community and as a site, we're a work in progress, entirely invested in building and supporting the data-focused community, and although  we've tirelessly worked to build and improve LA Counts, we're humble about what we've accomplished so far. Like it? <a href="/contact">Let us know</a>! Think it needs work? Tell us! Want to make change in your neighborhood? Great! Want  to influence policy affecting the poorest and most vulnerable populations? Get involved and help us make Los Angeles County the best it can be!</p>
   {% endcall %}
 {% endblock %}
 
-{% block secondary %}{% endblock %}
+{% block secondary %}
+  <aside class="secondary col-sm-3">
+    <div class="aside-subnav-menu">
+      <ul>
+        <li>
+          <a href="#about-who">Who</a>
+        </li>
+        <li>
+          <a href="#about-tech">What</a>
+        </li>
+        <li>
+          <a href="#about-when">When</a>
+        </li>
+        <li>
+          <a href="#about-where">Where</a>
+        </li>
+        <li>
+          <a href="#about-why">Why</a>
+        </li>
+        <li>
+          <a href="#about-how">How</a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+{% endblock %}
