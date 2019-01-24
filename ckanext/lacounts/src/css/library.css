@@ -84,6 +84,11 @@
         color: #333;
       }
 
+      &.label-format {
+        font-size: var(--font-size-xsmall);
+        background-color: color(var(--body-colour) a(75%));
+      }
+
       &:visited {
         color: #fff;
       }
