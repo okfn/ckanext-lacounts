@@ -1,16 +1,26 @@
 {% ckan_extends %}
+{% import 'macros/editable.html' as editable with context %}
 
 {% block group_list %}
-<ul class="topic-list">
 {% block group_list_inner %}
+<ul class="topic-list">
   {% for group in groups %}
     {% if group.featured == "yes" %}
       {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
     {% endif %}
   {% endfor %}
-  <li class="separator">
-    <hr />
-  </li>
+
+</ul>
+
+<hr />
+
+{% call editable.region('topics-additional') %}
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+{% endcall %}
+
+<ul class="topic-list">
   {% for group in groups %}
     {% if group.featured != "yes" %}
       {% snippet "group/snippets/group_item.html", group=group, position=loop.index %}
