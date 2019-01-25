@@ -1,4 +1,7 @@
 {% ckan_extends %}
+{% import 'macros/editable.html' as editable with context %}
+
+{% block bodytag %} {{ super() }} class="publishers-index"{% endblock %}
 
 {% block subtitle %}{{ _('Publishers') }}{% endblock %}
 
@@ -13,9 +16,11 @@
   <div class="helper-info" id="libraryHelper">
     <h4 class="header"><span class="sr-only">What is this</span>?</h4>
     <div class="content">
+      {% call editable.region('publishers-intro') %}
       <p>
-        {{ _("LA Counts' datasets are harvested from local, state, regional and federal agencies that maintain open data portals, as well as (eventually) private institutions. Together we’re working with the community to co-create universal dataset specifications and metadata standards for Los Angeles County.") }}
+        LA Counts' datasets are harvested from local, state, regional and federal agencies that maintain open data portals, as well as (eventually) private institutions. Together we’re working with the community to co-create universal dataset specifications and metadata standards for Los Angeles County.
       </p>
+      {% endcall %}
     </div>
   </div>
 

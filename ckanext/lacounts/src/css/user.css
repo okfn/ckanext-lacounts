@@ -71,6 +71,9 @@
   }
 }
 
+.search .admin-page-actions,
+.publishers-index .admin-page-actions,
+.topics-index .admin-page-actions,
 .getinvolved .admin-page-actions {
   top: 75px;
 }
