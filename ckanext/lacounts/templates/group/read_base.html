@@ -22,7 +22,7 @@
   {% block description %}
   {% if c.group.description %}
   <div class="notes">
-    {{ c.group.description }}
+    {{ h.render_markdown(c.group.description) }}
   </div>
   {% endif %}
   {% endblock %}
