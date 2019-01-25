@@ -171,6 +171,18 @@
       color: var(--grey);
       text-transform: uppercase;
     }
+    &.see-all {
+      font-weight: bold;
+
+      & a {
+        text-decoration: none;
+      }
+
+      & i {
+        color: var(--yellow);
+        margin-left: 0.5em;
+      }
+    }
   }
   & li.active {
     border-color: var(--yellow);
