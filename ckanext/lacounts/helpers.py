@@ -246,7 +246,10 @@ def get_featured_data_stories(topic_dict, limit=None):
     stories = []
     ids = normalize_list(value)
     for id in ids:
-        story = toolkit.get_action('package_show')(context, {'id': id, type: 'showcase'})
+        try:
+            story = toolkit.get_action('package_show')(context, {'id': id, type: 'showcase'})
+        except toolkit.ObjectNotFound:
+            continue
         stories.append(story)
         if len(stories) == limit:
             break
@@ -262,7 +265,10 @@ def get_featured_datasets(topic_dict, limit=None):
     datasets = []
     ids = normalize_list(value)
     for id in ids:
-        dataset = toolkit.get_action('package_show')(context, {'id': id})
+        try:
+            dataset = toolkit.get_action('package_show')(context, {'id': id})
+        except toolkit.ObjectNotFound:
+            continue
         datasets.append(dataset)
         if len(datasets) == limit:
             break
@@ -554,6 +560,6 @@ def normalize_list(value):
         return value
     return value.strip('{}').split(',')
 
-  
+
 def get_query_param(name, default=None):
     return toolkit.request.params.get(name, default)
