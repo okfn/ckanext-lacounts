@@ -65,6 +65,7 @@ following to create the database tables:
     def get_helpers(self):
         return {
             'get_image_for_group': helpers.get_image_for_group,
+            'get_groups_for_form': helpers.get_groups_for_form,
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_stories_for_form': helpers.get_related_stories_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
@@ -207,7 +208,7 @@ following to create the database tables:
             'volunteering_delete': actions.volunteering_delete,
             'volunteering_show': actions.volunteering_show,
             'volunteering_list': actions.volunteering_list,
-            'publishers_list': actions.publishers_list
+            'publishers_list': actions.publishers_list,
         }
 
     # IAuthFunctions
@@ -231,4 +232,5 @@ following to create the database tables:
                 validators.set_default_publisher_title,
             'convert_to_list': validators.convert_to_list,
             'convert_from_list': validators.convert_from_list,
+            'convert_groups_override': validators.convert_groups_override,
         }

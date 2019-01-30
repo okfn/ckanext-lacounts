@@ -5,7 +5,7 @@ from ckanext.lacounts.harvest import helpers
 log = logging.getLogger(__name__)
 
 
-def ckan_processor(package, harvest_object):
+def ckan_processor(package, existing_package, harvest_object):
 
     # Url
     package['harvest_dataset_url'] = '{harvest_source_url}/dataset/{id}'.format(**package)

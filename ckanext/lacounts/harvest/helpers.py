@@ -1,3 +1,4 @@
+import json
 import logging
 from urlparse import urlparse
 
@@ -9,13 +10,13 @@ from ckanext.lacounts.helpers import toolkit, model
 log = logging.getLogger(__name__)
 
 
-def process_package(package, harvest_object):
+def process_package(package, existing_package, harvest_object):
     from ckanext.lacounts.harvest import processors
-    package = processors.before_processor(package, harvest_object)
+    package = processors.before_processor(package, existing_package, harvest_object)
     processor = getattr(processors, '%s_processor' % harvest_object.source.type)
     if processor:
-        package = processor(package, harvest_object)
-    package = processors.after_processor(package, harvest_object)
+        package = processor(package, existing_package, harvest_object)
+    package = processors.after_processor(package, existing_package, harvest_object)
     return package
 
 
@@ -40,7 +41,9 @@ def map_package(package, mapping):
 
 def update_groups(package, groups):
     # package: we look for package['harvest_dataset_terms']
-    # groups: you can pass groups with extras to improve performance otherwise we query db
+    # groups: groups with extras
+
+    # Auto-tagging
     package['groups'] = []
     dataset_terms = pluralize(normalize_terms(package.get('harvest_dataset_terms', '')))
     if dataset_terms:
@@ -49,11 +52,19 @@ def update_groups(package, groups):
             if set(dataset_terms).intersection(group_terms):
                 package['groups'].append(group)
 
+    # Manual-tagging
+    groups_override = json.loads(package.get('groups_override') or '{"add": [], "del" : []}')
+    for group in groups:
+        if group['id'] in groups_override['add'] and group not in package['groups']:
+            package['groups'].append(group)
+    for group in list(package['groups']):
+        if group['id'] in groups_override['del']:
+            package['groups'].remove(group)
+
     return package
 
 
 def pluralize(terms):
-
     p = inflect.engine()
     plurals = []
     for term in terms:

@@ -1,0 +1,15 @@
+<div class="form-group control-full control-select">
+  <label class="control-label" for="field-{{ field.field_name }}">{{ h.scheming_language_text(field.label) }}</label>
+  <div class="controls ">
+    <select name="{{ field.field_name }}" id="field-{{ field.field_name }}" multiple="multiple" style="width: 100%">
+    {% set selected_ids = data.get('groups', []) | map(attribute='id') | list %}
+    {% for topic in h.get_groups_for_form(selected_ids=selected_ids) %}
+      <option value={{ topic.value }} {% if topic.selected %}selected{% endif %}>{{ topic.text }}</option>
+    {% endfor %}
+    </select>
+    <div class="info-block ">
+      <i class="fa fa-info-circle"></i>
+      {{ field.help_text }}
+    </div>
+  </div>
+</div>

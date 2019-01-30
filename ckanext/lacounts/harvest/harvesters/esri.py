@@ -22,7 +22,8 @@ class LacountsESRIGeoportalHarvester(DCATRDFHarvester):
     '''
 
     def modify_package_dict(self, package_dict, dcat_dict, harvest_object):
-        helpers.process_package(package_dict, harvest_object)
+        existing_package = self._get_existing_dataset(harvest_object.guid)
+        helpers.process_package(package_dict, existing_package, harvest_object)
         return package_dict
 
     def info(self):

@@ -151,7 +151,12 @@ $(document).ready(function(){
     placeholder: 'Click to get a drop-down list or start typing a dataset title'
   });
 
-  // Groups
+  // Groups override
+  $('#field-groups_override').select2({
+    placeholder: 'Click to get a drop-down list or start typing a topic title'
+  })
+
+  // Topics
   $('#field-groups-get-involved').select2({
     placeholder: 'Click to get a drop-down list or start typing a topic title'
   })

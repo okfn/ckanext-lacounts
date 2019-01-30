@@ -4,7 +4,7 @@ from ckanext.lacounts.harvest import helpers
 log = logging.getLogger(__name__)
 
 
-def socrata_processor(package, harvest_object):
+def socrata_processor(package, existing_package, harvest_object):
 
     # Url
     package['harvest_dataset_url'] = package.get('url')

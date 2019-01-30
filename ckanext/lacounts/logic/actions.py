@@ -3,6 +3,7 @@ import logging
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.helpers as h
 import ckan.lib.uploader as uploader
+import ckan.logic.action.create as create_core
 import ckan.logic.action.update as update_core
 from ckan.logic import validate
 

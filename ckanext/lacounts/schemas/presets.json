@@ -8,7 +8,7 @@
       "values": {
         "validators": "ignore_missing",
         "form_snippet": "related_datasets.html",
-        "display_snippet": "related_datasets.html"
+        "display_snippet": null
       }
     },
     {
@@ -16,7 +16,7 @@
       "values": {
         "validators": "ignore_missing",
         "form_snippet": "featured_stories.html",
-        "display_snippet": "featured_stories.html"
+        "display_snippet": null
       }
     },
     {
@@ -24,7 +24,15 @@
       "values": {
         "validators": "ignore_missing",
         "form_snippet": "featured_datasets.html",
-        "display_snippet": "featured_datasets.html"
+        "display_snippet": null
+      }
+    },
+    {
+      "preset_name": "groups_override",
+      "values": {
+        "validators": "convert_groups_override ignore_missing",
+        "form_snippet": "groups_override.html",
+        "display_snippet": null
       }
     },
     {

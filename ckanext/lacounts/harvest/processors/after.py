@@ -5,21 +5,7 @@ log = logging.getLogger(__name__)
 toolkit = helpers.toolkit
 
 
-def _remove_pkg_dict_extra(pkg_dict, key):
-    '''Remove the dataset extra with the provided key, and return its
-    value.
-    '''
-    extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
-    for extra in extras:
-        if extra['key'] == key:
-            val = extra['value']
-            pkg_dict['extras'] = \
-                [e for e in extras if not e['key'] == key]
-            return val
-    return None
-
-
-def after_processor(package, harvest_object):
+def after_processor(package, existing_package, harvest_object):
 
     # If a field name is an extra in dataset_dict, promote it to the top level
     schema = toolkit.h.scheming_get_dataset_schema('dataset')
@@ -48,3 +34,17 @@ def after_processor(package, harvest_object):
         package, groups=helpers.list_groups_with_extras())
 
     return package
+
+
+def _remove_pkg_dict_extra(pkg_dict, key):
+    '''Remove the dataset extra with the provided key, and return its
+    value.
+    '''
+    extras = pkg_dict['extras'] if 'extras' in pkg_dict else []
+    for extra in extras:
+        if extra['key'] == key:
+            val = extra['value']
+            pkg_dict['extras'] = \
+                [e for e in extras if not e['key'] == key]
+            return val
+    return None

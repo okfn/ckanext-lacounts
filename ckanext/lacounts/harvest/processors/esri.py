@@ -3,26 +3,7 @@ from operator import itemgetter
 log = logging.getLogger(__name__)
 
 
-def _get_coordinates(package):
-    coordinates = package.pop('spatial_text', None)
-    if not coordinates:
-        new_extras = []
-        for extra in package.get('extras', []):
-            if extra['key'] == 'spatial_text':
-                coordinates = extra['value']
-            else:
-                new_extras.append(extra)
-
-    if coordinates:
-        coordinates = coordinates.split(',')
-        if len(coordinates) != 4:
-            return
-
-    package['extras'] = new_extras
-    return coordinates
-
-
-def esri_geoportal_processor(package, harvest_object):
+def esri_geoportal_processor(package, existing_package, harvest_object):
 
     # Url
     for extra in package.get('extras', []):
@@ -55,3 +36,22 @@ def esri_geoportal_processor(package, harvest_object):
     package['harvest_dataset_terms'] = terms
 
     return package
+
+
+def _get_coordinates(package):
+    coordinates = package.pop('spatial_text', None)
+    if not coordinates:
+        new_extras = []
+        for extra in package.get('extras', []):
+            if extra['key'] == 'spatial_text':
+                coordinates = extra['value']
+            else:
+                new_extras.append(extra)
+
+    if coordinates:
+        coordinates = coordinates.split(',')
+        if len(coordinates) != 4:
+            return
+
+    package['extras'] = new_extras
+    return coordinates

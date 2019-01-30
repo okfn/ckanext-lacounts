@@ -18,17 +18,21 @@
             "required": true
         },
         {
-          "field_name": "owner_org",
-          "label": "Organization",
-          "preset": "dataset_organization"
+            "field_name": "owner_org",
+            "label": "Organization",
+            "preset": "dataset_organization"
         },
         {
             "field_name": "related_datasets",
             "preset": "related_datasets",
-            "help_text": "help text",
             "label": "Related datasets",
-            "help_text": "Links to other datasets. It supports multiple selections",
-            "display_snippet": null
+            "help_text": "Links to other datasets. It supports multiple selections"
+        },
+        {
+            "field_name": "groups_override",
+            "preset": "groups_override",
+            "label": "Topics",
+            "help_text": "This will override any topics added automatically, adding or removing the ones defined in here"
         },
         {
             "field_name": "issued",

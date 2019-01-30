@@ -1,6 +1,7 @@
 import json
 import logging
 from ckanext.harvest.harvesters import CKANHarvester
+from ckanext.lacounts.helpers import toolkit
 from ckanext.lacounts.harvest import helpers
 log = logging.getLogger(__name__)
 
@@ -20,7 +21,11 @@ class LacountsCKANHarvester(CKANHarvester):
 
         # Update package
         package = json.loads(harvest_object.content)
-        package = helpers.process_package(package, harvest_object)
+        try:
+            existing_package = self._find_existing_package(package)
+        except toolkit.ObjectNotFound:
+            existing_package = None
+        package = helpers.process_package(package, existing_package, harvest_object)
         harvest_object.content = json.dumps(package)
 
         return super(LacountsCKANHarvester, self).import_stage(harvest_object)

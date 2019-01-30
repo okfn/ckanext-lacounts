@@ -4,7 +4,7 @@ from ckanext.lacounts.harvest import helpers
 log = logging.getLogger(__name__)
 
 
-def before_processor(package, harvest_object):
+def before_processor(package, existing_package, harvest_object):
     package.setdefault('extras', [])
 
     # Source/timestamp
@@ -28,5 +28,12 @@ def before_processor(package, harvest_object):
                 package[field] = parse(value).isoformat()
             except Exception:
                 package[field] = None
+
+    # Manually managed fields
+    names = ['related_datasets', 'groups_override']
+    if existing_package:
+        for name in names:
+            if name in existing_package:
+                package[name] = existing_package[name]
 
     return package

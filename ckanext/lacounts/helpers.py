@@ -39,6 +39,19 @@ def get_image_for_group(group_name, return_path=False):
     return img
 
 
+def get_groups_for_form(selected_ids=[]):
+    formGroups = []
+    context = {'model': model}
+    data_dict = {'all_fields': True, 'type': 'topic', 'include_extras': True}
+    selected_ids = normalize_list(selected_ids)
+    for group in toolkit.get_action('group_list')(context, data_dict):
+        formGroup = {'text': group['title'], 'value': group['id']}
+        if group['id'] in selected_ids:
+            formGroup['selected'] = 'selected'
+        formGroups.append(formGroup)
+    return formGroups
+
+
 # TODO: this helpers also exists in `ckanext.showcase`. Add-topic/rename/merge?
 def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=None):
     context = {'model': model}
@@ -68,7 +81,7 @@ def get_related_datasets_for_form(selected_ids=[], exclude_ids=[], topic_name=No
     # Get orgs
     orgs = []
     current_org = None
-    selected_ids = selected_ids if isinstance(selected_ids, list) else selected_ids.strip('{}').split(',')
+    selected_ids = normalize_list(selected_ids)
     for package in packages:
         if package['id'] in exclude_ids:
             continue
@@ -111,7 +124,7 @@ def get_related_stories_for_form(selected_ids=[], exclude_ids=[], topic_name=Non
 
     # Get datasets
     datasets = []
-    selected_ids = selected_ids if isinstance(selected_ids, list) else selected_ids.strip('{}').split(',')
+    selected_ids = normalize_list(selected_ids)
     for package in packages:
         dataset = {'text': package['title'], 'value': package['id']}
         if package['id'] in exclude_ids:
@@ -129,7 +142,7 @@ def get_related_datasets_for_display(value):
 
     # Get datasets
     datasets = []
-    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    ids = normalize_list(value)
     for id in ids:
         try:
             dataset = toolkit.get_action('package_show')(context, {'id': id})
@@ -147,7 +160,7 @@ def get_related_stories_for_display(value):
 
     # Get datasets
     datasets = []
-    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    ids = normalize_list(value)
     for id in ids:
         try:
             dataset = toolkit.get_action('package_show')(context, {'id': id})
@@ -231,7 +244,7 @@ def get_featured_data_stories(topic_dict, limit=None):
 
     # Get datasets
     stories = []
-    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    ids = normalize_list(value)
     for id in ids:
         story = toolkit.get_action('package_show')(context, {'id': id, type: 'showcase'})
         stories.append(story)
@@ -247,7 +260,7 @@ def get_featured_datasets(topic_dict, limit=None):
 
     # Get datasets
     datasets = []
-    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    ids = normalize_list(value)
     for id in ids:
         dataset = toolkit.get_action('package_show')(context, {'id': id})
         datasets.append(dataset)
@@ -368,7 +381,7 @@ def get_story_related_stories(story):
 
     # Get stories
     stories = []
-    ids = value if isinstance(value, list) else value.strip('{}').split(',')
+    ids = normalize_list(value)
     for id in ids:
         story = toolkit.get_action('package_show')(context, {'id': id})
         stories.append(story)
@@ -533,5 +546,14 @@ def get_bubble_rows():
     return toolkit.get_action('publishers_list')({'model': model}, {})
 
 
+def normalize_list(value):
+    # It takes into account that ''.split(',') == ['']
+    if not value:
+        return []
+    if isinstance(value, list):
+        return value
+    return value.strip('{}').split(',')
+
+  
 def get_query_param(name, default=None):
     return toolkit.request.params.get(name, default)
