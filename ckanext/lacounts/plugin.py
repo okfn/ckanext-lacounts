@@ -66,6 +66,7 @@ following to create the database tables:
         return {
             'get_image_for_group': helpers.get_image_for_group,
             'get_groups_for_form': helpers.get_groups_for_form,
+            'get_groups_for_form_using_id': helpers.get_groups_for_form_using_id,
             'get_related_datasets_for_form': helpers.get_related_datasets_for_form,
             'get_related_stories_for_form': helpers.get_related_stories_for_form,
             'get_related_datasets_for_display': helpers.get_related_datasets_for_display,
