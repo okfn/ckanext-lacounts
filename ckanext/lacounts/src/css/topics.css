@@ -195,3 +195,17 @@
     }
   }
 }
+
+.topic.details {
+  & img {
+    height: 150px;
+  }
+  /* Solution without reducing size (image amount from 4 to 3 instead) */
+  /*
+  & .stories-list {
+    @media (--medium-up) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  */
+}
