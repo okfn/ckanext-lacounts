@@ -25,7 +25,7 @@
         {
             "field_name": "related_datasets",
             "preset": "related_datasets",
-            "label": "Related datasets",
+            "label": "Linked datasets",
             "help_text": "Links to other datasets. It supports multiple selections"
         },
         {

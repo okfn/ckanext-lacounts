@@ -176,6 +176,14 @@ $(document).ready(function(){
   $( ".ckanext-showcase-notes iframe" ).wrap( "<div class='embed'></div>" );
 
 
+  /* Story images */
+  // Make images clickable to open in new tab
+  $( ".ckanext-showcase-notes img")
+    .click(function (ev) {window.open($(ev.target).attr('src'), '_blank')})
+    .attr('title', 'Click to open')
+    .css('cursor', 'pointer')
+
+
   /* Publishers hierarchy toggle */
   /*******************************/
   $('#publisher-tree .hierarchy-toggle').click(function () {
@@ -273,5 +281,7 @@ $(document).ready(function(){
     desc.slideToggle(200);
     ev.currentTarget.blur();
   });
+
+
 
 });
