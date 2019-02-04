@@ -33,6 +33,13 @@
             "output_validators": "convert_from_list"
         },
         {
+            "field_name": "working_group_url",
+            "label": "Working group URL",
+            "form_placeholder": "e.g. http://example.com/wg",
+            "display_snippet": "url.html",
+            "help_text": "This link will be used for the \"Join group\" button"
+        },
+        {
             "field_name": "featured_stories",
             "preset": "featured_stories",
             "label": "Featured stories",

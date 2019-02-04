@@ -31,9 +31,16 @@
 
   <ul class="working-groups-list">
     <li>
-      <h3><a href="#">{{ c.group.display_name }} working group</a></h3>
+      {% if c.group_dict.working_group_url %}
+        {% set link = c.group_dict.working_group_url %}
+        {% set text = _('Join group') %}
+      {% else %}
+        {% set link = '#' %}
+        {% set text = _('Start group') %}
+      {% endif %}
+      <h3><a href="{{ link }}">{{ c.group.display_name }} working group</a></h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
-      <a class="btn" href="#">{{ _('Join group') }}</a>
+      <a class="btn" href="{{ link }}">{{ text }}</a>
     </li>
   </ul>
 
