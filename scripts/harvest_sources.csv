@@ -1,14 +1,20 @@
-url,publisher,source_name,publisher_type,parent,type
-https://data.chhs.ca.gov,California Health and Human Services Agency,,state,,ckan
-https://data.cnra.ca.gov,California Natural Resources Agency,,state,,ckan
-https://data.culvercity.org,City of Culver City,,city,,socrata
-https://data.lacity.org,City of Los Angeles,Los Angeles Open Data,city,,socrata
-https://performance-lacity.data.socrata.com/,City of Los Angeles,Performance LA,city,,socrata
-https://controllerdata.lacity.org,City of Los Angeles,ControlPanel LA,city,,socrata
-https://data.smgov.net,City of Santa Monica,,city,,socrata
-https://data.weho.org,City of West Hollywood,,city,,socrata
-https://data.lacounty.gov,County of Los Angeles,,county,,socrata
-https://bythenumbers.sco.ca.gov,California State Controller,California State Controller's Office Local Government Financial Data,state,,socrata
-http://geohub.lacity.org,City of Los Angeles,Los Angeles GeoHub,city,,esri_geoportal
-http://gisdata-scag.opendata.arcgis.com,Southern California Association of Governments,SCAG GIS Open Data Portal,regional,,esri_geoportal
-http://datalb.longbeach.gov,City of Long Beach,,city,,esri_geoportal
+url,publisher,source_name,publisher_type,parent,type,config
+https://data.chhs.ca.gov,California Health and Human Services Agency,,state,,ckan,
+https://data.cnra.ca.gov,California Natural Resources Agency,,state,,ckan,
+https://data.culvercity.org,City of Culver City,,city,,socrata,
+https://data.lacity.org,City of Los Angeles,Los Angeles Open Data,city,,socrata,
+https://performance-lacity.data.socrata.com/,City of Los Angeles,Performance LA,city,,socrata,
+https://controllerdata.lacity.org,City of Los Angeles,ControlPanel LA,city,,socrata,
+https://data.smgov.net,City of Santa Monica,,city,,socrata,
+https://data.weho.org,City of West Hollywood,,city,,socrata,
+https://data.lacounty.gov,County of Los Angeles,,county,,socrata,
+https://bythenumbers.sco.ca.gov,California State Controller,California State Controller's Office Local Government Financial Data,state,,socrata,
+http://geohub.lacity.org,City of Los Angeles,Los Angeles GeoHub,city,,esri_geoportal,
+http://gisdata-scag.opendata.arcgis.com,Southern California Association of Governments,SCAG GIS Open Data Portal,regional,,esri_geoportal,
+http://datalb.longbeach.gov,City of Long Beach,,city,,esri_geoportal,
+http://data.cityofpasadena.net/data.json,City of Pasadena,,city,,esri_geoportal,
+https://data.cdc.gov,Centers for Disease Control and Prevention,,federal,,socrata,"{""q"": [""california"", ""cities"", ""metropolitan"", ""national"", ""youth""], ""domains"": [""data.cdc.gov"", ""chronicdata.cdc.gov""]}"
+https://data.cms.gov,Centers for Medicare and Medicaid Services,,federal,,socrata,"{""q"": [""california"", ""cities"", ""metropolitan"", ""national""]}"
+https://data.healthcare.gov,Centers for Medicare and Medicaid Services,Data.Healthcare.gov,federal,,socrata,"{""q"": [""cities"", ""national""]}"
+https://data.medicaid.gov,Centers for Medicare and Medicaid Services,Data.Medicaid.gov,federal,,socrata,"{""q"": [""california"", ""cities"", ""national""]}"
+https://data.medicare.gov,Centers for Medicare and Medicaid Services,Data.Medicare.gov,federal,,socrata,"{""q"": [""cities"", ""national""]}"
