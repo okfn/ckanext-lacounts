@@ -41,7 +41,12 @@
       {% endif %}
       <h3><a href="{{ link }}">{{ c.group.display_name }} working group</a></h3>
       {% call editable.region('topic-%s-working-group' % c.group.name) %}
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
+        {% set site_value = h.get_editable_region('get-involved-working-groups') %}
+        {% if site_value %}
+          {{ site_value | safe }}
+        {% else %}
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
+        {% endif %}
       {% endcall %}
       <a class="btn" href="{{ link }}">{{ text }}</a>
     </li>
