@@ -65,11 +65,18 @@ def convert_from_list(value, context):
 
 
 def convert_groups_override(key, data, errors, context):
-    value = data.get(('groups_override',)) or []
+    value = data.get(('groups_override',))
 
-    # Skip if already JSON
-    if '"add"' in value and '"del"' in value:
+    # Skip if not from form (missing)
+    if value is None:
         return
+
+    # Skip if not from form (dictionary)
+    try:
+        if isinstance(json.loads(value), dict):
+            return
+    except Exception:
+        pass
 
     # Get group ids
     package = None
