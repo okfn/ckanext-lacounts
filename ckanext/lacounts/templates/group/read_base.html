@@ -1,4 +1,5 @@
 {% ckan_extends %}
+{% import 'macros/editable.html' as editable with context %}
 
 {% block bodytag %} {{ super() }} class="topic details"{% endblock %}
 
@@ -39,7 +40,9 @@
         {% set text = _('Start group') %}
       {% endif %}
       <h3><a href="{{ link }}">{{ c.group.display_name }} working group</a></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
+      {% call editable.region('topic-%s-working-group' % c.group.name) %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.</p>
+      {% endcall %}
       <a class="btn" href="{{ link }}">{{ text }}</a>
     </li>
   </ul>
