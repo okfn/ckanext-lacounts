@@ -298,6 +298,10 @@ section.community {
         padding-bottom: calc(var(--spacer-25) / 2);
         align-items: flex-start;
 
+        & h1 {
+          color: inherit;
+        }
+
         & > * {
           margin-top: 0;
           margin-bottom: 0;
