@@ -197,7 +197,7 @@
 }
 
 .topic.details {
-  & img {
+  & .stories-list img {
     height: 150px;
   }
   /* Solution without reducing size (image amount from 4 to 3 instead) */

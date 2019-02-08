@@ -3,6 +3,7 @@ import urllib
 import logging
 import urlparse
 import hashlib
+import datetime
 from ckan import model
 from ckan.common import config
 from ckan.plugins import toolkit
@@ -583,3 +584,11 @@ def normalize_list(value):
 
 def get_query_param(name, default=None):
     return toolkit.request.params.get(name, default)
+
+
+def format_iso_date_string(string, format):
+    try:
+        return datetime.date(*map(int, string.split('-'))).strftime(format)
+    except Exception as exception:
+        log.exception(exception)
+        return string

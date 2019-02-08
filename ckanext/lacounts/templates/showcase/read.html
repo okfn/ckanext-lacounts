@@ -46,7 +46,16 @@
 
       {% block package_author %}
         {% if pkg.author %}
-          <p class="author">{{_('By')}} {{ pkg.author }}</p>
+          <p class="author">
+            {% if pkg.story_date %}
+              {{ _('Posted on') }}
+              {{ h.format_iso_date_string(pkg.story_date, '%m/%d/%y') }}
+              {{_('by')}}
+            {% else %}
+              {{_('By')}}
+            {% endif %}
+            {{ pkg.author }}
+          </p>
         {% endif %}
       {% endblock %}
 
@@ -76,7 +85,7 @@
       {% set stories = h.get_story_related_stories(pkg) %}
       {% if stories %}
         <section class="data-stories">
-          <h1>Related stories</h1>
+          <h1>Linked stories</h1>
           <div class="stories-list">
             {% for story in stories %}
               <article>

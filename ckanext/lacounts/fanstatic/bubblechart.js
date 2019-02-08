@@ -7,28 +7,22 @@ var format = d3.format(",d");
 var color = function(type) {
   switch (type) {
     case 'Federal':
-      out = '#31a354';
+      out = '#618e36';
       break;
     case 'State':
-      out = '#fdae6b';
+      out = '#a7b638';
       break;
     case 'Regional':
-      out = '#fdd0a2';
+      out = '#365872';
       break;
     case 'City':
-      out = '#c6dbef';
+      out = '#f09006';
       break;
     case 'County':
-      out = '#9ecae1';
-      break;
-    case 'Private':
-      out = '#a1d99b';
-      break;
-    case 'Non profit':
-      out = '#e6550d';
+      out = '#da453f';
       break;
     default:
-      out = '#c7e9c0';
+      out = '#5b5e5e';
       break;
   }
     return out

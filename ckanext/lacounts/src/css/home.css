@@ -168,7 +168,6 @@
     &.featured-visualisation {
       padding-top: var(--spacer-25);
       padding-bottom: var(--spacer-50);
-      @mixin extend-full-width;
 
       & .explore-link {
         top: 2.2rem;
@@ -245,6 +244,8 @@ section.community {
 
 .featured-visualisation {
   position: relative;
+  background-color: color(var(--grey) tint(90%));
+  padding: 1em;
 
   & figure {
     border-radius: var(--border-radius);
@@ -277,18 +278,93 @@ section.community {
         }
       }
     }
+
+    & figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: color(var(--grey) a(70%));
+      padding: var(--spacer-25) var(--spacer-25) calc(var(--spacer-25) / 2) var(--spacer-25);
+      border-style: solid;
+      border-color: color(var(--grey) a(10%));
+      border-width: 0 1px 1px 1px;
+      border-radius: var(--border-radius);
+      color: white;
+
+      & .caption-header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: calc(var(--spacer-25) / 2);
+        align-items: flex-start;
+
+        & > * {
+          margin-top: 0;
+          margin-bottom: 0;
+
+          & small {
+            display: block;
+            margin-bottom: 0.2em;
+          }
+
+          & a {
+            text-decoration: none;
+            color: white;
+          }
+        }
+
+        &.show-as-collapsed {
+          align-items: center;
+          & .toggle {
+            &:after {
+              transform: rotate(0deg);
+            }
+          }
+        }
+      }
+
+      & .caption-body {
+        & :last-child {
+          margin-bottom: calc(var(--spacer-25) / 2);
+        }
+        & h3 {
+          color: #fff;
+          margin-top: 0;
+        }
+        & a.explore-link {
+          color: white;
+        }
+      }
+
+      @media (--medium-up) {
+        left: var(--spacer-25);
+        right: var(--spacer-25);
+        border-width: 0;
+      }
+
+      @media (--large-up) {
+        width: 50%;
+        right: 66%;
+      }
+    }
   }
 
   & .helper-info {
     position: absolute;
     top: 1.5rem;
-    right: 1rem;
+    right: 0.5rem;
 
     & .header {
-      margin-right: 0.5rem;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      &::after {
+        margin-left: -0.5em;
+      }
     }
 
+
     & .content {
+      margin-top: -0.6rem;
       margin-left: 1rem;
 
       @media (--small-up) {

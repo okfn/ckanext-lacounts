@@ -1,5 +1,5 @@
 <div class="form-group control-full control-select">
-  <label class="control-label" for="field-related-datasets">Related datasets</label>
+  <label class="control-label" for="field-related-datasets">{{ h.scheming_language_text(field.label) }}</label>
   <div class="controls ">
     <select name="related_datasets" id="field-related-datasets" multiple="multiple" style="width: 100%">
     {% for org in h.get_related_datasets_for_form(selected_ids=data.get(field.field_name, []), exclude_ids=[data.get('id')]) %}

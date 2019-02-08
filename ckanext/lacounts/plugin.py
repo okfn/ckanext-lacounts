@@ -97,6 +97,7 @@ following to create the database tables:
             'list_to_newlines': helpers.list_to_newlines,
             'get_bubble_rows': helpers.get_bubble_rows,
             'get_query_param': helpers.get_query_param,
+            'format_iso_date_string': helpers.format_iso_date_string,
         }
 
     # IRoutes
