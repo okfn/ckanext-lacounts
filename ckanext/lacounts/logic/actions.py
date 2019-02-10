@@ -1,3 +1,4 @@
+import ast
 import logging
 
 import ckan.plugins.toolkit as toolkit
@@ -9,6 +10,7 @@ from ckan.logic import validate
 
 from ckanext.lacounts.logic import schema
 from ckanext.lacounts.model import Event, VolunteeringOpportunity
+from ckanext.lacounts import tagging
 
 from ckan.model.meta import Session
 
@@ -224,3 +226,30 @@ def config_option_update(context, data_dict):
         data_dict['ckanext.lacounts.featured_image'] = value
 
     return update_core.config_option_update(context, data_dict)
+
+
+def package_create(context, data_dict):
+    data_dict = _package_create_or_update(data_dict)
+    return create_core.package_create(context, data_dict)
+
+
+def package_update(context, data_dict):
+    data_dict = _package_create_or_update(data_dict)
+    return update_core.package_update(context, data_dict)
+
+
+# Internal
+
+def _package_create_or_update(data_dict):
+
+    # Fix harvest dataset terms from being like:
+    # u"[u'mpa', u'mpa monitoring', u'mpa network', u'mpa performance']"
+    harvest_dataset_terms = data_dict.get('harvest_dataset_terms', [])
+    if harvest_dataset_terms and not isinstance(harvest_dataset_terms, list):
+        # https://docs.python.org/2/library/ast.html#ast.literal_eval
+        data_dict['harvest_dataset_terms'] = ast.literal_eval(harvest_dataset_terms)
+
+    # Calculate groups based on terms/groups_override
+    data_dict = tagging.recalculate_dataset_groups(data_dict)
+
+    return data_dict

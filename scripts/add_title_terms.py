@@ -3,7 +3,7 @@ import json
 
 import sqlalchemy
 
-from ckanext.lacounts.harvest import helpers
+from ckanext.lacounts import tagging
 
 
 def add_title_terms():
@@ -17,7 +17,7 @@ def add_title_terms():
         except ValueError:
             continue
 
-        title_terms = [t for t in helpers.get_terms_from_text(row['title']) if t not in current_terms]
+        title_terms = [t for t in tagging.get_terms_from_text(row['title']) if t not in current_terms]
 
         if title_terms:
             new_terms = json.dumps(current_terms + title_terms)

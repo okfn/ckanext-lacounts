@@ -30,9 +30,10 @@
         },
         {
             "field_name": "groups_override",
-            "preset": "groups_override",
             "label": "Topics",
-            "help_text": "This will override any topics added automatically, adding or removing the ones defined in here"
+            "help_text": "This will override any topics added automatically, adding or removing the ones defined in here",
+            "form_snippet": "groups_override.html",
+            "display_snippet": null
         },
         {
             "field_name": "issued",

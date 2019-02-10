@@ -151,15 +151,25 @@ $(document).ready(function(){
     placeholder: 'Click to get a drop-down list or start typing a dataset title'
   });
 
-  // Groups override
-  $('#field-groups_override').select2({
-    placeholder: 'Click to get a drop-down list or start typing a topic title'
-  })
-
   // Topics
   $('#field-groups-get-involved').select2({
     placeholder: 'Click to get a drop-down list or start typing a topic title'
   })
+
+  // Groups override
+  var groups = $('#field-groups_override_controller').val()
+  var groupsOverride = JSON.parse($('#field-groups_override').val() || '{}')
+  $('#field-groups_override_controller')
+    .on('change', function(ev) {
+      var desiredGroups = $(ev.target).val();
+      groupsOverride.add = desiredGroups.filter(function(group) {return !groups.includes(group);});
+      groupsOverride.del = groups.filter(function(group) {return !desiredGroups.includes(group);});
+      var value = (groupsOverride.add.length || groupsOverride.del.length) ? JSON.stringify(groupsOverride) : '';
+      $('#field-groups_override').val(value);
+    })
+    .select2({
+      placeholder: 'Click to get a drop-down list or start typing a topic title'
+    })
 
 
   /* Stories lead */

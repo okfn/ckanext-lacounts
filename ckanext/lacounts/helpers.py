@@ -592,3 +592,8 @@ def format_iso_date_string(string, format):
     except Exception as exception:
         log.exception(exception)
         return string
+
+
+def get_groups_with_extras():
+    return toolkit.get_action('group_list')(
+        {'model': model}, {'type': 'topic', 'all_fields': True, 'include_extras': True})

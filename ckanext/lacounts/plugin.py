@@ -186,14 +186,12 @@ following to create the database tables:
     # IGroupController
 
     def create(self, entity):
-        if getattr(entity, 'type') == 'topic' and not getattr(
-                toolkit.c, 'job', False):
-            toolkit.enqueue_job(jobs.update_groups, [entity.name])
+        if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job', False):
+            toolkit.enqueue_job(jobs.update_groups_for_all_datasets, [])
 
     def edit(self, entity):
-        if getattr(entity, 'type') == 'topic' and not getattr(
-                toolkit.c, 'job', False):
-            toolkit.enqueue_job(jobs.update_groups, [entity.name])
+        if getattr(entity, 'type') == 'topic' and not getattr(toolkit.c, 'job', False):
+            toolkit.enqueue_job(jobs.update_groups_for_all_datasets, [])
 
     # IActions
 
@@ -211,6 +209,8 @@ following to create the database tables:
             'volunteering_show': actions.volunteering_show,
             'volunteering_list': actions.volunteering_list,
             'publishers_list': actions.publishers_list,
+            'package_create': actions.package_create,
+            'package_update': actions.package_update,
         }
 
     # IAuthFunctions
@@ -234,5 +234,4 @@ following to create the database tables:
                 validators.set_default_publisher_title,
             'convert_to_list': validators.convert_to_list,
             'convert_from_list': validators.convert_from_list,
-            'convert_groups_override': validators.convert_groups_override,
         }

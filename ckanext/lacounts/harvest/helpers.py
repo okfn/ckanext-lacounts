@@ -1,12 +1,7 @@
 import json
 import logging
-from urlparse import urlparse
-
 import inflect
-from textblob import TextBlob
-
 from ckanext.lacounts.helpers import toolkit, model
-
 log = logging.getLogger(__name__)
 
 
@@ -39,44 +34,6 @@ def map_package(package, mapping):
     return package
 
 
-def update_groups(package, groups):
-    # package: we look for package['harvest_dataset_terms']
-    # groups: groups with extras
-
-    # Auto-tagging
-    package['groups'] = []
-    dataset_terms = pluralize(normalize_terms(package.get('harvest_dataset_terms', '')))
-    if dataset_terms:
-        for group in groups:
-            group_terms = pluralize(normalize_terms(group.get('harvest_terms', '')))
-            if set(dataset_terms).intersection(group_terms):
-                package['groups'].append(group)
-
-    # Manual-tagging
-    groups_override = json.loads(package.get('groups_override') or '{"add": [], "del" : []}')
-    for group in groups:
-        if group['id'] in groups_override['add'] and group not in package['groups']:
-            package['groups'].append(group)
-    for group in list(package['groups']):
-        if group['id'] in groups_override['del']:
-            package['groups'].remove(group)
-
-    return package
-
-
-def pluralize(terms):
-    p = inflect.engine()
-    plurals = []
-    for term in terms:
-        plurals.append(p.plural(term))
-    return terms + plurals
-
-
-def list_groups_with_extras():
-    return toolkit.get_action('group_list')(
-        {'model': model}, {'type': 'topic', 'all_fields': True, 'include_extras': True})
-
-
 def normalize_frequency(value):
     options = ['never', 'daily', 'weekly', 'biweekly', 'monthly', 'annually', 'irregular']
     if value:
@@ -84,27 +41,3 @@ def normalize_frequency(value):
         if value not in options:
             value = 'unknown'
     return value or None
-
-
-def normalize_terms(value):
-    return map(normalize_term, value)
-
-
-def normalize_term(term):
-    return term.strip().lower()
-
-
-def get_terms_from_text(text):
-
-    blob = TextBlob(text)
-
-    exclude = ['[', ']']
-
-    tags = normalize_terms([
-        t[0] for t in blob.tags
-        if t[1].startswith('NN') and not t[0][0] in exclude])
-    noun_phrases = [
-        np for np in normalize_terms(blob.noun_phrases)
-        if np not in tags and not np[0] in exclude]
-
-    return tags + noun_phrases

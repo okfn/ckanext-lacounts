@@ -2,17 +2,20 @@ import time
 import logging
 from ckan import model
 import ckan.plugins.toolkit as toolkit
-from ckanext.lacounts.harvest import helpers
+import ckan.logic.action.update as update_core
+from ckanext.lacounts import helpers, tagging
 log = logging.getLogger(__name__)
 
 
-def update_groups(group_name):
+# Module API
+
+def update_groups_for_all_datasets():
     # This job re-calculate all harvested dataset groups from scratch
     # It makes actual update call only on changed packages
     time.sleep(3)
 
     # Get groups
-    groups = helpers.list_groups_with_extras()
+    groups = helpers.get_groups_with_extras()
 
     # Get packages
     offset = 0
@@ -33,12 +36,17 @@ def update_groups(group_name):
     # Update packages
     for package in packages:
         old_group_names = _extract_group_names(package)
-        package = helpers.update_groups(package, groups=groups)
+        package = tagging.recalculate_dataset_groups(package, groups=groups)
         new_group_names = _extract_group_names(package)
         if old_group_names != new_group_names:
-            package = toolkit.get_action('package_update')({'model': model}, package)
-            log.debug('Updated package: %s' % package['name'])
+            # We don't want to recalculate groups twice
+            # (see ckanext.lacounts.logic.actions.package_create/udpate)
+            context = {'model': model, 'user': toolkit.c.user}
+            package = update_core.package_update(context, package)
+            log.debug('Updated groups for package: %s' % package['name'])
 
+
+# Internal
 
 def _extract_group_names(package):
     group_names = set()
