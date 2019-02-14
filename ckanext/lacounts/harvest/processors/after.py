@@ -11,7 +11,7 @@ def after_processor(package, existing_package, harvest_object):
     schema = toolkit.h.scheming_get_dataset_schema('dataset')
     # Add some core ones not explicitly defined in our schema
     field_names = [i['field_name'] for i in schema['dataset_fields']]
-    core_names = ['tags', 'groups']
+    core_names = ['tags', 'groups', 'harvest_object_id']
     field_names = field_names + core_names
     for name in field_names:
         val = _remove_pkg_dict_extra(package, name)
