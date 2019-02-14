@@ -18,3 +18,4 @@ https://data.cms.gov,Centers for Medicare and Medicaid Services,,federal,,socrat
 https://data.healthcare.gov,Centers for Medicare and Medicaid Services,Data.Healthcare.gov,federal,,socrata,"{""q"": [""cities"", ""national""]}"
 https://data.medicaid.gov,Centers for Medicare and Medicaid Services,Data.Medicaid.gov,federal,,socrata,"{""q"": [""california"", ""cities"", ""national""]}"
 https://data.medicare.gov,Centers for Medicare and Medicaid Services,Data.Medicare.gov,federal,,socrata,"{""q"": [""cities"", ""national""]}"
+https://catalog.data.gov,Data.gov,Data.gov,federal,,ckan,"{""query_params"": {""q"":""california census tiger"",""ext_bbox"":""-118.9394,32.8061,-117.6398,34.8239""}}"
