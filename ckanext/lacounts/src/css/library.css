@@ -120,12 +120,18 @@
   }
 }
 
+#pagination-top {
+  & .pagination-wrapper {
+    padding-top: 0;
+    margin-bottom: 20px;
+    margin-top: -30px;
+  }
+}
+
+
 .pagination-wrapper {
   border-top: none;
   text-align: left;
-  padding-top: 0;
-  margin-bottom: 20px;
-  margin-top: -30px;
 }
 
 .pagination {

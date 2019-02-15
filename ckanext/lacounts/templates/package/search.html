@@ -115,8 +115,9 @@
 
 
       </form>
-
-      {{ c.page.pager(q=c.q) }}
+      <div id="pagination-top">
+        {{ c.page.pager(q=c.q) }}
+      </div>
 
       {% endblock %}
 
@@ -129,9 +130,11 @@
 
   {% block package_search_results_list %}
     {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+
   {% endblock %}
 
   {% block page_pagination %}
+    {{ c.page.pager(q=c.q) }}
   {% endblock %}
 
 {% endblock %}
