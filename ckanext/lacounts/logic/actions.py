@@ -229,12 +229,14 @@ def config_option_update(context, data_dict):
 
 
 def package_create(context, data_dict):
-    data_dict = _package_create_or_update(data_dict)
+    if data_dict.get('type') == 'dataset':
+        data_dict = _package_create_or_update(data_dict)
     return create_core.package_create(context, data_dict)
 
 
 def package_update(context, data_dict):
-    data_dict = _package_create_or_update(data_dict)
+    if data_dict.get('type') == 'dataset':
+        data_dict = _package_create_or_update(data_dict)
     return update_core.package_update(context, data_dict)
 
 
