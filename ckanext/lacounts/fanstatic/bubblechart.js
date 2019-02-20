@@ -44,6 +44,9 @@ var root = d3.hierarchy({children: rows})
         d.package = d.data.package;
         d.url = d.data.url;
       }
+    })
+    .sort(function(a, b) {
+      return -(a.value - b.value);
     });
 
 var tooltip = d3.select("body")
