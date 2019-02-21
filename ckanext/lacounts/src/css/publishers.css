@@ -56,3 +56,12 @@
     }
   }
 }
+
+.featured-visualisation {
+  margin-top: var(--spacer-50);
+
+  & #svg-legend {
+    position: absolute;
+  }
+
+}

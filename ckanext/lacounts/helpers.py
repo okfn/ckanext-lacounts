@@ -570,7 +570,7 @@ def list_to_newlines(value):
 
 
 def get_bubble_rows():
-    return toolkit.get_action('publishers_list')({'model': model}, {})
+    return json.dumps(toolkit.get_action('publishers_list')({'model': model}, {}))
 
 
 def normalize_list(value):

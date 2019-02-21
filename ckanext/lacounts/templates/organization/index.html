@@ -38,6 +38,19 @@
     {% if c.page.items %}
       {% snippet "organization/snippets/organization_list.html", organizations=c.page.items %}
     {% endif %}
+
+    <section class="featured-visualisation">
+
+      <svg id='svg-legend' width="140" height="160" font-size="14" text-anchor="middle" viewBox="0 0 140 160" preserveAspectRatio="xMidYMid meet"></svg>
+      <svg id='svg-viz' width="860" height="650" font-size="14" text-anchor="middle" style="width: 100%" viewBox="0 0 860 650" preserveAspectRatio="xMidYMid meet"></svg>
+      <script type="text/javascript">
+        var rows = {{ h.get_bubble_rows()|safe }};
+      </script>
+      {% resource 'lacounts/bubble' %}
+
+    </section>
+
+
   {% else %}
     <p class="empty">
       {{ _('There are currently no organizations for this site') }}.

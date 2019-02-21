@@ -2,12 +2,15 @@
 
 <section class="featured-visualisation">
   <figure>
-    <svg width="960" height="750" font-size="14" text-anchor="middle" style="width: 100%" viewBox="0 0 960 750" preserveAspectRatio="xMidYMid meet"></svg>
+
+    <svg id='svg-legend' width="140" height="160" font-size="14" text-anchor="middle" viewBox="0 0 140 160" preserveAspectRatio="xMidYMid meet"></svg>
+    <svg id='svg-viz' width="960" height="750" font-size="14" text-anchor="middle" style="width: 100%" viewBox="0 0 960 750" preserveAspectRatio="xMidYMid meet"></svg>
+
     <figcaption>
       <div class="caption-header">
         <div>
           {% call editable.region('featured-visualisation-title') %}
-            <h1>{{ _("Our Publishers") }}:</h1>
+            <h2>{{ _("Our Publishers") }}</h2>
           {% endcall %}
         </div>
         <button type="button" class="toggle"><span class="sr-only">Toggle description</span></button>
@@ -16,6 +19,7 @@
         {% call editable.region('featured-visualisation') %}
           <p>We harvest data from local, state, regional and federal agencies that maintain open data portals. Together we’re working with the community to co-create universal dataset specifications and metadata standards.</p>
         {% endcall %}
+
         <a href="/publisher" class="explore-link">{{ _("See all publishers") }}</a>
       </div>
     </figcaption>
@@ -29,7 +33,7 @@
     </div>
   </div>
   <script type="text/javascript">
-    var rows = {{ h.get_bubble_rows()|tojson|safe }};
+    var rows = {{ h.get_bubble_rows()|safe }};
   </script>
   {% resource 'lacounts/bubble' %}
 </section>

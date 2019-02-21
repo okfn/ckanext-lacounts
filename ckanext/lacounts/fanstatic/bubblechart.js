@@ -1,4 +1,4 @@
-var svg = d3.select("svg"),
+var svg = d3.select("#svg-viz"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
@@ -147,14 +147,12 @@ var legendSpacing = 4;
 //Add Legend, convert data to array
 legendDataArray = Object.keys(legendData).map(function (key) { return legendData[key]; });
 
-var legendWrapper = svg
+var svgLegend = d3.select("#svg-legend");
+var legendWrapper = svgLegend
   .append('g')
   .attr('class', 'legend-wrapper')
   .attr('transform', function() {
-    var svgBox = svg.node().getBBox();
-    var publisherTab = jQuery('.container');
-    // console.log(publisherTab.width());
-    return 'translate(' + (publisherTab.width() - 250) + ', 150)';
+    return 'translate(50, 80)';
   });
 
 var legendBackground = legendWrapper

@@ -167,7 +167,16 @@
 
     &.featured-visualisation {
       padding-top: var(--spacer-25);
-      padding-bottom: var(--spacer-50);
+      padding-bottom: var(--spacer-25);
+
+      & h2 {
+        color: white;
+        margin: 0;
+      }
+
+      & #svg-legend {
+        position: absolute;
+      }
 
       & .explore-link {
         top: 2.2rem;
@@ -337,11 +346,11 @@ section.community {
         }
         & a.explore-link {
           color: white;
+          font-weight: bold;
         }
       }
 
       @media (--medium-up) {
-        left: var(--spacer-25);
         right: var(--spacer-25);
         border-width: 0;
       }
