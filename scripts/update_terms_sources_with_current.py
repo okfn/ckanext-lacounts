@@ -6,19 +6,38 @@ from tempfile import NamedTemporaryFile
 tmp_file_name = 'tmp_topic_terms.csv'
 tmp_file = NamedTemporaryFile(delete=False)
 
+field_names = [
+    'term',
+    'count',
+    'topic1',
+    'topic2',
+    'topic3',
+    'source1',
+    'source1_count',
+    'source2',
+    'source2_count',
+    'source3',
+    'source3_count',
+    'source4',
+    'source4_count',
+    'source5',
+    'source5_count',
+    'source6',
+    'source6_count',
+]
+
 
 def include_topics(from_csv, to_csv):
 
     from_terms = {}
     with open(from_csv, 'r') as f_from:
-        from_reader = csv.DictReader(f_from, fieldnames=['term', 'count', 'group1', 'group2'])
+        from_reader = csv.DictReader(f_from, fieldnames=field_names)
         from_reader.next()
         for row in from_reader:
             from_terms[row['term']] = []
-            if row.get('group1'):
-                from_terms[row['term']].append(row['group1'])
-            if row.get('group2'):
-                from_terms[row['term']].append(row['group2'])
+            for topic_field in ('group1', 'group2', 'topic1', 'topic2', 'topic3'):
+                if row.get(topic_field):
+                    from_terms[row['term']].append(row[topic_field])
 
     from_terms.pop('', None)
 
@@ -34,12 +53,11 @@ def include_topics(from_csv, to_csv):
         to_writer.writeheader()
 
         to_reader.next()
+        dest_fields = ['topic1', 'topic2', 'topic3']
         for row in to_reader:
             if row.get('term') in from_terms:
-                if len(from_terms[row['term']]) == 2:
-                    row['topic2'] = from_terms[row['term']][1]
-                elif len(from_terms[row['term']]) == 1:
-                    row['topic1'] = from_terms[row['term']][0]
+                for index, topic in enumerate(from_terms[row['term']]):
+                    row[dest_fields[index]] = topic
             to_writer.writerow(row)
 
     shutil.move(tmp_file.name, to_csv)
