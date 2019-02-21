@@ -197,18 +197,30 @@ def get_metadata_completion_rate(package):
     # Item could be a field name or a list of field names (any match counts)
     # The result is a dict: {rate, count, total}
     GROUPS = [
+
+        # Title on the top
         'title',
+
+        # Publisher on the left
         'owner_org',
+
+        # Description below the title
         'notes',
-        'metadata_created',
-        'metadata_modified',
+
+        # Metadata table
+        'issued',
+        'modified',
+        'url',
+        'contact_name',
         'contact_email',
         'identifier',
         'access_rights',
-        'license_title',
-        ['spatial_text', 'spatial'],
-        ['temporal_text', 'temporal_start', 'temporal_end'],
         'frequency',
+        'language',
+        'provenance',
+        ['temporal_text', 'temporal_start', 'temporal_end'],
+        ['spatial_text', 'spatial'],
+
     ]
 
     # Count
@@ -387,7 +399,7 @@ def get_spatial_value(pkg_dict):
 
 def get_temporal_value(pkg_dict):
 
-    text = pkg_dict.get('temporal_start')
+    text = pkg_dict.get('temporal_text')
     start = pkg_dict.get('temporal_start')
     end = pkg_dict.get('temporal_end')
 

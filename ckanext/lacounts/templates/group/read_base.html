@@ -36,7 +36,7 @@
         {% set link = c.group_dict.working_group_url %}
         {% set text = _('Join group') %}
       {% else %}
-        {% set link = '#' %}
+        {% set link = 'https://groups.google.com/forum/#!forum/lacounts' %}
         {% set text = _('Start group') %}
       {% endif %}
       <h3><a href="{{ link }}">{{ c.group.display_name }} working group</a></h3>
