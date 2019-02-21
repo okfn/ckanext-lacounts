@@ -135,6 +135,15 @@
 
   & .search-form {
     margin-bottom: var(--spacer-15);
+    & input::placeholder {
+      font-size: 70%;
+      @media (--small-up) {
+        font-size: 75%;
+      }
+      @media (--medium-up) {
+        font-size: 80%;
+      }
+    }
   }
 
   & .homepage > .container > section {
