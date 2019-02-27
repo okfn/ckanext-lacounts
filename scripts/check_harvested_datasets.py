@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
+import urllib
+import json
 from urlparse import urlparse
 
 import requests
@@ -11,12 +13,24 @@ def _get_expected_datasets(source):
     expected = None
     try:
         if source['source_type'] == 'ckan':
-            result = requests.get(
-                '{}/api/action/package_search?rows=0'.format(source['url'])).json()
+            params = source.get('config', {}).get('query_params')
+            url = '{}/api/action/package_search?rows=0'.format(source['url'])
+            if params:
+                url = url + '&' + urllib.urlencode(params)
+            result = requests.get(url).json()
             expected = result['result']['count']
         elif source['source_type'] == 'socrata':
-            domain = urlparse(source['url']).netloc
-            result = requests.get('http://api.us.socrata.com/api/catalog/v1?domains={}&search_context={}&only=datasets'.format(domain, domain)).json()
+            search_context = urlparse(source['url']).hostname
+            if source.get('config', {}).get('domains'):
+                domain = ','.join(source['config']['domains'])
+            else:
+                domain = search_context
+
+            url = 'http://api.us.socrata.com/api/catalog/v1?domains={}&search_context={}&only=datasets'.format(domain, search_context)
+            q = source.get('config', {}).get('q')
+            if q:
+                url = url + '&q={}&min_should_match=1'.format(' '.join(q))
+            result = requests.get(url).json()
             expected = result['resultSetSize']
         elif source['source_type'] == 'esri_geoportal':
             result = requests.get(source['url']).json()
@@ -39,11 +53,16 @@ def check_harvest_sources(url):
             continue
 
         source = ckan.action.harvest_source_show(id=item['id'])
+        if source.get('config'):
+            source['config'] = json.loads(source['config'])
+        else:
+            source['config'] = {}
 
-        print('{},{},{}'.format(
+        print('{}, {}, {}, {}'.format(
             source['name'],
             source['status']['total_datasets'],
-            _get_expected_datasets(source)
+            _get_expected_datasets(source),
+            source['config']
             )
         )
 
