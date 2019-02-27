@@ -15,11 +15,11 @@ var color = function(type) {
     case 'Regional':
       out = '#365872';
       break;
-    case 'City':
-      out = '#f09006';
-      break;
     case 'County':
       out = '#da453f';
+      break;
+    case 'City':
+      out = '#f09006';
       break;
     default:
       out = '#5b5e5e';
@@ -146,7 +146,22 @@ for (i = 0; i < rows.length; i++) {
 var legendRectSize = 18;
 var legendSpacing = 4;
 //Add Legend, convert data to array
-legendDataArray = Object.keys(legendData).map(function (key) { return legendData[key]; });
+var legendDataArray = Object.keys(legendData).map(function (key) { return legendData[key]; });
+
+var legendOrder = ['Federal', 'State', 'Regional', 'County', 'City', 'Uncategorized']
+
+var sortByAdmin = function(a, b) {
+  if (legendOrder.indexOf(a.text) < legendOrder.indexOf(b.text)) {
+    return -1;
+  }
+  if (legendOrder.indexOf(a.text) > legendOrder.indexOf(b.text)) {
+    return 1;
+  }
+  return 0
+}
+
+legendDataArray.sort(sortByAdmin)
+
 
 var svgLegend = d3.select("#svg-legend");
 var legendWrapper = svgLegend
