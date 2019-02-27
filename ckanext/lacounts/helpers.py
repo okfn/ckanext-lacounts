@@ -254,7 +254,7 @@ def get_recent_data_stories(topic_name=None, limit=None):
         except toolkit.NotAuthorized:
             continue
         if (not showcase.get('image_display_url') or
-                showcase.get('story_type') == 'Blog post'):
+                showcase.get('story_type') == 'Blog Post'):
             continue
 
         if topic_name:

@@ -26,7 +26,7 @@ class BlogController(ShowcaseController):
             showcase = \
                 toolkit.get_action('package_show')(context,
                                                    {'id': showcase['id']})
-            if showcase.get('story_type') == 'Blog post':
+            if showcase.get('story_type') == 'Blog Post':
                 posts.append(showcase)
         return toolkit.render(self._search_template('blog'),
                               extra_vars={'posts': posts})

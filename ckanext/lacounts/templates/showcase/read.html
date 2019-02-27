@@ -4,7 +4,7 @@
 
 {% block breadcrumb_content %}
     {% set showcase = pkg.title or pkg.name %}
-    {% if pkg.story_type == 'Blog post' %}
+    {% if pkg.story_type == 'Blog Post' %}
       <li><a href="/blog">Blog</a></li>
     {% else %}
       <li>{{ h.nav_link(_('Showcases'), named_route='dataset_search', type_label='Story', highlight_actions = 'new index') }}</li>
