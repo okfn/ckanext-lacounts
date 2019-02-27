@@ -198,12 +198,6 @@ def get_metadata_completion_rate(package):
     # The result is a dict: {rate, count, total}
     GROUPS = [
 
-        # Title on the top
-        'title',
-
-        # Publisher on the left
-        'owner_org',
-
         # Description below the title
         'notes',
 
