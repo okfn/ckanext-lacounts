@@ -11,31 +11,38 @@
 
 {% block primary_content %}
   {% call editable.region('get-involved') %}
-    <h1>Get Involved</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1>See how people in LA are answering every day questions with open data!</h1>
+    <p>LA Counts is a growing community of open data practitioners, data journalists, academics, researchers, students, philanthropists, and policymakers. Get involved!</p>
   {% endcall %}
 
   <h2 id="working-groups">{{ _('Working groups') }}</h2>
   {% call editable.region('get-involved-working-groups') %}
-  <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
+  <p>When you join a working group you join a community of people working  with open data to investigate problems, explore equity opportunities, imagine new futures. You'll share your work publicly through various means: dataviz, stories, reports, policy recommendations, etc</p>
   </p>
   {% endcall %}
 
+  {% set working_groups = h.get_all_working_groups() %}
+
   <ul class="working-groups-list">
+    {% for wg in working_groups %}
+        <li>
+            <h3>{{ wg['name'] }}</h3>
+            {% if wg.get('desc') %}
+              <p>
+              {{ h.render_markdown(wg['desc']) }}
+              </p>
+            {% endif %}
+            <a class="btn" href="{{ wg['url'] }}">{{ _('Join group') }}</a>
+        </li>
+    {% endfor %}
     <li>
-      <h3>Working group</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
-      </p>
-      <a class="btn" href="#">{{ _('learn more') }}</a>
-    </li>
-    <li>
-      <h3>Working group</h3>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam finibus odio sit amet turpis fermentum, in tempus mauris egestas.
-      </p>
-      <a class="btn" href="#">{{ _('learn more') }}</a>
+        {% call editable.region('get-involved-start-working-group') %}
+          <h3>Start a new one!</h3>
+          <p>
+            Are you involved or interested in a <a href="{{ h.url_for('topic_list') }}">topic</a> not shown here? Why not start a working group to connect with others?
+          </p>
+        {% endcall %}
+      <a class="btn" href="https://groups.google.com/forum/#!forum/lacounts">{{ _('Start group') }}</a>
     </li>
   </ul>
 

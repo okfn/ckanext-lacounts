@@ -603,3 +603,15 @@ def format_iso_date_string(string, format):
 def get_groups_with_extras():
     return toolkit.get_action('group_list')(
         {'model': model}, {'type': 'topic', 'all_fields': True, 'include_extras': True})
+
+def get_all_working_groups():
+    topics = get_topics()
+    wg = []
+    for topic in topics:
+        if topic.get('working_group_url'):
+            wg.append({
+                'name': topic['title'],
+                'url': topic['working_group_url'],
+                'desc': topic.get('working_group_description')
+            })
+    return wg

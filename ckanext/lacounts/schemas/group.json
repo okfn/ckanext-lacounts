@@ -40,6 +40,13 @@
             "help_text": "This link will be used for the \"Join group\" button"
         },
         {
+            "field_name": "working_group_description",
+            "label": "Working group Description",
+            "form_snippet": "markdown.html",
+            "help_text": "A short description for the Working Group, shown on the Topic page and on the Get Involved page."
+        },
+
+        {
             "field_name": "featured_stories",
             "preset": "featured_stories",
             "label": "Featured stories",
