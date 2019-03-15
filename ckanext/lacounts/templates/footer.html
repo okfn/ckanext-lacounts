@@ -18,7 +18,7 @@
           Email: <a href="mailto:hello@lacounts.org">hello@lacounts.org</a><br/>
         </address>
         <nav>
-          <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='about') }}">{{ _('About') }}</a>
+          <a href="{{ h.url_for('aboutus') }}">{{ _('About') }}</a>
           <a href="{{ h.url_for(controller='ckanext.contact.controllers.contact:ContactController', action='form') }}">{{ _('Contact Us') }}</a>
         </nav>
         <nav>
