@@ -15,13 +15,13 @@
       </h1>
     {% endblock %}
 
-    {% block package_notes %}
-      {% if pkg.notes %}
-        <div class="notes embedded-content">
-          {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-        </div>
-      {% endif %}
-    {% endblock %}
+    {% if pkg.notes %}
+      <div class="notes embedded-content">
+        {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+      </div>
+    {% else %}
+      <p class="empty">{{ _("This dataset has no description") }}</p>
+    {% endif %}
 
     <div class="primary-meta">
       {{ h.popular('recent views', pkg.tracking_summary.recent, min=h.get_minimum_views_for_trending()) if pkg.tracking_summary }}
