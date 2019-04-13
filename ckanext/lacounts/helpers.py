@@ -416,8 +416,11 @@ def get_story_related_stories(story):
     stories = []
     ids = normalize_list(value)
     for id in ids:
-        story = toolkit.get_action('package_show')(context, {'id': id})
-        stories.append(story)
+        try:
+            story = toolkit.get_action('package_show')(context, {'id': id})
+            stories.append(story)
+        except toolkit.ObjectNotFound:
+            pass
 
     return stories
 
