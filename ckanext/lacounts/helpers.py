@@ -247,8 +247,7 @@ def get_recent_data_stories(topic_name=None, limit=None):
             showcase = toolkit.get_action('package_show')({'model': model}, {'id': item['id']})
         except toolkit.NotAuthorized:
             continue
-        if (not showcase.get('image_display_url') or
-                showcase.get('story_type') == 'Blog Post'):
+        if not showcase.get('image_display_url'):
             continue
 
         if topic_name:
