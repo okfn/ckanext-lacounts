@@ -241,16 +241,17 @@ def get_metadata_completion_rate(package):
 
 def get_recent_data_stories(topic_name=None, limit=None):
     showcases = []
+    # They are returned not ordered
     items = toolkit.get_action('ckanext_showcase_list')({'model': model}, {})
+    # We order by creation date to fix it
+    items = sorted(items, key=lambda item: item['metadata_created'], reverse=True)
     for item in items:
         try:
             showcase = toolkit.get_action('package_show')({'model': model}, {'id': item['id']})
         except toolkit.NotAuthorized:
             continue
-        if (not showcase.get('image_display_url') or
-                showcase.get('story_type') == 'Blog Post'):
+        if not showcase.get('image_display_url'):
             continue
-
         if topic_name:
             has_topic = False
             for group in showcase.get('groups'):
@@ -416,8 +417,11 @@ def get_story_related_stories(story):
     stories = []
     ids = normalize_list(value)
     for id in ids:
-        story = toolkit.get_action('package_show')(context, {'id': id})
-        stories.append(story)
+        try:
+            story = toolkit.get_action('package_show')(context, {'id': id})
+            stories.append(story)
+        except toolkit.ObjectNotFound:
+            pass
 
     return stories
 
