@@ -410,7 +410,6 @@ def get_temporal_value(pkg_dict):
 
 
 def get_story_related_stories(story):
-    context = {'model': model}
     value = story.get('related_stories', [])
 
     # Get stories
@@ -418,7 +417,7 @@ def get_story_related_stories(story):
     ids = normalize_list(value)
     for id in ids:
         try:
-            story = toolkit.get_action('package_show')(context, {'id': id})
+            story = toolkit.get_action('package_show')({'model': model}, {'id': id})
             stories.append(story)
         except toolkit.ObjectNotFound:
             pass
