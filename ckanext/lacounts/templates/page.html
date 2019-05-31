@@ -1,6 +1,17 @@
 {% ckan_extends %}
 
+{% block skip %}
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W9K7RC3"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  {{ super() }}
+{% endblock -%}
+
 {%- block header %}
+
   <div class="page{% if c.userobj %} logged-in{% else %} not-logged-in{% endif %}">
     {% include "header.html" %}
     <form class="section site-search simple-input" action="/dataset" method="get">
