@@ -144,11 +144,14 @@ following to create the database tables:
         with SubMapper(map, controller='ckanext.lacounts.controller:AdminController') as m: # noqa
             m.connect('download_terms_sources_csv', '/ckan-admin/terms-sources-csv', action='download_terms_sources_csv')
 
+        # Redirects
         map.redirect('/story', '/dataset?type_label=Story',
                      _redirect_code='301 Moved Permanently')
-
         map.redirect('/why-la-counts', '/about',
                      _redirect_code='301 Moved Permanently')
+        map.redirect('/faq', '/faqs',
+                     _redirect_code='301 Moved Permanently')
+
         return map
 
     # IFacets
