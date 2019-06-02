@@ -151,6 +151,11 @@ following to create the database tables:
                      _redirect_code='301 Moved Permanently')
         map.redirect('/faq', '/faqs',
                      _redirect_code='301 Moved Permanently')
+        # It adds a query parameter `id` like `dataset?id=32423`
+        #  map.redirect('/catalog/{id}', '/dataset',
+                     #  _redirect_code='301 Moved Permanently')
+        with SubMapper(map, controller='ckanext.lacounts.controller:RedirectController') as m: # noqa
+            m.connect('redirect_catalog', '/catalog/{id}', action='redirect_url', url='/dataset')
 
         return map
 

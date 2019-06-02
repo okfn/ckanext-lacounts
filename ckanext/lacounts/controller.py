@@ -348,3 +348,9 @@ class AdminController(toolkit.BaseController):
         toolkit.response.headers['Content-disposition'] = 'attachment;filename=topic_terms_sources.csv'
 
         return output_csv
+
+
+class RedirectController(toolkit.BaseController):
+
+    def redirect_url(self, url):
+        return toolkit.redirect_to(url)
