@@ -13,9 +13,9 @@
       <a class="logo" href="{{ h.url_for('home.index') }}"><img src="{% url_for_static '/base/images/la-counts-logo.png' %}" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
       <div class="footer-content">
         <address>
-          221 S. Figueroa Street #400<br/>
+          1000. N. Alameda Street, Suite 420 <br/>
           Los Angeles, CA 90012<br/>
-          Email: <a href="mailto:hello@lacounts.org">hello@lacounts.org</a><br/>
+          LA Counts is a project of <a target="_blank" rel="noopener noreferrer" href = "http://www.communitypartners.org">Community Partners</a><br/>
         </address>
         <nav>
           <a href="{{ h.url_for('aboutus') }}">{{ _('About') }}</a>
@@ -30,10 +30,7 @@
           <a href="{{ h.url_for(controller='ckanext.lacounts.controller:StaticController', action='privacypolicy') }}">{{ _('Privacy Policy') }}</a>
         </nav>
         <div>
-          <ul class="platforms">
-            <li>
-              <a href="https://www.linkedin.com/company/lacounts/" target="_blank"><i class="fa fa-linkedin-square" aria-hidden="true"></i><span class="sr-only">LinkedIn</span></a>
-            </li>
+          <ul class="platforms"
             <li>
               <a href="https://github.com/okfn/ckanext-lacounts" target="_blank"><i class="fa fa-github-square" aria-hidden="true"></i><span class="sr-only">Github</span></a>
             </li>
@@ -42,7 +39,7 @@
             </li>
           </ul>
           <p>
-            ©2019 LA Counts
+            ©2020 LA Counts
           </p>
         </div>
       </div>
